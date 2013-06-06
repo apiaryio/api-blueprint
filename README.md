@@ -1,5 +1,5 @@
 # API Blueprint
-## A Web API documentation language
+### A Web API documentation language
 
 ```markdown
 # GET /info
@@ -8,16 +8,17 @@
 			Hello World!
 ```
 
-## TL;DR: API Blueprint is:
+## Version
++ Actual version: [Format 1A](https://github.com/apiaryio/api-blueprint/blob/master/APIBlueprintSpecification.md)
+
+## What?
+
+### TL;DR: API Blueprint is:
 + Web API documentation language
 + Pure Markdown
 + Designed for humans
 + Understandable by machines
 
-## Version
-+ Actual version: [Format 1A](https://github.com/apiaryio/api-blueprint/blob/master/APIBlueprintSpecification.md)
-
-## What?
 API Blueprint is lightweight domain specific language (DSL) for easily designing, building and documenting REST API. API Blueprint is a Markdown. It is easy to learn and read, perfect for quick prototyping and collaboration but also for comprehensive documentation.
 
 ## Have it your way
@@ -50,51 +51,48 @@ GET /resource
 			{ ... }
 ```
 				
-### and let your machines eat this:
+### and let your machines have fun with:
 
 ```javascript
 {
-  "ast": {
-    "metadata": [],
-    "name": "My API",
-    "description": "My API rocks! \n \n",
-    "resourceGroups": [
-      {
-        "name": "",
-        "description": "",
-        "resources": [
-          {
-            "uri": "/resource",
-            "description": "",
-            "headers": [],
-            "methods": [
-              {
-                "method": "GET",
-                "description": "",
-                "headers": [],
-                "requests": [],
-                "responses": [
-                  {
-                    "name": "200",
-                    "description": "",
-                    "headers": [
-                      {
-                        "name": "Content-Type",
-                        "value": "application/json"
-                      }
-                    ],
-                    "body": "{ ... }\n",
-                    "schema": ""
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  "warnings": []
+  "metadata": [],
+  "name": "My API",
+  "description": "My API rocks! \n \n",
+  "resourceGroups": [
+    {
+      "name": "",
+      "description": "",
+      "resources": [
+        {
+          "uri": "/resource",
+          "description": "",
+          "headers": [],
+          "methods": [
+            {
+              "method": "GET",
+              "description": "",
+              "headers": [],
+              "requests": [],
+              "responses": [
+                {
+                  "name": "200",
+                  "description": "",
+                  "headers": [
+                    {
+                      "name": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "body": "{ ... }\n",
+                  "schema": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
@@ -122,7 +120,7 @@ resourceGroups:
 ```
 
 ## Have question?
-See [Stack Overflow](http://stackoverflow.com) `apiblueprint` tag.
+Ask at [Stack Overflow](http://stackoverflow.com), make sure to use `apiblueprint` tag.
 
 ## Get started
 Use canonical API Blueprint parser – [Snow Crash](https://github.com/apiaryio/snowcrash) or one of its [bindings](https://github.com/apiaryio/snowcrash#bindings).
