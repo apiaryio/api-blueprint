@@ -11,7 +11,7 @@
 ## Version
 + Actual version: [Format 1A](https://github.com/apiaryio/api-blueprint/blob/master/APIBlueprintSpecification.md)
 
-## What?
+## What is API Blueprint?
 
 ### TL;DR: API Blueprint is:
 + Web API documentation language
@@ -19,9 +19,10 @@
 + Designed for humans
 + Understandable by machines
 
-API Blueprint is lightweight domain specific language (DSL) for easily designing, building and documenting REST API. API Blueprint is a Markdown. It is easy to learn and read, perfect for quick prototyping and collaboration but also for comprehensive documentation.
 
-## Have it your way
+API Blueprint is lightweight, documentation oriented domain specific language (DSL) for easily designing, building and documenting REST API. **API Blueprint is a Markdown.** It is easy to learn and read, perfect for comprehensive documentation but also for quick prototyping and collaboration.
+
+## Write it, read it, share it
 
 ### Stay clean & tidy:
 
@@ -32,7 +33,7 @@ My API rocks!
 ## GET /resource
 + response 200 (application/json)
 	
-		{ ... }
+		{ "message": 'hello world' }
 ```
 
 ### or go large:
@@ -48,12 +49,17 @@ GET /resource
 + Response 200 (application/json)
 	+ Body
 		
-			{ ... }
+		{ "message": 'hello world' }
 ```
-				
-### and let your machines have fun with:
 
-```javascript
+
+## Parse it, integrate it
+
+### Command-line interface
+
+**JSON:** 
+```
+$ snowcrash parse --json my_api.md
 {
   "metadata": [],
   "name": "My API",
@@ -96,9 +102,9 @@ GET /resource
 }
 ```
 
-### or
-
-```yaml
+**YAML:**
+```
+$ showcrash parse --yaml my_api.md
 name: My API
 description: "My API rocks! \n \n"
 resourceGroups:
@@ -118,12 +124,36 @@ resourceGroups:
         headers:
         - Content-Type: application/json
 ```
+### Bindings
 
-## Have question?
+- **Node.js:** [Protagonist](https://github.com/apiaryio/protagonist)
+- **Ruby:** not yet, call for contributions! 
+- **Java:** not yet, call for contributions!
+- **PHP:** not yet, call for contributions!
+
+
+
+## Getting started
+
+### Use canonical API Blueprint parser 
+
+#### OSX 
+```
+brew install snowcrash
+```
+
+#### Build it
+***Build on linux requires clang**
+```
+git clone https://github.com/apiaryio/snowcrash
+cd showcrash
+./configure
+make
+make install
+```
+
+## Have a question?
 Ask at [Stack Overflow](http://stackoverflow.com), make sure to use `apiblueprint` tag.
-
-## Get started
-Use canonical API Blueprint parser – [Snow Crash](https://github.com/apiaryio/snowcrash) or one of its [bindings](https://github.com/apiaryio/snowcrash#bindings).
 
 ## License
 MIT License. See [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
