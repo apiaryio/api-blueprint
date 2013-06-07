@@ -1,11 +1,11 @@
 # API Blueprint
-### A Web API documentation language
+**A Web API documentation language**
 
 ```markdown
 # GET /info
- 	+ Response 200 (text/plain)
++ Response 200 (text/plain)
 	
-			Hello World!
+    Hello World!
 ```
 
 ## Version
