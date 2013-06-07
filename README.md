@@ -135,21 +135,20 @@ resourceGroups:
 
 ## Getting started
 
-### Use canonical API Blueprint parser 
-
-#### OSX 
+#### OS X 
 ```
-brew install snowcrash
+$ brew install snowcrash
+$ showcrash help
 ```
 
 #### Build it
-***Build on linux requires clang**
+
 ```
-git clone https://github.com/apiaryio/snowcrash
-cd showcrash
-./configure
-make
-make install
+$ git clone https://github.com/apiaryio/snowcrash
+$ cd showcrash
+$ ./configure
+$ make
+$ make install
 ```
 
 ## Have a question?
