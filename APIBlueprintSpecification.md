@@ -19,11 +19,12 @@ Author: z@apiary.io
 	1. [Metadata Section][MetadataSection]
 	2. [API Name & Overview Section][APINameOverviewSection]
 	3. [Resource Section][ResourceSection]
-		1. [Parameters Subsection][ResourceParametersSection]
+		1. [Parameters Section][ResourceParametersSection]
 		2. [Method Section][ResourceMethodSection]
-		3. [Request Subsection][ResourceRequestSection]
-		4. [Response Subsection][ResourceResponseSection]
-		5. [Headers Subsection][ResourceHeadersSection]
+		3. [Request Section][ResourceRequestSection]
+		4. [Response Section][ResourceResponseSection]
+		5. [Headers Section][ResourceHeadersSection]
+		6. [Object Section][ResourceObjectSection]
 	4. [Grouping resources][ResourceGroups]
 5. [Payloads][Payloads]
 	1. [Headers Subsection][PayloadHeadersSection]
@@ -181,21 +182,24 @@ Example:
 	Welcome to the **ACME Blog** API. This API provides access to the **ACME Blog** service.
 
 ### 4.3. Resource Section [ResourceSection]
-**Optional**. Definition of exactly *one* API [Resource](http://www.w3.org/TR/di-gloss/#def-resource). Your blueprint document can contain multiple sections for the same resource - URI, as long as their HTTP methods differs. However it is considered a good practice to group multiple HTTP methods under one resource.
+**Optional**. Definition of exactly **one** API [**resource**](http://www.w3.org/TR/di-gloss/#def-resource) specified by its *URI* **OR** a **set of resources** (a resource cluster) matching its *URI template*.
 
-This section is **recognized** by an [RFC 6570 URI template](http://tools.ietf.org/html/rfc6570) written an Markdown header. Optionally the header can contain **one** leading [HTTP Request Method](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods).
+Your blueprint document can contain multiple sections for the same resource (resource cluster) - URI (URI template), as long as their HTTP methods differs. However it is considered a good practice to group multiple HTTP methods under one resource (resource cluster).
+
+This section is **recognized** by an [RFC 6570 URI template](http://tools.ietf.org/html/rfc6570) written in a Markdown header. Optionally the header can contain **one** leading [HTTP Request Method](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) in which case the rest of this section is considered to represent [Method Section][ResourceMethodSection].
+
+Alternatively this section is **recognized** by a MultiMarkdown header with URI Template specified in its [explicit label](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references).
 
 This section can contain **further Markdown-formatted content**. If a content is provided it is considered to represent Resource description.
 
-This section **should include** at least one [Response Section][ResourceResponseSection] **or**, if no **HTTP Request Method** is specified, this section **should include** at least one nested [Method Section][ResourceMethodSection].
+If no **HTTP Request Method** is specified, this section **should include** at least one nested [Method Section][ResourceMethodSection].
 
 In addition to any mandatory nested sections this section **may include** following additional subsections:
  
 * [Parameters Section][ResourceParametersSection]
 * Nested [Method Section][ResourceMethodSection],  if **no** HTTP Request Method is specified
-* [Request Section][ResourceRequestSection], if a HTTP Request Method is specified
-* [Response Section][ResourceResponseSection], if a HTTP Request Method is specified
 * [Headers Section][ResourceHeadersSection]
+* [Object Section][ResourceObjectSection]
 
 Example:
 
@@ -208,6 +212,10 @@ Example:
 	-- or --
 
 	# /posts
+	
+	-- or --
+	
+	# My Resource [/resource]
 
 #### 4.3.1. Parameters Section [ResourceParametersSection]
 **Optional**. Description of [Resource Section][ResourceSection]'s URI parameters. Content of this section is subject to additional formatting.
@@ -253,6 +261,8 @@ Example:
 
 This section is **recognized** by one of the [HTTP Request Methods](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) written in capitals as an Markdown header.
 
+Alternatively this section is **recognized** by a MultiMarkdown header with HTTP Request Method specified in its [explicit label](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references).
+
 This section can contain **further Markdown-formatted content**. If a content is provided it is considered to represent this Resource method description.
 
 This section **should include** at least one [Response Subsection][ResourceResponseSection]. In addition to mandatory nested section this section **may include** following additional subsections:
@@ -275,6 +285,9 @@ Example:
 	...
 
 	## PUT
+	...
+	
+	### Delete post [DELETE]
 	...
 
 #### 4.3.3. Request Section [ResourceRequestSection]
@@ -367,6 +380,33 @@ Example:
 		    Accept-Charset: utf-8
 		    Connection: keep-alive
 
+#### 4.3.6. Object Section [ResourceObjectSection]
+**Optional**. Description of one [resource object manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). This manifestation should be an archetype resource for this [Resource section][ResourceSection]. This section represents a [Payload][Payloads].
+
+This section is **recognized** by an object name followed by **Object** recognized **keyword** written in a Markdown list (item). 
+
+Full list section syntax is as follows:
+
+	+ <object name> Object [(<media type>)]
+
+Object - payload defined in this section can be referred later by its `<object name>` from any other [Request][ResourceRequestSection] or [Response][ResourceResponseSection] payload sections, including those of other following [Resource section][ResourceSection].
+
+Refer to MultiMarkdown [cross references](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references) for details on cross referencing. 
+
+Refer to [Payloads][Payloads] discussion for detailed description of this section content. 
+
+Example:
+
+	# My Resource [/resource]
+	+ My Resource Object (text/plain)
+		
+			Hello World
+			
+	## Retrieve My Resource [GET]
+	+ Response 200
+		
+		[My Resource][]
+
 ### 4.4. Grouping resources [ResourceGroups]
 Resource sections can be grouped together. For example by a common task such as handling payments, shopping cart manipulation, blog post management or user management.
 
@@ -405,11 +445,11 @@ A Payload **should have** its Media Type associated. Payload's Media type repres
 
 Payload section header syntax is follows:
 
-	# <Payload Identifier> (<Media Type>)
+	# <payload identifier> [(<media type>)]
 	
 Payload subsection header syntax is follows:	
 
-	+ <Payload Identifier> (<Media Type>)
+	+ <payload identifier> [(<media type>)]
 
 Payload is formed by following **optional** subsections: 
 
