@@ -1,42 +1,39 @@
-# API Blueprint
-**A Web API documentation language**
+# API Blueprint – Web API documentation language
 
 ```markdown
-# GET /info
+# GET /message
 + Response 200 (text/plain)
 	
     Hello World!
 ```
 
-## Version
-+ Actual version: [Format 1A](https://github.com/apiaryio/api-blueprint/blob/master/APIBlueprintSpecification.md)
+## What is API Blueprint
 
-## What is API Blueprint?
+API Blueprint is lightweight, documentation oriented domain specific language (DSL) for easily designing, building and documenting REST API. **API Blueprint is a Markdown.** It is easy to learn and read, perfect for comprehensive documentation but also for quick prototyping and collaboration.
 
-### TL;DR: API Blueprint is:
+## TL;DR
 + Web API documentation language
 + Pure Markdown
 + Designed for humans
 + Understandable by machines
 
+## Write, read and share
 
-API Blueprint is lightweight, documentation oriented domain specific language (DSL) for easily designing, building and documenting REST API. **API Blueprint is a Markdown.** It is easy to learn and read, perfect for comprehensive documentation but also for quick prototyping and collaboration.
+Prototype, design and document your API using Markdown formatting of your liking.
 
-## Write it, read it, share it
-
-### Stay clean & tidy:
+### Stay clean & tidy
 
 ```markdown
 # My API
 My API rocks! 
  
-## GET /resource
-+ response 200 (application/json)
+## GET /message
+- response 200 (application/json)
 	
-		{ "message": 'hello world' }
+		{ "message": 'Hello World!' }
 ```
 
-### or go large:
+### or go large
 
 ```markdown
 My API
@@ -44,38 +41,53 @@ My API
 
 My API rocks! 
 
-GET /resource
+GET /message
 -------------
+
 + Response 200 (application/json)
-	+ Body
-		
-		{ "message": 'hello world' }
+
+		{ 
+			"message": 'Hello World!' 
+		}
 ```
 
-
-## Parse it, integrate it
+## Parse & integrate
+Parse your API Blueprint and integrate with your tools & frameworks.
 
 ### Command-line interface
 
-**JSON:** 
-```
+#### JSON
+
+```sh
 $ snowcrash parse --json my_api.md
+```
+
+```js
 {
   "metadata": [],
   "name": "My API",
-  "description": "My API rocks! \n \n",
+  "description": "My API rocks! \n\n",
   "resourceGroups": [
     {
       "name": "",
       "description": "",
       "resources": [
         {
-          "uri": "/resource",
+          "uriTemplate": "/message",
+          "name": "",
           "description": "",
           "headers": [],
+          "object": {
+            "name": "",
+            "description": "",
+            "headers": [],
+            "body": "",
+            "schema": ""
+          },
           "methods": [
             {
               "method": "GET",
+              "name": "",
               "description": "",
               "headers": [],
               "requests": [],
@@ -89,7 +101,7 @@ $ snowcrash parse --json my_api.md
                       "value": "application/json"
                     }
                   ],
-                  "body": "{ ... }\n",
+                  "body": "{ \"message\": 'Hello World!' }    \n",
                   "schema": ""
                 }
               ]
@@ -102,48 +114,55 @@ $ snowcrash parse --json my_api.md
 }
 ```
 
-**YAML:**
-```
+#### YAML
+
+```sh
 $ showcrash parse --yaml my_api.md
+```
+
+```yaml
 name: My API
-description: "My API rocks! \n \n"
+description: "My API rocks! \n\n"
 resourceGroups:
 - name:
   description:
   resources:
-  - uri: /resource
+  - uri: /message
+    name:
     description:
+    object:
     methods:
     - method: GET
+      name:
       description:
       responses:
       - name: 200
         description:
-        body: "{ ... }\n"
+        body: "{ "message": 'Hello World!' }\n"
         schema:
         headers:
         - Content-Type: application/json
 ```
+
 ### Bindings
 
 - **Node.js:** [Protagonist](https://github.com/apiaryio/protagonist)
-- **Ruby:** not yet, call for contributions! 
-- **Java:** not yet, call for contributions!
-- **PHP:** not yet, call for contributions!
-
-
+- **Ruby:** not yet, call for contributors
+- **Java:** not yet, call for contributors
+- **PHP:** not yet, call contributors
 
 ## Getting started
 
-#### OS X 
-```
+### Install on OS X
+
+```sh
 $ brew install snowcrash
-$ showcrash help
+$ showcrash --help
 ```
 
-#### Build it
+### Build from sources
 
-```
+```sh
 $ git clone https://github.com/apiaryio/snowcrash
 $ cd showcrash
 $ ./configure
@@ -153,6 +172,9 @@ $ make install
 
 ## Have a question?
 Ask at [Stack Overflow](http://stackoverflow.com), make sure to use `apiblueprint` tag.
+
+## Version
++ Actual version: [Format 1A](https://github.com/apiaryio/api-blueprint/blob/master/APIBlueprintSpecification.md)
 
 ## License
 MIT License. See [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
