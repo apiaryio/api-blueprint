@@ -171,7 +171,9 @@ $ make install
 ```
 
 ## Have a question?
-Ask at [Stack Overflow](http://stackoverflow.com), make sure to use `apiblueprint` tag.
+Ask at [Stack Overflow](http://stackoverflow.com/questions/ask), make sure to use `apiblueprint` tag.
+
+Alternativelly, if you are contributor, check [API Blueprint Developers Google Group](https://groups.google.com/forum/?fromgroups#!forum/apiblueprint-dev). 
 
 ## Version
 + Actual version: [Format 1A](https://github.com/apiaryio/api-blueprint/blob/master/APIBlueprintSpecification.md)
