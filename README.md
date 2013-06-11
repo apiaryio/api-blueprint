@@ -117,7 +117,7 @@ $ snowcrash parse --json my_api.md
 #### YAML
 
 ```sh
-$ showcrash parse --yaml my_api.md
+$ snowcrash parse --yaml my_api.md
 ```
 
 ```yaml
@@ -160,14 +160,14 @@ Start with [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/bl
 
 ```sh
 $ brew install snowcrash
-$ showcrash --help
+$ snowcrash --help
 ```
 
 ### Build from sources
 
 ```sh
 $ git clone https://github.com/apiaryio/snowcrash
-$ cd showcrash
+$ cd snowcrash
 $ ./configure
 $ make
 $ make install
