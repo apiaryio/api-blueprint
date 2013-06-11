@@ -153,6 +153,9 @@ resourceGroups:
 
 ## Getting started
 
+### Read examples
+Start with [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or just browse all [available examples](https://github.com/apiaryio/api-blueprint/tree/master/examples).
+
 ### Install on OS X
 
 ```sh
