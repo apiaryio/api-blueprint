@@ -1,7 +1,7 @@
 FORMAT: X-1A
 HOST: https://alpha-api.app.net
 
-# App.net API (abbrev.)
+# Real World API
 This API Blueprint demonstrates a real world example documenting portion of [App.net API](http://developers.app.net).
 
 NOTE: This document is **work in progress**.
@@ -152,7 +152,7 @@ Retrieves all posts.
     
     [Posts Collection][]
 
-## Stars [/stream/0/posts/{post_id}]
+## Stars [/stream/0/posts/{post_id}/star]
 A User’s stars are visible to others, but they are not automatically added to your followers’ streams.
 
 ### Star a Post [POST]
