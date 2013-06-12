@@ -62,7 +62,7 @@ Sections are recognized by a **reserved section name** or an **URI template** in
 
 Each section and subsection has strictly defined name, meaning and its expected content. Anything between a section start and another section start is considered to be a section. This implies you **should avoid** using reserved section names – **keywords** in other Markdown headers.
 
-Each Markdown header lead section can be explicitly terminated by a Markdown horizontal rule. This implies you also **should avoid** deliberately using Markdown horizontal rules.
+Each Markdown header-lead section can be explicitly terminated by a Markdown horizontal rule. Therefore **avoid using** Markdown **horizontal rules** in any other place.
 
 ### 3.2. Reserved Section Names [ReservedSectionNames]
 Reserved keywords are:
