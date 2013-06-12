@@ -79,6 +79,7 @@ Reserved keywords are:
 	- **Parameters**
 	- **Body**
 	- **Schema**
+	- **Object**
 
 Sections are discussed in [API Blueprint Document Structure](DocumentStructure). Note that some section names can contain variable components such as identifiers or other modifiers. See relevant section's entry to find out more about how section name is built.
 
