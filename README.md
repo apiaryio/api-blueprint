@@ -54,7 +54,7 @@ GET /message
 ## Parse & integrate
 Parse your API Blueprint and integrate with your tools & frameworks.
 
-### Command-line interface
+### Use Command-line interface
 
 #### JSON
 
@@ -144,6 +144,8 @@ resourceGroups:
         - Content-Type: application/json
 ```
 
+## Getting started
+
 ### Bindings
 
 - **Node.js:** [Protagonist](https://github.com/apiaryio/protagonist)
@@ -151,19 +153,10 @@ resourceGroups:
 - **Java:** not yet, call for contributors
 - **PHP:** not yet, call contributors
 
-## Getting started
-
 ### Read examples
 Start with [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or just browse all [available examples](https://github.com/apiaryio/api-blueprint/tree/master/examples).
 
-### Install on OS X
-
-```sh
-$ brew install snowcrash
-$ snowcrash --help
-```
-
-### Build from sources
+### Build from source
 
 ```sh
 $ git clone https://github.com/apiaryio/snowcrash
@@ -180,6 +173,17 @@ Alternativelly, if you are contributor, check [API Blueprint Developers Google G
 
 ## Version
 + Actual version: [Format 1A](https://github.com/apiaryio/api-blueprint/blob/master/APIBlueprintSpecification.md)
+
+## What's next?
+
+### Install on OS X
+_not ready yet, will release during June/July_
+
+```sh
+$ brew install snowcrash
+$ snowcrash --help
+```
+
 
 ## License
 MIT License. See [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
