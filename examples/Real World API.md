@@ -2,9 +2,9 @@ FORMAT: X-1A
 HOST: https://alpha-api.app.net
 
 # Real World API
-This API Blueprint demonstrates a real world example documenting portion of [App.net API](http://developers.app.net).
+This API Blueprint demonstrates a real world example documenting a portion of [App.net API](http://developers.app.net).
 
-NOTE: This document is **work in progress**.
+NOTE: This document is a **work in progress**.
 
 ---
 
