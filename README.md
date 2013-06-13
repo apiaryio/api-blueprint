@@ -1,4 +1,4 @@
-# API Blueprint – Web API documentation language
+# API Blueprint – A Web API documentation language
 
 ```markdown
 # GET /message
@@ -9,9 +9,10 @@
 
 ## What is API Blueprint
 
-API Blueprint is lightweight, documentation oriented domain specific language (DSL) for easily designing, building and documenting REST API. **API Blueprint is a Markdown.** It is easy to learn and read, perfect for comprehensive documentation but also for quick prototyping and collaboration.
+API Blueprint is a lightweight, documentation-oriented domain specific language (DSL) for easily designing, building and documenting Web APIs. **API Blueprint is a Markdown.** It is easy to learn and read, perfect for comprehensive documentation but also for a quick prototyping and collaboration.
 
 ## TL;DR
+
 + Web API documentation language
 + Pure Markdown
 + Designed for humans
@@ -19,7 +20,7 @@ API Blueprint is lightweight, documentation oriented domain specific language (D
 
 ## Write, read and share
 
-Prototype, design and document your API using Markdown formatting of your liking.
+Prototype, design and document your API using a Markdown formatting of your liking.
 
 ### Stay clean & tidy
 
@@ -146,44 +147,45 @@ resourceGroups:
 
 ## Getting started
 
-### Bindings
+### Check examples
+
+Start with the [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or just browse [examples](https://github.com/apiaryio/api-blueprint/tree/master/examples).
+
+### Get the API Blueprint Parser
+
+Get the [Snow Crash](https://github.com/apiaryio/snowcrash) – the Canonical API Blueprint Parser. 
+
+### Or one of its bindings 
+
+Refer to Snow Crash [bindings]((https://github.com/apiaryio/snowcrash#bindings).
 
 - **Node.js:** [Protagonist](https://github.com/apiaryio/protagonist)
 - **Ruby:** not yet, call for contributors
 - **Java:** not yet, call for contributors
 - **PHP:** not yet, call contributors
 
-### Read examples
-Start with [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or just browse all [available examples](https://github.com/apiaryio/api-blueprint/tree/master/examples).
-
-### Build from source
-
-```sh
-$ git clone https://github.com/apiaryio/snowcrash
-$ cd snowcrash
-$ ./configure
-$ make
-$ make install
-```
-
 ## Have a question?
-Ask at [Stack Overflow](http://stackoverflow.com/questions/ask), make sure to use `apiblueprint` tag.
+Ask at [Stack Overflow](http://stackoverflow.com/questions/ask), make sure to use the `apiblueprint` tag.
 
-Alternativelly, if you are contributor, check [API Blueprint Developers Google Group](https://groups.google.com/forum/?fromgroups#!forum/apiblueprint-dev). 
+Alternativelly, if you are a contributor, check the [API Blueprint Developers Discussion Group](https://groups.google.com/forum/?fromgroups#!forum/apiblueprint-dev). 
 
 ## Version
 + Actual version: [Format 1A](https://github.com/apiaryio/api-blueprint/blob/master/APIBlueprintSpecification.md)
 
 ## What's next?
 
-### Install on OS X
-_not ready yet, will release during June/July_
+### API Blueprint Roadmap
+
+Refer to the API Blueprint Roadmap [Wiki Page](https://github.com/apiaryio/api-blueprint/wiki/API-Blueprint-Roadmap).
+
+### Brew Parser
+
+_not ready yet, work in progress_
 
 ```sh
 $ brew install snowcrash
 $ snowcrash --help
 ```
-
 
 ## License
 MIT License. See [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
