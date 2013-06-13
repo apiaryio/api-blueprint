@@ -7,9 +7,9 @@
     Hello World!
 ```
 
-## What is API Blueprint
+## What is API Blueprint?
 
-API Blueprint is a lightweight, documentation-oriented domain specific language (DSL) for easily designing, building and documenting Web APIs. **API Blueprint is a Markdown.** It is easy to learn and read, perfect for comprehensive documentation but also for a quick prototyping and collaboration.
+API Blueprint is a lightweight, documentation-oriented domain specific language (DSL) for easily designing, building and documenting Web APIs. **API Blueprint is a form of Markdown.** It is easy to learn and read; perfect for comprehensive documentation but also for quick prototyping and collaboration.
 
 ## TL;DR
 
@@ -55,7 +55,7 @@ GET /message
 ## Parse & integrate
 Parse your API Blueprint and integrate with your tools & frameworks.
 
-### Use Command-line interface
+### Use a Command-line interface
 
 #### JSON
 
@@ -147,27 +147,27 @@ resourceGroups:
 
 ## Getting started
 
-### Check examples
+### View examples
 
-Start with the [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or just browse [examples](https://github.com/apiaryio/api-blueprint/tree/master/examples).
+Start with the [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or just browse the [examples](https://github.com/apiaryio/api-blueprint/tree/master/examples).
 
 ### Get the API Blueprint Parser
 
-Get the [Snow Crash](https://github.com/apiaryio/snowcrash) – the Canonical API Blueprint Parser. 
+Get [Snow Crash](https://github.com/apiaryio/snowcrash) – the Canonical API Blueprint Parser. 
 
 ### Or one of its bindings 
 
-Refer to Snow Crash [bindings]((https://github.com/apiaryio/snowcrash#bindings).
+Refer to the Snow Crash [bindings]((https://github.com/apiaryio/snowcrash#bindings).
 
 - **Node.js:** [Protagonist](https://github.com/apiaryio/protagonist)
-- **Ruby:** not yet, call for contributors
-- **Java:** not yet, call for contributors
-- **PHP:** not yet, call contributors
+- **Ruby:** none yet - we're looking for contributors
+- **Java:** none yet - we're looking for contributors
+- **PHP:** none yet - we're looking for contributors
 
 ## Have a question?
 Ask at [Stack Overflow](http://stackoverflow.com/questions/ask), make sure to use the `apiblueprint` tag.
 
-Alternativelly, if you are a contributor, check the [API Blueprint Developers Discussion Group](https://groups.google.com/forum/?fromgroups#!forum/apiblueprint-dev). 
+Alternatively, if you are a contributor, check out the [API Blueprint Developers Discussion Group](https://groups.google.com/forum/?fromgroups#!forum/apiblueprint-dev). 
 
 ## Version
 + Actual version: [Format 1A](https://github.com/apiaryio/api-blueprint/blob/master/APIBlueprintSpecification.md)
@@ -188,4 +188,4 @@ $ snowcrash --help
 ```
 
 ## License
-MIT License. See [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
+MIT License. See the [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
