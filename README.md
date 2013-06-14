@@ -6,6 +6,7 @@
 	
     Hello World!
 ```
+[More Examples](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) | [I speak Hypermedia](https://github.com/apiaryio/api-blueprint/blob/master/examples/8.%20Resource%20Object.md)
 
 ## What is API Blueprint?
 
