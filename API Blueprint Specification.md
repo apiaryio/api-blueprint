@@ -60,26 +60,25 @@ A section represents a logical unit of your API Blueprint. For example an API ov
 
 Sections are recognized by a **reserved section name** or a **URI template** in a **Markdown header**. Alternatively some selected sections are recognized by a **reserved section name** in a **Markdown list item** followed by a newline.
 
-Each section or subsection has a strictly defined name, meaning and expected content. Anything between a section start and another section start is considered to be part of the section. This implies that you **should avoid** using reserved section names – **keywords** in other Markdown headers.
-
-Each Markdown header-led section can be explicitly terminated by a Markdown horizontal rule. Therefore **avoid using** Markdown **horizontal rules** anywhere else.
+Each section or subsection has a strictly defined name, meaning and expected content. Anything between a section start and another section start is considered to be part of the section. This implies that you **must avoid** using reserved section names – **keywords** in other Markdown headers.
 
 ### 3.2. Reserved Section Names [ReservedSectionNames]
 Reserved keywords are:
 
 - Markdown Headers:
-	- HTTP methods: **GET, POST, PUT, DELETE, OPTIONS, PATCH, PROPPATCH, LOCK, UNLOCK, COPY, MOVE, MKCOL, HEAD**
-	- URI templates (e.g. **/resource/{id}**)
-	- Combinations of HTTP method and URI Template (e.g. **GET /resource/{id}**)
+	- HTTP methods: `GET, POST, PUT, DELETE, OPTIONS, PATCH, PROPPATCH, LOCK, UNLOCK, COPY, MOVE, MKCOL, HEAD`
+	- URI templates (e.g. `/resource/{id}`)
+	- Combinations of HTTP method and URI Template (e.g. `GET /resource/{id}`)
 
 - Markdown List item: 
-	- **Request**
-	- **Response**
-	- **Headers**
-	- **Parameters**
-	- **Body**
-	- **Schema**
-	- **Object**
+	- `Request`
+	- `Response`
+	- `Headers`
+	- `Parameters`
+	- `Body`
+	- `Schema`
+	- `Object`
+	- `Group`
 
 Sections are discussed in [API Blueprint Document Structure](DocumentStructure). Note that some section names can contain variable components such as identifiers or other modifiers. See the relevant section's entry to find out more about how its section name is built.
 
@@ -221,7 +220,7 @@ Example:
 #### 4.3.1. Parameters Section [ResourceParametersSection]
 **Optional**. Description of [Resource Section][ResourceSection]'s URI parameters. Content of this section is subject to additional formatting.
 
-This subsection is **recognized** by the **"Parameters"** reserved **keyword** written as a Markdown list item. If present, it must be subsection of a [Resource Section][ResourceSection].
+This subsection is **recognized** by the `Parameters` reserved **keyword** written as a Markdown list item. If present, it must be subsection of a [Resource Section][ResourceSection].
 
 This subsection can contain **further Markdown-formatted content**. If content is provided it is considered to represent a general Resource URI parameter description. The rest of this subsection is formatted as follows:
 
@@ -294,7 +293,7 @@ Example:
 #### 4.3.3. Request Section [ResourceRequestSection]
 **Optional**. Description of exactly *one* [HTTP request](http://www.w3.org/TR/di-gloss/#def-http-request).
 
-This section is **recognized** by the **"Request"** reserved **keyword** written in a Markdown header. The **"Request"** can be followed by an arbitrary string representing the user identifier of this request. This identifier **must not** be enclosed in brackets. In case a HTTP body is specified the **"Request"** keyword (and possible identifier) **should be** followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type).
+This section is **recognized** by the `Request` reserved **keyword** written in a Markdown header. The **"Request"** can be followed by an arbitrary string representing the user identifier of this request. This identifier **must not** be enclosed in brackets. In case a HTTP body is specified the `Request` keyword (and possible identifier) **should be** followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type).
 
 The Full Request Subsection list syntax is as follows:
 
@@ -319,7 +318,7 @@ Example:
 #### 4.3.4. Response Section [ResourceResponseSection]
 **Expected**. Description of exactly *one* [HTTP response](http://www.w3.org/TR/di-gloss/#def-http-response).
 
-This subsection is **recognized** by the **"Response"** reserved **keyword** written in a Markdown list followed by a [HTTP Status code](http://www.restapitutorial.com/httpstatuscodes.html). In case a HTTP body is specified the **"Response"** keyword should be followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type).
+This subsection is **recognized** by the `Response` reserved **keyword** written in a Markdown list followed by a [HTTP Status code](http://www.restapitutorial.com/httpstatuscodes.html). In case a HTTP body is specified the `Response` **keyword** should be followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type).
 
 The Full Response Subsection list syntax is as follows:
 
@@ -340,7 +339,7 @@ Example:
 #### 4.3.5. Headers Section [ResourceHeadersSection]
 **Optional**. Description of HTTP Headers parameters. Content of this subsection is subject to additional formatting.
 
-This section is **recognized** by the **"Headers"** reserved **keyword** written in a Markdown list. Optionally the **"Headers"** keyword can be preceded by either the `Response` or `Request` header keyword.
+This section is **recognized** by the `Headers` reserved **keyword** written in a Markdown list. Optionally the `Headers` keyword can be preceded by either the `Response` or `Request` header **keyword**.
 
 The Full Header section list syntax is as follows:
 
@@ -356,10 +355,10 @@ Based on where this section is listed, the headers are expected or sent as follo
 * **Resource Section**: Headers are expected and/or sent with **every** request and/or response on this **Resource's URI**.
 * **Method Section**: Headers are expected and/or sent with **every** request and/or response with specific **method and Resource's URI**.
 
-Based on the keywords preceding the **"Headers"** keyword, the headers are expected or sent as follows:
+Based on the keywords preceding the `Headers` keyword, the headers are expected or sent as follows:
 
-* **Request** keyword: Headers are expected only with requests.
-* **Response** keyword: Headers are sent only with responses.
+* `Reques` keyword: Headers are expected only with requests.
+* `Response` keyword: Headers are sent only with responses.
 
 The subsection is formatted as a Markdown's [Pre-formatted code blocks](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
 
@@ -384,7 +383,7 @@ Example:
 #### 4.3.6. Object Section [ResourceObjectSection]
 **Optional**. Description of one [resource object manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). This manifestation should be an archetype resource for this [Resource section][ResourceSection]. This section represents a [Payload][Payloads].
 
-This section is **recognized** by an object name followed by **Object** recognized **keyword** written in a Markdown list (item). 
+This section is **recognized** by an object name followed by `Object` recognized **keyword** written in a Markdown list (item). 
 
 The Full list section syntax is as follows:
 
@@ -409,9 +408,7 @@ Example:
 		[My Resource][]
 
 ### 4.4. Grouping Resources [ResourceGroups]
-Resource sections can be grouped together. For example, by a common task such as handling payments, shopping cart manipulation, blog post management or user management.
-
-To group resources simply [nest][NestedSections] your resource section(s) under a Markdown header of a group's name. Note that if a group follows immediately after the [API Name & Overview Section][APINameOverviewSection], the [API Name & Overview Section][APINameOverviewSection] must be explicitly terminated by a Markdown horizontal rule as discussed in [Sections][Sections].
+Resource sections can be grouped together. To group resources simply [nest][NestedSections] your resource section(s) under a Markdown header starting with the `Group` **keyword**.  
 
 A Group section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the group description.
 
@@ -419,7 +416,7 @@ A Group **should include** at least one [Resource Section][ResourceSection].
 
 Example:
 
-	# Blog Posts
+	# Group Blog Posts
 	Resources in this groups are related to **ACME Blog** posts.
 
 	## GET /posts{/id}
@@ -428,7 +425,7 @@ Example:
 	## PUT /posts
 		...
 
-	# Authors
+	# Group Authors
 	## GET /authors
 		...
 
@@ -483,7 +480,7 @@ Example:
 ### 5.1. Headers Subsection [PayloadHeadersSection]
 **Optional**. Specifies the metadata in the form of the HTTP headers to be received or sent with the payload. Content of this section is subject to additional formatting.
 
-This subsection is **recognized** by the **"Headers"** reserved **keyword** written as a Markdown list item. No further keywords or modifiers are expected.
+This subsection is **recognized** by the `Headers` reserved **keyword** written as a Markdown list item. No further keywords or modifiers are expected.
 
 Refer to [Resource Headers Subsection][ResourceHeadersSection] for this section's syntax definition.
 
@@ -497,7 +494,7 @@ Example:
 ### 5.2. Parameters Subsection [PayloadParametersSection]
 **Optional** for the **application/json** media type. Description of the [Payload][Payloads]'s parameters. Content of this subsection is subject to additional formatting.
 
-This subsection is **recognized** by the **"Parameters"** reserved **keyword** written as a Markdown list item.
+This subsection is **recognized** by the `Parameters` reserved **keyword** written as a Markdown list item.
 
 This subsection can contain **further Markdown-formatted content**. If content is provided, it is considered to represent the general payload parameter's description. The rest of this section is formatted as follows:
 
@@ -522,7 +519,7 @@ Example:
 ### 5.3. Body Subsection [PayloadBodySection]
 **Optional**. Specifies the content of the payload received or sent in the form of a HTTP body.
 
-This subsection is **recognized** by the **"Body"** reserved **keyword** written as a Markdown list item.
+This subsection is **recognized** by the `Body` reserved **keyword** written as a Markdown list item.
 
 This subsection represents an API Blueprint Document [Asset][DocumentAssets].
 
@@ -545,7 +542,7 @@ Example:
 ### 5.4. Schema Subsection [PayloadSchemaSection]
 **Optional**. Where applicable, specifies a schema used to validate this payload's body content.
 
-This subsection is **recognized** by the **"Schema"** reserved **keyword** written as a Markdown list item.
+This subsection is **recognized** by the `Schema` reserved **keyword** written as a Markdown list item.
 
 This subsection represents an API Blueprint Document [Asset][DocumentAssets].
 
