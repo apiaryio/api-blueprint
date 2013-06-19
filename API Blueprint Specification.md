@@ -182,7 +182,7 @@ Example:
 	Welcome to the **ACME Blog** API. This API provides access to the **ACME Blog** service.
 
 ### 4.3. Resource Section [ResourceSection]
-**Optional**. Definition of exactly **one** API [**resource**](http://www.w3.org/TR/di-gloss/#def-resource) specified by its *URI* **OR** a **set of resources** (a resource cluster) matching its *URI template*.
+**Optional**. Definition of exactly **one** API [**resource**](http://www.w3.org/TR/di-gloss/#def-resource) specified by its *URI* **OR** a **set of resources** (a resource template) matching its *URI template*.
 
 Your Blueprint document can contain multiple sections for the same resource (resource cluster) - URI (URI template), as long as their HTTP methods differ. However it is considered good practice to group multiple HTTP methods under one resource (resource cluster).
 
