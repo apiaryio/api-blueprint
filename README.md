@@ -162,6 +162,7 @@ Refer to the Snow Crash [bindings]((https://github.com/apiaryio/snowcrash#bindin
 
 - **Node.js:** [Protagonist](https://github.com/apiaryio/protagonist)
 - **Ruby:** none yet - we're looking for contributors
+- **Python:** none yet - we're looking for contributors
 - **Java:** none yet - we're looking for contributors
 - **PHP:** none yet - we're looking for contributors
 
