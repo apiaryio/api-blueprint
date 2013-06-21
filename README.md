@@ -172,7 +172,7 @@ Ask at [Stack Overflow](http://stackoverflow.com/questions/ask), make sure to us
 Alternatively, if you are a contributor, check out the [API Blueprint Developers Discussion Group](https://groups.google.com/forum/?fromgroups#!forum/apiblueprint-dev). 
 
 ## Version
-+ Actual version: [Format 1A](https://github.com/apiaryio/api-blueprint/blob/master/APIBlueprintSpecification.md)
++ Actual version: [Format 1A](http://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md)
 
 ## What's next?
 
