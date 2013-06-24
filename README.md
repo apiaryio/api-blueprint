@@ -1,4 +1,5 @@
-# API Blueprint – A Web API documentation language
+# API Blueprint
+### Web API documentation language
 
 ```markdown
 # GET /message
