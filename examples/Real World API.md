@@ -6,10 +6,8 @@ This API Blueprint demonstrates a real world example documenting a portion of [A
 
 NOTE: This document is a **work in progress**.
 
----
-
-# Posts
-In this section we will discuss App.net posts.
+# Group Posts
+This section groups App.net post resources.
 
 ## Post [/stream/0/posts/{post_id}]
 A Post is the other central object utilized by the App.net Stream API. It has rich text and annotations which comprise all of the content a users sees in their feed. Posts are closely tied to the follow graph...
