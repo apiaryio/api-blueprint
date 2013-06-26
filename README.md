@@ -1,5 +1,5 @@
 # API Blueprint
-### Web API documentation language
+### Web API language
 
 ```markdown
 # GET /message
@@ -15,7 +15,7 @@ API Blueprint is a lightweight, documentation-oriented domain specific language 
 
 ## TL;DR
 
-+ Web API documentation language
++ Web API language
 + Pure Markdown
 + Designed for humans
 + Understandable by machines
