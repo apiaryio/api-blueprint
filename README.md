@@ -62,7 +62,7 @@ Parse your API Blueprint and integrate with your tools & frameworks.
 #### JSON
 
 ```sh
-$ snowcrash parse --json my_api.md
+$ snowcrash --format json my_api.md
 ```
 
 ```js
@@ -120,7 +120,7 @@ $ snowcrash parse --json my_api.md
 #### YAML
 
 ```sh
-$ snowcrash parse --yaml my_api.md
+$ snowcrash --format=yaml my_api.md
 ```
 
 ```yaml
