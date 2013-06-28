@@ -62,7 +62,7 @@ Parse your API Blueprint and integrate with your tools & frameworks.
 #### JSON
 
 ```sh
-$ snowcrash --format json my_api.md
+$ snowcrash --format=json my_api.md
 ```
 
 ```js
