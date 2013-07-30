@@ -59,6 +59,14 @@ html {
   padding-left: 90px;
   background: url("logo_apiblueprint.png") no-repeat left center;
 }
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+  .logo__bg {
+    background-image: url("logo_apiblueprint@2x.png");
+    -webkit-background-size: 62px auto;
+    -moz-background-size: 62px auto;
+    background-size: 62px auto;
+  }
+}
 .logo__spot {
   padding-top: 1em;
   font-weight: 100;
@@ -507,6 +515,13 @@ h1 {
 .examples__links a:last-of-type {
   float: right;
 }
+@media screen and (max-width:660px) {
+  .examples .examples__links a {
+    float: none;
+    margin-top: 0.5em;
+    display: block;
+  }
+}
 .examples__ico--full,
 .examples__ico--more {
   float: left;
@@ -516,11 +531,6 @@ h1 {
   opacity: 0.3;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30);
-  -webkit-transition: 0.2s opacity linear;
-  -moz-transition: 0.2s opacity linear;
-  -o-transition: 0.2s opacity linear;
-  -ms-transition: 0.2s opacity linear;
-  transition: 0.2s opacity linear;
 }
 .examples__ico--full {
   background-position: -171px -65px;
@@ -648,15 +658,16 @@ a:hover {
   border-radius: 1em;
   padding: 3em;
   margin-bottom: 1em;
+  position: relative;
 }
 .highlightedGreen h2 {
   margin: 0;
-  padding: 0 0 0.3em 0;
+  padding: 0 0 0.3em 85px;
   font-size: 230%;
   font-weight: normal;
 }
 .highlightedGreen p {
-  padding: 0;
+  padding: 0 0 0 85px;
   margin: 0;
   font-size: 180%;
   font-weight: normal;
@@ -675,11 +686,21 @@ a:hover {
   }
 }
 .highlightedGreen__bg {
-  float: left;
+  position: absolute;
+  left: 3em;
+  top: 3em;
   height: 80px;
   width: 60px;
   margin-right: 2em;
   background: url("sprite.png") -570px -120px no-repeat;
+}
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+  .highlightedGreen__bg {
+    background-image: url("sprite@2x.png");
+    -webkit-background-size: 853px auto;
+    -moz-background-size: 853px auto;
+    background-size: 853px auto;
+  }
 }
 .subnotes {
   line-height: 1.3;
@@ -791,7 +812,7 @@ a:hover {
   height: 36px;
   width: 36px;
   top: -59px;
-  left: 323px;
+  left: 303px;
   margin-top: -18px;
   background-color: #ec9c4a;
   background-position: -113px -32px;
@@ -1040,6 +1061,14 @@ a:hover {
   background-image: url("sprite.png");
   background-repeat: no-repeat;
 }
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+  .versus__item .versus__bg {
+    background-image: url("sprite@2x.png");
+    -webkit-background-size: 853px auto;
+    -moz-background-size: 853px auto;
+    background-size: 853px auto;
+  }
+}
 .versus--diy {
   background-position: 5px 0;
 }
@@ -1047,9 +1076,6 @@ a:hover {
   background-position: -316px 0;
 }
 .versus--google {
-  background-position: -660px 0;
-}
-.versus--changelog {
   background-position: -660px 0;
 }
 .started__texts {
@@ -1130,9 +1156,10 @@ a:hover {
   font-size: 1.4em;
   border-left-width: 2em;
   padding: 35px 1em 0;
+  text-align: center;
 }
 .binding__item.binding__item--making {
-  padding-top: 0px;
+  padding: 0;
 }
 .binding__item--link--border {
   position: absolute;
@@ -1227,6 +1254,14 @@ a:hover {
   background-image: url("sprite.png");
   background-repeat: no-repeat;
 }
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+  .binding__bg {
+    background-image: url("sprite@2x.png");
+    -webkit-background-size: 853px auto;
+    -moz-background-size: 853px auto;
+    background-size: 853px auto;
+  }
+}
 .binding__bg.binding--nodejs {
   width: 140px;
   margin: 41px auto 0;
@@ -1235,14 +1270,14 @@ a:hover {
   background-position: -196px -124px;
 }
 .binding__bg.binding--ruby {
-  width: 150px;
+  width: 140px;
   margin: 25px auto 0;
   height: 110px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   display: block;
-  background-position: 21px -98px;
+  background-position: 15px -98px;
   padding-top: 30px;
   line-height: 125%;
 }
@@ -1274,6 +1309,14 @@ a:hover {
   display: inline-block;
   vertical-align: middle;
   margin-right: 0.5em;
+}
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+  .tooling__share--ico::before {
+    background-image: url("sprite@2x.png");
+    -webkit-background-size: 853px auto;
+    -moz-background-size: 853px auto;
+    background-size: 853px auto;
+  }
 }
 .tooling__item {
   position: relative;
@@ -1361,6 +1404,14 @@ a:hover {
   background-image: url("sprite.png");
   background-repeat: no-repeat;
   display: inline-block;
+}
+@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi) {
+  .tooling__ico__logo {
+    background-image: url("sprite@2x.png");
+    -webkit-background-size: 853px auto;
+    -moz-background-size: 853px auto;
+    background-size: 853px auto;
+  }
 }
 .tooling__ico__logo--apiary {
   background-position: -693px -140px;
