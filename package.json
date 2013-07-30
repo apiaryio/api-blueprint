@@ -1,0 +1,37 @@
+{
+  "name": "apiblueprint",
+  "version": "0.0.1",
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.2.x"
+  },
+  "private": true,
+  "homepage": "http://apiblueprint.org/",
+  "scripts": {},
+  "description": "```markdown # GET /message + Response 200 (text/plain)",
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/apiaryio/api-blueprint.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apiaryio/api-blueprint/issues"
+  },
+  "dependencies": {
+    "coffee-script": "",
+    "connect": "",
+    "express": "",
+    "gzippo": "",
+    "node-hipchat": "",
+    "protagonist": "0.1.0",
+    "winston": "git://github.com/apiaryio/winston.git#production"
+  },
+  "devDependencies": {
+    "nib": "",
+    "stylus": ""
+  }
+}
