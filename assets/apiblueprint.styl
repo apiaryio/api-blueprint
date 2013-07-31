@@ -1,0 +1,1442 @@
+$gutter = 1em
+$color = #f43059
+$green = #40f6bb
+$white = #fff
+$darkgreen = #00d779
+$limegreen = #46cc78
+
+$violet = #533b89
+$greyviolet = #a19eb6
+$lighterviolet = #b09ee1
+$lightviolet = #b4bae9
+$lightestviolet = #d7d2ff
+
+$darkviolet = #635e8c
+$darkerviolet = #3a2765
+$violetonviolet = #7966ac
+$logoviolet = #c7b2ff
+$transparentC = rgba(0,0,0,0.001)
+$maxWidth = 960px
+$tooling = #6b53a5
+$grey = #aaa
+$foot = #322b44
+
+$pink = #c154d1
+$orange = #ec9c4a
+$salmon = #e91166
+$sky = #55c8e5
+$violetblue = #7759e1
+
+$method = #ada6ff
+$uri = #ffc889
+$preformated = #bca6ff
+
+$horizSpace = 2em
+$space = 1em
+
+@import 'nib'
+
+html
+  font: 0.75em/1.25 sans-serif
+  font-family: 'Proxima Nova', Helvetica, Arial, sans-serif
+  background-color: $violet
+  color: #fff
+
+.logo
+.started__question
+.started__stack
+.page__title
+  font-family 'TitilliumText', Helvetica, Arial, sans-serif
+  font-weight 100
+
+.page__title
+  font-size 300%
+  padding-bottom $space
+  margin-bottom 0
+  line-height 100%
+  border-left 0 solid #fff
+  transition 0.2s linear border-left-width, padding-left
+
+.baseWrap
+  margin-left: auto
+  margin-right: auto
+  max-width: $maxWidth
+
+.page
+  position relative
+  z-index 2
+  padding-top: $gutter
+  padding-left: 1em
+  padding-right: 1em
+
+  .page__inside
+    margin: 0 auto
+    max-width: $maxWidth
+
+.logo__text--highlight
+  color: $white
+
+.logo__text
+  margin-bottom 0
+  color $logoviolet
+  transition all 0.5s linear
+
+.logo__bg
+  display inline-block
+  padding-top 90px
+  padding-bottom 90px
+  margin 0 0.5em
+  padding-left 90px
+  background url('logo_apiblueprint.png') no-repeat left center
+  @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)
+    background-image url('logo_apiblueprint@2x.png')
+    background-size 62px auto
+
+.logo__spot
+  padding-top: $space
+  font-weight: 100
+  font-size: 40px
+  font-family: 'Proxima Nova', Helvetica, Arial, sans-serif
+  text-align: center
+  color: rgba(255, 255, 255, 1)
+  transition all 0.5s linear
+  @media screen and (max-width:760px)
+    font-size: 30px
+
+.logo_animation
+  // placeholder
+  position relative
+  height: 300px
+  width: 100%
+  margin-top $space
+  transition all 0.5s linear
+  transform scale(1)
+
+.logo__brandtext
+  font-size: 2em
+  font-family: 'Proxima Nova', Helvetica, Arial, sans-serif
+  font-weight: 100
+  color: $lightviolet
+  padding 0
+  padding-left: $space
+  padding-right: $space
+  margin-left auto
+  margin-right auto
+  max-width 100%
+  margin-bottom: $horizSpace
+  text-align center
+  box-sizing border-box
+  @media screen and (max-width:660px)
+    text-align left
+    margin-left 0
+    margin-right 0
+    max-width 99%
+
+.logo__brandtext__info
+  display inline-block
+  padding-right 1em
+  background-color $transparentC
+  padding-bottom 0.5em
+  line-height 100%
+  @media screen and (max-width:660px)
+    display block
+    padding-left 1em
+    text-indent -1em
+
+  /*
+  &:hover
+    color #fff
+  */
+
+  &::before
+    content ' '
+    height 0.5em
+    width 0.5em
+    line-height 100%
+    font-size 100%
+    margin-top 0.25em
+    border-radius 100%
+    vertical-align text-top
+    display inline-block
+    margin-right 0.5em
+
+.brand--api::before
+  color #fff
+  background-color #FFF
+.brand--md::before
+  color $pink
+  background-color $pink
+.brand--life::before
+  color $orange
+  background-color $orange
+.brand--tools::before
+  color $salmon
+  background-color $salmon
+.brand--human::before
+  color $sky
+  background-color $sky
+.brand--comps::before
+  color $violetblue
+  background-color $violetblue
+
+h1
+  font-size 3.5em
+  @media screen and (max-width:660px)
+    font-size 2.5em
+  margin 0
+  padding 0
+  line-height 100%
+  font-weight 100
+  transition all 0.2s linear
+
+.hello
+  position: relative
+  margin-top: $horizSpace
+
+  pre
+  code
+    font-family 'Source Code Pro', monospace
+
+  pre
+    position relative
+    font-weight normal
+    border-radius 15px
+    background-color $darkerviolet
+    color $greyviolet
+    padding 2*$space 0
+    display block
+    margin-bottom (4*$space)
+    font-size 1.5em
+    white-space pre
+    overflow auto
+    box-shadow 2*$space 0 0 $darkerviolet, -2*$space 0 0 $darkerviolet
+    @media screen and (max-width:480px)
+      font-size 1.3em
+    @media screen and (max-width:660px)
+      margin-bottom 1em
+
+  .hello--linewrap
+    counter-increment: linenumber
+    padding-left: 3*$space
+    position: relative
+    white-space: pre
+    &::before
+      position: absolute
+      left: 0
+      color: #827dba
+      pointer-events none
+      
+      content: "0" counter(linenumber)
+
+.hello--color--method
+  color: $method
+.hello--color--uri
+  color: $uri
+.hello--color--keyword
+  color: #fff
+.hello--color--preformatted
+  color: $preformated
+.hello--color--value
+  color: $green
+.hello--color--key
+  color: $lighterviolet
+
+.links
+  font-size: 2em
+  font-family: 'Proxima Nova', Helvetica, Arial, sans-serif
+  font-weight: 400
+
+  .link
+    border-radius: 20em
+    padding: 0.7em 0
+    text-align: center
+    display: inline-block
+    box-sizing: border-box
+    width: 44%
+    text-decoration none
+    &:hover
+      text-decoration none
+
+  .link--getStarted
+    color: #fff
+    width 40%
+    background-color: $darkgreen
+    margin: 0 1.5% 0 3.5%
+    &:hover
+      background-color darken(@background-color, 15%)
+
+  .link--documentation
+    color: #fff
+    width 49%
+    background-color: $violetonviolet
+    margin: 0 3.5% 0 3.5%
+    &:hover
+      background-color darken(@background-color, 15%)
+
+  @media screen and (max-width:660px)
+    position: relative
+    font-size: 2em
+    top: 0
+    margin-top: 1em
+    width: 100%
+
+    .link
+      width: 100%
+      margin: 0
+
+    .link--getStarted
+      margin-bottom $space
+
+  @media screen and (min-width:661px) and (max-width:860px)
+    position: absolute
+    font-size: 1.5em
+    top: 50%
+    margin-top: -2.5em
+    right: 0.25em
+    width: 12em
+    font-weight bold
+
+    .link
+      width: 100%
+      margin: 0
+    .link--getStarted
+      border-radius: 20px 20px 0 0
+    .link--documentation
+      border-radius: 0 0 20px 20px
+
+  @media screen and (min-width:861px)
+    position: absolute
+    top: 50%
+    margin-top: -1.3em
+    right: 1em
+    min-width: 20em
+    text-align: right
+    font-size: 1.5em
+    font-weight bold
+
+    .link--documentation
+      margin-right 0
+      margin-left 6%
+
+.page--controverse
+  color: $darkviolet
+  margin-top: 2em
+  background-color: rgba(255,255,255,1)
+  @media screen and (max-width:660px)
+    background-color: rgba(255,255,255,0.001)
+
+.versus__block
+  list-style-type: none
+  padding: 0
+  margin: 0
+
+/* three items */
+.versus__item:first-child:nth-last-child(3)
+.versus__item:first-child:nth-last-child(3) ~ .versus__item
+  width 33.3333%
+
+/* four items */
+.versus__item:first-child:nth-last-child(4)
+.versus__item:first-child:nth-last-child(4) ~ .versus__item
+  width 25%
+
+.versus__item
+  padding: 0
+  margin: 0 0 2em 0
+  vertical-align: top
+  display: inline-block
+  background-color: $transparentC
+  box-sizing: border-box
+  border-left: 0.5em solid $transparentC
+  border-right: 0.5em solid $transparentC
+  
+  .versus__about
+    box-sizing: border-box
+    line-height 1.5 
+    border-left: 1em solid $transparentC
+    border-right: 1em solid $transparentC
+
+@media screen and (max-width:660px)
+  /* three items */
+  li.versus__item:first-child:nth-last-child(3)
+  li.versus__item:first-child:nth-last-child(3) ~ .versus__item
+    width 100%
+    background-color rgba(255,255,255,1)
+
+  /* four items */
+  li.versus__item:first-child:nth-last-child(4)
+  li.versus__item:first-child:nth-last-child(4) ~ .versus__item
+    width 100%
+    background-color rgba(255,255,255,1)
+
+@media screen and (min-width:661px)
+  /* three items */
+  li.versus__item:first-child:nth-last-child(3)
+  li.versus__item:first-child:nth-last-child(3) ~ .versus__item
+    width 33.3333%
+    background-color rgba(255,255,255,1)
+
+  /* four items */
+  li.versus__item:first-child:nth-last-child(4)
+  li.versus__item:first-child:nth-last-child(4) ~ .versus__item
+    width 50%
+    background-color rgba(255,255,255,1)
+
+@media screen and (min-width:1001px)
+  /* four items */
+  li.versus__item:first-child:nth-last-child(4)
+  li.versus__item:first-child:nth-last-child(4) ~ .versus__item
+    width 25%
+    background-color rgba(255,255,255,1)
+
+
+.versus
+  font-family 'Proxima Nova', Helvetica, Arial, sans-serif
+  font-size 1.25em
+  @media screen and (max-width:660px)
+    font-size 1.66em
+
+.versus__title
+  font-weight bold
+  text-align center
+  color $darkviolet
+
+  .versus__whatever
+    color $violet
+
+.versus__word
+  color: $grey
+  font-weight normal
+  @media screen and (min-width:661px) and (max-width:860px)
+    display block
+    width 100%
+    line-height 0.5em
+    height 0.5em
+
+@media screen and (max-width:660px)
+  .page--controverse
+    margin-top (3*$space)
+
+  .versus
+    .page__title
+      padding-bottom 0
+      color #fff
+
+.versus__about
+  text-align center
+
+.page--examples
+  background #463177 linear-gradient(top, #3c2768, #463177 750px)
+  max-height 1px
+  overflow hidden
+  position relative
+  
+  &.loaded
+    max-height 850px
+    padding-bottom 2em
+
+.examples__title
+  font-size 300%
+  padding-bottom $space
+
+.examples__tabs--wrap
+  width 100%
+  padding 0
+  margin 0
+  overflow hidden
+
+.examples__links
+  padding (1.5*$space) 0 (3*$space)
+  font-size 1.3em
+  line-height 1.4
+  @media screen and (max-width:660px)
+    padding-bottom 0
+
+  a
+    text-decoration none
+    color $white
+
+    &:last-of-type
+      float right
+
+@media screen and (max-width:660px)
+  .examples
+    .examples__links
+      a
+        float none
+        margin-top 0.5em
+        display block
+
+.examples__ico--full
+.examples__ico--more
+  float left
+  height 20px
+  width 30px
+  background url('anim-icons.png') 0 -68px no-repeat
+  opacity 0.3
+
+.examples__ico--full
+  background-position -171px -65px
+
+.examples__links a:hover
+  text-decoration underline
+  .examples__ico--full
+  .examples__ico--more
+    opacity 1
+
+.examples__tab
+  width 25%
+  border-right 1px solid lighten(#51407e, 10%)
+  overflow hidden
+  background-color #4c3d76
+
+  &:first-of-type
+    border-top-left-radius 5px
+  &:last-of-type
+    border-top-right-radius 5px
+    border-right 0
+
+  &:last-of-type
+    border-right 0
+
+  &.active
+    background-color #1d1a27
+    a
+      color #a9a4b9
+
+  a
+    text-decoration none
+    display block
+    font-size 1.5em
+    color #b8a4eb
+    font-weight bold
+    padding $space 0.5em
+    text-align center
+
+  pre
+    display block
+    max-height 15em
+    overflow auto
+    background-color $darkerviolet
+    color $greyviolet
+    padding $space
+    display block
+    margin-bottom (4*$space)
+    font-size 1.5em
+    white-space pre
+
+.js .examples__tab
+  pre
+    display none
+
+@media screen and (max-width:660px)
+  .examples__tabs--wrap
+    .examples__tab
+      a
+        font-size 1.3em
+
+.examples__tabs
+  margin $space 0 0 0
+  display table
+  width 100%
+  table-layout fixed
+.examples__tabs--wrap
+  display table-row
+.examples__tab
+  display table-cell
+  vertical-align middle
+
+#editor_ace
+#output_ast
+  font-family 'Source Code Pro', monospace
+  height 215px
+  width 100%
+  position relative
+  line-height 21px
+  font-size 13px
+  @media screen and (max-width:660px)
+    height 200px
+
+
+.page--started
+  background-color $violet
+
+p
+  margin:0
+  margin-bottom:$gutter
+
+a
+  color $green
+  text-decoration underline
+
+  &:hover
+    color $white
+    text-decoration underline
+
+.demo-block
+  background-color:$color
+  color:#fff
+  padding:$gutter
+
+.page--headlines
+  background-image: linear-gradient(top, #2a1b52, $violet 800px)
+
+.highlightedGreen
+  margin-top (4*$space)
+  background-color $darkgreen
+  border-radius $space
+  padding (3*$space)
+  margin-bottom $space
+  position relative
+
+  h2
+    margin 0
+    padding 0 0 0.3em 85px
+    font-size 230%
+    font-weight normal
+  p
+    padding 0 0 0 85px
+    margin 0
+    font-size 180%
+    font-weight normal
+
+    a
+      font-weight normal
+      color #fff
+  & + .subnotes
+    font-size 1.4em
+    @media screen and (max-width:660px)
+      text-align center
+      font-size 1.7em
+
+.highlightedGreen__bg
+  position absolute
+  left 3em
+  top 3em
+  height 80px
+  width 60px
+  margin-right (2*$space)
+  background url('sprite.png') -570px -120px no-repeat
+  @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)
+    background-image url('sprite@2x.png')
+    background-size 853px auto
+
+.subnotes
+  line-height 1.3
+  color $lighterviolet
+
+.subnotes--right
+  text-align right
+
+.started__alternatively__link
+  color $green
+
+.anim__item
+  position absolute
+  left 50%
+  top 50%
+  margin-top 38px
+  height 0
+  min-width 0
+  overflow visible
+  line-height 1px
+  font-size 1px
+  transform-origin left center
+
+  .anim--circle
+    border-radius 50%
+    background-repeat no-repeat
+    background-image url('anim-icons.png')
+    position absolute
+    top 0
+    left 0
+    transition all 0.2s linear
+    transform translateZ(0px)
+
+
+.anim__dots__all
+  display block
+  position absolute
+  transform-origin left center
+  top -3px
+  left 0
+  height 7px
+  overflow hidden
+  padding-left 40px
+
+.anim--dot
+  position absolute
+  left -328px
+  top 0
+  width 840px
+  height 7px
+  background url('dots.png') repeat-x -33px 0
+  animation scaler 1.5s steps(15, end) infinite
+  transform translateX(164px) translateZ(0)
+
+@keyframes scaler {
+  from {
+    transform translateX(164px) translateZ(0)
+  }
+  to {
+    transform translateX(0px) translateZ(0)
+  }
+}
+
+@keyframes scaler2 {
+  from {
+    transform translateX(-164px) translateZ(0)
+  }
+  to {
+    transform translateX(0px) translateZ(0)
+  }
+}
+
+@keyframes scaler3 {
+  from {
+    transform translateX(328px) translateZ(0)
+  }
+  to {
+    transform translateX(0px) translateZ(0)
+  }
+}
+
+.ab_testing__v_logo + .ab_testing__v_a
+  display none !important
+
+.anim--dot
+  animation-play-state paused
+
+.anim--life
+  .anim__dots__all
+    transform rotate(-10deg)
+    .anim--dot
+      animation-duration 1.3s
+      animation-name scaler2
+
+  .anim--circle
+    height 36px
+    width 36px
+    top -59px
+    left 303px
+    margin-top -18px
+    background-color $orange
+    background-position -113px -32px
+
+.anim--tools
+  .anim__dots__all
+    transform rotate(200deg)
+    .anim--dot
+      animation scaler3 2.1s steps(30, end) infinite
+
+  .anim--circle
+    left -377px
+    top -127px
+    margin-top -25px
+    height 50px
+    width 50px
+    background-color $salmon
+    background-position 13px 12px
+
+.anim--md
+  .anim__dots__all
+    transform rotate(25deg)
+    .anim--dot
+      animation-duration 1.3s
+      animation-direction alternate
+
+  .anim--circle
+    left 150px
+    top 74px
+    margin-top -15px
+    height 38px
+    width 38px
+    background-color #b36cd0
+    background-position -69px 10px
+
+.anim--human
+  .anim__dots__all
+    transform rotate(150deg)
+    .anim--dot
+      animation-duration 1.5s
+      animation-direction alternate
+
+  .anim--circle
+    left -173px
+    top 88px
+    margin-top -27px
+    height 54px
+    width 54px
+    background-color $sky
+    background-position -27px -23px
+
+.anim--comps
+  .anim__dots__all
+    transform rotate(280deg)
+    .anim--dot
+      animation-delay 0.1s
+      animation-direction alternate
+
+  .anim--circle
+    left -5px
+    top -160px
+    margin-top -33px
+    height 64px
+    width 64px
+    background-color $violetblue
+    background-position -143px 18px
+
+.anim--api
+  .anim--circle
+    margin-top -40px
+    margin-left -40px
+    font-size 30px
+    line-height 80px
+    text-align center
+    height 80px
+    width 80px
+    background-color #fff
+    color #000
+
+  &:hover
+    .anim--circle
+      transform scale(1.2)
+
+.logo__buttons
+  position absolute
+  top 0
+  left 0
+  right 0
+  height 0
+  overflow visible
+  z-index 3
+  background-color $transparentC 
+
+@media only screen and (min-width:761px)
+  .logo_animation
+    .anim--dot
+      animation-play-state running
+
+@media screen and (max-width:760px)
+  .logo_animation
+    transform scale(0.7)
+
+@media screen and (max-width:660px)
+  .logo_animation
+    transform scale(0.6)
+  .logo__spot
+    padding-top 0
+
+@media screen and (max-width:860px)
+  .logo__buttons
+    .logo__buttons--in
+      text-align center
+      height 30px
+      & > p
+        margin-top 18em
+        float none
+  .logo__text
+    text-align center
+    margin-bottom 10em
+
+@media screen and (max-width:480px)
+  .fork__link
+    visibility hidden
+    display none
+
+  .logo__bg
+    padding-top 65px
+    padding-bottom 65px 
+  .logo__buttons
+    .logo__buttons--in
+      & > p
+        margin-top 15em
+
+  .logo_animation
+    height 150px
+    margin-top 0
+    transform scale(0.45)
+    
+    .anim__item
+      margin-top 0
+
+  .logo .anim__item
+    .anim--circle
+      transform scale(1.7)
+      
+      &:hover
+        transform scale(2)
+
+.logo__buttons--in
+  position relative
+  max-width $maxWidth
+  margin 0 auto
+  height 0
+  overflow visible
+  text-align right
+  background-color $transparentC
+
+  & > p
+    margin-top 120px
+    float right
+    padding-right 3em
+    padding-left 3em
+
+.versus__item
+  padding-top (2*$space)
+  .versus__bg
+    display block
+    height 95px
+    width 100px
+    margin $space auto $space
+    background-image url('sprite.png')
+    background-repeat no-repeat
+    @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)
+      background-image url('sprite@2x.png')
+      background-size 853px auto
+
+.versus--diy
+  background-position 5px 0
+.versus--swagger
+  background-position -316px 0
+.versus--google
+  background-position -660px 0
+
+// started section
+.started__texts
+  color $lighterviolet
+  font-size 1.4em
+  padding-top 1em
+
+.started
+  font-family 'Proxima Nova', Helvetica, Arial, sans-serif
+
+  .page__title
+    color $white
+    padding-bottom 0.2em
+
+  .subnotes
+    line-height 1.3
+    color $lighterviolet
+
+  h3
+    font-family 'Proxima Nova', Helvetica, Arial, sans-serif
+    font-weight normal
+    margin 0
+    padding 1.5em 0 0.1em 0
+    font-size 1.2em
+
+  pre
+    border-radius 15px
+    background-color $darkerviolet
+    color $greyviolet
+    padding $space
+    margin 0.25em 0 1em
+    overflow auto
+
+  code
+    display block
+
+  pre
+  code
+    font-family 'Source Code Pro', monospace
+
+  pre + .subnotes
+    margin-top -0.5em
+    margin-bottom 0
+
+.started__texts--subheading
+  margin-bottom 1em
+  font-size 1.25em
+
+.bindings
+  font-family 'Proxima Nova', Helvetica, Arial, sans-serif
+  padding-bottom (4*$space)
+
+.binding__list
+  padding 0 0 3em 0
+  margin 0 0 0 -3em
+  list-style-type none
+  display block
+
+.binding__item
+  position relative
+  box-sizing border-box
+  display inline-block
+  line-height 160px
+  min-height 150px
+  text-align center
+  font-size 3em
+  overflow hidden
+  width 25%
+  border-left 1em solid $transparentC
+  vertical-align top
+
+  &.binding__item--link
+  &.binding__item--making
+    line-height 20px
+    font-size 1.4em
+    border-left-width 2em
+    padding 35px 1em 0
+    text-align center
+  &.binding__item--making
+    padding 0
+
+.binding__item--link--border
+  position absolute
+  top 0
+  left 0
+  width 100%
+  height 100%
+  box-sizing border-box
+  border 2px solid rgba(#fff, 0.2)
+  border-radius 20px
+
+.button__link
+  color: #fff
+  position relative
+  background-color $darkgreen
+  border-radius 20em
+  padding: 0.5em 1.3em
+  font-size 100%
+  line-height 150%
+  font-weight bold
+  text-align: center
+  display: inline-block
+  margin 15px 0 0 0
+  box-sizing: border-box
+  text-decoration none
+
+  &:hover
+    background-color darken(@background-color, 15%)
+    text-decoration none
+
+.binding__item:first-child:nth-last-child(2)
+.binding__item:first-child:nth-last-child(2) ~ .binding__item
+  width 50%
+
+.binding__item:first-child:nth-last-child(3)
+.binding__item:first-child:nth-last-child(3) ~ .binding__item
+  width 33.3333%
+
+.binding__item:first-child:nth-last-child(4)
+.binding__item:first-child:nth-last-child(4) ~ .binding__item
+  width 25%
+
+@media screen and (max-width:660px)
+  .bindings .binding__list
+    margin-left -1.5em
+  .bindings .binding__list .binding__item
+  .bindings .binding__list .binding__item + .binding__item
+    width 50%
+    margin-bottom 0.5em
+    border-left-width 0.5em
+    display inline-block
+
+.binding__link
+  position absolute
+  top 0
+  left 0
+  right 0
+  height 100%
+  border-radius 15px
+  background-color $tooling
+  text-decoration none
+  color $white
+  font-weight bold
+  transition all 0.2s linear
+
+  &:hover
+    background-color lighten(@background-color, 15%)
+    text-decoration none
+
+.overlay--text
+  background-color rgba(#3a2765, 80%)
+  border-radius 5px
+  padding 0.5em 0.7em
+  display inline-block
+  white-space nowrap
+
+.binding__bg
+  background-image url('sprite.png')
+  background-repeat no-repeat
+  @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)
+    background-image url('sprite@2x.png')
+    background-size 853px auto
+
+  &.binding--nodejs
+    width 140px
+    margin 41px auto 0
+    height 60px
+    display block
+    background-position -196px -124px
+
+  &.binding--ruby
+    width 140px
+    margin 25px auto 0
+    height 110px
+    box-sizing border-box
+    display block
+    background-position 15px -98px
+    padding-top 30px
+    line-height 125%
+
+.tooling__list
+  font-family 'Proxima Nova', Helvetica, Arial, sans-serif
+  display table
+  width 100%
+  margin 0 0 $space 0
+  border-radius 15px
+  overflow hidden
+  border 1px solid $violetonviolet
+  border-collapse collapse
+  background-color $tooling
+  font-size 1.5em
+  position relative
+  padding 0
+
+.tooling__share
+  text-align center
+  font-size 1.333em
+  margin 3em 0 0
+
+.tooling__share--ico::before
+  content ' '
+  background url('sprite.png') -428px -170px no-repeat
+  height 24px
+  width 20px
+  display inline-block
+  vertical-align middle
+  margin-right 0.5em
+  @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)
+    background-image url('sprite@2x.png')
+    background-size 853px auto
+
+.tooling__item
+  position relative
+  display table-row
+
+  a
+    color $white
+
+  .smaller
+  .tooling__text
+    color $lightestviolet
+
+.tooling__ico
+.tooling__title
+.tooling__text
+  display table-cell
+  border 1px solid $violetonviolet
+  padding 2em
+  margin 0
+  font-size 100%
+  min-height 120px
+  position relative
+  font-weight normal
+.tooling__ico
+  padding-top 1.75em
+  padding-bottom 1.2em
+  padding-left 0
+  padding-right 0
+  width 130px
+  vertical-align middle
+  text-align center
+.tooling__title
+  width 260px
+
+@media screen and (max-width:660px)
+  .tooling__list
+    display block
+    font-size 1.75em
+  .tooling__ico
+  .tooling__title
+  .tooling__text
+    width 100%
+    border-color $transparentC
+    box-sizing border-box
+    display block
+    padding 0.5em
+    min-height 0
+  .tooling__text
+    padding-bottom 1.2em
+  .tooling__title
+    padding-top 1.2em
+  .tooling__ico
+    position absolute
+    left 0
+    top 1em
+    width 100px
+  .tooling__item
+    display block
+    padding-left 100px
+    border-bottom 1px solid lighten(#7b64b3, 10%)
+    &:last-of-type
+      border-bottom 0 none
+
+.tooling__link
+  position absolute
+  left 0
+  top 0
+  width 100%
+  height 100%
+  background-color $transparentC
+  vertical-align top
+
+.tooling__ico__logo
+  background-image url('sprite.png')
+  background-repeat no-repeat
+  display inline-block
+  @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi)
+    background-image url('sprite@2x.png')
+    background-size 853px auto
+
+.tooling__ico__logo--apiary
+  background-position -693px -140px
+  height 60px
+  width 65px
+
+.tooling__ico--construction
+  background-position -795px -135px
+  height 62px
+  width 65px
+
+.tooling__ico--question
+  position relative
+.tooling__ico--question:before
+.tooling__ico--question:after
+.tooling__icon--cube
+  content '?'
+  position absolute
+  right 0
+  top 25px
+  margin 0 9px
+  height 20px
+  width 20px
+  font-weight bold
+  font-size 22px
+  transform skewY(327deg)
+.tooling__ico--question:after
+  right auto
+  left 0
+  transform skewY(32deg)
+.tooling__icon--cube
+  transform rotate(88deg) skewX(30deg) skewY(321deg)
+  top 3px
+  margin 0 20px 0 0
+
+.fork__link
+  box-sizing border-box
+  overflow hidden
+  z-index 10
+  position fixed
+  right 0
+  top 90px
+  width 123px
+  margin-right -63px
+  padding-left 68px
+  display block
+  height 64px
+  white-space pre-line
+  padding-top 8px
+  text-decoration none !important
+  font-weight bold
+  line-height 16px
+  font-size 14px
+  background url('gh-fork.png') 0 0 no-repeat
+  transition all 0.3s linear
+  
+  &:hover
+    margin-right 0
+
+.page--footer
+  background-color $foot
+  font-size 1.3em
+  padding-top 3em
+  padding-bottom 3em
+
+.colors--lighter
+  color $white
+.colors--logo
+  color $logoviolet
+
+.footer
+  font-family 'Proxima Nova', Helvetica, Arial, sans-serif
+  color $greyviolet
+  a
+    color #fff
+    text-decoration none
+    &:hover
+      text-decoration underline
+
+.footer--leftSide
+  float left
+
+.footer--rightSide
+  float right
+
+  a
+    display inline-block
+    margin-left 1em
+
+.footer__licence
+  float right
+
+.footer__logo--float
+  float left
+  display block
+
+.footer__licence
+  display block
+
+@media screen and (max-width:660px)
+  .footer__licence
+  .footer__logo--float
+    float none
+    margin $space auto 0
+
+.footer--leftSide
+.footer--rightSide
+  margin 0
+  padding 0
+  @media screen and (max-width:660px)
+    float none
+    text-align center
+
+.footer--spacer
+  padding-left 1em
+  padding-right 1em
+  color $transparentC
+  @media screen and (max-width:660px)
+    display block
+    height 0
+    margin-top ($space/2)
+    width 100%
+    overflow hidden
+
+// undefined helper classes
+
+.visuallyhidden
+  border 0
+  clip rect(0 0 0 0)
+  height 1px
+  margin -1px
+  overflow hidden
+  padding 0
+  position absolute
+  width 1px
+
+.clearfix
+  clearfix()
+.block
+  display block
+.smaller
+  font-size 85%
+.larger
+  font-size 125%
+.nowrap
+  white-space nowrap
+.pre
+  white-space pre
+
+.real__comming__soon
+  font-family 'TitilliumText', Helvetica, Arial, sans-serif
+  font-weight 100
+  max-width 519px
+  max-height 463px
+  margin 2em auto
+  text-align center
+  font-size 50px
+
+.comming__soon
+  font-family 'TitilliumText', Helvetica, Arial, sans-serif
+  font-weight 100
+  padding-bottom 0
+  padding-top 450px
+  max-width 519px
+  max-height 463px
+  background url("logo.png") center top no-repeat
+  background-size contain
+  margin 0 auto
+  margin-top 4em
+  pre
+    font-family 'Source Code Pro', monospace
+    margin $space auto
+    color $greyviolet
+    display block
+    white-space pre
+    font-size 25px
+    border-radius 15px
+    background-color $darkerviolet
+    padding ($space/2)
+    @media screen and (max-width:510px)
+      font-size: 17px
+
+    span[class]
+      font-weight 400
+
+  @media screen and (max-width:510px)
+    padding-top 350px
+
+.not-ready
+  .logo__bg
+    padding 40px 0
+    background none
+    text-align center
+    display block
+    font-size 150%
+
+  @media screen and (max-width:860px)
+    .logo__text
+      margin-bottom 0
+
+.ace-twilight
+  .ace_markup.ace_list
+    color $white
+  &.ace_editor
+    background-color #1d1a27
+
+.examples__editor
+  position relative
+  .ace-twilight
+    &.ace_editor
+      background-color #1d1a27
+    .ace_variable
+      color #b6ff71
+    .ace_string
+      color #3eeaff
+    .ace_paren
+      color #9086ae
+    .ace_gutter
+      background-color #2d2546
+      color #757399
+
+.examples__json
+  position relative
+  border-top 1px dashed lighten(#554b6e, 10%)
+  .ace-twilight
+    color #9086ae
+    &.ace_editor
+      background-color #272333
+    .ace_variable
+      color #b6ff71
+    .ace_string
+      color #3eeaff
+    .ace_paren
+      color #9086ae
+    .ace_gutter
+      background-color #362e50
+      color #757399
+
+.examples__editor:after
+.examples__json:after
+  position absolute
+  right 1em
+  top 1em
+  pointer-events none
+  content attr(data-overtitle)
+  color rgba($greyviolet, 20%)
+  font-size 2.5em
+  padding 0
+  font-family 'TitilliumText', Helvetica, Arial, sans-serif
+  font-weight 100
