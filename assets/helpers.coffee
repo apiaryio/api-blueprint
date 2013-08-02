@@ -120,7 +120,7 @@ sendCode = ->
     catch e
       data = false
     if data
-      editors['output_ast'].setValue(JSON.stringify(data, null, '\t'), -1)
+      editors['output_ast'].setValue(JSON.stringify((if data.ast then data.ast else data), null, '\t'), -1)
       editors['output_ast'].getSession().getUndoManager().reset()
 
     if err and text
@@ -187,7 +187,6 @@ sendCode = ->
 
     return
 
-
 class basicJqueryObject
   not:  () -> @
   attr: (name, val) ->
@@ -205,16 +204,12 @@ initEditors = ->
     editor = ace.edit(editorName)
     if editorName is 'editor_ace'
       editor.getSession().setMode('ace/mode/markdown')
-      editor.setHighlightActiveLine(true)
-      editor.getSession().on 'paste',  baseEditorChange
-      editor.getSession().on 'change', baseEditorChange
-      editor.setReadOnly(false)
     else
       editor.getSession().setMode('ace/mode/json')
-      editor.setHighlightActiveLine(false)
       editor.renderer.hideCursor()
-      editor.setReadOnly(true)
 
+    editor.setHighlightActiveLine(false)
+    editor.setReadOnly(true)
     editor.session.setFoldStyle('markbeginend')
     editor.getSession().setUseSoftTabs(true)
     editor.setTheme("ace/theme/twilight")
@@ -257,3 +252,11 @@ initEditors = ->
       linkItem.addEventListener('click', clickListItem, false)
     else if linkItem.attachEvent
       linkItem.attachEvent('onclick', clickListItem);
+
+initLive = ->
+  editor = editors['editor_ace']
+  editor.setHighlightActiveLine(true)
+  editor.setReadOnly(false)
+  editor.getSession().on 'paste',  baseEditorChange
+  editor.getSession().on 'change', baseEditorChange
+  return
