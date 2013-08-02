@@ -480,12 +480,12 @@ h1 {
   background: #463177 -o-linear-gradient(top, #3c2768 0, #463177 750px);
   background: #463177 -ms-linear-gradient(top, #3c2768 0, #463177 750px);
   background: #463177 linear-gradient(top, #3c2768 0, #463177 750px);
-  max-height: 1px;
-  overflow: hidden;
+  height: 1px;
   position: relative;
 }
 .page--examples.loaded {
-  max-height: 850px;
+  overflow: auto;
+  height: auto;
   padding-bottom: 2em;
 }
 .examples__title {
@@ -611,9 +611,11 @@ h1 {
 #editor_ace,
 #output_ast {
   font-family: 'Source Code Pro', monospace;
-  height: 215px;
   width: 100%;
-  position: relative;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
   line-height: 21px;
   font-size: 13px;
 }
@@ -1667,13 +1669,16 @@ a:hover {
 .ace-twilight .ace_markup.ace_list {
   color: #fff;
 }
-.ace-twilight.ace_editor {
-  background-color: #1d1a27;
-}
-.examples__editor {
+.examples__editor,
+.examples__json {
   position: relative;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  height: 215px;
+  width: 100%;
 }
-.examples__editor .ace-twilight.ace_editor {
+.examples__editor .ace-twilight.ace_content {
   background-color: #1d1a27;
 }
 .examples__editor .ace-twilight .ace_variable {
@@ -1690,13 +1695,12 @@ a:hover {
   color: #757399;
 }
 .examples__json {
-  position: relative;
   border-top: 1px dashed #645881;
 }
 .examples__json .ace-twilight {
   color: #9086ae;
 }
-.examples__json .ace-twilight.ace_editor {
+.examples__json .ace-twilight.ace_content {
   background-color: #272333;
 }
 .examples__json .ace-twilight .ace_variable {
@@ -1724,6 +1728,11 @@ a:hover {
   padding: 0;
   font-family: 'TitilliumText', Helvetica, Arial, sans-serif;
   font-weight: 100;
+}
+.ace_editor .ace_gutter-tooltip {
+  background: #fff;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 @-moz-keyframes scaler {
   0% {

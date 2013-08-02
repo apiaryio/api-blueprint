@@ -427,12 +427,12 @@ h1
 
 .page--examples
   background #463177 linear-gradient(top, #3c2768, #463177 750px)
-  max-height 1px
-  overflow hidden
+  height 1px
   position relative
   
   &.loaded
-    max-height 850px
+    overflow auto
+    height auto
     padding-bottom 2em
 
 .examples__title
@@ -549,9 +549,11 @@ h1
 #editor_ace
 #output_ast
   font-family 'Source Code Pro', monospace
-  height 215px
   width 100%
-  position relative
+  height 100%
+  position absolute
+  left 0
+  top 0
   line-height 21px
   font-size 13px
   @media screen and (max-width:660px)
@@ -1393,13 +1395,19 @@ a
 .ace-twilight
   .ace_markup.ace_list
     color $white
-  &.ace_editor
-    background-color #1d1a27
 
 .examples__editor
+.examples__json
   position relative
+  top 0
+  left 0
+  z-index 2
+  height 215px
+  width 100%
+
+.examples__editor
   .ace-twilight
-    &.ace_editor
+    &.ace_content
       background-color #1d1a27
     .ace_variable
       color #b6ff71
@@ -1412,11 +1420,10 @@ a
       color #757399
 
 .examples__json
-  position relative
   border-top 1px dashed lighten(#554b6e, 10%)
   .ace-twilight
     color #9086ae
-    &.ace_editor
+    &.ace_content
       background-color #272333
     .ace_variable
       color #b6ff71
@@ -1440,3 +1447,8 @@ a
   padding 0
   font-family 'TitilliumText', Helvetica, Arial, sans-serif
   font-weight 100
+
+.ace_editor
+  .ace_gutter-tooltip
+    background #FFF
+    box-shadow none 
