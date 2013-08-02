@@ -63,11 +63,25 @@ initDots = ->
     frg.innerHTML = s
     dot.insertBefore(frg, dot.lastChild)
 
-getAST = (code, thenBack, errorBack) ->
+codeCache = {}
+
+getAST = (code, thenBack) ->
+  args = codeCache.get code, false
+  if args isnt false
+    args.push code
+    thenBack.apply this, args
+    return
+
   promise.post(window.astParserURI + '?_t=' + ( 1 * ( new Date() ) ), JSON.stringify(blueprintCode: code), {
     "Accept": "application/json"
     'Content-type': 'application/json; charset=utf-8'
-  }).then thenBack
+  }).then (err, text, xhr) ->
+    args = [err, text, code]
+
+    if not codeCache.get code, false
+      codeCache.set code, args
+
+    thenBack.apply this, args
   return
 
 editorTimer = null
@@ -99,92 +113,99 @@ timeoutInProgress = false
 
 AceRange = null
 
+handleErrors = (data, sess, doc, text) ->
+  editorErrors = []
+  if data?.location?
+    if data?.location?[0]?.index?
+      positioning = doc.indexToPosition(parseInt(data.location[0].index, 10), 0)
+      editorErrors.push({
+        type: 'error'
+        row: positioning.row
+        column: positioning.column
+        text: data.description.substr(0, 1).toUpperCase() + data.description.slice(1)
+      })
+      sess.setAnnotations editorErrors
+    else
+      errorRowNumber.text("")
+      codeValidity.not('.notValidContent').attr("class", "notValidContent")
+
+    invalidContent.text "\"#{data.description}\""
+  else
+    alert("There was an error with your blueprint code.\n\n#{text}")
+  return
+
+handleAst = (data, sess, doc) ->
+  if not (data?.warnings?.length > 0)
+    codeValidity.not('.valid').attr("class", "valid")
+    sess.clearAnnotations()
+    return
+
+  warnings = []
+  positioning = false
+
+  for warn, warnKey in data.warnings or []
+    if not warn.location?[0]?.index? then continue
+    rangePos = new Array()
+    positioning = doc.indexToPosition(parseInt(warn.location[0].index, 10), 0)
+    warnings.push {
+      type: 'warning' # add basic warning icon
+      row: positioning.row, column: positioning.column
+      text: warn.message.substr(0, 1).toUpperCase() + warn.message.slice(1)
+    }
+    rangePos.push positioning.row # add this warning position into lines array, just for sure
+    warnColumnEnd = warn.location[0].length
+
+    if warn.location.length > 0 # more lines
+      for loc, locKey in warn.location or []
+        positioning = doc.indexToPosition(parseInt(loc.index, 10), 0)
+        rangePos.push positioning.row
+
+    if rangePos.length > 0
+      rangePos.sort()
+      allMarkers.push sess.addMarker(new AceRange(rangePos[0], 0, rangePos.pop(), warnColumnEnd), 'warningLine', "fullLine")
+
+  if positioning isnt false
+    invalidContent.text "\"There #{if warnings.length > 1 then "are #{warnings.length} warnings" else "is one warning at line #{positioning.row + 1}"}\""
+  else
+    invalidContent.text ": #{data.warnings[0].message}"
+
+  codeValidity.not('.notValidContent').attr("class", "notValidContent")
+
+  sess.setAnnotations warnings
+
+handleData = (sess, doc, data, code) ->
+  sess.clearAnnotations()
+  while oneMarker = allMarkers.shift()
+    sess.removeMarker oneMarker
+  allMarkers = []
+  if data
+    editors['output_ast'].setValue(JSON.stringify((if data.ast then data.ast else data), null, '\t'), -1)
+    editors['output_ast'].getSession().getUndoManager().reset()
+  return data
+
 sendCode = ->
   timeoutInProgress = false
-  getAST sendCodeString, (err, text, xhr) ->
-    sess = editors['editor_ace'].getSession()
-    sess.clearAnnotations()
-    doc = sess.getDocument()
-
+  getAST sendCodeString, (err, text, code) ->
     if timeoutInProgress
       timeoutInProgress = false
       return false
 
-    while oneMarker = allMarkers.shift()
-      sess.removeMarker oneMarker
-
-    allMarkers = []
-
     try
-      data = JSON.parse(xhr.responseText)
+      data = JSON.parse(text)
     catch e
       data = false
-    if data
-      editors['output_ast'].setValue(JSON.stringify((if data.ast then data.ast else data), null, '\t'), -1)
-      editors['output_ast'].getSession().getUndoManager().reset()
+
+    sess = editors['editor_ace'].getSession()
+    doc = sess.getDocument()
+    data = handleData sess, doc, data, code
 
     if err and text
-      editorErrors = []
-      if data?.location?
-        if data?.location?[0]?.index?
-          positioning = doc.indexToPosition(parseInt(data.location[0].index, 10), 0)
-          editorErrors.push({
-            type: 'error'
-            row: positioning.row
-            column: positioning.column
-            text: data.description.substr(0, 1).toUpperCase() + data.description.slice(1)
-          })
-          sess.setAnnotations editorErrors
-        else
-          errorRowNumber.text("")
-          codeValidity.not('.notValidContent').attr("class", "notValidContent")
-
-        invalidContent.text "\"#{data.description}\""
-      else
-        alert("There was an error with your blueprint code.\n\n#{xhr.responseText}")
-      return
-    else if err and not xhr.responseText
+      handleErrors(data, sess, doc, text)
+    else if err and not text
       alert 'Error sending blueprint code to server for elementary parser check.'
       return
-    else if not err and xhr.responseText
-      if not (data?.warnings?.length > 0)
-        codeValidity.not('.valid').attr("class", "valid")
-        sess.clearAnnotations()
-        return
-
-      warnings = []
-      positioning = false
-
-      for warn, warnKey in data.warnings or []
-        if not warn.location?[0]?.index? then continue
-        rangePos = new Array()
-        positioning = doc.indexToPosition(parseInt(warn.location[0].index, 10), 0)
-        warnings.push {
-          type: 'warning' # add basic warning icon
-          row: positioning.row, column: positioning.column
-          text: warn.message.substr(0, 1).toUpperCase() + warn.message.slice(1)
-        }
-        rangePos.push positioning.row # add this warning position into lines array, just for sure
-        warnColumnEnd = warn.location[0].length
-
-        if warn.location.length > 0 # more lines
-          for loc, locKey in warn.location or []
-            positioning = doc.indexToPosition(parseInt(loc.index, 10), 0)
-            rangePos.push positioning.row
-
-        if rangePos.length > 0
-          rangePos.sort()
-          allMarkers.push sess.addMarker(new AceRange(rangePos[0], 0, rangePos.pop(), warnColumnEnd), 'warningLine', "fullLine")
-
-      if positioning isnt false
-        invalidContent.text "\"There #{if warnings.length > 1 then "are #{warnings.length} warnings" else "is one warning at line #{positioning.row + 1}"}\""
-      else
-        invalidContent.text ": #{data.warnings[0].message}"
-
-      codeValidity.not('.notValidContent').attr("class", "notValidContent")
-
-      sess.setAnnotations warnings
-
+    else if not err and text
+      handleAst(data, sess, doc)
     return
 
 class basicJqueryObject
@@ -238,6 +259,8 @@ initEditors = ->
   clickListItem = () ->
     if this.parentNode.className.indexOf('active') < 0
       old = document.querySelector('li.examples__tab.active')
+      old.querySelector('code.ast').firstChild.data = editors['output_ast'].getValue()
+      old.querySelector('code.markdown').firstChild.data = editors['editor_ace'].getValue()
       old.className = old.className.replace('active', '').trim()
       this.parentNode.className += ' active'
       loadExample(this.parentNode)
@@ -254,6 +277,7 @@ initEditors = ->
       linkItem.attachEvent('onclick', clickListItem);
 
 initLive = ->
+  codeCache = new SafeMap()
   editor = editors['editor_ace']
   editor.setHighlightActiveLine(true)
   editor.setReadOnly(false)
