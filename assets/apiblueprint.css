@@ -51,6 +51,18 @@ html {
   -ms-transition: all 0.5s linear;
   transition: all 0.5s linear;
 }
+.logo__text:after {
+  height: 0.01em;
+  overflow: hidden;
+  margin: 0 auto;
+  content: '';
+  background: url("logo.png") center bottom no-repeat;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  background-size: contain;
+  max-width: 400px;
+  display: block;
+}
 .logo__bg {
   display: inline-block;
   padding-top: 90px;
@@ -989,6 +1001,8 @@ a:hover {
 }
 @media screen and (max-width:660px) {
   .logo_animation {
+    left: -150%;
+    height: 0;
     -webkit-transform: scale(0.6);
     -moz-transform: scale(0.6);
     -o-transform: scale(0.6);
@@ -1010,7 +1024,6 @@ a:hover {
   }
   .logo__text {
     text-align: center;
-    margin-bottom: 10em;
   }
 }
 @media screen and (max-width:480px) {
@@ -1018,15 +1031,33 @@ a:hover {
     visibility: hidden;
     display: none;
   }
+  .logo__text {
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .logo__text:after {
+    height: 16em;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    background-size: contain;
+    max-width: 400px;
+    display: block;
+  }
+  .logo__brandtext {
+    padding-bottom: 4em;
+  }
   .logo__bg {
-    padding-top: 65px;
-    padding-bottom: 65px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    padding-left: 0;
+    background-position: -200px center;
   }
   .logo__buttons .logo__buttons--in > p {
-    margin-top: 15em;
+    margin-top: 62.5em;
   }
   .logo_animation {
-    height: 150px;
     margin-top: 0;
     -webkit-transform: scale(0.45);
     -moz-transform: scale(0.45);
@@ -1380,11 +1411,6 @@ a:hover {
   min-height: 120px;
   font-weight: normal;
 }
-.tooling__item:last-of-type .tooling__ico,
-.tooling__item:last-of-type .tooling__title,
-.tooling__item:last-of-type .tooling__text {
-  border-bottom: 1px solid #7c69ae;
-}
 .tooling__ico {
   padding-top: 1.75em;
   padding-bottom: 1.2em;
@@ -1434,11 +1460,16 @@ a:hover {
   }
   .tooling__item {
     display: block;
-    padding-left: 100px;
     border-bottom: 1px solid #8873bb;
   }
   .tooling__item:last-of-type {
     border-bottom: 0 none;
+  }
+  .tooling__item--wrap {
+    padding-left: 100px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
   }
 }
 .tooling__link {

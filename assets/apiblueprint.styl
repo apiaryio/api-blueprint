@@ -81,6 +81,16 @@ html
   color $logoviolet
   transition all 0.5s linear
 
+  &:after
+    height 0.01em
+    overflow hidden
+    margin 0 auto
+    content ''
+    background url('logo.png') center bottom no-repeat
+    background-size contain
+    max-width 400px
+    display block
+
 .logo__bg
   display inline-block
   padding-top 90px
@@ -839,6 +849,8 @@ a
 
 @media screen and (max-width:660px)
   .logo_animation
+    left -150%
+    height 0
     transform scale(0.6)
   .logo__spot
     padding-top 0
@@ -853,23 +865,39 @@ a
         float none
   .logo__text
     text-align center
-    margin-bottom 10em
 
 @media screen and (max-width:480px)
   .fork__link
     visibility hidden
     display none
 
+  .logo__text
+    margin-bottom 2em
+    padding-bottom 2em
+    margin-left 10%
+    margin-right 10%
+    
+    &:after
+      height 16em
+      background-size contain
+      max-width 400px
+      display block
+
+  .logo__brandtext
+    padding-bottom 4em
+
   .logo__bg
-    padding-top 65px
-    padding-bottom 65px 
+    padding-top 35px
+    padding-bottom 35px 
+    padding-left 0
+    background-position -200px center
+
   .logo__buttons
     .logo__buttons--in
       & > p
-        margin-top 15em
+        margin-top 62.5em
 
   .logo_animation
-    height 150px
     margin-top 0
     transform scale(0.45)
     
@@ -1169,12 +1197,6 @@ a
   min-height 120px
   font-weight normal
 
-.tooling__item:last-of-type
-  .tooling__ico
-  .tooling__title
-  .tooling__text
-    border-bottom 1px solid lighten($violetonviolet, 2%)
-
 .tooling__ico
   padding-top 1.75em
   padding-bottom 1.2em
@@ -1215,10 +1237,12 @@ a
     width 100px
   .tooling__item
     display block
-    padding-left 100px
     border-bottom 1px solid lighten(#7b64b3, 10%)
     &:last-of-type
       border-bottom 0 none
+  .tooling__item--wrap
+    padding-left 100px
+    box-sizing border-box
 
 .tooling__link
   position absolute
