@@ -119,6 +119,7 @@
 
 
 
+
 </code></pre>
 <pre><code class="ast">{
     "name": "",
@@ -157,8 +158,7 @@
             ]
         }
     ]
-}
-</code></pre>
+}</code></pre>
         </li><!-- 
      --><li class="examples__tab"><a href="#into_action" class="examples__switch">Multiple Methods</a>
           <pre><code class="markdown"># /messages/{id}
@@ -222,8 +222,7 @@
             ]
         }
     ]
-}
-</code></pre>
+}</code></pre>
         </li><!-- 
      --><li class="examples__tab"><a href="#you_name_it" class="examples__switch">Named Calls</a>
           <pre><code class="markdown"># Message [/messages/{id}]
@@ -235,7 +234,6 @@
 
 ## Delete Message [DELETE]
 + Response 204
-
 
 </code></pre>
 <pre><code class="ast">{
@@ -309,7 +307,6 @@ Delete a message. **Warning:** This action **permanently** removes the message f
 
 + Response 204
 
-
 </code></pre>
 <pre><code class="ast">{
     "name": "Message of the Day API",
@@ -361,20 +358,20 @@ Delete a message. **Warning:** This action **permanently** removes the message f
             ]
         }
     ]
-}
-</code></pre>
+}</code></pre>
         </li>
       </ul>
     </div>
     <div class="examples__editor" data-overtitle="apiblueprint"><div id="editor_ace"></div></div>
-    <div class="examples__json" data-overtitle="json output"><div id="output_ast"></div></div>
+    <div class="examples__json" data-overtitle="json output"><div id="output_ast" class="ace_editor ace_folding-enabled"></div></div>
     <p class="examples__links">
       <a href="https://github.com/apiaryio/api-blueprint/tree/master/examples">
-        <span class="examples__ico--more"></span> More Examples
+        <span class="examples__ico--more"></span>
+        <span class="examples__link--text">More Examples</span>
       </a>
       <a href="https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md">
         <span class="examples__ico--full"></span>
-        Full Documentation
+        <span class="examples__link--text">Full Documentation</span>
       </a>
     </p>
   </div>
@@ -445,31 +442,26 @@ Delete a message. **Warning:** This action **permanently** removes the message f
     </ul>
     <h2 class="page__title">Tooling</h2>
     <ul class="tooling__list">
-      <li class="tooling__item">
-        <h3 class="tooling__ico">
-          <span class="tooling__ico__logo tooling__ico__logo--apiary"></span>
-          <a href="http://apiary.io" class="tooling__link">
-            <span class="visuallyhidden">Apiary.io</span>
-          </a>
-        </h3><!-- 
-     --><p class="tooling__title"><a href="http://apiary.io" class="block larger">Apiary.io <span class="block">REST API Platform</span></a> <span class="block smaller">See, write and share APIs</span></p><!-- 
+      <li class="tooling__item"><div class="tooling__item--wrap">
+        <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico__logo--apiary"></span></span><!-- 
+     --><h3 class="tooling__title"><a href="http://apiary.io" class="block larger">Apiary.io <span class="block">REST API Platform</span><span class="tooling__link"></span></a> <span class="block smaller">See, write and share APIs</span></h3><!-- 
      --><p class="tooling__text">Apiary supercharges your Blueprints with interactive documentation, API mock, test suites, validations, traffic inspector and collaboration.</p>
-      </li>
-      <li class="tooling__item">
+        </div></li>
+      <li class="tooling__item"><div class="tooling__item--wrap">
         <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico--construction"></span></span><!-- 
-     --><h3 class="tooling__title"><a href="https://github.com/apiaryio/curl-trace-parser" class="block larger"><span class="larger">cURL trace parser</span></a> <span class="block smaller">A HTTP introspection tool</span></h3><!-- 
+     --><h3 class="tooling__title"><a href="https://github.com/apiaryio/curl-trace-parser" class="block larger"><span class="block">cURL trace parser</span><span class="tooling__link"></span></a> <span class="block smaller">A HTTP introspection tool</span></h3><!-- 
      --><p class="tooling__text">Record HTTP communication directly in the API Blueprint format.</p>
-      </li>
-      <li class="tooling__item">
+        </div></li>
+      <li class="tooling__item"><div class="tooling__item--wrap">
         <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico--construction"></span></span><!-- 
      --><h3 class="tooling__title"><span class="larger">API testing framework</span> <span class="block smaller">In the making</span></h3><!-- 
-     --><p class="tooling__text">Build your API backed in BDD using the API design specified in your blueprint!</p>
-      </li>
-      <li class="tooling__item">
+     --><p class="tooling__text">Build your API backend in BDD using the API design specified in your blueprint!</p>
+      </div></li>
+      <li class="tooling__item"><div class="tooling__item--wrap">
         <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico--construction tooling__ico--question"><span class="tooling__icon--cube">?</span></span></span><!--
      --><h3 class="tooling__title"><span class="larger">&lt; insert your tool here &gt;</span></h3><!--
      --><p class="tooling__text">Let's all build a thriving community of interoperable API Tools! If you support API Blueprint, fork this repo and send a pull-request with your library.</p>
-      </li>
+        </div></li>
     </ul>
   </div>
 </section>
@@ -513,7 +505,7 @@ Delete a message. **Warning:** This action **permanently** removes the message f
       'acePath': './assets/ace-noconflict-min'
     };
     yepnope({
-      load: ['./assets/safemap.min.js', './assets/promise.min.js', 'acePath/ace.js', 'acePath/ext-searchbox.js', 'acePath/ext-split.js', 'acePath/ext-statusbar.js', 'acePath/ext-textarea.js', 'acePath/mode-html.js', 'acePath/mode-javascript.js', 'acePath/mode-json.js', 'acePath/mode-markdown.js', 'acePath/mode-text.js', 'acePath/mode-xml.js', 'acePath/theme-twilight.js', 'acePath/worker-javascript.js', 'acePath/worker-json.js'],
+      load: ['./assets/safemap.min.js', './assets/promise.min.js', 'acePath/ace.js', 'acePath/ext-searchbox.js', 'acePath/ext-split.js', 'acePath/ext-static_highlight.js', 'acePath/ext-statusbar.js', 'acePath/ext-textarea.js', 'acePath/mode-html.js', 'acePath/mode-javascript.js', 'acePath/mode-json.js', 'acePath/mode-markdown.js', 'acePath/mode-text.js', 'acePath/mode-xml.js', 'acePath/theme-twilight.js', 'acePath/worker-javascript.js', 'acePath/worker-json.js'],
       complete: function() {
         initEditors();
       }

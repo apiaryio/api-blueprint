@@ -86,6 +86,8 @@ getAST = (code, thenBack) ->
 
 editorTimer = null
 baseEditorChange = ->
+  resizeEditor editors['editor_ace']
+
   if !!editorTimer then clearTimeout editorTimer
   editorTimer = setTimeout validateEditor, 200
 
@@ -179,8 +181,7 @@ handleData = (sess, doc, data, code) ->
     sess.removeMarker oneMarker
   allMarkers = []
   if data
-    editors['output_ast'].setValue(JSON.stringify((if data.ast then data.ast else data), null, '\t'), -1)
-    editors['output_ast'].getSession().getUndoManager().reset()
+    renderAST(JSON.stringify((if data.ast then data.ast else data), null, '\t'), -1)
   return data
 
 sendCode = ->
@@ -218,31 +219,83 @@ class basicJqueryObject
 codeValidity   = new basicJqueryObject()
 errorRowNumber = new basicJqueryObject()
 invalidContent = new basicJqueryObject()
+editorAce = null
+resizeEditor = ->
+renderAST = ->
+
 
 initEditors = ->
-  AceRange = ace.require('ace/range').Range
-  ['editor_ace', 'output_ast'].forEach (editorName) ->
-    editor = ace.edit(editorName)
-    if editorName is 'editor_ace'
-      editor.getSession().setMode('ace/mode/markdown')
-    else
-      editor.getSession().setMode('ace/mode/json')
-      editor.renderer.hideCursor()
+  dom         = ace.require('ace/lib/dom')
+  highlighter = ace.require("ace/ext/static_highlight")
+  AceRange    = ace.require('ace/range').Range
+  theme       = ace.require('ace/theme/twilight')
+  modeJSON    = ace.require('ace/mode/json')
+  modeJSON    = new modeJSON.Mode()
+  editorAce   = document.getElementById('editor_ace')
 
-    editor.setHighlightActiveLine(false)
-    editor.setReadOnly(true)
-    editor.session.setFoldStyle('markbeginend')
-    editor.getSession().setUseSoftTabs(true)
-    editor.setTheme("ace/theme/twilight")
-    editor.setShowPrintMargin(false)
-    editor.setShowFoldWidgets(true);
+  oldPass = -1
+  newPass = 0
+  passes = 0
+
+  resizeAST = (size = '0px', clsnm) ->
+    dom.importCssString(".ace_editor.ace_gutter_size_#{size or '0px'} .ace_gutter-cell { width: #{size or '0px'}; }", 'ace_gutter_size_' + (size or '0px'))
+    clsnm = editors['output_ast'].className.replace(/ace_gutter_size_([\S]{2,})/g, '')
+    editors['output_ast'].className = "#{clsnm.trim()} ace_gutter_size_#{size or '0px'}"
+    return
+
+  resizeEditor = (editor) ->
+    sess = editor.getSession()
+    newHeight = sess.getScreenLength() * parseInt(editor.renderer.lineHeight, 10) + (if editor.renderer.$horizScroll then editor.renderer.scrollBar.getWidth() else 0)
+    editorAce.style.height = newHeight + 'px'
+    editors['editor_ace'].resize()
+    checker = ->
+      passes++
+      newPass = editorAce.querySelector('.ace_gutter-layer').style.width
+      if (newPass is oldPass and newPass isnt '') or passes >= 20
+        oldPass = -1
+        passes = 0
+        resizeAST newPass
+      else
+        oldPass = newPass
+        setTimeout checker, 7
+      return
+
+    setTimeout checker, 7
+
+
+  ['editor_ace', 'output_ast'].forEach (editorName) ->
+    if editorName is 'editor_ace'
+      editor = ace.edit(editorName)
+      editor.getSession().setMode('ace/mode/markdown')
+      editor.setHighlightActiveLine(false)
+      editor.setReadOnly(true)
+      editor.session.setFoldStyle('markbeginend')
+      editor.getSession().setUseSoftTabs(true)
+      editor.setTheme("ace/theme/twilight")
+      editor.setShowPrintMargin(false)
+      editor.setShowFoldWidgets(true)
+    else
+      editor = document.getElementById('output_ast')
+
     editors[editorName] = editor
 
-  loadExample = (listItem) ->
-    editors['editor_ace'].setValue(listItem.querySelector('code.markdown').firstChild.data, -1)
-    editors['editor_ace'].getSession().getUndoManager().reset()
-    editors['output_ast'].setValue(listItem.querySelector('code.ast').firstChild.data, -1)
-    editors['output_ast'].getSession().getUndoManager().reset()
+  loadExample = (listItem, sess, editor) ->
+    editor = editors['editor_ace']
+    sess   = editor.getSession()
+
+    editor.setValue(listItem.querySelector('code.markdown').firstChild.data, -1)
+    sess.getUndoManager().reset()
+
+    resizeEditor editor
+
+    renderAST listItem.querySelector('code.ast').firstChild.data
+    return
+
+  renderAST = (text) ->
+    editors['output_ast'].setAttribute('data-text', text)
+    highlighter.render text, modeJSON, theme, 1, false, (highlighted) ->
+      editors['output_ast'].innerHTML = highlighted.html
+      return
 
   hashed = false
   if window.location.hash
@@ -259,7 +312,7 @@ initEditors = ->
   clickListItem = () ->
     if this.parentNode.className.indexOf('active') < 0
       old = document.querySelector('li.examples__tab.active')
-      old.querySelector('code.ast').firstChild.data = editors['output_ast'].getValue()
+      old.querySelector('code.ast').firstChild.data = editors['output_ast'].getAttribute('data-text')
       old.querySelector('code.markdown').firstChild.data = editors['editor_ace'].getValue()
       old.className = old.className.replace('active', '').trim()
       this.parentNode.className += ' active'
@@ -274,7 +327,8 @@ initEditors = ->
     if linkItem.addEventListener
       linkItem.addEventListener('click', clickListItem, false)
     else if linkItem.attachEvent
-      linkItem.attachEvent('onclick', clickListItem);
+      linkItem.attachEvent('onclick', clickListItem)
+  return
 
 initLive = ->
   codeCache = new SafeMap()

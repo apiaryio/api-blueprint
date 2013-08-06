@@ -132,10 +132,6 @@ html {
   background-color: rgba(0,0,0,0.001);
   padding-bottom: 0.5em;
   line-height: 100%;
-/*
-  &:hover
-    color #fff
-  */
 }
 @media screen and (max-width:660px) {
   .logo__brandtext__info {
@@ -499,18 +495,23 @@ h1 {
   overflow: hidden;
 }
 .examples__links {
-  padding: 1.5em 0 3em;
+  padding: 1.5em 0 2.5em;
   font-size: 1.3em;
   line-height: 1.4;
+  min-height: 1.2em;
 }
 @media screen and (max-width:660px) {
   .examples__links {
     padding-bottom: 0;
   }
 }
+.examples__links .examples__link--text {
+  border-bottom: 1px solid rgba(0,0,0,0.001);
+}
 .examples__links a {
+  float: left;
   text-decoration: none;
-  color: #fff;
+  color: rgba(255,255,255,0.7);
 }
 .examples__links a:last-of-type {
   float: right;
@@ -528,15 +529,19 @@ h1 {
   height: 20px;
   width: 30px;
   background: url("anim-icons.png") 0 -68px no-repeat;
-  opacity: 0.3;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-  filter: alpha(opacity=30);
+  opacity: 0.4;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  filter: alpha(opacity=40);
 }
 .examples__ico--full {
   background-position: -171px -65px;
 }
 .examples__links a:hover {
-  text-decoration: underline;
+  text-decoration: none;
+}
+.examples__links a:hover .examples__link--text {
+  color: #fff;
+  border-bottom-color: #fff;
 }
 .examples__links a:hover .examples__ico--full,
 .examples__links a:hover .examples__ico--more {
@@ -612,8 +617,8 @@ h1 {
 #output_ast {
   font-family: 'Source Code Pro', monospace;
   width: 100%;
-  height: 100%;
-  position: absolute;
+  height: 215px;
+  position: relative;
   left: 0;
   top: 0;
   line-height: 21px;
@@ -625,6 +630,9 @@ h1 {
     height: 200px;
   }
 }
+#output_ast {
+  white-space: pre-line;
+}
 .page--started {
   background-color: #533b89;
 }
@@ -634,11 +642,13 @@ p {
 }
 a {
   color: #40f6bb;
-  text-decoration: underline;
+  border-bottom: 1px solid rgba(64,246,187,0.6);
+  text-decoration: none;
 }
 a:hover {
   color: #fff;
-  text-decoration: underline;
+  border-bottom: 1px solid #fff;
+  text-decoration: none;
 }
 .demo-block {
   background-color: #f43059;
@@ -677,6 +687,11 @@ a:hover {
 .highlightedGreen p a {
   font-weight: normal;
   color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.6);
+}
+.highlightedGreen p a:hover {
+  border-bottom-color: #fff;
 }
 .highlightedGreen + .subnotes {
   font-size: 1.4em;
@@ -1291,7 +1306,7 @@ a:hover {
   -webkit-border-radius: 15px;
   border-radius: 15px;
   overflow: hidden;
-  border: 1px solid #7966ac;
+  border: 0 none;
   border-collapse: collapse;
   background-color: #6b53a5;
   font-size: 1.5em;
@@ -1323,6 +1338,17 @@ a:hover {
 .tooling__item {
   position: relative;
   display: table-row;
+  overflow: hidden;
+  color: #d7d2ff;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  background-color: rgba(0,0,0,0.001);
+}
+.tooling__item:hover {
+  background-color: #7760af;
 }
 .tooling__item a {
   color: #fff;
@@ -1331,17 +1357,33 @@ a:hover {
 .tooling__item .tooling__text {
   color: #d7d2ff;
 }
+.tooling__item--wrap {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+.tooling__item:first-of-type .tooling__item--wrap {
+  -webkit-border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
+}
 .tooling__ico,
 .tooling__title,
 .tooling__text {
   display: table-cell;
-  border: 1px solid #7966ac;
+  border: 1px solid #7c69ae;
+  border-bottom: 0 none;
   padding: 2em;
   margin: 0;
   font-size: 100%;
   min-height: 120px;
-  position: relative;
   font-weight: normal;
+}
+.tooling__item:last-of-type .tooling__ico,
+.tooling__item:last-of-type .tooling__title,
+.tooling__item:last-of-type .tooling__text {
+  border-bottom: 1px solid #7c69ae;
 }
 .tooling__ico {
   padding-top: 1.75em;
@@ -1354,6 +1396,12 @@ a:hover {
 }
 .tooling__title {
   width: 260px;
+}
+.tooling__title a {
+  text-decoration: none;
+}
+.tooling__title a:hover {
+  text-decoration: underline;
 }
 @media screen and (max-width:660px) {
   .tooling__list {
@@ -1401,6 +1449,7 @@ a:hover {
   height: 100%;
   background-color: rgba(0,0,0,0.001);
   vertical-align: top;
+  z-index: 2;
 }
 .tooling__ico__logo {
   background-image: url("sprite.png");
@@ -1512,10 +1561,10 @@ a:hover {
 }
 .footer a {
   color: #fff;
-  text-decoration: none;
+  border-bottom-color: rgba(255,255,255,0.4);
 }
 .footer a:hover {
-  text-decoration: underline;
+  border-bottom-color: #fff;
 }
 .footer--leftSide {
   float: left;
@@ -1675,7 +1724,6 @@ a:hover {
   top: 0;
   left: 0;
   z-index: 2;
-  height: 215px;
   width: 100%;
 }
 .examples__editor .ace-twilight.ace_content {
@@ -1698,9 +1746,6 @@ a:hover {
   border-top: 1px dashed #645881;
 }
 .examples__json .ace-twilight {
-  color: #9086ae;
-}
-.examples__json .ace-twilight.ace_content {
   background-color: #272333;
 }
 .examples__json .ace-twilight .ace_variable {
@@ -1733,6 +1778,63 @@ a:hover {
   background: #fff;
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.examples__json .ace_line {
+  position: relative;
+  clear: both;
+}
+.examples__json .ace_gutter {
+  pointer-events: none;
+  text-align: right;
+  display: block;
+  float: left;
+  padding: 0 3px 0 0;
+  margin-right: 3px;
+  position: static;
+}
+.examples__json .ace_folding-enabled .ace_gutter-cell {
+  padding-right: 13px;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-width: 40px;
+}
+.examples__json {
+  height: auto;
+  background-color: #272333;
+}
+#output_ast {
+  background-color: #272333;
+  position: relative;
+  overflow: auto;
+  height: auto;
+}
+.link,
+.link:hover,
+.examples__switch,
+.examples__switch:hover,
+.examples__links a,
+.examples__links a:hover,
+.binding__link,
+.binding__link:hover,
+.tooling__link,
+.tooling__link:hover,
+.tooling__title a,
+.tooling__title a:hover,
+.fork__link,
+.fork__link:hover,
+.button__link,
+.button__link:hover,
+.noB,
+.noB:hover {
+  border-bottom: 0 none;
 }
 @-moz-keyframes scaler {
   0% {
