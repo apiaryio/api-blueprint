@@ -294,7 +294,7 @@ resizeEditor = function() {};
 renderAST = function() {};
 
 initEditors = function() {
-  var $els, clickListItem, dom, hashed, highlighter, loadExample, modeJSON, newPass, old, oldPass, passes, resizeAST, theme;
+  var $els, MdMode, clickListItem, dom, hashed, highlighter, loadExample, modeJSON, newPass, old, oldPass, passes, resizeAST, theme;
   dom = ace.require('ace/lib/dom');
   highlighter = ace.require("ace/ext/static_highlight");
   AceRange = ace.require('ace/range').Range;
@@ -302,6 +302,24 @@ initEditors = function() {
   modeJSON = ace.require('ace/mode/json');
   modeJSON = new modeJSON.Mode();
   editorAce = document.getElementById('editor_ace');
+  MdMode = ace.require("ace/mode/markdown").Mode;
+  MdMode.prototype.getNextLineIndent = function(state, line, tab) {
+    var marker, match;
+    if (state === "listblock") {
+      match = listBlockRegExp.exec(line);
+      if (!match) {
+        return '';
+      }
+      marker = match[2];
+      if (!marker) {
+        marker = (parseInt(match[3], 10) + 1) + ".";
+      }
+      return match[1];
+    } else {
+      return this.$getIndent(line);
+    }
+  };
+  MdMode = new MdMode();
   oldPass = -1;
   newPass = 0;
   passes = 0;
@@ -337,7 +355,7 @@ initEditors = function() {
     var editor;
     if (editorName === 'editor_ace') {
       editor = ace.edit(editorName);
-      editor.getSession().setMode('ace/mode/markdown');
+      editor.getSession().setMode(MdMode);
       editor.setHighlightActiveLine(false);
       editor.setReadOnly(true);
       editor.session.setFoldStyle('markbeginend');

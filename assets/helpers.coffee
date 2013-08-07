@@ -233,6 +233,22 @@ initEditors = ->
   modeJSON    = new modeJSON.Mode()
   editorAce   = document.getElementById('editor_ace')
 
+  MdMode      = ace.require("ace/mode/markdown").Mode
+
+  MdMode::getNextLineIndent = (state, line, tab) ->
+    if state is "listblock"
+      match = listBlockRegExp.exec(line)
+      if not match then return ''
+      marker = match[2]
+      if not marker
+        marker = (parseInt(match[3], 10) + 1) + "."
+      return match[1] # + marker + match[4] # origin from mode-markdown, commented to ignore all the +, -, *, [\d] etc.
+    else
+      return @.$getIndent line
+
+  MdMode = new MdMode()
+
+
   oldPass = -1
   newPass = 0
   passes = 0
@@ -266,7 +282,7 @@ initEditors = ->
   ['editor_ace', 'output_ast'].forEach (editorName) ->
     if editorName is 'editor_ace'
       editor = ace.edit(editorName)
-      editor.getSession().setMode('ace/mode/markdown')
+      editor.getSession().setMode(MdMode)
       editor.setHighlightActiveLine(false)
       editor.setReadOnly(true)
       editor.session.setFoldStyle('markbeginend')
