@@ -6,9 +6,12 @@
 
   <title>API Blueprint - API Documentation with powerful tooling</title>
 
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="assets/normalize.css">
   <link rel="stylesheet" href="assets/fonts.css">
   <link rel="stylesheet" href="assets/apiblueprint.css">
+
   <script>var ab_variant = 'default';</script>
   <script src="assets/yepnope.min.js"></script>
   <script src="assets/helpers.js"></script>
@@ -507,11 +510,15 @@ Delete a message. **Warning:** This action **permanently** removes the message f
     yepnope({
       load: ['./assets/safemap.min.js', './assets/promise.min.js', 'acePath/ace.js', 'acePath/ext-searchbox.js', 'acePath/ext-split.js', 'acePath/ext-static_highlight.js', 'acePath/ext-statusbar.js', 'acePath/ext-textarea.js', 'acePath/mode-html.js', 'acePath/mode-javascript.js', 'acePath/mode-json.js', 'acePath/mode-markdown.js', 'acePath/mode-text.js', 'acePath/mode-xml.js', 'acePath/theme-twilight.js', 'acePath/worker-javascript.js', 'acePath/worker-json.js'],
       complete: function() {
-        window.scrollTo(0, 0);
         initEditors();
       }
     });
   </script>
-  <script>document.body.parentNode.className += 'js';</script>
+  <script>
+    document.body.parentNode.className += 'js';
+    if ('ontouchstart' in document.documentElement) {
+      window.scrollTo(0, 0);
+    }
+  </script>
 </body>
 </html>
