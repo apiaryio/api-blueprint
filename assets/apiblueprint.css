@@ -29,8 +29,6 @@ html {
   max-width: 960px;
 }
 .page {
-  position: relative;
-  z-index: 2;
   padding-top: 1em;
   padding-left: 1em;
   padding-right: 1em;
@@ -365,6 +363,7 @@ h1 {
   }
 }
 .page--controverse {
+  position: relative;
   color: #635e8c;
   margin-top: 2em;
   background-color: #fff;
@@ -646,6 +645,7 @@ h1 {
   white-space: pre-line;
 }
 .page--started {
+  position: relative;
   background-color: #533b89;
 }
 p {
@@ -1575,6 +1575,7 @@ a:hover {
   margin-right: 0;
 }
 .page--footer {
+  position: relative;
   background-color: #322b44;
   font-size: 1.3em;
   padding-top: 3em;
@@ -1752,10 +1753,6 @@ a:hover {
 .examples__editor,
 .examples__json {
   position: relative;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 100%;
 }
 .examples__editor .ace-twilight.ace_content {
   background-color: #1d1a27;
@@ -1792,8 +1789,8 @@ a:hover {
   background-color: #362e50;
   color: #757399;
 }
-.examples__editor:after,
-.examples__json:after {
+#editor_ace:after,
+#output_ast:after {
   position: absolute;
   right: 1em;
   top: 1em;

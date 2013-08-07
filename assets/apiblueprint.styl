@@ -63,8 +63,6 @@ html
   max-width: $maxWidth
 
 .page
-  position relative
-  z-index 2
   padding-top: $gutter
   padding-left: 1em
   padding-right: 1em
@@ -324,6 +322,7 @@ h1
       margin-left 6%
 
 .page--controverse
+  position relative
   color: $darkviolet
   margin-top: 2em
   background-color: rgba(255,255,255,1)
@@ -577,6 +576,7 @@ h1
   white-space pre-line
 
 .page--started
+  position relative
   background-color $violet
 
 p
@@ -1321,6 +1321,7 @@ a
     margin-right 0
 
 .page--footer
+  position relative
   background-color $foot
   font-size 1.3em
   padding-top 3em
@@ -1468,10 +1469,6 @@ a
 .examples__editor
 .examples__json
   position relative
-  top 0
-  left 0
-  z-index 2
-  width 100%
 
 .examples__editor
   .ace-twilight
@@ -1501,8 +1498,8 @@ a
       background-color #362e50
       color #757399
 
-.examples__editor:after
-.examples__json:after
+#editor_ace:after
+#output_ast:after
   position absolute
   right 1em
   top 1em
