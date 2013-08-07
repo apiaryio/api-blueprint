@@ -178,6 +178,7 @@ body {
       type = params.type,
       count = params.count,
       size = params.size,
+      lastCallPath = '',
       head = document.getElementsByTagName('head')[0],
       button = document.getElementById('gh-btn'),
       mainButton = document.getElementById('github-btn'),
@@ -191,27 +192,64 @@ body {
   }
 
   function jsonp(path, cbName) {
-    var el = document.createElement('script');
-    el.src = path + '?callback='+ (cbName ? cbName : 'callback');
-    head.insertBefore(el, head.firstChild);
+    var temp, el;
+    path = path + '?callback='+ (cbName ? cbName : 'callback');
+    lastCallPath = ''.concat(path);
+
+    temp = sessionStorage.getItem(lastCallPath);
+    if (!!temp) {
+      return window[lastCallPath.split('?').pop().split('&').filter(function(i){return i.indexOf('callback')===0;}).shift().split('=').pop()](JSON.parse(temp));
+    }
+    else {
+      el = document.createElement('script');
+      el.src = path;
+      head.insertBefore(el, head.firstChild);
+    }
+  }
+
+  function filterLastPage (item) {
+    var itm = item[item.length - 1];
+    return (itm && itm['rel'] === 'last');
   }
 
   function stargazerCount(response) {
-    counter.innerHTML = response.data.length;
+    var param, link = response.meta['Link'];
+    sessionStorage.setItem(lastCallPath, JSON.stringify(response));
+    if (link && (link.length > 1)) {
+      param = link.filter( filterLastPage ).shift().shift().split('?').pop().split('&');
+      param = param.filter( function (urlParam) {
+        return !!(urlParam.split('=').shift() === 'page');
+      }).shift();
+      param = param.split('=').pop();
+      counter.innerHTML = param;
+    }
+    else {
+      counter.innerHTML = '...';
+    }
+
   }
 
   function callback(obj) {
     switch (type) {
       case 'watch':
+        sessionStorage.setItem(lastCallPath, JSON.stringify(obj));
         counter.innerHTML = addCommas(obj.data.watchers);
         break;
       case 'star':
-        jsonp(obj.data.stargazers_url, 'stargazerCount');
+        if (obj.meta.status == 200) {
+          sessionStorage.setItem(lastCallPath, JSON.stringify(obj));
+          jsonp(obj.data.stargazers_url, 'stargazerCount&per_page=1');
+        }
+        else {
+          return;
+        }
         break;
       case 'fork':
+        sessionStorage.setItem(lastCallPath, JSON.stringify(obj));
         counter.innerHTML = addCommas(obj.data.network_count);
         break;
       case 'follow':
+        sessionStorage.setItem(lastCallPath, JSON.stringify(obj));
         counter.innerHTML = addCommas(obj.data.followers);
         break;
     }
