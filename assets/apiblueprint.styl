@@ -1483,6 +1483,15 @@ a
   position relative
 
 .examples__editor
+  &:before
+    position absolute
+    left (-1 * image-size('edit_here.png')[0]) - 20px
+    content ' '
+    top 0
+    width image-size('edit_here.png')[0]
+    height image-size('edit_here.png')[1]
+    background url('edit_here.png') 0 0 no-repeat
+
   .ace-twilight
     &.ace_content
       background-color #1d1a27

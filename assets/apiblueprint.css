@@ -1770,6 +1770,15 @@ a:hover {
 .examples__json {
   position: relative;
 }
+.examples__editor:before {
+  position: absolute;
+  left: -108px;
+  content: ' ';
+  top: 0;
+  width: 88px;
+  height: 57px;
+  background: url("edit_here.png") 0 0 no-repeat;
+}
 .examples__editor .ace-twilight.ace_content {
   background-color: #1d1a27;
 }
