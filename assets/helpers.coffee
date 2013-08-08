@@ -278,7 +278,6 @@ initEditors = ->
 
     setTimeout checker, 7
 
-
   ['editor_ace', 'output_ast'].forEach (editorName) ->
     if editorName is 'editor_ace'
       editor = ace.edit(editorName)
@@ -353,4 +352,61 @@ initLive = ->
   editor.setReadOnly(false)
   editor.getSession().on 'paste',  baseEditorChange
   editor.getSession().on 'change', baseEditorChange
+  return
+
+loadedAceAndThings = ->
+  loadedAceAndThings = ->
+    return
+  initEditors()
+  initLive()
+  return
+
+injectScript = (code) ->
+  if code.indexOf("use strict") is 1
+    script = document.createElement("script");
+    script.text = code;
+    document.head.appendChild( script )#.parentNode.removeChild( script )
+  else
+    eval( code )
+
+initLocalStore = (callback) ->
+  head = document.head || document.getElementsByTagName('head')[0]
+  if not store.enabled
+    return callback false
+  scriptsJSON = store.get('apiblueprint-scripts')
+  if scriptsJSON?.arr and parseInt(scriptsJSON['time_of_creation'], 10) is parseInt(window.time_of_creation, 10)
+    inserted = 0
+    scriptText = ["\n;\n"]
+    for scriptKey in [0..scriptsJSON.arr-1]
+      if scriptToInsert = store.get "apiblueprint-scripts-item-#{scriptKey}"
+        scriptText.push scriptToInsert
+        inserted++
+    if scriptsJSON.arr.length is inserted
+      injectScript scriptText.join('\n;\n')
+      return callback true
+  return callback false
+
+saveScriptsToStore = (scriptsPaths) ->
+  scripts = []
+  arr = 0
+
+  allFinished = ->
+    window.store.set 'apiblueprint-scripts', {
+      'time_of_creation': parseInt(time_of_creation, 10)
+      'arr': arr
+    }
+    for i in [0..20]
+      window.store.remove("apiblueprint-scripts-item-#{i}")
+    for i in [0..arr-1]
+      window.store.set "apiblueprint-scripts-item-#{i}", scripts[i]
+    return
+
+  for script, scriptKey in scriptsPaths
+    do (script, scriptKey) ->
+      promise.get(script).then (err, text, xhr) ->
+        scripts[scriptKey] = text
+        arr++
+        if scriptsPaths.length is arr
+          allFinished()
+        return
   return
