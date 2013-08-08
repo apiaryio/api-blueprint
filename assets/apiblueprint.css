@@ -251,6 +251,16 @@ h1 {
   pointer-events: none;
   content: "0" counter(linenumber);
 }
+@media screen and (max-width:660px) {
+  .hello .hello--linewrap::before {
+    color: rgba(130,125,186,0.5);
+  }
+}
+@media screen and (max-width:660px) {
+  .hello .hello--linewrap {
+    padding-left: 2em;
+  }
+}
 .hello--color--method {
   color: #ada6ff;
 }

@@ -230,6 +230,11 @@ h1
       pointer-events none
       
       content: "0" counter(linenumber)
+      @media screen and (max-width:660px)
+        color rgba(@color, 50%)
+
+    @media screen and (max-width:660px)
+      padding-left 2*$space
 
 .hello--color--method
   color: $method
