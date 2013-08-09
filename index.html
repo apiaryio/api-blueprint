@@ -511,10 +511,7 @@ Delete a message. **Warning:** This action **permanently** removes the message f
     yepnope.paths = {
       'acePath': './assets/ace-noconflict-min'
     };
-    yepnope.injectJs('./assets/safemap-store-promise.min.js', function () {
-      initLocalStore(loadTheRest);
-    });
-    loadTheRest = function (testResults) {
+    var loadTheRest = function (testResults) {
       var scriptSrcs = [];
       yepnope({
         test: testResults,
@@ -530,6 +527,9 @@ Delete a message. **Warning:** This action **permanently** removes the message f
         }
       });
     };
+    yepnope.injectJs('./assets/safemap-store-promise.min.js', function () {
+      initLocalStore(loadTheRest);
+    });
   </script>
   <script>
     document.body.parentNode.className += 'js';

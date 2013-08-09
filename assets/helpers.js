@@ -432,19 +432,19 @@ loadedAceAndThings = function() {
 };
 
 injectScript = function(code) {
-  var script;
+  var head, script;
+  head = document.head || document.getElementsByTagName('head')[0];
   if (code.indexOf("use strict") === 1) {
     script = document.createElement("script");
     script.text = code;
-    return document.head.appendChild(script);
+    return head.appendChild(script).parentNode.removeChild(script);
   } else {
     return eval(code);
   }
 };
 
 initLocalStore = function(callback) {
-  var head, inserted, scriptKey, scriptText, scriptToInsert, scriptsJSON, _i, _ref;
-  head = document.head || document.getElementsByTagName('head')[0];
+  var inserted, scriptKey, scriptText, scriptToInsert, scriptsJSON, _i, _ref;
   if (!store.enabled) {
     return callback(false);
   }
@@ -458,7 +458,7 @@ initLocalStore = function(callback) {
         inserted++;
       }
     }
-    if (scriptsJSON.arr.length === inserted) {
+    if (scriptsJSON.arr === inserted) {
       injectScript(scriptText.join('\n;\n'));
       return callback(true);
     }
@@ -473,7 +473,7 @@ saveScriptsToStore = function(scriptsPaths) {
   allFinished = function() {
     var i, _i, _j, _ref;
     window.store.set('apiblueprint-scripts', {
-      'time_of_creation': parseInt(time_of_creation, 10),
+      'time_of_creation': parseInt(window.time_of_creation, 10),
       'arr': arr
     });
     for (i = _i = 0; _i <= 20; i = ++_i) {

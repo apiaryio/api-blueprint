@@ -362,15 +362,15 @@ loadedAceAndThings = ->
   return
 
 injectScript = (code) ->
+  head = document.head || document.getElementsByTagName('head')[0]
   if code.indexOf("use strict") is 1
     script = document.createElement("script");
     script.text = code;
-    document.head.appendChild( script )#.parentNode.removeChild( script )
+    head.appendChild( script ).parentNode.removeChild( script )
   else
     eval( code )
 
 initLocalStore = (callback) ->
-  head = document.head || document.getElementsByTagName('head')[0]
   if not store.enabled
     return callback false
   scriptsJSON = store.get('apiblueprint-scripts')
@@ -381,7 +381,7 @@ initLocalStore = (callback) ->
       if scriptToInsert = store.get "apiblueprint-scripts-item-#{scriptKey}"
         scriptText.push scriptToInsert
         inserted++
-    if scriptsJSON.arr.length is inserted
+    if scriptsJSON.arr is inserted
       injectScript scriptText.join('\n;\n')
       return callback true
   return callback false
@@ -392,7 +392,7 @@ saveScriptsToStore = (scriptsPaths) ->
 
   allFinished = ->
     window.store.set 'apiblueprint-scripts', {
-      'time_of_creation': parseInt(time_of_creation, 10)
+      'time_of_creation': parseInt(window.time_of_creation, 10)
       'arr': arr
     }
     for i in [0..20]
