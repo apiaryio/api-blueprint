@@ -39,28 +39,30 @@ Author: z@apiary.io
 ## 1. Introduction [Introduction]
 This document is a full specification of the [API Blueprint](http://apiblueprint.org) Language (hereafter "API Blueprint"). API Blueprint is a **Web API documentation language**.
 
-Please consult the [API Blueprint homepage](http://apiblueprint.org) for an introduction to API Blueprint.
+Please refer to the [API Blueprint homepage](http://apiblueprint.org) for an introduction to API Blueprint.
 
 ---
 
-## 2. API Blueprint Language [Language]
-API Blueprint Language is a [Markdown](http://daringfireball.net/projects/markdown) with certain constructs used for defining and documenting Web APIs. It inherits some major [MultiMarkdown](http://fletcherpenney.net/multimarkdown) and [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) features.
+## 2. API Blueprint [Language]
+API Blueprint is essentially a set of semantical assumption on top of a [Markdown](http://daringfireball.net/projects/markdown) syntax that are used to define a Web API. 
 
-Before you proceed with this document please make yourself familiar with the basic [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) as well as with the Metadata and Automatic Cross-References sections of [MultiMarkdown Syntax](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#multimarkdown-syntax-guide) and GitHub Flavored Markdown's [newlines & fenced code blocks](https://help.github.com/articles/github-flavored-markdown).
+In additional to regular Markdown syntax API Blueprint inherits some [MultiMarkdown](http://fletcherpenney.net/multimarkdown) and [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) features.
+
+Before you proceed with this document please make yourself familiar with the basic [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) as well as with the Metadata and Cross-References sections of [MultiMarkdown Syntax](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#multimarkdown-syntax-guide) and GitHub Flavored Markdown's [newlines & fenced code blocks](https://help.github.com/articles/github-flavored-markdown).
 
 ---
 
 ## 3. API Blueprint Document [Document]
-API Blueprint Document is a Markdown document where you define and describe a Web API interface.
+API Blueprint document is a Markdown document where you define and describe a Web API.
 
-The document itself is divided into several logical **sections** which form the **API Blueprint Document Structure**.
+The document itself is divided into several logical **sections** which represent the **API Blueprint Document Structure**.
 
 ### 3.1. Sections [Sections]
-A section represents a logical unit of your API Blueprint. For example an API overview, a group of resources or a resource definition. Sections can contain other nested sections. For example a resource definition might contain a resource URI parameter's description as its subsection.
+A section represents a logical unit of your API Blueprint. For example an API overview, a group of resources or a resource definition. A section can contain other (nested) section. For example a resource definition might contain a resource URI parameter's description as its subsection.
 
-Sections are recognized by a **reserved section name** or a **URI template** in a **Markdown header**. Alternatively some selected sections are recognized by a **reserved section name** in a **Markdown list item** followed by a newline.
+Sections are recognized by a **reserved section name** or a **URI template** in a **Markdown header**. Alternatively some sections might be recognized by a **reserved section name** in a **Markdown list item** followed by a newline.
 
-Each section or subsection has a strictly defined name, meaning and expected content. Anything between a section start and another section start is considered to be part of the section. This implies that you **must avoid** using reserved section names – **keywords** in other Markdown headers.
+Each section or subsection has a strictly defined name, meaning and expected content. Anything between a section start and another section start is considered to be part of the section. This implies that you **must avoid** using reserved section names – **keywords** in other Markdown headers but section headers.
 
 ### 3.2. Reserved Section Names [ReservedSectionNames]
 Reserved keywords are:
@@ -70,11 +72,11 @@ Reserved keywords are:
 	- URI templates (e.g. `/resource/{id}`)
 	- Combinations of HTTP method and URI Template (e.g. `GET /resource/{id}`)
 
-- Markdown List item: 
+- Markdown List items: 
 	- `Request`
 	- `Response`
-	- `Headers`
-	- `Parameters`
+	- `Header` & `Headers`
+	- `Parameter` & `Parameters`
 	- `Body`
 	- `Schema`
 	- `Object`
@@ -83,7 +85,7 @@ Reserved keywords are:
 Sections are discussed in [API Blueprint Document Structure](DocumentStructure). Note that some section names can contain variable components such as identifiers or other modifiers. See the relevant section's entry to find out more about how its section name is built.
 
 ### 3.3. Nested Sections [NestedSections]
-Some sections can or must be nested. To nest a section in another section simply **increase** its **header level** and / or **list item indentation**.
+Some sections can or must be nested inside another section. To nest a section simply **increase** its **header level** and / or **list item indentation**.
 
 Example:
 
@@ -106,18 +108,16 @@ Nested List Item Sections:
 
 Which sections can be nested depends upon the section in case, as described in the relevant [API Blueprint Document Structure](DocumentStructure) section's entry.
 
-Note that the API Blueprint parser is not strict on proper header levels.
-
 ### 3.4. Other Markdown Headers [OtherMarkdownHeaders]
-You are free to use any Markdown header of your liking anywhere in section descriptions as long as it does not clash with the [Reserved Section Names](ReservedSectionNames). It is considered good practice to keep your header level nested to your actual section.
+It is possible to use any Markdown header at any point in a section description as long as it does not clash with the [Reserved Section Names](ReservedSectionNames). It is considered good practice to keep your header level nested to your actual section.
 
 ### 3.5. Special Sections [SpecialSections]
-There are **two additional** sections of an API Blueprint Document to the sections represented by a [Reserved Name Section][Sections]: A [Metadata Section][MetadataSection] and the [API Name & Overview][APINameOverviewSection]. These are discussed in the [API Blueprint Document Structure][DocumentStructure].
+There are **two additional** sections of an API Blueprint Document that are not recognized by any keyword: The [Metadata Section][MetadataSection] and the [API Name & Overview][APINameOverviewSection]. These are discussed in the [API Blueprint Document Structure][DocumentStructure].
 
 ---
 
 ## 4. API Blueprint Document Structure [DocumentStructure]
-Bellow you will find a description of every section of the API Blueprint Document. Note that all sections are optional. However, the document should contain one or more [Resource][ResourceSection] Sections.
+Bellow you will find a description of each section of the API Blueprint Document. Note that all sections are, by default, optional. However, the document should contain at least one [Resource][ResourceSection] Section.
 
 An example of a possible API Blueprint Document layout:
 
@@ -150,7 +150,7 @@ An example of a possible API Blueprint Document layout:
 ### 4.1. Metadata Section [MetadataSection]
 **Optional**. API metadata.
 
-This section is **recognized** as [MultiMarkdown Metadata](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#metadata). It starts from the beginning of the document and ends with the first Markdown header.
+This section is **recognized** as [MultiMarkdown Metadata](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#metadata). It starts from the beginning of the document and ends with the first Markdown element that is not recognized as MutliMarkdown Metadata.
 
 This section **does not include** any **other sections**.
 
@@ -168,7 +168,7 @@ Example:
 
 This section is **recognized** as the **first** Markdown header in your document and its name is considered to be your **API name**.
 
-This section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the API Overview.
+This section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the API Overview description. 
 
 This section **does not include** any **other sections**.
 
