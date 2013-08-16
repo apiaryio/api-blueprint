@@ -16,7 +16,7 @@ Author: z@apiary.io
 	2. [Reserved Section Names](#ReservedSectionNames)
 	3. [Nested sections](#NestedSections)
 	4. [Other Markdown headers](#OtherMarkdownHeaders)
-	5. [Special Sections](#SpecialSections)
+	5. [Sections without keyword](#SpecialSections)
 4. [API Blueprint Document Structure](#DocumentStructure)
 	1. [Metadata Section](#MetadataSection)
 	2. [API Name & Overview Section](#APINameOverviewSection)
@@ -78,6 +78,7 @@ Reserved keywords are:
 	- HTTP methods: `GET, POST, PUT, DELETE, OPTIONS, PATCH, PROPPATCH, LOCK, UNLOCK, COPY, MOVE, MKCOL, HEAD`
 	- URI templates (e.g. `/resource/{id}`)
 	- Combinations of HTTP method and URI Template (e.g. `GET /resource/{id}`)
+	- `Group`
 
 - Markdown List items: 
 	- `Request`
@@ -87,13 +88,14 @@ Reserved keywords are:
 	- `Body`
 	- `Schema`
 	- `Object`
-	- `Group`
 
-Sections are discussed in [API Blueprint Document Structure](#DocumentStructure). Note that some section names can contain variable components such as identifiers or other modifiers. See the relevant section's entry to find out more about how its section name is built.
+**NOTE:** With the exception of HTTP methods keywords the section keywords are **case insensitive**.
+
+Sections are discussed in [API Blueprint Document Structure](#DocumentStructure). Note that some section names might contain variable components such as identifiers or other modifiers. See the relevant section's entry to find out more about how its section name is built.
 
 <a name="NestedSections"></a>
 ### 3.3. Nested Sections
-Some sections can or must be nested inside another section. To nest a section simply **increase** its **header level** and / or **list item indentation**.
+Some sections might be nested under another section. To nest a section simply **increase** its **header level** and / or **list item indentation**.
 
 Example:
 
@@ -118,53 +120,63 @@ Which sections can be nested depends upon the section in case, as described in t
 
 <a name="OtherMarkdownHeaders"></a>
 ### 3.4. Other Markdown Headers
-It is possible to use any Markdown header at any point in a section description as long as it does not clash with the [Reserved Section Names](#ReservedSectionNames). It is considered good practice to keep your header level nested to your actual section.
+It is possible to use any other Markdown header in a section description as long as it does not clash with the [Reserved Section Names](#ReservedSectionNames). It is considered good practice to keep your header level nested to your actual section.
 
 <a name="SpecialSections"></a>
-### 3.5. Special Sections
-There are **two additional** sections of an API Blueprint Document that are not recognized by any keyword: The [Metadata Section](#MetadataSection) and the [API Name & Overview](#APINameOverviewSection). These are discussed in the [API Blueprint Document Structure](#DocumentStructure).
+### 3.5. Sections without keyword
+There are **two additiona** sections of an API Blueprint Document that are not recognized by a keyword: The [Metadata Section](#MetadataSection) and the [API Name & Overview](#APINameOverviewSection). These sections are discussed in detail in the [API Blueprint Document Structure](#DocumentStructure).
 
 <a name="DocumentStructure"></a>
 ## 4. API Blueprint Document Structure
 Bellow you will find a description of each section of the API Blueprint Document. Note that all sections are, by default, optional. However, the document should contain at least one [Resource](#ResourceSection) Section.
 
-An example of a possible API Blueprint Document layout:
+An example of possible API Blueprint Document layout:
 
-	Metadata: ...
+	Metadata: Lorem Ipsum
 
 	# API Name
 	...
 	
 	# Group 1
 	...
-	## Resource 1.1
+	
+	## Resource 1.1 [/resource-1-1]
 	...
+	
 	+ Parameters
-	...
+	  ...
+	
+	### Method [POST]
+	
 	+ Request
-	...
+	  ...
+	   
 	+ Response
+	  ...
+	   
+	## Resource 1.2 [/resource-1-2]
 	...
-	## Resource 1.2
-	...
+	
+	### Method [GET]
+	
 	+ Response
-	...
+	  ...
+
 	# Group 2
 	...
-	+ Resource 2.1
-	...
+	
+	+ Resource 2.1 [/resource-2-1]
+	  ...
 
 <a name="MetadataSection"></a>
 ### 4.1. Metadata Section
 **Optional**. API metadata.
 
-This section is **recognized** as [MultiMarkdown Metadata](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#metadata). It starts from the beginning of the document and ends with the first Markdown element that is not recognized as MutliMarkdown Metadata.
+This section is **recognized** as [MultiMarkdown Metadata](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#metadata). It starts at the beginning of the document and ends with the first Markdown element that is not recognized as MutliMarkdown Metadata.
 
 This section **does not include** any **other sections**.
 
-#### Supported Metadata
-* **`Host` (or `HOST`)** *(optional)* ... API server hostname.
-* **`Format`(or `FORMAT`)** *(optional)* ... API Blueprint version. Leave blank for legacy format. Use `1A` for actual version.
+Metadata keys and its values are tool-specific. Please refer to relevant tool documentation for the list of supported keys.
 
 Example:
 
@@ -175,9 +187,9 @@ Example:
 ### 4.2. API Name & Overview Section
 **Optional**. Name of the API in the form of a Markdown header.
 
-This section is **recognized** as the **first** Markdown header in your document and its name is considered to be your **API name**.
+This section is **recognized** as the **first** Markdown header in your document. Its content is considered to be your **API name**.
 
-This section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the API Overview description. 
+This section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the API description. 
 
 This section **does not include** any **other sections**.
 
@@ -194,7 +206,7 @@ Example:
 ### 4.3. Resource Section
 **Optional**. Definition of exactly **one** API [**resource**](http://www.w3.org/TR/di-gloss/#def-resource) specified by its *URI* **OR** a **set of resources** (a resource template) matching its *URI template*.
 
-Your Blueprint document can contain multiple sections for the same resource (resource cluster) - URI (URI template), as long as their HTTP methods differ. However it is considered good practice to group multiple HTTP methods under one resource (resource cluster).
+Your Blueprint document can contain multiple sections for the same resource (or resource set), as long as their HTTP methods differ. However it is considered good practice to group multiple HTTP methods under one resource (resource set).
 
 This section is **recognized** by an [RFC 6570 URI template](http://tools.ietf.org/html/rfc6570) written in a Markdown header. Optionally the header can contain **one** leading [HTTP Request Method](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) in which case the rest of this section is considered to represent the [Method Section](#ResourceMethodSection).
 
