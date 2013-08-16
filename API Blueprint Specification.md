@@ -19,7 +19,7 @@ Author: z@apiary.io
 	5. [Sections without keyword](#SpecialSections)
 4. [API Blueprint Document Structure](#DocumentStructure)
 	1. [Metadata Section](#MetadataSection)
-	2. [API Name & Overview Section](#APINameOverviewSection)
+	2. [API Name](#APINameOverviewSection)
 	3. [Resource Section](#ResourceSection)
 		1. [Parameters Section](#ResourceParametersSection)
 		2. [Method Section](#ResourceMethodSection)
@@ -124,7 +124,7 @@ It is possible to use any other Markdown header in a section description as long
 
 <a name="SpecialSections"></a>
 ### 3.5. Sections without keyword
-There are **two additiona** sections of an API Blueprint Document that are not recognized by a keyword: The [Metadata Section](#MetadataSection) and the [API Name & Overview](#APINameOverviewSection). These sections are discussed in detail in the [API Blueprint Document Structure](#DocumentStructure).
+There are **two additional** sections of an API Blueprint Document that are not recognized by a keyword: The [Metadata Section](#MetadataSection) and the [API Name & Overview](#APINameOverviewSection). These sections are discussed in detail in the [API Blueprint Document Structure](#DocumentStructure).
 
 <a name="DocumentStructure"></a>
 ## 4. API Blueprint Document Structure
@@ -184,7 +184,7 @@ Example:
 	FORMAT: 1A
 
 <a name="APINameOverviewSection"></a>
-### 4.2. API Name & Overview Section
+### 4.2. API Name Section
 **Optional**. Name of the API in the form of a Markdown header.
 
 This section is **recognized** as the **first** Markdown header in your document. Its content is considered to be your **API name**.
