@@ -2,7 +2,9 @@ Author: z@apiary.io
 
 # API Blueprint Language Specification
 
-## Revision 1A
+---
+
+### Format 1A
 
 ---
 
@@ -35,13 +37,16 @@ Author: z@apiary.io
 	1. [Inline Asset](#InlineDocumentAsset)
 
 ---
+
+[Glossary of Terms](https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md)
+
+---
+
 <a name="Introduction"></a>
 ## 1. Introduction
 This document is a full specification of the [API Blueprint](http://apiblueprint.org) Language (hereafter "API Blueprint"). API Blueprint is a **Web API documentation language**.
 
 Please refer to the [API Blueprint homepage](http://apiblueprint.org) for an introduction to API Blueprint.
-
----
 
 <a name="Language"></a>
 ## 2. API Blueprint
@@ -50,8 +55,6 @@ API Blueprint is essentially a set of semantical assumption on top of a [Markdow
 In additional to regular Markdown syntax API Blueprint inherits some [MultiMarkdown](http://fletcherpenney.net/multimarkdown) and [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) features.
 
 Before you proceed with this document please make yourself familiar with the basic [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) as well as with the Metadata and Cross-References sections of [MultiMarkdown Syntax](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#multimarkdown-syntax-guide) and GitHub Flavored Markdown's [newlines & fenced code blocks](https://help.github.com/articles/github-flavored-markdown).
-
----
 
 <a name="Document"></a>
 ## 3. API Blueprint Document
@@ -121,8 +124,6 @@ It is possible to use any Markdown header at any point in a section description 
 ### 3.5. Special Sections
 There are **two additional** sections of an API Blueprint Document that are not recognized by any keyword: The [Metadata Section](#MetadataSection) and the [API Name & Overview](#APINameOverviewSection). These are discussed in the [API Blueprint Document Structure](#DocumentStructure).
 
----
-
 <a name="DocumentStructure"></a>
 ## 4. API Blueprint Document Structure
 Bellow you will find a description of each section of the API Blueprint Document. Note that all sections are, by default, optional. However, the document should contain at least one [Resource](#ResourceSection) Section.
@@ -133,8 +134,6 @@ An example of a possible API Blueprint Document layout:
 
 	# API Name
 	...
-	
-	---
 	
 	# Group 1
 	...
@@ -450,8 +449,6 @@ Example:
 	# Comments
 		...
 
----
-
 <a name="Payloads"></a>
 ## 5. Payloads
 A payload is data expected in a HTTP request or sent in a HTTP response. A Payload consists of meta information in the form of HTTP headers and content received or sent in a HTTP body. Furthermore, an API Blueprint Payload can include its description as well as a discussion of its parameters.
@@ -570,8 +567,6 @@ This subsection represents an API Blueprint Document [Asset](#DocumentAssets).
 
 This subsection **does not include** any **other sections**.
 
----
-
 <a name="DocumentAssets"></a>
 ## 6. Assets
 An API Blueprint Document Asset is simply a resource (not to be confused with API Resource) – a piece of data used in [payloads](#Payloads).
@@ -592,4 +587,3 @@ Example:
 
 			{ "message" : "Hello World." }
 
----
