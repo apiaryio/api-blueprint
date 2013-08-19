@@ -266,6 +266,7 @@ initEditors = ->
       editor.setTheme("ace/theme/twilight")
       editor.setShowPrintMargin(false)
       editor.setShowFoldWidgets(true)
+      editor.commands.removeCommands(["gotoline", "removeline"]) # (Mac/Windows):Browser:Addressbar:Focus
     else
       editor = document.getElementById('output_ast')
 
