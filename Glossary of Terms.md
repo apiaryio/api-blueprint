@@ -8,7 +8,9 @@ Refer to W3C [Glossary of Terms for Device Independence](http://www.w3.org/TR/di
 
 <a name="def-action"></a>
 ### Action
-A **HTTP transaction** (a request-response transaction).
+A **HTTP transaction** (a request-response transaction). 
+
+Actions are specified by a [HTTP request method](#def-method) within a [resource](#def-resource). 
 
 <a name="def-api"></a>
 ### API
