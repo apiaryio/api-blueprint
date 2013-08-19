@@ -325,11 +325,13 @@ Example:
 #### 4.3.3. Request Section
 **Optional**. Description of exactly *one* [HTTP request](http://www.w3.org/TR/di-gloss/#def-http-request).
 
-This section is **recognized** by the `Request` reserved **keyword** written in a Markdown header. The **"Request"** can be followed by an arbitrary string representing the user [identifier](#Identifiers) of this request. This identifier **must not** be enclosed in brackets. In case a HTTP body is specified the `Request` keyword (and possible identifier) **should be** followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type).
+This section is **recognized** by the `Request` reserved **keyword** written in a Markdown header. The `Request` keyword may be followed by an [identifier](#Identifiers) of this request. In the case an HTTP body is specified the `Request` keyword (and possible identifier) might be followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type) enclosed in brackets.
 
 The Full Request Subsection list syntax is as follows:
 
 	+ Request [<identifier>] [(<Media Type>)]
+
+This subsection **must** be nested under an [Action Section](#ResourceActionSection).
 
 This subsection is a specific type of [Payload](#Payloads) carried by this request. See [Payloads Documentation](#Payloads) for details about how to specify the content of this section.
 
@@ -351,13 +353,13 @@ Example:
 #### 4.3.4. Response Section
 **Expected**. Description of exactly *one* [HTTP response](http://www.w3.org/TR/di-gloss/#def-http-response).
 
-This subsection is **recognized** by the `Response` reserved **keyword** written in a Markdown list followed by a [HTTP Status code](http://www.restapitutorial.com/httpstatuscodes.html). In case a HTTP body is specified the `Response` **keyword** should be followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type).
+This subsection is **recognized** by the `Response` reserved **keyword** written in a Markdown list followed by a [HTTP Status code](http://www.restapitutorial.com/httpstatuscodes.html). In the case a HTTP body is specified the `Response` keyword might be followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type) enclosed in brackets.
 
 The Full Response Subsection list syntax is as follows:
 
 	+ Response <Status Code> [(<Media Type>)]
 
-This subsection **must** be listed under an [Action Section](#ResourceActionSection) unless a HTTP method is specified in the [Resource Section](#ResourceSection)'s header. In that case this subsection must be listed under the [Resource Headers Subsection](#ResourceSection).
+This subsection **must** be nested under an [Action Section](#ResourceActionSection).
 
 This section is a specific type of [Payload](#Payloads) carried by this response. See [Payload Documentation](#Payloads) for details on how to specify the content of this section.
 
