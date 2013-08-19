@@ -17,6 +17,7 @@ Author: z@apiary.io
 	3. [Nested sections](#NestedSections)
 	4. [Other Markdown headers](#OtherMarkdownHeaders)
 	5. [Sections without keyword](#SpecialSections)
+	6. [Identifiers](#Identifiers)
 4. [API Blueprint Document Structure](#DocumentStructure)
 	1. [Metadata Section](#MetadataSection)
 	2. [API Name](#APINameOverviewSection)
@@ -91,7 +92,7 @@ Reserved keywords are:
 
 **NOTE:** With the exception of HTTP methods keywords the section keywords are **case insensitive**.
 
-Sections are discussed in [API Blueprint Document Structure](#DocumentStructure). Note that some section names might contain variable components such as identifiers or other modifiers. See the relevant section's entry to find out more about how its section name is built.
+Sections are discussed in [API Blueprint Document Structure](#DocumentStructure). Note that some section names might contain variable components such as [identifiers](#Identifiers) or other modifiers. See the relevant section's entry to find out more about how its section name is built.
 
 <a name="NestedSections"></a>
 ### 3.3. Nested Sections
@@ -125,6 +126,10 @@ It is possible to use any other Markdown header in a section description as long
 <a name="SpecialSections"></a>
 ### 3.5. Sections without keyword
 There are **two additional** sections of an API Blueprint Document that are not recognized by a keyword: The [Metadata Section](#MetadataSection) and the [API Name & Overview](#APINameOverviewSection). These sections are discussed in detail in the [API Blueprint Document Structure](#DocumentStructure).
+
+<a name="Identifiers"></a>
+### 3.6. Identifiers 
+Several sections names might include an identifier. An identifier is any **non-empty combination** of a **alphanumerical character**, **underscore**, **dash**  and a **space** unless stated otherwise. **No other characters** (e.g. punctation or other whitespace characters) **are allowed**. 
 
 <a name="DocumentStructure"></a>
 ## 4. API Blueprint Document Structure
@@ -281,7 +286,9 @@ Example:
 
 <a name="ResourceMethodSection"></a>
 #### 4.3.2. Method Section
-**Expected** if there is no HTTP method specified in the [Resource Section](#ResourceSection)'s header. **Illegal** otherwise. [HTTP Request Methods](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) available for this Resource.
+**Expected** if there is no HTTP method specified in the parent [Resource Section](#ResourceSection)'s header. **Illegal** otherwise. 
+
+[HTTP Request Methods](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) available for this Resource.
 
 This section is **recognized** by one of the [HTTP Request Methods](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) written in capitals as a Markdown header.
 
@@ -318,7 +325,7 @@ Example:
 #### 4.3.3. Request Section
 **Optional**. Description of exactly *one* [HTTP request](http://www.w3.org/TR/di-gloss/#def-http-request).
 
-This section is **recognized** by the `Request` reserved **keyword** written in a Markdown header. The **"Request"** can be followed by an arbitrary string representing the user identifier of this request. This identifier **must not** be enclosed in brackets. In case a HTTP body is specified the `Request` keyword (and possible identifier) **should be** followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type).
+This section is **recognized** by the `Request` reserved **keyword** written in a Markdown header. The **"Request"** can be followed by an arbitrary string representing the user [identifier](#Identifiers) of this request. This identifier **must not** be enclosed in brackets. In case a HTTP body is specified the `Request` keyword (and possible identifier) **should be** followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type).
 
 The Full Request Subsection list syntax is as follows:
 
@@ -326,7 +333,7 @@ The Full Request Subsection list syntax is as follows:
 
 This subsection is a specific type of [Payload](#Payloads) carried by this request. See [Payloads Documentation](#Payloads) for details about how to specify the content of this section.
 
-One [Resource Section](#ResourceSection) or [Method Section](#ResourceMethodSection) can contain **one or more different** (that is with different identifiers) Request Subsections.
+One [Resource Section](#ResourceSection) or [Method Section](#ResourceMethodSection) can contain **one or more different** (that is with a different identifier) Request Subsections.
 
 Example:
 
@@ -409,7 +416,7 @@ Example:
 
 <a name="ResourceObjectSection"></a>
 #### 4.3.6. Object Section
-**Optional**. Description of one [resource object manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). This manifestation should be an archetype resource for this [Resource section](#ResourceSection). This section represents a [Payload](#Payloads).
+**Optional**. A [resource manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). One particular representation of this [Resource section](#ResourceSection)' resource. This section represents a [Payload](#Payloads).
 
 This section is **recognized** by an object name followed by `Object` recognized **keyword** written in a Markdown list (item). 
 
