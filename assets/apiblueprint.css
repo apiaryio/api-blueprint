@@ -654,6 +654,16 @@ h1 {
 #output_ast {
   white-space: pre-line;
 }
+.code_warntip,
+.code_errortip {
+  display: list-item;
+  list-style: disc outside;
+  margin-left: 2em;
+}
+.code_warntip + br,
+.code_errortip + br {
+  display: none;
+}
 .page--started {
   position: relative;
   background-color: #533b89;

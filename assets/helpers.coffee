@@ -124,14 +124,9 @@ handleErrors = (data, sess, doc, text) ->
         type: 'error'
         row: positioning.row
         column: positioning.column
-        text: data.description.substr(0, 1).toUpperCase() + data.description.slice(1)
+        html: '<span class="code_errortip">' + data.description.substr(0, 1).toUpperCase() + data.description.slice(1) + '</span>'
       })
       sess.setAnnotations editorErrors
-    else
-      errorRowNumber.text("")
-      codeValidity.not('.notValidContent').attr("class", "notValidContent")
-
-    invalidContent.text "\"#{data.description}\""
   else
     alert("There was an error with your blueprint code.\n\n#{text}")
   return
@@ -152,7 +147,7 @@ handleAst = (data, sess, doc) ->
     warnings.push {
       type: 'warning' # add basic warning icon
       row: positioning.row, column: positioning.column
-      text: warn.message.substr(0, 1).toUpperCase() + warn.message.slice(1)
+      html: '<span class="code_warntip">' + warn.message.substr(0, 1).toUpperCase() + warn.message.substr(1) + '.</span>'
     }
     rangePos.push positioning.row # add this warning position into lines array, just for sure
     warnColumnEnd = warn.location[0].length
@@ -165,13 +160,6 @@ handleAst = (data, sess, doc) ->
     if rangePos.length > 0
       rangePos.sort()
       allMarkers.push sess.addMarker(new AceRange(rangePos[0], 0, rangePos.pop(), warnColumnEnd), 'warningLine', "fullLine")
-
-  if positioning isnt false
-    invalidContent.text "\"There #{if warnings.length > 1 then "are #{warnings.length} warnings" else "is one warning at line #{positioning.row + 1}"}\""
-  else
-    invalidContent.text ": #{data.warnings[0].message}"
-
-  codeValidity.not('.notValidContent').attr("class", "notValidContent")
 
   sess.setAnnotations warnings
 
@@ -209,20 +197,9 @@ sendCode = ->
       handleAst(data, sess, doc)
     return
 
-class basicJqueryObject
-  not:  () -> @
-  attr: (name, val) ->
-    @
-  text: (s) -> 
-    @
-
-codeValidity   = new basicJqueryObject()
-errorRowNumber = new basicJqueryObject()
-invalidContent = new basicJqueryObject()
 editorAce = null
 resizeEditor = ->
 renderAST = ->
-
 
 initEditors = ->
   dom         = ace.require('ace/lib/dom')
@@ -235,6 +212,7 @@ initEditors = ->
 
   MdMode      = ace.require("ace/mode/markdown").Mode
 
+  listBlockRegExp = /^(\s*)(?:([-+*])|(\d+)\.)(\s+)/
   MdMode::getNextLineIndent = (state, line, tab) ->
     if state is "listblock"
       match = listBlockRegExp.exec(line)
