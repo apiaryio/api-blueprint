@@ -23,7 +23,7 @@ Author: z@apiary.io
 	2. [API Name](#APINameOverviewSection)
 	3. [Resource Section](#ResourceSection)
 		1. [Parameters Section](#ResourceParametersSection)
-		2. [Method Section](#ResourceMethodSection)
+		2. [Action Section](#ResourceActionSection)
 		3. [Request Section](#ResourceRequestSection)
 		4. [Response Section](#ResourceResponseSection)
 		5. [Headers Section](#ResourceHeadersSection)
@@ -213,18 +213,18 @@ Example:
 
 Your Blueprint document can contain multiple sections for the same resource (or resource set), as long as their HTTP methods differ. However it is considered good practice to group multiple HTTP methods under one resource (resource set).
 
-This section is **recognized** by an [RFC 6570 URI template](http://tools.ietf.org/html/rfc6570) written in a Markdown header. Optionally the header can contain **one** leading [HTTP Request Method](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) in which case the rest of this section is considered to represent the [Method Section](#ResourceMethodSection).
+This section is **recognized** by an [RFC 6570 URI template](http://tools.ietf.org/html/rfc6570) written in a Markdown header. Optionally the header can contain **one** leading [HTTP Request Method](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) in which case the rest of this section is considered to represent the [Action Section](#ResourceActionSection).
 
 Alternatively this section is **recognized** by a MultiMarkdown header with URI Template specified in its [explicit label](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references).
 
 This section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the Resource description.
 
-If no **HTTP Request Method** is specified, this section **should include** at least one nested [Method Section](#ResourceMethodSection).
+If no **HTTP Request Method** is specified, this section **should include** at least one nested [Action Section](#ResourceActionSection).
 
 In addition to any mandatory nested sections this section **may include** the following additional subsections:
  
 * [Parameters Section](#ResourceParametersSection)
-* Nested [Method Section](#ResourceMethodSection),  if **no** HTTP Request Method is specified
+* [Action Section](#ResourceActionSection),  if **no** HTTP Request Method is specified
 * [Headers Section](#ResourceHeadersSection)
 * [Object Section](#ResourceObjectSection)
 
@@ -284,26 +284,26 @@ Example:
 
 		+ id = 1234 (number, required) ... Id of a post.
 
-<a name="ResourceMethodSection"></a>
-#### 4.3.2. Method Section
+<a name="ResourceActionSection"></a>
+#### 4.3.2. Action Section
 **Expected** if there is no HTTP method specified in the parent [Resource Section](#ResourceSection)'s header. **Illegal** otherwise. 
 
-[HTTP Request Methods](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) available for this Resource.
+This section represents an action to be performed on the parent resource. It defines at least one complete HTTP transaction.
 
 This section is **recognized** by one of the [HTTP Request Methods](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) written in capitals as a Markdown header.
 
 Alternatively this section is **recognized** by a MultiMarkdown header with a HTTP Request Method specified in its [explicit label](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references).
 
-This section can contain **further Markdown-formatted content**. If content is provided it is considered to represent this Resource's method description.
+This section can contain **further Markdown-formatted content**. If a content is provided it is considered to represent this action's description.
 
-This section **should include** at least one [Response Subsection](#ResourceResponseSection). In addition to the mandatory nested section this section **may include** the following additional subsections:
+This section **should include** at least one [Response Subsection](#ResourceResponseSection). In addition this section **may include** the following additional subsections:
  
 * [Parameters Section](#ResourceParametersSection)
-* [Request Section](#ResourceRequestSection), if a HTTP Request Method is specified
-* [Response Section](#ResourceResponseSection), if a HTTP Request Method is specified
+* [Request Section](#ResourceRequestSection)
+* [Response Section](#ResourceResponseSection)
 * [Headers Section](#ResourceHeadersSection)
 
-One [Resource Section](#ResourceSection) can contain **one or more different** Method Sections.
+One [Resource Section](#ResourceSection) can contain **one or more different** Action Sections.
 
 Example:
 
@@ -333,7 +333,7 @@ The Full Request Subsection list syntax is as follows:
 
 This subsection is a specific type of [Payload](#Payloads) carried by this request. See [Payloads Documentation](#Payloads) for details about how to specify the content of this section.
 
-One [Resource Section](#ResourceSection) or [Method Section](#ResourceMethodSection) can contain **one or more different** (that is with a different identifier) Request Subsections.
+One [Resource Section](#ResourceSection) or [Action Section](#ResourceActionSection) can contain **one or more different** (that is with a different identifier) Request Subsections.
 
 Example:
 
@@ -357,11 +357,11 @@ The Full Response Subsection list syntax is as follows:
 
 	+ Response <Status Code> [(<Media Type>)]
 
-This subsection **must** be listed under a [Method Section](#ResourceMethodSection) unless a HTTP method is specified in the [Resource Section](#ResourceSection)'s header. In that case this subsection must be listed under the [Resource Headers Subsection](#ResourceSection).
+This subsection **must** be listed under an [Action Section](#ResourceActionSection) unless a HTTP method is specified in the [Resource Section](#ResourceSection)'s header. In that case this subsection must be listed under the [Resource Headers Subsection](#ResourceSection).
 
 This section is a specific type of [Payload](#Payloads) carried by this response. See [Payload Documentation](#Payloads) for details on how to specify the content of this section.
 
-One [Resource Section](#ResourceSection) or [Method Section](#ResourceMethodSection) can contain **one or more different** (that is with different HTTP Status codes) Response Subsections.
+One [Action Section](#ResourceActionSection) can contain **one or more different** (that is with different HTTP Status codes) Response Subsections.
 
 Example:
 
@@ -382,7 +382,7 @@ The Full Header section list syntax is as follows:
 This subsection must be listed under one of the following sections:
 
 * [Resource Section](#ResourceSection)
-* [Method Section](#ResourceMethodSection)
+* [Action Section](#ResourceActionSection)
 
 Based on where this section is listed, the headers are expected or sent as follows:
 
@@ -391,7 +391,7 @@ Based on where this section is listed, the headers are expected or sent as follo
 
 Based on the keywords preceding the `Headers` keyword, the headers are expected or sent as follows:
 
-* `Reques` keyword: Headers are expected only with requests.
+* `Request` keyword: Headers are expected only with requests.
 * `Response` keyword: Headers are sent only with responses.
 
 The subsection is formatted as a Markdown's [Pre-formatted code blocks](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
