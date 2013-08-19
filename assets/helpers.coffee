@@ -133,7 +133,6 @@ handleErrors = (data, sess, doc, text) ->
 
 handleAst = (data, sess, doc) ->
   if not (data?.warnings?.length > 0)
-    codeValidity.not('.valid').attr("class", "valid")
     sess.clearAnnotations()
     return
 

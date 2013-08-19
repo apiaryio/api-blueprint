@@ -173,7 +173,6 @@ handleErrors = function(data, sess, doc, text) {
 handleAst = function(data, sess, doc) {
   var loc, locKey, positioning, rangePos, warn, warnColumnEnd, warnKey, warnings, _i, _j, _len, _len1, _ref, _ref1, _ref2, _ref3, _ref4;
   if (!((data != null ? (_ref = data.warnings) != null ? _ref.length : void 0 : void 0) > 0)) {
-    codeValidity.not('.valid').attr("class", "valid");
     sess.clearAnnotations();
     return;
   }
