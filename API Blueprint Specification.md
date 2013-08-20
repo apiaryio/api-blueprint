@@ -94,7 +94,7 @@ Reserved keywords are:
 
 **NOTE:** With the exception of HTTP methods keywords the section keywords are **case insensitive**.
 
-Sections are discussed in [API Blueprint Document Structure](#DocumentStructure). Note that some section names might contain variable components such as [identifiers](#Identifiers) or other modifiers. See the relevant section's entry to find out more about how its section name is built.
+Sections are discussed in [API Blueprint Document Structure](#DocumentStructure). Some section names might contain variable components such as an [identifier](#Identifiers) or other modifiers. See the relevant section's entry to find out more about how its section name is built.
 
 <a name="NestedSections"></a>
 ### 3.3. Nested Sections
@@ -371,15 +371,15 @@ Refer to [Payload Headers Subsection](#PayloadHeadersSection) for this section's
 
 <a name="ResourceObjectSection"></a>
 #### 4.3.1.3 Resource Object Section
-**Optional**. A [resource manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). One particular representation of this [Resource section](#ResourceSection)' resource. This section represents a [Payload](#Payload).
+**Optional**. A [resource manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). A representation of the resource as a [Payload](#Payload).
 
-This section is **recognized** by an object name followed by `Object` recognized **keyword** written in a Markdown list (item). 
+This section is **recognized** by the `Object` **keyword** followed an object name in the form of an [identifier](#Identifiers) written in a Markdown list item. 
 
 The Full list section syntax is as follows:
 
-	+ <object name> Object [(<media type>)]
+	+ Object <identifier> [(<media type>)]
 
-Object - payload defined in this section can be referred to later by its `<object name>` from any other [Request](#ActionRequestSection) or [Response](#ActionResponseSection) payload sections, including those of the following [Resource sections](#ResourceSection).
+The Object defined in this section can be **referred later by its identifier** from any other [Request](#ActionRequestSection) or [Response](#ActionResponseSection) payload sections, including those of the following [Resource sections](#ResourceSection).
 
 Refer to MultiMarkdown [cross references](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references) for details on cross referencing. 
 
@@ -388,14 +388,14 @@ Refer to the [Payloads](#Payload) discussion for a detailed description of this 
 Example:
 
 	# My Resource [/resource]
-	+ My Resource Object (text/plain)
+	+ Object Message (text/plain)
 		
 			Hello World
 			
 	## Retrieve My Resource [GET]
 	+ Response 200
 		
-		[My Resource][]
+		[Message][]
 
 <a name="ResourceActionSection"></a>
 #### 4.3.1.4 Resource Action Section
