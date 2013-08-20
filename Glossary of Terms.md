@@ -70,6 +70,10 @@ A [**payload**](#def-payload) containing one specific [HTTP Response](http://www
 ### Resource
 An API [**resource**](http://www.w3.org/TR/di-gloss/#def-resource) specified by its *URI*. It can also refer to a [**set of resources**](#def-resource) matching one [**URI template**](#def-uri-template).
 
+<a name="def-resource-object"></a>
+### Resource Object
+One [**manifestation of a resource**](http://www.w3.org/TR/di-gloss/#def-resource-manifestation) in the form of a [**payload**](#def-payload).
+
 <a name="def-resource-set"></a>
 ### Resource Set
 A set of API [**resources**](http://www.w3.org/TR/di-gloss/#def-resource) its *URI* matches one specific  [**URI template**](#def-uri-template).
