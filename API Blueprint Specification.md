@@ -20,20 +20,22 @@ Author: z@apiary.io
 	6. [Identifiers](#Identifiers)
 4. [API Blueprint Document Structure](#DocumentStructure)
 	1. [Metadata Section](#MetadataSection)
-	2. [API Name](#APINameOverviewSection)
-	3. [Resource Section](#ResourceSection)
-		1. [Parameters Section](#ResourceParametersSection)
-		2. [Action Section](#ResourceActionSection)
-		3. [Request Section](#ResourceRequestSection)
-		4. [Response Section](#ResourceResponseSection)
-		5. [Headers Section](#ResourceHeadersSection)
-		6. [Object Section](#ResourceObjectSection)
-	4. [Grouping resources](#ResourceGroups)
-5. [Payload](#Payload)
-	1. [Headers Subsection](#PayloadHeadersSection)
-	2. [Parameters Subsection](#PayloadParametersSection)
-	3. [Body Subsection](#PayloadBodySection)
-	4. [Schema Subsection](#PayloadSchemaSection)
+	2. [API Name & Overview Section](#APINameOverviewSection)
+	3. [Resource Group Section](#ResourceGroups)	
+		1. [Resource Section](#ResourceSection)
+			1. [Resource Parameters Section](#ResourceParametersSection)
+			2. [Resource Headers Section](#ResourceHeadersSection)
+			3. [Resource Object Section](#ResourceObjectSection)
+			4. [Resource Action Section](#ResourceActionSection)
+				1. [Action Parameters Section](#ActionParametersSection)
+				2. [Action Headers Section](#ActionHeadersSection)
+				3. [Action Request Section](#ActionRequestSection)
+				4. [Action Response Section](#ActionResponseSection)
+5. [Payload Structure](#Payload)
+	1. [Payload Headers Section](#PayloadHeadersSection)
+	2. [Payload Parameters Section](#PayloadParametersSection)
+	3. [Payload Body Section](#PayloadBodySection)
+	4. [Payload Schema Section](#PayloadSchemaSection)
 6. [Assets](#DocumentAssets)
 	1. [Inline Asset](#InlineDocumentAsset)
 
@@ -125,7 +127,7 @@ It is possible to use any other Markdown header in a section description as long
 
 <a name="SpecialSections"></a>
 ### 3.5. Sections without keyword
-There are **two additional** sections of an API Blueprint Document that are not recognized by a keyword: The [Metadata Section](#MetadataSection) and the [API Name & Overview](#APINameOverviewSection). These sections are discussed in detail in the [API Blueprint Document Structure](#DocumentStructure).
+There are **two additional** sections of an API Blueprint Document that are not recognized by a keyword: The [Metadata Section](#MetadataSection) and the [API Name & Overview Section](#APINameOverviewSection). These sections are discussed in detail in the [API Blueprint Document Structure](#DocumentStructure).
 
 <a name="Identifiers"></a>
 ### 3.6. Identifiers 
@@ -135,43 +137,79 @@ Several sections names might include an identifier. An identifier is any **non-e
 ## 4. API Blueprint Document Structure
 Bellow you will find a description of each section of the API Blueprint Document. Note that all sections are, by default, optional. However, the document should contain at least one [Resource](#ResourceSection) Section.
 
-An example of possible API Blueprint Document layout:
+Full API Blueprint Document layout:
 
-	Metadata: Lorem Ipsum
+	+ Metadata
+	|
+	+ API Name & Overview Section
+	| 
+	+ Resource Group Section
+	|	|
+	|	+ Resource Section 
+	|	|	|
+	|	|	+ Parameters Section 
+	|	|	|
+	|	|	+ Headers Sections
+	|	|	|
+	|	|	+ Resource Object Section
+	|	|	|	|
+	|	|	|	...
+	|	|	|
+	|	|	+ Action Section
+	|	|	|	|
+	|	|	|	+ Parameters Section 
+	|	|	|	|
+	|	|	|	+ Headers Sections				
+	|	|	|	|
+	|	|	|	+ Request Section
+	|	|	|	|	|
+	|	|	|	|	+ Parameters Section
+	|	|	|	|	|
+	|	|	|	|	+ Headers Section
+	|	|	|	|	|
+	|	|	|	|	+ Body Section
+	|	|	|	|	|
+	|	|	|	|	+ Schema Section
+	|	|	|	|
+	|	|	|	+ Response Section
+	|	|	|		|
+	|	|	|		+ Parameters Section
+	|	|	|		|
+	|	|	|		+ Headers Section
+	|	|	|		|
+	|	|	|		+ Body Section
+	|	|	|		|
+	|	|	|		+ Schema Section					
+	|	|	|
+	|	|	+ Action Section
+	|	|	|	|
+	|	|	|	...
+	|	|	...
+	|	|
+	|	+ Resource Section 
+	|	|	|
+	|	|	... 
+	|	...
+	|
+	+ Resource Group Section
+	|	|
+	|	...
+	...
 
-	# API Name
-	...
-	
-	# Group 1
-	...
-	
-	## Resource 1.1 [/resource-1-1]
-	...
-	
-	+ Parameters
-	  ...
-	
-	### Method [POST]
-	
-	+ Request
-	  ...
-	   
-	+ Response
-	  ...
-	   
-	## Resource 1.2 [/resource-1-2]
-	...
-	
-	### Method [GET]
-	
-	+ Response
-	  ...
 
-	# Group 2
+Layout of a resource section without a parent group:
+
+	+ Metadata
+	|
+	+ API Name & Overview Section
+	|
 	...
-	
-	+ Resource 2.1 [/resource-2-1]
-	  ...
+	| 
+	+ Resource Section 
+	|	|
+	|	...	
+	...
+
 
 <a name="MetadataSection"></a>
 ### 4.1. Metadata Section
@@ -189,12 +227,12 @@ Example:
 	FORMAT: 1A
 
 <a name="APINameOverviewSection"></a>
-### 4.2. API Name Section
+### 4.2. API Name & Overview Section
 **Optional**. Name of the API in the form of a Markdown header.
 
 This section is **recognized** as the **first** Markdown header in your document. Its content is considered to be your **API name**.
 
-This section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the API description. 
+This section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the API overview / description. 
 
 This section **does not include** any **other sections**.
 
@@ -207,26 +245,58 @@ Example:
 	# Basic ACME Blog API
 	Welcome to the **ACME Blog** API. This API provides access to the **ACME Blog** service.
 
+<a name="ResourceGroups"></a>
+### 4.3. Resource Group Section
+**Optional**. This sections represents a group of resources - [Resource Sections](#ResourceSection).
+
+This section is **recognized** by the `Group` **keyword** followed by a name of group in the form of a [identifier](#Identifiers). The syntax is as follows:
+
+	# Group <identifier>
+
+A Group section may contain **further Markdown-formatted content**. If a content is provided it is considered to represent the group description.
+
+A Group **should include** at least one [Resource Section](#ResourceSection).
+
+Example:
+
+	# Group Blog Posts
+	Resources in this groups are related to **ACME Blog** posts.
+
+	## GET /posts{/id}
+		...
+
+	## PUT /posts
+		...
+
+	# Group Authors
+	## GET /authors
+		...
+
+	# Comments
+		...
+
 <a name="ResourceSection"></a>
-### 4.3. Resource Section
+### 4.3.1 Resource Section
 **Optional**. Definition of exactly **one** API [**resource**](http://www.w3.org/TR/di-gloss/#def-resource) specified by its *URI* **OR** a **set of resources** (a resource template) matching its *URI template*.
 
 Your Blueprint document can contain multiple sections for the same resource (or resource set), as long as their HTTP methods differ. However it is considered good practice to group multiple HTTP methods under one resource (resource set).
 
-This section is **recognized** by an [RFC 6570 URI template](http://tools.ietf.org/html/rfc6570) written in a Markdown header. Optionally the header can contain **one** leading [HTTP Request Method](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) in which case the rest of this section is considered to represent the [Action Section](#ResourceActionSection).
+This section is **recognized** by an [RFC 6570 URI template](http://tools.ietf.org/html/rfc6570) written in a Markdown header. Optionally the header can contain **one** leading [HTTP Request Method](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) in which case **the rest of this section** is considered to **represent the [Action Section](#ResourceActionSection).**
 
 Alternatively this section is **recognized** by a MultiMarkdown header with URI Template specified in its [explicit label](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references).
 
-This section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the Resource description.
+This section might be a top level section or nested under a [Resource Group Section](#ResourceGroups).
+
+This section may contain **further Markdown-formatted content**. If a content is provided it is considered to represent the Resource description.
 
 If no **HTTP Request Method** is specified, this section **should include** at least one nested [Action Section](#ResourceActionSection).
 
 In addition to any mandatory nested sections this section **may include** the following additional subsections:
  
 * [Parameters Section](#ResourceParametersSection)
-* [Action Section](#ResourceActionSection),  if **no** HTTP Request Method is specified
 * [Headers Section](#ResourceHeadersSection)
 * [Object Section](#ResourceObjectSection)
+* [Action Section](#ResourceActionSection),  if **no** HTTP Request Method is specified
 
 Example:
 
@@ -245,7 +315,7 @@ Example:
 	# My Resource [/resource]
 
 <a name="ResourceParametersSection"></a>
-#### 4.3.1. Parameters Section
+#### 4.3.1.1. Resource Parameters Section
 **Optional**. Description of [Resource Section](#ResourceSection)'s URI parameters. Content of this section is subject to additional formatting.
 
 This subsection is **recognized** by the `Parameters` reserved **keyword** written as a Markdown list item. If present, it must be subsection of a [Resource Section](#ResourceSection).
@@ -284,8 +354,43 @@ Example:
 
 		+ id = 1234 (number, required) ... Id of a post.
 
+
+<a name="ResourceHeadersSection"></a>
+#### 4.3.1.2 Resource Headers Section
+**Optional**. Specifies the message-headers of every transaction on this resource.
+
+Refer to [Payload Headers Subsection](#PayloadHeadersSection) for this section's syntax definition.
+
+<a name="ResourceObjectSection"></a>
+#### 4.3.1.3 Resource Object Section
+**Optional**. A [resource manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). One particular representation of this [Resource section](#ResourceSection)' resource. This section represents a [Payload](#Payload).
+
+This section is **recognized** by an object name followed by `Object` recognized **keyword** written in a Markdown list (item). 
+
+The Full list section syntax is as follows:
+
+	+ <object name> Object [(<media type>)]
+
+Object - payload defined in this section can be referred to later by its `<object name>` from any other [Request](#ActionRequestSection) or [Response](#ActionResponseSection) payload sections, including those of the following [Resource sections](#ResourceSection).
+
+Refer to MultiMarkdown [cross references](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references) for details on cross referencing. 
+
+Refer to the [Payloads](#Payload) discussion for a detailed description of this section content. 
+
+Example:
+
+	# My Resource [/resource]
+	+ My Resource Object (text/plain)
+		
+			Hello World
+			
+	## Retrieve My Resource [GET]
+	+ Response 200
+		
+		[My Resource][]
+
 <a name="ResourceActionSection"></a>
-#### 4.3.2. Action Section
+#### 4.3.1.4 Resource Action Section
 **Expected** if there is no HTTP method specified in the parent [Resource Section](#ResourceSection)'s header. **Illegal** otherwise. 
 
 This section represents an action to be performed on the parent resource. It defines at least one complete HTTP transaction.
@@ -296,11 +401,11 @@ Alternatively this section is **recognized** by a MultiMarkdown header with a HT
 
 This section can contain **further Markdown-formatted content**. If a content is provided it is considered to represent this action's description.
 
-This section **should include** at least one [Response Subsection](#ResourceResponseSection). In addition this section **may include** the following additional subsections:
+This section **should include** at least one [Response Subsection](#ActionResponseSection). In addition this section **may include** the following additional subsections:
  
 * [Parameters Section](#ResourceParametersSection)
-* [Request Section](#ResourceRequestSection)
-* [Response Section](#ResourceResponseSection)
+* [Request Section](#ActionRequestSection)
+* [Response Section](#ActionResponseSection)
 * [Headers Section](#ResourceHeadersSection)
 
 One [Resource Section](#ResourceSection) can contain **one or more different** Action Sections.
@@ -321,8 +426,20 @@ Example:
 	### Delete post [DELETE]
 	...
 
-<a name="ResourceRequestSection"></a>
-#### 4.3.3. Request Section
+<a name="ActionParametersSection"></a>
+#### 4.3.1.4.1. Action Parameters Section
+**Optional**. Description of **URI parameters** specific to this action.
+
+Refer to [Resource Parameters Section](#ResourceParametersSection) for this section's syntax definition.
+
+<a name="ActionHeadersSection"></a>
+#### 4.3.1.4.2. Action Headers Section
+**Optional**. Specifies the message-headers of every transaction within this action's context.
+
+Refer to [Payload Headers Subsection](#PayloadHeadersSection) for this section's syntax definition.
+
+<a name="ActionRequestSection"></a>
+#### 4.3.1.4.3. Action Request Section
 **Optional**. Description of exactly *one* [HTTP request](http://www.w3.org/TR/di-gloss/#def-http-request).
 
 This section is **recognized** by the `Request` reserved **keyword** written in a Markdown header. The `Request` keyword may be followed by an [identifier](#Identifiers) of this request. In the case an HTTP body is specified the `Request` keyword (and possible identifier) might be followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type) enclosed in brackets.
@@ -349,8 +466,8 @@ Example:
 	    
 	    	{ "message" : "Hello World." }
 
-<a name="ResourceResponseSection"></a>
-#### 4.3.4. Response Section
+<a name="ActionResponseSection"></a>
+#### 4.3.1.4.4. Action Response Section
 **Expected**. Description of exactly *one* [HTTP response](http://www.w3.org/TR/di-gloss/#def-http-response).
 
 This subsection is **recognized** by the `Response` reserved **keyword** written in a Markdown list followed by a [HTTP Status code](http://www.restapitutorial.com/httpstatuscodes.html). In the case a HTTP body is specified the `Response` keyword might be followed by a HTTP Body [Media Type (MIME type)](http://en.wikipedia.org/wiki/Internet_media_type) enclosed in brackets.
@@ -371,103 +488,14 @@ Example:
 		
 				{ "message" : "created" }
 
-<a name="ResourceHeadersSection"></a>
-#### 4.3.5. Headers Section
-**Optional**. Description of HTTP Headers parameters. Content of this subsection is subject to additional formatting.
 
-This section is **recognized** by the `Headers` reserved **keyword** written in a Markdown list as follows:
-
-	+ Headers
-
-This subsection must be listed under one of the following sections:
-
-* [Resource Section](#ResourceSection)
-* [Action Section](#ResourceActionSection)
-* Any [Payload Section](#Payloads) such as a [Request](#ResourceRequestSection), [Response](#ResourceResponseSection) or an [Object](#ResourceObjectSection) Section.
-
-Based on where this section is listed, the headers are expected or sent as follows:
-
-* **Resource Section**: Headers are expected and/or sent with **every** request and/or response on this **Resource's URI**.
-* **Action Section**: Headers are expected and/or sent with **every** request and/or response with specific **method and Resource's URI**.
-* **Payload Section**: Headers are expected and/or sent with the respective payload.
-
-The subsection is formatted as a Markdown's [Pre-formatted code blocks](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
-
-	<HTTP header name>: <value>
-
-One HTTP header per line.
-
-This subsection **does not include** any **other sections**.
-
-Example:
-
-	+ Headers
-	    
-	    	Accept-Charset: utf-8
-		    Connection: keep-alive
-		    Content-Type: multipart/form-data, boundary=AaB03x
-
-<a name="ResourceObjectSection"></a>
-#### 4.3.6. Object Section
-**Optional**. A [resource manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). One particular representation of this [Resource section](#ResourceSection)' resource. This section represents a [Payload](#Payload).
-
-This section is **recognized** by an object name followed by `Object` recognized **keyword** written in a Markdown list (item). 
-
-The Full list section syntax is as follows:
-
-	+ <object name> Object [(<media type>)]
-
-Object - payload defined in this section can be referred to later by its `<object name>` from any other [Request](#ResourceRequestSection) or [Response](#ResourceResponseSection) payload sections, including those of the following [Resource sections](#ResourceSection).
-
-Refer to MultiMarkdown [cross references](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references) for details on cross referencing. 
-
-Refer to the [Payloads](#Payload) discussion for a detailed description of this section content. 
-
-Example:
-
-	# My Resource [/resource]
-	+ My Resource Object (text/plain)
-		
-			Hello World
-			
-	## Retrieve My Resource [GET]
-	+ Response 200
-		
-		[My Resource][]
-
-<a name="ResourceGroups"></a>
-### 4.4. Grouping Resources
-Resource sections can be grouped together. To group resources simply [nest](#NestedSections) your resource section(s) under a Markdown header starting with the `Group` **keyword**.  
-
-A Group section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the group description.
-
-A Group **should include** at least one [Resource Section](#ResourceSection).
-
-Example:
-
-	# Group Blog Posts
-	Resources in this groups are related to **ACME Blog** posts.
-
-	## GET /posts{/id}
-		...
-
-	## PUT /posts
-		...
-
-	# Group Authors
-	## GET /authors
-		...
-
-	# Comments
-		...
-
-<a name="Payloads"></a>
-## 5. Payload
-Payload section represents the information transferred as the payload of an HTTP request or response message. A Payload consists of meta information in the form of HTTP headers and content in the form HTTP body. Furthermore, an API Blueprint Payload might include a description, discussion of its message-body parameters and a validation schema.
+<a name="Payload"></a>
+## 5. Payload Structure
+Payload sections represent the information transferred as payloads of an HTTP request or response messages. A Payload consists of meta information in the form of HTTP headers and content in the form HTTP body. Furthermore, an API Blueprint Payload might include a description, discussion of its message-body parameters and a validation schema.
 
 A Payload **should have** its Media Type associated. A Payload's Media type represents the metadata always received or sent in the form of a HTTP `Content-Type` header.
 
-Following section are payload sections: [Request Section](#ResourceRequestSection), [Response Section](#ResourceResponseSection) and [Object Section](#ResourceObjectSection).  Refer to the specific payload sections on how to define a payload of the specific type. 
+Following section are payload sections: [Request Section](#ActionRequestSection), [Response Section](#ActionResponseSection) and [Object Section](#ResourceObjectSection).  Refer to the specific payload sections on how to define a payload of the specific type. 
 
 The Payload might include following **optional** subsections: 
 
@@ -507,20 +535,32 @@ Example:
 			{ ... }
 
 <a name="PayloadHeadersSection"></a>
-### 5.1. Headers Subsection
-**Optional**. Specifies the message-headers of a Payload section. Content of this section is subject to additional formatting.
+### 5.1. Payload Headers Section
+**Optional**. Specifies the message-headers of a Payload section. The content of this section is subject to additional formatting.
 
-Refer to [Resource Headers Subsection](#ResourceHeadersSection) for this section's syntax definition.
+This section is **recognized** by the `Headers` reserved **keyword** written in a Markdown list as follows:
+
+	+ Headers
+
+The subsection is formatted as a Markdown's [Pre-formatted code blocks](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
+
+	<HTTP header name>: <value>
+
+One HTTP header per line.
+
+This subsection **does not include** any **other sections**.
 
 Example:
 
 	+ Request (application/json)
 		+ Headers
 	
-				X-My-Payload-Size: 42
+	    		Accept-Charset: utf-8
+		    	Connection: keep-alive
+		    	Content-Type: multipart/form-data, boundary=AaB03x
 
 <a name="PayloadParametersSection"></a>
-### 5.2. Parameters Subsection
+### 5.2. Payload Parameters Section
 **Optional** for the **application/json** media type. Description of the [Payload](#Payload)'s parameters. Content of this subsection is subject to additional formatting.
 
 This subsection is **recognized** by the `Parameters` reserved **keyword** written as a Markdown list item.
@@ -546,7 +586,7 @@ Example:
 				+ message (string) ... A message from **ACME Blog** API.
 
 <a name="PayloadBodySection"></a>
-### 5.3. Body Subsection
+### 5.3. Payload Body Section
 **Optional**. Specifies the message-body of a Payload section. Usually a [manifestation of a resource](http://www.w3.org/TR/di-gloss/#def-resource-manifestation).
 
 This subsection is **recognized** by the `Body` reserved **keyword** written as a Markdown list item.
@@ -570,7 +610,7 @@ Example:
 				{ "message" : "Hello World." }
 
 <a name="PayloadSchemaSection"></a>
-### 5.4. Schema Subsection
+### 5.4. Payload Schema Section
 **Optional**. Where applicable, specifies a schema used to validate this Payload's [Body Section](PayloadBodySection) content.
 
 This subsection is **recognized** by the `Schema` reserved **keyword** written as a Markdown list item.
