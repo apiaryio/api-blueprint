@@ -375,26 +375,21 @@ Example:
 #### 4.3.5. Headers Section
 **Optional**. Description of HTTP Headers parameters. Content of this subsection is subject to additional formatting.
 
-This section is **recognized** by the `Headers` reserved **keyword** written in a Markdown list. Optionally the `Headers` keyword can be preceded by either the `Response` or `Request` header **keyword**.
+This section is **recognized** by the `Headers` reserved **keyword** written in a Markdown list as follows:
 
-The Full Header section list syntax is as follows:
-
-	+ [Request [<identifier>] | Response <status code>] Headers
+	+ Headers
 
 This subsection must be listed under one of the following sections:
 
 * [Resource Section](#ResourceSection)
 * [Action Section](#ResourceActionSection)
+* Any [Payload Section](#Payloads) such as a [Request](#ResourceRequestSection), [Response](#ResourceResponseSection) or an [Object](#ResourceObjectSection) Section.
 
 Based on where this section is listed, the headers are expected or sent as follows:
 
 * **Resource Section**: Headers are expected and/or sent with **every** request and/or response on this **Resource's URI**.
-* **Method Section**: Headers are expected and/or sent with **every** request and/or response with specific **method and Resource's URI**.
-
-Based on the keywords preceding the `Headers` keyword, the headers are expected or sent as follows:
-
-* `Request` keyword: Headers are expected only with requests.
-* `Response` keyword: Headers are sent only with responses.
+* **Action Section**: Headers are expected and/or sent with **every** request and/or response with specific **method and Resource's URI**.
+* **Payload Section**: Headers are expected and/or sent with the respective payload.
 
 The subsection is formatted as a Markdown's [Pre-formatted code blocks](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
 
@@ -410,11 +405,7 @@ Example:
 	    
 	    	Accept-Charset: utf-8
 		    Connection: keep-alive
-
-	+ Request Headers
-
-		    Accept-Charset: utf-8
-		    Connection: keep-alive
+		    Content-Type: multipart/form-data, boundary=AaB03x
 
 <a name="ResourceObjectSection"></a>
 #### 4.3.6. Object Section
@@ -486,7 +477,7 @@ The Payload subsection header syntax is follows:
 
 	+ <payload identifier> [(<media type>)]
 
-The Payload is formed by following **optional** subsections: 
+The Payload might include following **optional** subsections: 
 
 * [Headers Subsection](#PayloadHeadersSection)
 * [Parameters Subsection](#PayloadParametersSection)
@@ -516,8 +507,6 @@ Example:
 <a name="PayloadHeadersSection"></a>
 ### 5.1. Headers Subsection
 **Optional**. Specifies the metadata in the form of the HTTP headers to be received or sent with the payload. Content of this section is subject to additional formatting.
-
-This subsection is **recognized** by the `Headers` reserved **keyword** written as a Markdown list item. No further keywords or modifiers are expected.
 
 Refer to [Resource Headers Subsection](#ResourceHeadersSection) for this section's syntax definition.
 
