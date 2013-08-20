@@ -55,23 +55,23 @@ Please refer to the [API Blueprint homepage](http://apiblueprint.org) for an int
 ## 2. API Blueprint
 API Blueprint is essentially a set of semantical assumption on top of a [Markdown](http://daringfireball.net/projects/markdown) syntax that are used to define a Web API. 
 
-In additional to regular Markdown syntax API Blueprint inherits some [MultiMarkdown](http://fletcherpenney.net/multimarkdown) and [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) features.
+In additional to regular Markdown syntax API Blueprint inherits some [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) features and uses some parts of [MultiMarkdown](http://fletcherpenney.net/multimarkdown) syntax.
 
-Before you proceed with this document please make yourself familiar with the basic [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) as well as with the Metadata and Cross-References sections of [MultiMarkdown Syntax](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#multimarkdown-syntax-guide) and GitHub Flavored Markdown's [newlines & fenced code blocks](https://help.github.com/articles/github-flavored-markdown).
+Before proceeding with this document please make yourself familiar with the basic [Markdown Syntax](http://daringfireball.net/projects/markdown/syntax) as well as with the Metadata and Cross-References sections of [MultiMarkdown Syntax](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#multimarkdown-syntax-guide) and GitHub Flavored Markdown's [newlines & fenced code blocks](https://help.github.com/articles/github-flavored-markdown).
 
 <a name="Document"></a>
 ## 3. API Blueprint Document
-API Blueprint document is a Markdown document where you define and describe a Web API.
+API Blueprint document is a Markdown document where a Web API is descibred.
 
 The document itself is divided into several logical **sections** which represent the **API Blueprint Document Structure**.
 
 <a name="Sections"></a>
 ### 3.1. Sections
-A section represents a logical unit of your API Blueprint. For example an API overview, a group of resources or a resource definition. A section can contain other (nested) section. For example a resource definition might contain a resource URI parameter's description as its subsection.
+A section represents a logical unit of a API blueprint. For example an API overview, a group of resources or a resource definition. A section can contain other (nested) section. For example a resource definition might contain a resource URI parameter's description as its subsection.
 
 Sections are recognized by a **reserved section name** or a **URI template** in a **Markdown header**. Alternatively some sections might be recognized by a **reserved section name** in a **Markdown list item** followed by a newline.
 
-Each section or subsection has a strictly defined name, meaning and expected content. Anything between a section start and another section start is considered to be part of the section. This implies that you **must avoid** using reserved section names – **keywords** in other Markdown headers but section headers.
+Each section or subsection has a strictly defined name, meaning and expected content. Anything between a section start and another section start is considered to be part of the section. **Avoid** using reserved section names – **keywords** in other Markdown headers but section headers.
 
 <a name="ReservedSectionNames"></a>
 ### 3.2. Reserved Section Names
@@ -123,7 +123,7 @@ Which sections can be nested depends upon the section in case, as described in t
 
 <a name="OtherMarkdownHeaders"></a>
 ### 3.4. Other Markdown Headers
-It is possible to use any other Markdown header in a section description as long as it does not clash with the [Reserved Section Names](#ReservedSectionNames). It is considered good practice to keep your header level nested to your actual section.
+It is possible to use any other Markdown header in a section description as long as it does not clash with the [Reserved Section Names](#ReservedSectionNames). It is considered good practice to keep the header level nested under the actual section.
 
 <a name="SpecialSections"></a>
 ### 3.5. Sections without keyword
@@ -131,11 +131,19 @@ There are **two additional** sections of an API Blueprint Document that are not 
 
 <a name="Identifiers"></a>
 ### 3.6. Identifiers 
-Several sections names might include an identifier. An identifier is any **non-empty combination** of a **alphanumerical character**, **underscore**, **dash**  and a **space** unless stated otherwise. **No other characters** (e.g. punctation or other whitespace characters) **are allowed**. 
+Several sections names might include an identifier. An identifier is any **non-empty combination** of a **alphanumerical character**, **underscore**, **dash**  and a **space** unless stated otherwise. **No other characters** (e.g. punctation or other whitespace characters) **are allowed**. An identifier **should not** include any [reserved keyword](ReservedSectionNames).
+
+Example:
+
+	My Awesome Message
+
+	-- or --
+
+	my-awesome-message_2
 
 <a name="DocumentStructure"></a>
 ## 4. API Blueprint Document Structure
-Bellow you will find a description of each section of the API Blueprint Document. Note that all sections are, by default, optional. However, the document should contain at least one [Resource](#ResourceSection) Section.
+Description of the structure of API Blueprint Document. Every section is, by default, optional. However, the blueprint document should contain at least one [Resource](#ResourceSection) Section.
 
 Full API Blueprint Document layout:
 
@@ -230,7 +238,7 @@ Example:
 ### 4.2. API Name & Overview Section
 **Optional**. Name of the API in the form of a Markdown header.
 
-This section is **recognized** as the **first** Markdown header in your document. Its content is considered to be your **API name**.
+This section is **recognized** as the **first** Markdown header in a blueprint document. Its content is considered to represent the **API name**.
 
 This section can contain **further Markdown-formatted content**. If content is provided it is considered to represent the API overview / description. 
 
@@ -279,7 +287,7 @@ Example:
 ### 4.3.1 Resource Section
 **Optional**. Definition of exactly **one** API [**resource**](http://www.w3.org/TR/di-gloss/#def-resource) specified by its *URI* **OR** a **set of resources** (a resource template) matching its *URI template*.
 
-Your Blueprint document can contain multiple sections for the same resource (or resource set), as long as their HTTP methods differ. However it is considered good practice to group multiple HTTP methods under one resource (resource set).
+An blueprint document can contain multiple sections for the same resource (or resource set), as long as their HTTP methods differ. However it is considered good practice to group multiple HTTP methods under one resource (resource set).
 
 This section is **recognized** by an [RFC 6570 URI template](http://tools.ietf.org/html/rfc6570) written in a Markdown header. Optionally the header can contain **one** leading [HTTP Request Method](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) in which case **the rest of this section** is considered to **represent the [Action Section](#ResourceActionSection).**
 
@@ -328,7 +336,7 @@ Where:
 
 * `<parameter name>` is the parameter name as written in [Resource Section](#ResourceSection)'s URI (e.g. "id").
 * `<default value>` is the **optional** parameter default or example value (e.g. 1234).
-* `<type>` is the **optional** parameter type as expected by your API (e.g. "number").
+* `<type>` is the **optional** parameter type as expected by the API (e.g. "number").
 * `required` is the **optional** specifier of a required parameter
 * `optional` is the **optional** specifier of an optional parameter
 
@@ -490,7 +498,7 @@ Example:
 
 
 <a name="Payload"></a>
-## 5. Payload Structure
+## 5. Payload Section Structure
 Payload sections represent the information transferred as payloads of an HTTP request or response messages. A Payload consists of meta information in the form of HTTP headers and content in the form HTTP body. Furthermore, an API Blueprint Payload might include a description, discussion of its message-body parameters and a validation schema.
 
 A Payload **should have** its Media Type associated. A Payload's Media type represents the metadata always received or sent in the form of a HTTP `Content-Type` header.
@@ -504,7 +512,7 @@ The Payload might include following **optional** subsections:
 * [Body Subsection](#PayloadBodySection)
 * [Schema Subsection](#PayloadSchemaSection)
 
-Example:
+Example (request payload section):
 
 	+ Request (application/json)
 
@@ -569,7 +577,6 @@ This subsection can contain **further Markdown-formatted content**. If content i
 
 	+ <parameter name> [= <default value>] [<type> [,(required | optional)]] ... Markdown-formatted content
 
-
 Where `<parameter name>` is the name of a [body](#PayloadBodySection) top-level field. To access the elements of an array and to access the fields of a subdocument use [MongoDB Dot Notation](http://docs.mongodb.org/manual/core/document/#dot-notation).
 
 See Resource [Parameters Subsection](#ResourceParametersSection) for further details.
@@ -591,7 +598,7 @@ Example:
 
 This subsection is **recognized** by the `Body` reserved **keyword** written as a Markdown list item.
 
-This subsection represents an API Blueprint Document [Asset](#DocumentAssets).
+This subsection is an API Blueprint Document [Asset](#DocumentAssets).
 
 This subsection **does not include** any **other subsections**.
 
@@ -615,7 +622,7 @@ Example:
 
 This subsection is **recognized** by the `Schema` reserved **keyword** written as a Markdown list item.
 
-This subsection represents an API Blueprint Document [Asset](#DocumentAssets).
+This subsection is an API Blueprint Document [Asset](#DocumentAssets).
 
 This subsection **does not include** any **other sections**.
 
@@ -638,4 +645,22 @@ Example:
 	+ Asset Name
 
 			{ "message" : "Hello World." }
+
+
+Using GitHub Flavored Markdown [Fenced Code blocks](https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks):
+
+
+	# Asset Name
+	
+	```	
+	{ "message" : "Hello World." }
+	```
+		
+	-- or --
+	
+	+ Asset Name
+
+		```
+		{ "message" : "Hello World." }
+		```
 
