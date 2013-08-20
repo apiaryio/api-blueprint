@@ -29,7 +29,7 @@ Author: z@apiary.io
 		5. [Headers Section](#ResourceHeadersSection)
 		6. [Object Section](#ResourceObjectSection)
 	4. [Grouping resources](#ResourceGroups)
-5. [Payloads](#Payloads)
+5. [Payload](#Payload)
 	1. [Headers Subsection](#PayloadHeadersSection)
 	2. [Parameters Subsection](#PayloadParametersSection)
 	3. [Body Subsection](#PayloadBodySection)
@@ -333,7 +333,7 @@ The Full Request Subsection list syntax is as follows:
 
 This subsection **must** be nested under an [Action Section](#ResourceActionSection).
 
-This subsection is a specific type of [Payload](#Payloads) carried by this request. See [Payloads Documentation](#Payloads) for details about how to specify the content of this section.
+This subsection is a specific type of [Payload](#Payload) carried by this request. See [Payloads Documentation](#Payload) for details about how to specify the content of this section.
 
 One [Resource Section](#ResourceSection) or [Action Section](#ResourceActionSection) can contain **one or more different** (that is with a different identifier) Request Subsections.
 
@@ -409,7 +409,7 @@ Example:
 
 <a name="ResourceObjectSection"></a>
 #### 4.3.6. Object Section
-**Optional**. A [resource manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). One particular representation of this [Resource section](#ResourceSection)' resource. This section represents a [Payload](#Payloads).
+**Optional**. A [resource manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). One particular representation of this [Resource section](#ResourceSection)' resource. This section represents a [Payload](#Payload).
 
 This section is **recognized** by an object name followed by `Object` recognized **keyword** written in a Markdown list (item). 
 
@@ -421,7 +421,7 @@ Object - payload defined in this section can be referred to later by its `<objec
 
 Refer to MultiMarkdown [cross references](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references) for details on cross referencing. 
 
-Refer to the [Payloads](#Payloads) discussion for a detailed description of this section content. 
+Refer to the [Payloads](#Payload) discussion for a detailed description of this section content. 
 
 Example:
 
@@ -462,20 +462,12 @@ Example:
 		...
 
 <a name="Payloads"></a>
-## 5. Payloads
-A payload is data expected in a HTTP request or sent in a HTTP response. A Payload consists of meta information in the form of HTTP headers and content received or sent in a HTTP body. Furthermore, an API Blueprint Payload can include its description as well as a discussion of its parameters.
+## 5. Payload
+Payload section represents the information transferred as the payload of an HTTP request or response message. A Payload consists of meta information in the form of HTTP headers and content in the form HTTP body. Furthermore, an API Blueprint Payload might include a description, discussion of its message-body parameters and a validation schema.
 
-Note that the term "payload" (excluding its description) as used in this document is technically a subset of [HTTP Payload](http://www.w3.org/TR/di-gloss/). There might be some additional metadata (HTTP headers) specified outside of the scope of the payload that can form up the final HTTP Payload.
+A Payload **should have** its Media Type associated. A Payload's Media type represents the metadata always received or sent in the form of a HTTP `Content-Type` header.
 
-A Payload **should have** its Media Type associated. A Payload's Media type represents the metadata that is always received or sent in the form of a HTTP `Content-Type` header.
-
-The Payload section header syntax is follows:
-
-	# <payload identifier> [(<media type>)]
-	
-The Payload subsection header syntax is follows:	
-
-	+ <payload identifier> [(<media type>)]
+Following section are payload sections: [Request Section](#ResourceRequestSection), [Response Section](#ResourceResponseSection) and [Object Section](#ResourceObjectSection).  Refer to the specific payload sections on how to define a payload of the specific type. 
 
 The Payload might include following **optional** subsections: 
 
@@ -484,42 +476,52 @@ The Payload might include following **optional** subsections:
 * [Body Subsection](#PayloadBodySection)
 * [Schema Subsection](#PayloadSchemaSection)
 
-If **no subsection** is specified, the content of the payload section is considered as a [Body Subsection](#PayloadBodySection).
-
 Example:
 
-	# MyPayload (application/json)
-	+ Headers
+	+ Request (application/json)
+
+		Any Markdown formatted *discussion* might be here.
+
+		+ Headers
+			
+				X-My-Payload-Size: 42
+
+		+ Parameters
+			+ message ... A message.
+
+		+ Body
+			
+				{ ... }
+
+		+ Schema
 		
-		X-My-Payload-Size: 42
+				{ ... }
+			
+			
+**If no subsection is specified the content of the payload section is considered to represent the [Body Subsection](#PayloadBodySection).**
+			
+Example:
 
-	+ Parameters
-		+ message ... A message.
-
-	+ Body
-		
-			{ ... }
-
-	+ Schema
-	
+	+ Request (application/json)
+			
 			{ ... }
 
 <a name="PayloadHeadersSection"></a>
 ### 5.1. Headers Subsection
-**Optional**. Specifies the metadata in the form of the HTTP headers to be received or sent with the payload. Content of this section is subject to additional formatting.
+**Optional**. Specifies the message-headers of a Payload section. Content of this section is subject to additional formatting.
 
 Refer to [Resource Headers Subsection](#ResourceHeadersSection) for this section's syntax definition.
 
 Example:
 
-	# MyPayload (application/json)
-	+ Headers
+	+ Request (application/json)
+		+ Headers
 	
-			X-My-Payload-Size: 42
+				X-My-Payload-Size: 42
 
 <a name="PayloadParametersSection"></a>
 ### 5.2. Parameters Subsection
-**Optional** for the **application/json** media type. Description of the [Payload](#Payloads)'s parameters. Content of this subsection is subject to additional formatting.
+**Optional** for the **application/json** media type. Description of the [Payload](#Payload)'s parameters. Content of this subsection is subject to additional formatting.
 
 This subsection is **recognized** by the `Parameters` reserved **keyword** written as a Markdown list item.
 
@@ -534,18 +536,18 @@ See Resource [Parameters Subsection](#ResourceParametersSection) for further det
 
 Example:
 
-	# MyPayload (application/json)
-	+ Headers
+	+ Request (application/json)
+		+ Headers
 	
-			X-My-Payload-Size: 42
+				X-My-Payload-Size: 42
 
-	+ Parameters
+		+ Parameters
 	
-			+ message (string) ... A message from **ACME Blog** API.
+				+ message (string) ... A message from **ACME Blog** API.
 
 <a name="PayloadBodySection"></a>
 ### 5.3. Body Subsection
-**Optional**. Specifies the content of the payload received or sent in the form of a HTTP body.
+**Optional**. Specifies the message-body of a Payload section. Usually a [manifestation of a resource](http://www.w3.org/TR/di-gloss/#def-resource-manifestation).
 
 This subsection is **recognized** by the `Body` reserved **keyword** written as a Markdown list item.
 
@@ -555,21 +557,21 @@ This subsection **does not include** any **other subsections**.
 
 Example:
 
-	# MyPayload (application/json)
-	+ Headers
+	+ Request (application/json)
+		+ Headers
 	
-			X-My-Payload-Size: 42
+				X-My-Payload-Size: 42
 
-	+ Parameters
-		+ message (string) ... A message from **ACME Blog** API.
+		+ Parameters
+			+ message (string) ... A message from **ACME Blog** API.
 
-	+ Body
+		+ Body
 	
-			{ "message" : "Hello World." }
+				{ "message" : "Hello World." }
 
 <a name="PayloadSchemaSection"></a>
 ### 5.4. Schema Subsection
-**Optional**. Where applicable, specifies a schema used to validate this payload's body content.
+**Optional**. Where applicable, specifies a schema used to validate this Payload's [Body Section](PayloadBodySection) content.
 
 This subsection is **recognized** by the `Schema` reserved **keyword** written as a Markdown list item.
 
@@ -579,7 +581,7 @@ This subsection **does not include** any **other sections**.
 
 <a name="DocumentAssets"></a>
 ## 6. Assets
-An API Blueprint Document Asset is simply a resource (not to be confused with API Resource) – a piece of data used in [payloads](#Payloads).
+An API Blueprint Document Asset is simply a resource (not to be confused with API Resource) – an atomic data used in [payloads](#Payload).
 
 <a name="InlineDocumentAsset"></a>
 ### 6.1. Inline Asset
