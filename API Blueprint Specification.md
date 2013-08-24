@@ -330,7 +330,7 @@ This subsection is **recognized** by the `Parameters` reserved **keyword** writt
 
 This subsection can contain **further Markdown-formatted content**. If content is provided it is considered to represent a general Resource URI parameter description. The rest of this subsection is formatted as follows:
 
-	+ <parameter name> [= <default value>] [<type> [,(required | optional)]] ... Markdown-formatted content
+	+ <parameter name> [= <default value>] [(<type> [,required | optional])] ... Markdown-formatted content
 
 Where:
 
