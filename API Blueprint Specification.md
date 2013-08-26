@@ -33,9 +33,8 @@ Author: z@apiary.io
 				4. [Action Response Section](#ActionResponseSection)
 5. [Payload Structure](#Payload)
 	1. [Payload Headers Section](#PayloadHeadersSection)
-	2. [Payload Parameters Section](#PayloadParametersSection)
-	3. [Payload Body Section](#PayloadBodySection)
-	4. [Payload Schema Section](#PayloadSchemaSection)
+	2. [Payload Body Section](#PayloadBodySection)
+	3. [Payload Schema Section](#PayloadSchemaSection)
 6. [Assets](#DocumentAssets)
 	1. [Inline Asset](#InlineDocumentAsset)
 
@@ -326,23 +325,43 @@ Example:
 #### 4.3.1.1. Resource Parameters Section
 **Optional**. Description of [Resource Section](#ResourceSection)'s URI parameters. Content of this section is subject to additional formatting.
 
-This subsection is **recognized** by the `Parameters` reserved **keyword** written as a Markdown list item. If present, it must be subsection of a [Resource Section](#ResourceSection).
+This section is **recognized** by the `Parameters` reserved **keyword** written as a Markdown list item. 
 
-This subsection can contain **further Markdown-formatted content**. If content is provided it is considered to represent a general Resource URI parameter description. The rest of this subsection is formatted as follows:
+This section consist of nested list items with additional formatting. **Full syntax of one parameter description is:
 
-	+ <parameter name> [= <default value>] [(<type> [,required | optional])] ... Markdown-formatted content
+	+ <parameter name>
+
+		[<description>]
+		
+		[+ Type: <type>]
+		[+ Optional | Required ]
+		[+ Default: `<default value>`]
+		[+ Example: `<example value>`]
+		[+ Values:
+			+ `<enumeration element 1>` 
+			+ `<enumeration element 2>`
+			...
+			+ `<enumeration element N>`]
+
+Alternatively the **abbreviated syntax** can be used: 
+
+	+ <parameter name> [= `<default value>`] [(<type> [,Required | Optional])] ... [<description>]
+
+Note the abbreviated syntax can be freely mixed with the full syntax.
 
 Where:
 
 * `<parameter name>` is the parameter name as written in [Resource Section](#ResourceSection)'s URI (e.g. "id").
-* `<default value>` is the **optional** parameter default or example value (e.g. 1234).
+* `<description>` is any **optional** Markdown-formatted description of the parameter.
+* `<default value>` is an **optional** default value of the parameter – a value that is used when no value is explicitly set (optional parameters only).
+* `<default value>` is an **optional** example value  of the parameter (e.g. `1234`).
 * `<type>` is the **optional** parameter type as expected by the API (e.g. "number").
-* `required` is the **optional** specifier of a required parameter
-* `optional` is the **optional** specifier of an optional parameter
+* `Values` is the **optional** enumeration of possible values
+*  and `<enumerated element n>` represents an element of enumeration type.
+* `required` is the **optional** specifier of a required parameter (this is the **default**)
+* `optional` is the **optional** specifier of an optional parameter.
 
-This subsection does not have to list every URI parameter. It **should not**, however, contain parameters that are not specified in the URI.
-
-This subsection **does not include** any **other subsection**.
+This section does not have to list every URI parameter. It **should not**, however, contain parameters that are not specified in the URI.
 
 Example:
 
@@ -352,7 +371,7 @@ Example:
 
 	-- or --
 
-		+ id = 1234 ... Id of a post.
+		+ id = 0 ... Id of a post.
 
 	-- or --
 
@@ -360,8 +379,18 @@ Example:
 
 	-- or --
 
-		+ id = 1234 (number, required) ... Id of a post.
+		+ id (number, required) ... Id of a post.
+			+ Example: `1001`
 
+	-- or --
+
+		+ id
+
+			ID of a post.
+
+			+ Required
+			+ Type: number
+			+ Example: `1001`
 
 <a name="ResourceHeadersSection"></a>
 #### 4.3.1.2 Resource Headers Section
@@ -508,7 +537,6 @@ Following section are payload sections: [Request Section](#ActionRequestSection)
 The Payload might include following **optional** subsections: 
 
 * [Headers Subsection](#PayloadHeadersSection)
-* [Parameters Subsection](#PayloadParametersSection)
 * [Body Subsection](#PayloadBodySection)
 * [Schema Subsection](#PayloadSchemaSection)
 
@@ -567,33 +595,8 @@ Example:
 		    	Connection: keep-alive
 		    	Content-Type: multipart/form-data, boundary=AaB03x
 
-<a name="PayloadParametersSection"></a>
-### 5.2. Payload Parameters Section
-**Optional** for the **application/json** media type. Description of the [Payload](#Payload)'s parameters. Content of this subsection is subject to additional formatting.
-
-This subsection is **recognized** by the `Parameters` reserved **keyword** written as a Markdown list item.
-
-This subsection can contain **further Markdown-formatted content**. If content is provided, it is considered to represent the general payload parameter's description. The rest of this section is formatted as follows:
-
-	+ <parameter name> [= <default value>] [<type> [,(required | optional)]] ... Markdown-formatted content
-
-Where `<parameter name>` is the name of a [body](#PayloadBodySection) top-level field. To access the elements of an array and to access the fields of a subdocument use [MongoDB Dot Notation](http://docs.mongodb.org/manual/core/document/#dot-notation).
-
-See Resource [Parameters Subsection](#ResourceParametersSection) for further details.
-
-Example:
-
-	+ Request (application/json)
-		+ Headers
-	
-				X-My-Payload-Size: 42
-
-		+ Parameters
-	
-				+ message (string) ... A message from **ACME Blog** API.
-
 <a name="PayloadBodySection"></a>
-### 5.3. Payload Body Section
+### 5.2. Payload Body Section
 **Optional**. Specifies the message-body of a Payload section. Usually a [manifestation of a resource](http://www.w3.org/TR/di-gloss/#def-resource-manifestation).
 
 This subsection is **recognized** by the `Body` reserved **keyword** written as a Markdown list item.
@@ -617,7 +620,7 @@ Example:
 				{ "message" : "Hello World." }
 
 <a name="PayloadSchemaSection"></a>
-### 5.4. Payload Schema Section
+### 5.3. Payload Schema Section
 **Optional**. Where applicable, specifies a schema used to validate this Payload's [Body Section](PayloadBodySection) content.
 
 This subsection is **recognized** by the `Schema` reserved **keyword** written as a Markdown list item.
