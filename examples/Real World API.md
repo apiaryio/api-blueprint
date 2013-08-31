@@ -12,7 +12,7 @@ This section groups App.net post resources.
 ## Post [/stream/0/posts/{post_id}]
 A Post is the other central object utilized by the App.net Stream API. It has rich text and annotations which comprise all of the content a users sees in their feed. Posts are closely tied to the follow graph...
 
-+ Post Object (application/json)
++ Model (application/json)
     
     ```js
     {
@@ -80,7 +80,7 @@ Delete a Post. The current user must be the same user who created the Post. It r
 ## Posts Collection [/stream/0/posts]
 A Collection of posts.
 
-+ Posts Collection Object (application/json)
++ Model (application/json)
     
     ```js
     { 

@@ -25,7 +25,7 @@ Author: z@apiary.io
 		1. [Resource Section](#ResourceSection)
 			1. [Resource Parameters Section](#ResourceParametersSection)
 			2. [Resource Headers Section](#ResourceHeadersSection)
-			3. [Resource Object Section](#ResourceObjectSection)
+			3. [Resource Model Section](#ResourceModelSection)
 			4. [Resource Action Section](#ResourceActionSection)
 				1. [Action Parameters Section](#ActionParametersSection)
 				2. [Action Headers Section](#ActionHeadersSection)
@@ -89,7 +89,7 @@ Reserved keywords are:
 	- `Parameter` & `Parameters`
 	- `Body`
 	- `Schema`
-	- `Object`
+	- `Model`
 
 **NOTE:** With the exception of HTTP methods keywords the section keywords are **case insensitive**.
 
@@ -158,7 +158,7 @@ Full API Blueprint Document layout:
 	|	|	|
 	|	|	+ Headers Sections
 	|	|	|
-	|	|	+ Resource Object Section
+	|	|	+ Resource Model Section
 	|	|	|	|
 	|	|	|	...
 	|	|	|
@@ -302,7 +302,7 @@ In addition to any mandatory nested sections this section **may include** the fo
  
 * [Parameters Section](#ResourceParametersSection)
 * [Headers Section](#ResourceHeadersSection)
-* [Object Section](#ResourceObjectSection)
+* [Model Section](#ResourceModelSection)
 * [Action Section](#ResourceActionSection),  if **no** HTTP Request Method is specified
 
 Example:
@@ -398,17 +398,17 @@ Example:
 
 Refer to [Payload Headers Subsection](#PayloadHeadersSection) for this section's syntax definition.
 
-<a name="ResourceObjectSection"></a>
-#### 4.3.1.3 Resource Object Section
-**Optional**. A [resource manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation). A representation of the resource as a [Payload](#Payload).
+<a name="ResourceModelSection"></a>
+#### 4.3.1.3 Resource Model Section
+**Optional**. A [resource manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation) - a representation of the resource as a [Payload](#Payload).
 
-This section is **recognized** by the `Object` **keyword** followed an object name in the form of an [identifier](#Identifiers) written in a Markdown list item. 
+This section is **recognized** by the `Model` **keyword** followed an optional media type written in a Markdown list item. 
 
 The Full list section syntax is as follows:
 
-	+ Object <identifier> [(<media type>)]
+	+ Model [(<media type>)]
 
-The Object defined in this section can be **referred later by its identifier** from any other [Request](#ActionRequestSection) or [Response](#ActionResponseSection) payload sections, including those of the following [Resource sections](#ResourceSection).
+The Model defined in this section can be **referred later by it's resource identifier** from any other [Request](#ActionRequestSection) or [Response](#ActionResponseSection) payload sections, including those of the following [Resource sections](#ResourceSection).
 
 Refer to MultiMarkdown [cross references](https://github.com/fletcher/MultiMarkdown/blob/master/Documentation/MultiMarkdown%20User%27s%20Guide.md#automatic-cross-references) for details on cross referencing. 
 
@@ -417,14 +417,14 @@ Refer to the [Payloads](#Payload) discussion for a detailed description of this 
 Example:
 
 	# My Resource [/resource]
-	+ Object Message (text/plain)
+	+ Model (text/plain)
 		
 			Hello World
 			
 	## Retrieve My Resource [GET]
 	+ Response 200
 		
-		[Message][]
+		[My Resource][]
 
 <a name="ResourceActionSection"></a>
 #### 4.3.1.4 Resource Action Section
@@ -532,7 +532,7 @@ Payload sections represent the information transferred as payloads of an HTTP re
 
 A Payload **should have** its Media Type associated. A Payload's Media type represents the metadata always received or sent in the form of a HTTP `Content-Type` header.
 
-Following section are payload sections: [Request Section](#ActionRequestSection), [Response Section](#ActionResponseSection) and [Object Section](#ResourceObjectSection).  Refer to the specific payload sections on how to define a payload of the specific type. 
+Following section are payload sections: [Request Section](#ActionRequestSection), [Response Section](#ActionResponseSection) and [Model Section](#ResourceModelSection).  Refer to the specific payload sections on how to define a payload of the specific type. 
 
 The Payload might include following **optional** subsections: 
 
