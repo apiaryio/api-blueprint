@@ -85,11 +85,16 @@ Reserved keywords are:
 - Markdown List items: 
 	- `Request`
 	- `Response`
-	- `Header` & `Headers`
-	- `Parameter` & `Parameters`
 	- `Body`
 	- `Schema`
 	- `Model`
+	- `Header` & `Headers`
+	- `Parameter` & `Parameters`
+	- `Default`
+	- `Example`
+	- `Values`
+	- `Optional`
+	- `Required`
 
 **NOTE:** With the exception of HTTP methods keywords the section keywords are **case insensitive**.
 
