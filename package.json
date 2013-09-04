@@ -27,7 +27,7 @@
     "express": "",
     "gzippo": "",
     "node-hipchat": "",
-    "protagonist": "0.1.0",
+    "protagonist": "0.2.0",
     "winston": "git://github.com/apiaryio/winston.git#production"
   },
   "devDependencies": {
