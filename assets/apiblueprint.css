@@ -644,6 +644,7 @@ h1 {
   top: 0;
   line-height: 21px;
   font-size: 13px;
+  min-height: 150px;
 }
 @media screen and (max-width:660px) {
   #editor_ace,
@@ -1779,6 +1780,7 @@ a:hover {
 .examples__editor,
 .examples__json {
   position: relative;
+  min-height: 100px;
 }
 .examples__editor:before {
   position: absolute;
