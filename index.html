@@ -116,11 +116,11 @@ layout: nil
   <div class="examples page__inside">
     <h2 class="page__title">Examples</h2>
     <div class="examples__tabs">
-      <ul class="examples__tabs--wrap"><!-- 
+      <ul class="examples__tabs--wrap"><!--
      --><li class="examples__tab active"><a href="#hello_world" class="examples__switch">Hello World</a>
           <pre><code class="markdown"># GET /message
 + Response 200 (text/plain)
-        
+
         Hello World!
 
 
@@ -130,6 +130,8 @@ layout: nil
 
 </code></pre>
 <pre><code class="ast">{
+    "_version": "1.0",
+    "metadata": {},
     "name": "",
     "description": "",
     "resourceGroups": [
@@ -138,24 +140,35 @@ layout: nil
             "description": "",
             "resources": [
                 {
-                    "uriTemplate": "/message",
                     "name": "",
                     "description": "",
-                    "object": {},
-                    "methods": [
+                    "uriTemplate": "/message",
+                    "model": {},
+                    "parameters": {},
+                    "headers": {},
+                    "actions": [
                         {
-                            "method": "GET",
                             "name": "",
                             "description": "",
-                            "responses": [
+                            "method": "GET",
+                            "parameters": {},
+                            "headers": {},
+                            "transactions": [
                                 {
-                                    "name": "200",
+                                    "name": "",
                                     "description": "",
-                                    "body": "Hello World!\n",
-                                    "schema": "",
-                                    "headers": [
+                                    "requests": [],
+                                    "responses": [
                                         {
-                                            "Content-Type": "text/plain"
+                                            "name": "200",
+                                            "description": "",
+                                            "headers": {
+                                                "Content-Type": {
+                                                    "value": "text/plain"
+                                                }
+                                            },
+                                            "body": "Hello World!\n",
+                                            "schema": ""
                                         }
                                     ]
                                 }
@@ -167,7 +180,7 @@ layout: nil
         }
     ]
 }</code></pre>
-        </li><!-- 
+        </li><!--
      --><li class="examples__tab"><a href="#into_action" class="examples__switch">Multiple Methods</a>
           <pre><code class="markdown"># /messages/{id}
 
@@ -181,6 +194,8 @@ layout: nil
 
 </code></pre>
 <pre><code class="ast">{
+    "_version": "1.0",
+    "metadata": {},
     "name": "",
     "description": "",
     "resourceGroups": [
@@ -189,39 +204,60 @@ layout: nil
             "description": "",
             "resources": [
                 {
-                    "uriTemplate": "/messages/{id}",
                     "name": "",
                     "description": "",
-                    "object": {},
-                    "methods": [
+                    "uriTemplate": "/messages/{id}",
+                    "model": {},
+                    "parameters": {},
+                    "headers": {},
+                    "actions": [
                         {
-                            "method": "GET",
                             "name": "",
                             "description": "",
-                            "responses": [
+                            "method": "GET",
+                            "parameters": {},
+                            "headers": {},
+                            "transactions": [
                                 {
-                                    "name": "200",
+                                    "name": "",
                                     "description": "",
-                                    "body": "Hello World!\n",
-                                    "schema": "",
-                                    "headers": [
+                                    "requests": [],
+                                    "responses": [
                                         {
-                                            "Content-Type": "text/plain"
+                                            "name": "200",
+                                            "description": "",
+                                            "headers": {
+                                                "Content-Type": {
+                                                    "value": "text/plain"
+                                                }
+                                            },
+                                            "body": "Hello World!\n",
+                                            "schema": ""
                                         }
                                     ]
                                 }
                             ]
                         },
                         {
-                            "method": "DELETE",
                             "name": "",
                             "description": "",
-                            "responses": [
+                            "method": "DELETE",
+                            "parameters": {},
+                            "headers": {},
+                            "transactions": [
                                 {
-                                    "name": "204",
+                                    "name": "",
                                     "description": "",
-                                    "body": "",
-                                    "schema": ""
+                                    "requests": [],
+                                    "responses": [
+                                        {
+                                            "name": "204",
+                                            "description": "",
+                                            "headers": {},
+                                            "body": "",
+                                            "schema": ""
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -231,7 +267,7 @@ layout: nil
         }
     ]
 }</code></pre>
-        </li><!-- 
+        </li><!--
      --><li class="examples__tab"><a href="#you_name_it" class="examples__switch">Named Calls</a>
           <pre><code class="markdown"># Message [/messages/{id}]
 
@@ -245,6 +281,8 @@ layout: nil
 
 </code></pre>
 <pre><code class="ast">{
+    "_version": "1.0",
+    "metadata": {},
     "name": "",
     "description": "",
     "resourceGroups": [
@@ -253,39 +291,60 @@ layout: nil
             "description": "",
             "resources": [
                 {
-                    "uriTemplate": "/messages/{id}",
                     "name": "Message",
                     "description": "",
-                    "object": {},
-                    "methods": [
+                    "uriTemplate": "/messages/{id}",
+                    "model": {},
+                    "parameters": {},
+                    "headers": {},
+                    "actions": [
                         {
-                            "method": "GET",
                             "name": "Retrieve Message",
                             "description": "",
-                            "responses": [
+                            "method": "GET",
+                            "parameters": {},
+                            "headers": {},
+                            "transactions": [
                                 {
-                                    "name": "200",
+                                    "name": "",
                                     "description": "",
-                                    "body": "Hello World!\n",
-                                    "schema": "",
-                                    "headers": [
+                                    "requests": [],
+                                    "responses": [
                                         {
-                                            "Content-Type": "text/plain"
+                                            "name": "200",
+                                            "description": "",
+                                            "headers": {
+                                                "Content-Type": {
+                                                    "value": "text/plain"
+                                                }
+                                            },
+                                            "body": "Hello World!\n",
+                                            "schema": ""
                                         }
                                     ]
                                 }
                             ]
                         },
                         {
-                            "method": "DELETE",
                             "name": "Delete Message",
                             "description": "",
-                            "responses": [
+                            "method": "DELETE",
+                            "parameters": {},
+                            "headers": {},
+                            "transactions": [
                                 {
-                                    "name": "204",
+                                    "name": "",
                                     "description": "",
-                                    "body": "",
-                                    "schema": ""
+                                    "requests": [],
+                                    "responses": [
+                                        {
+                                            "name": "204",
+                                            "description": "",
+                                            "headers": {},
+                                            "body": "",
+                                            "schema": ""
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -295,10 +354,10 @@ layout: nil
         }
     ]
 }</code></pre>
-        </li><!-- 
+        </li><!--
      --><li class="examples__tab"><a href="#full_api" class="examples__switch">Larger Example</a>
           <pre><code class="markdown"># Message of the Day API
-A simple [MOTD](http://en.wikipedia.org/wiki/Motd_(Unix)) API. 
+A simple [MOTD](http://en.wikipedia.org/wiki/Motd_(Unix)) API.
 
 # Message [/messages/{id}]
 This resource represents one particular message identified by its *id*.
@@ -317,47 +376,70 @@ Delete a message. **Warning:** This action **permanently** removes the message f
 
 </code></pre>
 <pre><code class="ast">{
+    "_version": "1.0",
+    "metadata": {},
     "name": "Message of the Day API",
-    "description": "A simple [MOTD](http://en.wikipedia.org/wiki/Motd_(Unix)) API. \n\n",
+    "description": "A simple [MOTD](http://en.wikipedia.org/wiki/Motd_(Unix)) API.\n\n",
     "resourceGroups": [
         {
             "name": "",
             "description": "",
             "resources": [
                 {
-                    "uriTemplate": "/messages/{id}",
                     "name": "Message",
                     "description": "This resource represents one particular message identified by its *id*.\n\n",
-                    "object": {},
-                    "methods": [
+                    "uriTemplate": "/messages/{id}",
+                    "model": {},
+                    "parameters": {},
+                    "headers": {},
+                    "actions": [
                         {
-                            "method": "GET",
                             "name": "Retrieve Message",
                             "description": "Retrieve a message by its *id*.\n\n",
-                            "responses": [
+                            "method": "GET",
+                            "parameters": {},
+                            "headers": {},
+                            "transactions": [
                                 {
-                                    "name": "200",
+                                    "name": "",
                                     "description": "",
-                                    "body": "Hello World!\n",
-                                    "schema": "",
-                                    "headers": [
+                                    "requests": [],
+                                    "responses": [
                                         {
-                                            "Content-Type": "text/plain"
+                                            "name": "200",
+                                            "description": "",
+                                            "headers": {
+                                                "Content-Type": {
+                                                    "value": "text/plain"
+                                                }
+                                            },
+                                            "body": "Hello World!\n",
+                                            "schema": ""
                                         }
                                     ]
                                 }
                             ]
                         },
                         {
-                            "method": "DELETE",
                             "name": "Delete Message",
                             "description": "Delete a message. **Warning:** This action **permanently** removes the message from the database.\n\n",
-                            "responses": [
+                            "method": "DELETE",
+                            "parameters": {},
+                            "headers": {},
+                            "transactions": [
                                 {
-                                    "name": "204",
+                                    "name": "",
                                     "description": "",
-                                    "body": "",
-                                    "schema": ""
+                                    "requests": [],
+                                    "responses": [
+                                        {
+                                            "name": "204",
+                                            "description": "",
+                                            "headers": {},
+                                            "body": "",
+                                            "schema": ""
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -436,12 +518,12 @@ Delete a message. **Warning:** This action **permanently** removes the message f
       </li><!--
    --><li class="binding__item">
         <a class="binding__link" href="https://github.com/SeriousM/snowcrashCLR">.NET</a>
-      </li><!-- 
+      </li><!--
    --><li class="binding__item binding__item--making">
         <span class="visuallyhidden">Ruby gem</span>
         <span class="binding__bg binding--ruby"><span class="overlay--text">In the making</span></span>
         <span class="binding__item--link--border"></span>
-      </li><!-- 
+      </li><!--
    --><li class="binding__item binding__item--link"><span class="binding__item--link--border"></span>
         Did not find yours?
         <br>
@@ -451,25 +533,23 @@ Delete a message. **Warning:** This action **permanently** removes the message f
     <h2 class="page__title">Tooling</h2>
     <ul class="tooling__list">
       <li class="tooling__item"><div class="tooling__item--wrap">
-        <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico__logo--apiary"></span></span><!-- 
-     --><h3 class="tooling__title"><a href="http://apiary.io" class="block larger">Apiary.io <span class="block">REST API Platform</span><span class="tooling__link"></span></a> <span class="block smaller">See, write and share APIs</span></h3><!-- 
+        <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico__logo--apiary"></span></span><!--
+     --><h3 class="tooling__title"><a href="http://apiary.io" class="block larger">Apiary.io <span class="block">REST API Platform</span><span class="tooling__link"></span></a> <span class="block smaller">See, write and share APIs</span></h3><!--
      --><p class="tooling__text">Apiary supercharges your Blueprints with interactive documentation, API mock, test suites, validations, traffic inspector and collaboration.</p>
         </div></li>
       <li class="tooling__item"><div class="tooling__item--wrap">
-        <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico--construction"></span></span><!-- 
-     --><h3 class="tooling__title"><a href="https://github.com/apiaryio/curl-trace-parser" class="block larger"><span class="block">cURL trace parser</span><span class="tooling__link"></span></a> <span class="block smaller">A HTTP introspection tool</span></h3><!-- 
+        <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico--construction"></span></span><!--
+     --><h3 class="tooling__title"><a href="https://github.com/apiaryio/curl-trace-parser" class="block larger"><span class="block">cURL trace parser</span><span class="tooling__link"></span></a> <span class="block smaller">A HTTP introspection tool</span></h3><!--
      --><p class="tooling__text">Record HTTP communication directly in the API Blueprint format.</p>
         </div></li>
-        
       <li class="tooling__item"><div class="tooling__item--wrap">
-        <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico--construction"></span></span><!-- 
-     --><h3 class="tooling__title"><a href="https://github.com/playround/rspec_api_blueprint" class="block larger"><span class="block">RSpec API Blueprint</span><span class="tooling__link"></span></a> <span class="block smaller">Autogeneration of API documentation</span></h3><!-- 
+        <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico--construction"></span></span><!--
+     --><h3 class="tooling__title"><a href="https://github.com/playround/rspec_api_blueprint" class="block larger"><span class="block">RSpec API Blueprint</span><span class="tooling__link"></span></a> <span class="block smaller">Autogeneration of API documentation</span></h3><!--
      --><p class="tooling__text">Autogenerate  API Blueprint from request specs.</p>
         </div></li>
-                
       <li class="tooling__item"><div class="tooling__item--wrap">
-        <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico--construction"></span></span><!-- 
-     --><h3 class="tooling__title"><span class="larger">API testing framework</span> <span class="block smaller">In the making</span></h3><!-- 
+        <span class="tooling__ico"><span class="tooling__ico__logo tooling__ico--construction"></span></span><!--
+     --><h3 class="tooling__title"><span class="larger">API testing framework</span> <span class="block smaller">In the making</span></h3><!--
      --><p class="tooling__text">Build your API backend in BDD using the API design specified in your blueprint!</p>
       </div></li>
       <li class="tooling__item"><div class="tooling__item--wrap">
