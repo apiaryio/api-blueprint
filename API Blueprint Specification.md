@@ -350,7 +350,7 @@ This section consist of nested list items with additional formatting. **Full syn
 
 Alternatively the **abbreviated syntax** can be used: 
 
-	+ <parameter name> [= `<default value>`] [(<type> [,Required | Optional])] ... [<description>]
+	+ <parameter name> [= `<default value>`] [([Required | Optional], [<type>], [<example value])] [... <description>]
 
 Note the abbreviated syntax can be freely mixed with the full syntax.
 
