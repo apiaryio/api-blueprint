@@ -334,7 +334,7 @@ This section is **recognized** by the `Parameters` reserved **keyword** written 
 
 This section consist of nested list items with additional formatting. **Full syntax of one parameter description is:
 
-	+ <parameter name> [= `<default value>`] [([Required | Optional | Ignored], [<type>], [`<example value>`])] [... <description>]
+	+ <parameter name> [= `<default value>`] [([required | optional ], [<type>], [`<example value>`])] [... <description>]
 
 		[<additional description>]
 		
@@ -365,7 +365,7 @@ Example:
 
 	# GET /posts{/id}
 	+ Parameters
-	
+
 		+ id ... Id of a post.
 
 	-- or --
