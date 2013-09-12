@@ -334,23 +334,15 @@ This section is **recognized** by the `Parameters` reserved **keyword** written 
 
 This section consist of nested list items with additional formatting. **Full syntax of one parameter description is:
 
-	+ <parameter name>
+	+ <parameter name> [= `<default value>`] [([Required | Optional | Ignored], [<type>], [`<example value>`])] [... <description>]
 
-		[<description>]
+		[<additional description>]
 		
-		[+ Type: <type>]
-		[+ Optional | Required ]
-		[+ Default: `<default value>`]
-		[+ Example: `<example value>`]
 		[+ Values:
 			+ `<enumeration element 1>` 
 			+ `<enumeration element 2>`
 			...
-			+ `<enumeration element N>`]
-
-Alternatively the **abbreviated syntax** can be used: 
-
-	+ <parameter name> [= `<default value>`] [([Required | Optional], [<type>], [<example value])] [... <description>]
+			+ `<enumeration element N>`]	
 
 Note the abbreviated syntax can be freely mixed with the full syntax.
 
@@ -358,11 +350,12 @@ Where:
 
 * `<parameter name>` is the parameter name as written in [Resource Section](#ResourceSection)'s URI (e.g. "id").
 * `<description>` is any **optional** Markdown-formatted description of the parameter.
+* `<additional description>` is any additional **optional** Markdown-formatted description of the parameter.
 * `<default value>` is an **optional** default value of the parameter – a value that is used when no value is explicitly set (optional parameters only).
-* `<default value>` is an **optional** example value  of the parameter (e.g. `1234`).
+* `<example value>` is an **optional** example value  of the parameter (e.g. `1234`).
 * `<type>` is the **optional** parameter type as expected by the API (e.g. "number").
 * `Values` is the **optional** enumeration of possible values
-*  and `<enumerated element n>` represents an element of enumeration type.
+*  and `<enumeration element n>` represents an element of enumeration type.
 * `required` is the **optional** specifier of a required parameter (this is the **default**)
 * `optional` is the **optional** specifier of an optional parameter.
 
@@ -372,11 +365,8 @@ Example:
 
 	# GET /posts{/id}
 	+ Parameters
+	
 		+ id ... Id of a post.
-
-	-- or --
-
-		+ id = 0 ... Id of a post.
 
 	-- or --
 
@@ -384,18 +374,23 @@ Example:
 
 	-- or --
 
-		+ id (number, required) ... Id of a post.
-			+ Example: `1001`
+		+ id (required, number, `1001`) ... Id of a post.
 
 	-- or --
 
-		+ id
+		+ id = `20` (optional, number, `1001`) ... Id of a post.
 
-			ID of a post.
+	-- or --
 
-			+ Required
-			+ Type: number
-			+ Example: `1001`
+		+ id (string)
+
+			Id of a Post
+
+			+ Values
+				+ `A`
+				+ `B`
+				+ `C`
+
 
 <a name="ResourceHeadersSection"></a>
 #### 4.3.1.2 Resource Headers Section
