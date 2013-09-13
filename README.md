@@ -122,8 +122,6 @@ Alternatively, you can use the parser [command line tool](https://github.com/api
 	```c++
 	#include "snowcrash.h"
 
-	...
-
 	snowcrash::SourceData blueprint = R"(
 	# GET /message
 	+ Response 200 (text/plain)
@@ -134,6 +132,8 @@ Alternatively, you can use the parser [command line tool](https://github.com/api
 	snowcrash::Blueprint ast;
 	
 	snowcrash::parse(blueprint, 0, result, ast);
+	
+	...
 	```	
 
 ## License
