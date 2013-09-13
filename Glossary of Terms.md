@@ -8,13 +8,13 @@ Refer to W3C [Glossary of Terms for Device Independence](http://www.w3.org/TR/di
 
 <a name="def-action"></a>
 ### Action
-A **HTTP transaction** (a request-response transaction). 
+An **HTTP transaction** (a request-response transaction). 
 
 Actions are specified by a [HTTP request method](#def-method) within a [resource](#def-resource). 
 
 <a name="def-api"></a>
 ### API
-A **HTTP Application programming interface**. Might refer to an API description. See [**API Blueprint**](#def-api-blueprint).
+An **HTTP Application programming interface**. Might refer to an API description. See [**API Blueprint**](#def-api-blueprint).
 
 <a name="def-api-blueprint"></a>
 ### API Blueprint
