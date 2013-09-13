@@ -22,11 +22,11 @@ All it really takes to describe an endpoint of your API is **write** something l
 		
 in your favorite Markdown editor. Now you can **share** and **discuss** this API in your API repository and let GitHub to render the API documentation so others can **see** it. 
 
-Jump directly to the [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or browse [interactive examples](http://apiblueprint.org/#examples) to learn more about the API Blueprint syntax.
+Jump directly to the [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or browse the [interactive examples](http://apiblueprint.org/#examples) to learn more about the API Blueprint syntax.
 
-**Describing your API is only the start**. API Blueprint has a **machine friendly** face too. Thanks to the native API Blueprint [parser](https://github.com/apiaryio/snowcrash) or one of its [bindings](https://github.com/apiaryio/snowcrash#bindings) which "translates" the API Blueprint Markdown representation into a [machine friendly format](https://github.com/apiaryio/snowcrash/wiki/API-Blueprint-AST-Media-Types) the API Blueprint can be used in variety of **tools** from interactive documentation or code generators to API testing tools.
+**Describing your API is only the start**. API Blueprint has a **machine friendly** face too! Thanks to the native API Blueprint [parser](https://github.com/apiaryio/snowcrash) or one of its [bindings](https://github.com/apiaryio/snowcrash#bindings) which "translates" the API Blueprint Markdown representation into a [machine friendly format – AST](https://github.com/apiaryio/snowcrash/wiki/API-Blueprint-AST-Media-Types)the API Blueprint can be used by variety of **tools** from interactive documentation and code generators to API testing tools.
 
-Visit the [tooling section](http://apiblueprint.org/#tooling) of API Blueprint website to find more about the actual tools or keep on reading should you be interested in **using API Blueprint in your tool chain**.
+Visit the [tooling section](http://apiblueprint.org/#tooling) of the API Blueprint website to find more about the actual tools or keep on reading should you be interested in **using API Blueprint in your tool chain**.
 
 ## Learn more
 + [API Blueprint Glossary of Terms](https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md)
@@ -130,7 +130,7 @@ Alternatively, you can use the parser [command line tool](https://github.com/api
 	)";
 	snowcrash::Result result;
 	snowcrash::Blueprint ast;
-
+	
 	snowcrash::parse(blueprint, 0, result, ast);
 	```	
 
