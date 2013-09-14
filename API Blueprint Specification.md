@@ -90,11 +90,7 @@ Reserved keywords are:
 	- `Model`
 	- `Header` & `Headers`
 	- `Parameter` & `Parameters`
-	- `Default`
-	- `Example`
 	- `Values`
-	- `Optional`
-	- `Required`
 
 **NOTE:** With the exception of HTTP methods keywords the section keywords are **case insensitive**.
 
