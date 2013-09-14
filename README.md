@@ -19,7 +19,7 @@ All it really takes to describe an endpoint of your API is write something like 
 # GET /message
 + Response 200 (text/plain)
     
-    Hello World!
+        Hello World!
 ```
         
 in your favorite Markdown editor. Now you can share and discuss this API in your API repository and let GitHub to render the API documentation so others can see it. 
@@ -30,24 +30,15 @@ Describing your API is only the start. The API Blueprint can be used by variety 
 
 ```javascript
 {
-  ...
-
-  "resources": [
+  "_version": "1.0",
+  "metadata": {},
+  "name": "",
+  "description": "",
+  "resourceGroups": [
     {
-      "name": "",
-      "description": "",
-      "uriTemplate": "/message",
-      "model": {},
-      "parameters": {},
-      "headers": {},
-      "actions": [
-        {
-          "name": "",
-          "description": "",
-          "method": "GET",
-  
-          ...
+        ...
 ```
+[\[full listing\]](https://gist.github.com/zdne/6560278#file-gistfile1-json)
 
 It it the task of the native API Blueprint [parser](https://github.com/apiaryio/snowcrash) or one of its [bindings](https://github.com/apiaryio/snowcrash#bindings) to "translate" the API Blueprint Markdown representation into a [machine friendly format – AST](https://github.com/apiaryio/snowcrash/wiki/API-Blueprint-AST-Media-Types).
 
