@@ -13,7 +13,7 @@ API Blueprint is perfect for designing your Web API and its comprehensive docume
 + Understandable by machines
 
 ## Getting started with API Blueprint
-All it really takes to describe an endpoint of your API is **write** something like this: 
+All it really takes to describe an endpoint of your API is write something like this: 
 
 ```md
 # GET /message
@@ -22,11 +22,11 @@ All it really takes to describe an endpoint of your API is **write** something l
 	Hello World!
 ```
 		
-in your favorite Markdown editor. Now you can **share and discuss** this API in your API repository and let GitHub to render the API documentation so others can **see** it. 
+in your favorite Markdown editor. Now you can share and discuss this API in your API repository and let GitHub to render the API documentation so others can see it. 
 
 Jump directly to the [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or browse the [interactive examples](http://apiblueprint.org/#examples) to learn more about the API Blueprint syntax.
 
-**Describing your API is only the start**. API Blueprint has a **machine friendly** face too:
+Describing your API is only the start. The API Blueprint can be used by variety of tools from interactive documentation and code generators to API testing tools thanks to its machine-friendly face:
 
 ```javascript
 {
@@ -34,13 +34,11 @@ Jump directly to the [API Blueprint Tutorial](https://github.com/apiaryio/api-bl
   "metadata": {},
   "name": "My API",
   "description": "",
-  
   ...
-
 }
 ```
 
-Thanks to the native API Blueprint [parser](https://github.com/apiaryio/snowcrash) or one of its [bindings](https://github.com/apiaryio/snowcrash#bindings) which "translates" the API Blueprint Markdown representation into a [machine friendly format – AST](https://github.com/apiaryio/snowcrash/wiki/API-Blueprint-AST-Media-Types) the **API Blueprint can be used by variety of tools from interactive documentation and code generators to API testing**.
+It it the task of the native API Blueprint [parser](https://github.com/apiaryio/snowcrash) or one of its [bindings](https://github.com/apiaryio/snowcrash#bindings) to "translate" the API Blueprint Markdown representation into a [machine friendly format – AST](https://github.com/apiaryio/snowcrash/wiki/API-Blueprint-AST-Media-Types).
 
 Visit the [tooling section](http://apiblueprint.org/#tooling) of the API Blueprint website to find more about the actual tools or check the [**Developing tools for API Blueprint**](https://github.com/apiaryio/api-blueprint/wiki/Developing-tools-for-API-Blueprint) if you are interested in using API Blueprint in your tool chain.
 
