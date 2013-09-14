@@ -171,8 +171,6 @@ Full API Blueprint Document layout:
 	|	|	|	|
 	|	|	|	+ Request Section
 	|	|	|	|	|
-	|	|	|	|	+ Parameters Section
-	|	|	|	|	|
 	|	|	|	|	+ Headers Section
 	|	|	|	|	|
 	|	|	|	|	+ Body Section
@@ -180,8 +178,6 @@ Full API Blueprint Document layout:
 	|	|	|	|	+ Schema Section
 	|	|	|	|
 	|	|	|	+ Response Section
-	|	|	|		|
-	|	|	|		+ Parameters Section
 	|	|	|		|
 	|	|	|		+ Headers Section
 	|	|	|		|
