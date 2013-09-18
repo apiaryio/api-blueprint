@@ -350,7 +350,7 @@ initEditors = function() {
   };
   hashed = false;
   if (window.location.hash) {
-    hashed = document.querySelector('a[href*="' + window.location.href.split('#').pop() + '"]');
+    hashed = document.querySelector('a[href*="' + window.location.href.split('#').pop() + '"].examples__switch');
   }
   if (!hashed) {
     loadExample(document.querySelector('li.examples__tab.active'));
