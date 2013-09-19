@@ -65,7 +65,7 @@ Discuss and influence the future of API Blueprint in its [Milestones](https://gi
 Fork & pull request.
 
 ## Have a question?
-Ask at [Stack Overflow](http://stackoverflow.com/questions/ask), make sure to use the `apiblueprint` tag.
+Ask at [Stack Overflow](http://stackoverflow.com/questions/tagged/apiblueprint), make sure to use the `apiblueprint` tag.
 
 Alternatively, mention [@apiblueprint](https://twitter.com/apiblueprint). if you are a contributor, check out the [API Blueprint Developers Discussion Group](https://groups.google.com/forum/?fromgroups#!forum/apiblueprint-dev) as well as the [Issues Page](https://github.com/apiaryio/api-blueprint/issues).
 
