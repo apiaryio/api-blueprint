@@ -1,194 +1,73 @@
-# API Blueprint
-### Web API language
+![logo](https://raw.github.com/apiaryio/api-blueprint/gh-pages/assets/logo_apiblueprint.png) 
 
-```markdown
-# GET /message
-+ Response 200 (text/plain)
-	
-    Hello World!
-```
-[More Examples](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) | [I speak Hypermedia](https://github.com/apiaryio/api-blueprint/blob/master/examples/8.%20Resource%20Object.md)
+# API Blueprint 
+### API design for humans
+API Blueprint is a documentation-oriented API description language. A couple of semantical assumptions over the plain [Markdown](http://daringfireball.net/projects/markdown/).
 
-## What is API Blueprint?
-
-API Blueprint is a lightweight, documentation-oriented domain specific language (DSL) for easily designing, building and documenting Web APIs. **API Blueprint is a form of Markdown.** It is easy to learn and read; perfect for comprehensive documentation but also for quick prototyping and collaboration.
+API Blueprint is perfect for designing your Web API and its comprehensive documentation but also for quick prototyping and collaboration. It is easy to learn and even easier to read; after all it is just a form Markdown.
 
 ## TL;DR
-
-+ Web API language
++ Web API description language
 + Pure Markdown
 + Designed for humans
 + Understandable by machines
 
-## Write, read and share
+## Getting started with API Blueprint
+All it really takes to describe an endpoint of your API is write something like this: 
 
-Prototype, design and document your API using a Markdown formatting of your liking.
-
-### Stay clean & tidy
-
-```markdown
-# My API
-My API rocks! 
- 
-## GET /message
-- response 200 (application/json)
-	
-		{ "message": 'Hello World!' }
+```md
+# GET /message
++ Response 200 (text/plain)
+    
+        Hello World!
 ```
+        
+in your favorite Markdown editor. Now you can share and discuss this API in your API repository and let GitHub to render the API documentation so others can see it. 
 
-### or go large
+Jump directly to the [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or browse the [interactive examples](http://apiblueprint.org) to learn more about the API Blueprint syntax.
 
-```markdown
-My API
-======
+Describing your API is only the start. The API Blueprint can be used by variety of tools from interactive documentation and code generators to API testing tools thanks to its machine-friendly face:
 
-My API rocks! 
-
-GET /message
--------------
-
-+ Response 200 (application/json)
-
-		{ 
-			"message": 'Hello World!' 
-		}
-```
-
-## Parse & integrate
-Parse your API Blueprint and integrate with your tools & frameworks.
-
-### Use a Command-line interface
-
-#### JSON
-
-```sh
-$ snowcrash --format=json my_api.md
-```
-
-```js
+```javascript
 {
-  "metadata": [],
-  "name": "My API",
-  "description": "My API rocks! \n\n",
+  "_version": "1.0",
+  "metadata": {},
+  "name": "",
+  "description": "",
   "resourceGroups": [
     {
-      "name": "",
-      "description": "",
-      "resources": [
-        {
-          "uriTemplate": "/message",
-          "name": "",
-          "description": "",
-          "headers": [],
-          "object": {
-            "name": "",
-            "description": "",
-            "headers": [],
-            "body": "",
-            "schema": ""
-          },
-          "methods": [
-            {
-              "method": "GET",
-              "name": "",
-              "description": "",
-              "headers": [],
-              "requests": [],
-              "responses": [
-                {
-                  "name": "200",
-                  "description": "",
-                  "headers": [
-                    {
-                      "name": "Content-Type",
-                      "value": "application/json"
-                    }
-                  ],
-                  "body": "{ \"message\": 'Hello World!' }    \n",
-                  "schema": ""
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+        ...
 ```
+[\[full listing\]](https://gist.github.com/zdne/6560278#file-gistfile1-json)
 
-#### YAML
+It it the task of the native API Blueprint [parser](https://github.com/apiaryio/snowcrash) or one of its [bindings](https://github.com/apiaryio/snowcrash#bindings) to "translate" the API Blueprint Markdown representation into a [machine friendly format – AST](https://github.com/apiaryio/snowcrash/wiki/API-Blueprint-AST-Media-Types).
 
-```sh
-$ snowcrash --format=yaml my_api.md
-```
+Visit the [tooling section](http://apiblueprint.org/#tooling) of the API Blueprint website to find more about the actual tools or check the [**Developing tools for API Blueprint**](https://github.com/apiaryio/api-blueprint/wiki/Developing-tools-for-API-Blueprint) if you are interested in using API Blueprint in your tool chain.
 
-```yaml
-name: My API
-description: "My API rocks! \n\n"
-resourceGroups:
-- name:
-  description:
-  resources:
-  - uri: /message
-    name:
-    description:
-    object:
-    methods:
-    - method: GET
-      name:
-      description:
-      responses:
-      - name: 200
-        description:
-        body: "{ "message": 'Hello World!' }\n"
-        schema:
-        headers:
-        - Content-Type: application/json
-```
+## Learn more
 
-## Getting started
++ [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md)
++ [API Blueprint Glossary of Terms](https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md)
++ [API Blueprint Language Specification](https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md)
++ [Tools working with API Blueprint](http://apiblueprint.org/#tooling)
 
-### View examples
+### Developers 
 
-Start with the [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or just browse the [examples](https://github.com/apiaryio/api-blueprint/tree/master/examples).
++ [API Blueprint reference parser – Snow Crash](https://github.com/apiaryio/snowcrash)
++ [Snow Crash Bindings to other languages](https://github.com/apiaryio/snowcrash#bindings)
++ [API Blueprint AST Media Types](https://github.com/apiaryio/snowcrash/wiki/API-Blueprint-AST-Media-Types)
++ [Developing tools for API Blueprint](https://github.com/apiaryio/api-blueprint/wiki/Developing-tools-for-API-Blueprint)
 
-### Get the API Blueprint Parser
-
-Get [Snow Crash](https://github.com/apiaryio/snowcrash) – the Canonical API Blueprint Parser. 
-
-### Or one of its bindings 
-
-Refer to the Snow Crash [bindings]((https://github.com/apiaryio/snowcrash#bindings).
-
-- **Node.js:** [Protagonist](https://github.com/apiaryio/protagonist)
-- **Ruby:** none yet - we're looking for contributors
-- **Python:** none yet - we're looking for contributors
-- **Java:** none yet - we're looking for contributors
-- **PHP:** none yet - we're looking for contributors
+## Future of API Blueprint
+Discuss and influence the future of API Blueprint in its [Milestones](https://github.com/apiaryio/api-blueprint/issues/milestones).
+ 
+## Contribute
+Fork & pull request.
 
 ## Have a question?
-Ask at [Stack Overflow](http://stackoverflow.com/questions/ask), make sure to use the `apiblueprint` tag.
+Ask at [Stack Overflow](http://stackoverflow.com/questions/tagged/apiblueprint), make sure to use the `apiblueprint` tag.
 
-Alternatively, if you are a contributor, check out the [API Blueprint Developers Discussion Group](https://groups.google.com/forum/?fromgroups#!forum/apiblueprint-dev). 
-
-## Version
-+ Actual version: [Format 1A](http://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md)
-
-## What's next?
-
-### API Blueprint Roadmap
-
-Refer to the API Blueprint Roadmap [Wiki Page](https://github.com/apiaryio/api-blueprint/wiki/API-Blueprint-Roadmap).
-
-### Brew Parser
-
-_not ready yet, work in progress_
-
-```sh
-$ brew install snowcrash
-$ snowcrash --help
-```
+Alternatively, mention [@apiblueprint](https://twitter.com/apiblueprint). if you are a contributor, check out the [API Blueprint Developers Discussion Group](https://groups.google.com/forum/?fromgroups#!forum/apiblueprint-dev) as well as the [Issues Page](https://github.com/apiaryio/api-blueprint/issues).
 
 ## License
 MIT License. See the [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
