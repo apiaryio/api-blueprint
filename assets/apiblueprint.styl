@@ -575,8 +575,10 @@ h1
   line-height 21px
   font-size 13px
   min-height 150px
+  max-height 600px
   @media screen and (max-width:660px)
     height 200px
+    max-height 400px
 
 #output_ast
   white-space pre-line
@@ -1492,6 +1494,9 @@ a
 .examples__json
   position relative
   min-height 100px
+  max-height 600px
+  @media screen and (max-width:660px)
+    max-height 400px
 
 .examples__editor
   &:before

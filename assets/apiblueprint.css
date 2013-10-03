@@ -645,11 +645,13 @@ h1 {
   line-height: 21px;
   font-size: 13px;
   min-height: 150px;
+  max-height: 600px;
 }
 @media screen and (max-width:660px) {
   #editor_ace,
   #output_ast {
     height: 200px;
+    max-height: 400px;
   }
 }
 #output_ast {
@@ -1781,6 +1783,13 @@ a:hover {
 .examples__json {
   position: relative;
   min-height: 100px;
+  max-height: 600px;
+}
+@media screen and (max-width:660px) {
+  .examples__editor,
+  .examples__json {
+    max-height: 400px;
+  }
 }
 .examples__editor:before {
   position: absolute;
