@@ -60,7 +60,7 @@ Before proceeding with this document please make yourself familiar with the basi
 
 <a name="Document"></a>
 ## 3. API Blueprint Document
-API Blueprint document is a Markdown document where a Web API is descibred.
+API Blueprint document is a Markdown document where a Web API is described.
 
 The document itself is divided into several logical **sections** which represent the **API Blueprint Document Structure**.
 
