@@ -84,53 +84,25 @@ A Collection of posts.
 + Model (application/json)
     
     ```js
-    { 
-        ["data": {
-            "id": "1", // note this is a string
-            "user": {
+    {
+        "data": [
+            {
+                "id": "1", // note this is a string
                 ...
             },
-            "created_at": "2012-07-16T17:25:47Z",
-            "text": "@berg FIRST post on this new site #newsocialnetwork",
-            "html": "<span itemprop=\"mention\" data-mention-name=\"berg\" data-mention-id=\"2\">@berg</span> FIRST post on <a href=\"https://join.app.net\" rel=\"nofollow\">this new site</a> <span itemprop=\"hashtag\" data-hashtag-name=\"newsocialnetwork\">#newsocialnetwork</span>.",
-            "source": {
-                "client_id": "udxGzAVBdXwGtkHmvswR5MbMEeVnq6n4",
-                "name": "Clientastic for iOS",
-                "link": "http://app.net"
+            {
+                "id": "2",
+                ...
             },
-            "machine_only": false,
-            "reply_to": null,
-            "thread_id": "1",
-            "num_replies": 3,
-            "num_reposts": 0,
-            "num_stars": 0,
-            "entities": {
-                "mentions": [{
-                    "name": "berg",
-                    "id": "2",
-                    "pos": 0,
-                    "len": 5
-                }],
-                "hashtags": [{
-                    "name": "newsocialnetwork",
-                    "pos": 34,
-                    "len": 17
-                }],
-                "links": [{
-                    "text": "this new site",
-                    "url": "https://join.app.net"
-                    "pos": 20,
-                    "len": 13
-                }]
+            {
+                "id": "3",
+                ...
             },
-            "you_reposted": false,
-            "you_starred": false
-        },
+        ],
         "meta": {
             "code": 200,
-        }],
-        ...
-    }
+        }
+    }    
     ```
 
 ### Create a Post [POST]
