@@ -164,13 +164,13 @@ A collection of all Gists.
                 "starred": true
             }
 
-## Star a Gist [PUT]
+### Star a Gist [PUT]
 + Response 204
 
-## Unstar a Gist [DELETE]
+### Unstar a Gist [DELETE]
 + Response 204
 
-## Check if a Gist is Starred [GET]
+### Check if a Gist is Starred [GET]
 + Response 200
 
     [Star][]
