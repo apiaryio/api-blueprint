@@ -1,7 +1,7 @@
 FORMAT: 1A
 
 # Gist Fox API
-Gist Fox API is a **pastes service** similar to [GitHub's Gist][http://gist.github.com].
+Gist Fox API is a **pastes service** similar to [GitHub's Gist](http://gist.github.com).
 
 # Gist Fox API Root [/]
 Gist Fox API entry point.
