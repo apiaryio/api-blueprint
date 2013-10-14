@@ -72,7 +72,7 @@ The first resource in our API is its root. The entry point to our API is defined
 
 What is going on here?
 
-#### Resource:
+#### Resource
 
 	# Gist Fox API Root [/]
 
