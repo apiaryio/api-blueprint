@@ -10,10 +10,12 @@ For the sake of simplicity we will now omit user management and authentication. 
 ## Gist Fox API
 Without further ado our *Gist Fox API* blueprint starts like this:
 
+    ```markdown
     FORMAT: 1A
     
     # Gist Fox API
     Gist Fox API is a **pastes service** similar to [GitHub's Gist][http://gist.github.com].
+    ```
 
 What have we just done? Let's break it line by line:
 
@@ -34,6 +36,8 @@ Every good API should have a name.  So does ours – *"Gist Fox API"*. The first
     Gist Fox API is a **pastes service** similar to [GitHub's Gist][http://gist.github.com].
     
 The API Name header might be followed by any arbitrary Markdown-formatted discussion. Preferably about your API.
+
+> **Note:** We will provide much richer description in the final blueprint of Gist Fox API. By adding details about **authentication, used media types and error handling**. You will find it in the full listing of the Gist Fox API Blueprint at the bottom of this fike.
 
 > **Note:** Should you need a clarification of some terms as used through this document refer to [API Blueprint Glossary of Terms](Glossary%20of%20Terms.md).
 
@@ -181,8 +185,8 @@ Lets break it down to what's new:
 
 #### Groups of Resources
 
-	# Group Gist
-	Gist-related resources of *Gist Fox API*.
+    # Group Gist
+    Gist-related resources of *Gist Fox API*.
 
 As our API will eventually provide more resources it is a good practice to group related resources together for better orientation. Here we will be grouping all Gist-related resources under a group simply called *"Gist"*.
 
@@ -252,58 +256,58 @@ With Gist Resource Model in place it is super easy to define an action that retr
 ## Modifying a Resource
 Let's add an action to our Gist Resource that will modify its state and another action that deletes a Gist Resource as whole.
 
-	### Edit a gist [PATCH]
-	All files from the previous version of the gist are carried over by default if not included in the hash. Deletes can be performed by including the filename with a null hash.
-	
-	+ Request (application/json)
-	
-	        {
-	            "description": "Description of Gist",
-	            "files": {
-	                "file.txt": {
-	                    "content": "Updated file contents"
-	                },
-	                "old_name.txt": {
-	                    "filename": "new_name.txt",
-	                    "content": "Modified contents"
-	                },
-	                "new_file.txt": {
-	                    "content": "A new file"
-	                },
-	                "delete_this_file.txt": null
-	            }
-	        }
-	
-	+ Response 200
-	    
-	    [Gist][]
+    ### Edit a gist [PATCH]
+    All files from the previous version of the gist are carried over by default if not included in the hash. Deletes can be performed by including the filename with a null hash.
+    
+    + Request (application/json)
+    
+            {
+                "description": "Description of Gist",
+                "files": {
+                    "file.txt": {
+                        "content": "Updated file contents"
+                    },
+                    "old_name.txt": {
+                        "filename": "new_name.txt",
+                        "content": "Modified contents"
+                    },
+                    "new_file.txt": {
+                        "content": "A new file"
+                    },
+                    "delete_this_file.txt": null
+                }
+            }
+    
+    + Response 200
+        
+        [Gist][]
 
-	### Delete a Gist [DELETE]
-	+ Response 204
-	    
+    ### Delete a Gist [DELETE]
+    + Response 204
+        
 
 Here are few new things to learn about payloads:
 
 #### Request and its Payload
 
-	+ Request (application/json)
-	
-	        {
-	            "description": "Description of Gist",
-	            "files": {
-	                "file.txt": {
-	                    "content": "Updated file contents"
-	                },
-	                "old_name.txt": {
-	                    "filename": "new_name.txt",
-	                    "content": "Modified contents"
-	                },
-	                "new_file.txt": {
-	                    "content": "A new file"
-	                },
-	                "delete_this_file.txt": null
-	            }
-	        }
+    + Request (application/json)
+    
+            {
+                "description": "Description of Gist",
+                "files": {
+                    "file.txt": {
+                        "content": "Updated file contents"
+                    },
+                    "old_name.txt": {
+                        "filename": "new_name.txt",
+                        "content": "Modified contents"
+                    },
+                    "new_file.txt": {
+                        "content": "A new file"
+                    },
+                    "delete_this_file.txt": null
+                }
+            }
 
 Our "Edit a Gist" action needs to receive some input data to update the state of the Gist resource with it. The data are part of the HTTP request message. This section defines such a request and an example [payload][] of the request message.
 
@@ -311,8 +315,8 @@ Our "Edit a Gist" action needs to receive some input data to update the state of
 
 #### Empty Payload
 
-	### Delete a Gist [DELETE]
-	+ Response 204
+    ### Delete a Gist [DELETE]
+    + Response 204
 
 In the case of the "Delete a Gist" action our response bears status "204" indicating that the server has successfully fulfilled the request and that there is no additional content to send in the response payload body. There is no additional payload specified for this response.
 

@@ -3,10 +3,24 @@ FORMAT: 1A
 # Gist Fox API
 Gist Fox API is a **pastes service** similar to [GitHub's Gist](http://gist.github.com).
 
+## Authentication
+Currently the Gist Fox API does not provide authenticated access.
+
+## Media Types
+Where applicable this API uses the [HAL+JSON](https://github.com/mikekelly/hal_specification/blob/master/hal_specification.md) media-type to represent resources states and affordances.
+
+Requests with a message-body are using plain JSON to set or update resource states.
+
+## Error States
+The common [HTTP Response Status Codes](https://github.com/for-GET/know-your-http-well/blob/master/status-codes.md) are used.
+
 # Gist Fox API Root [/]
 Gist Fox API entry point.
 
 ## Retrieve the Entry Point [GET]
+This resource does not have any state. Instead it offers the initial API affordances in the form of the HTTP Link header and 
+HAL links.
+
 + Response 200 (application/hal+json)
     + Headers
     
@@ -25,12 +39,25 @@ Gist Fox API entry point.
 Gist-related resources of *Gist Fox API*.
 
 ## Gist [/gists/{id}]
-A single Gist object.
+A single Gist object. The Gist resource is the central resource in the Gist Fox API. It represents one paste - a single text note.
+
+The Gist resource has the following states: 
+
+- id
+- created_at
+- description
+- content
+
+The states *id* and *created_at* are assigned by the Gist Fox API at the moment of creation. 
+
 
 + Parameters
     + id (string) ... ID of the gist in the form of a hash.
 
 + Model (application/hal+json)
+
+    HAL+JSON representation of Gist Resource. In addition to representing its state in the JSON form it offers affordances in the form of the HTTP Link header and HAL links.
+
     + Headers
 
             Link: <http:/api.gistfox.com/gists/42>;rel="self", <http:/api.gistfox.com/gists/42/star>;rel="star"
@@ -42,20 +69,10 @@ A single Gist object.
                     "self": { "href": "/gists/42" },
                     "star": { "href": "/gists/42/star" },
                 },
-                "_embedded": {
-                    "files": {
-                        "file.txt": {
-                            "_links": {
-                                "self": { "href": "gists/42/file.txt"}
-                            },
-                            "size": 932,
-                            "filename": "file.txt"
-                        }
-                    },
-                },
                 "id": "42",
+                "created_at": "2014-04-14T02:15:15Z",
                 "description": "Description of Gist",
-                "created_at": "2014-04-14T02:15:15Z"
+                "content": "String contents"
             }
 
 ### Retrieve a Single Gist [GET]
@@ -64,25 +81,12 @@ A single Gist object.
     [Gist][]
 
 ### Edit a gist [PATCH]
-All files from the previous version of the gist are carried over by default if not included in the hash. Deletes can be performed by including the filename with a null hash.
+To update a gist simply send a JSON with updated values for one or more of the Gist resource states. All states from the previous version of this gist are carried over by default if not included in the hash.
 
 + Request (application/json)
 
         {
-            "description": "Description of Gist",
-            "files": {
-                "file.txt": {
-                    "content": "Updated file contents"
-                },
-                "old_name.txt": {
-                    "filename": "new_name.txt",
-                    "content": "Modified contents"
-                },
-                "new_file.txt": {
-                    "content": "A new file"
-                },
-                "delete_this_file.txt": null
-            }
+            "content": "Updated file contents"
         }
 
 + Response 200
@@ -93,9 +97,19 @@ All files from the previous version of the gist are carried over by default if n
 + Response 204
 
 ## Gists Collection [/gists?{since}]
-A collection of all Gists.
+Collection of all Gists.
+
+The Star resource has the following state:
+
+- total
+
+In addition it **embeds** all *Gist Resource* in the Gist Fox API.
+
 
 + Model (application/hal+json)
+
+    HAL+JSON representation of Gist Collection Resource. The Gist resources in collections are embedded. Note the embedded Gists resource are incomplete representations of the Gist in question. Use the respective Gist link to retrieve its full representation.
+
     + Headers
 
             Link: <http:/api.gistfox.com/gists>;rel="self"
@@ -113,8 +127,8 @@ A collection of all Gists.
                                 "self": { "href": "/gists/42" }
                             },
                             "id": "42",
-                            "description": "Description of Gist",
-                            "created_at": "2014-04-14T02:15:15Z"
+                            "created_at": "2014-04-14T02:15:15Z",
+                            "description": "Description of Gist"
                         }
                     ]
                 },
@@ -130,15 +144,13 @@ A collection of all Gists.
     [Gists Collection][]
 
 ### Create a Gist [POST]
+To create a new Gist simply provide a JSON hash of the *description* and *content* states of the new Gist. 
+
 + Request (application/json)
 
         {
             "description": "Description of Gist",
-            "files": {
-                "file.txt": {
-                    "content": "String file contents"
-                }
-            }
+            "content": "String content"
         }
 
 + Response 201 (application/hal+json)
@@ -146,11 +158,21 @@ A collection of all Gists.
     [Gist][]
 
 ## Star [/gists/{id}/star]
+Star resource represents a Gist starred status. 
+
+The Star resource has the following state:
+
+- starred
+
+
 + Parameters
 
     + id (string) ... ID of the gist in the form of a hash
 
 + Model (application/hal+json)
+
+    HAL+JSON representation of Star Resource.
+
     + Headers
 
             Link: <http:/api.gistfox.com/gists/42/star>;rel="self"
