@@ -18,7 +18,7 @@ The common [HTTP Response Status Codes](https://github.com/for-GET/know-your-htt
 Gist Fox API entry point.
 
 ## Retrieve the Entry Point [GET]
-This resource does not have any state. Instead it offers the initial API affordances in the form of the HTTP Link header and 
+This resource does not have any attributes. Instead it offers the initial API affordances in the form of the HTTP Link header and 
 HAL links.
 
 + Response 200 (application/hal+json)
@@ -41,7 +41,7 @@ Gist-related resources of *Gist Fox API*.
 ## Gist [/gists/{id}]
 A single Gist object. The Gist resource is the central resource in the Gist Fox API. It represents one paste - a single text note.
 
-The Gist resource has the following states: 
+The Gist resource has the following attributes: 
 
 - id
 - created_at
@@ -81,7 +81,7 @@ The states *id* and *created_at* are assigned by the Gist Fox API at the moment 
     [Gist][]
 
 ### Edit a gist [PATCH]
-To update a gist simply send a JSON with updated values for one or more of the Gist resource states. All states from the previous version of this gist are carried over by default if not included in the hash.
+To update a Gist send a JSON with updated value for one or more of the Gist resource attributes. All attributes values (states) from the previous version of this Gist are carried over by default if not included in the hash.
 
 + Request (application/json)
 
@@ -99,7 +99,7 @@ To update a gist simply send a JSON with updated values for one or more of the G
 ## Gists Collection [/gists?{since}]
 Collection of all Gists.
 
-The Star resource has the following state:
+The Star resource has the following attribute:
 
 - total
 
@@ -144,7 +144,7 @@ In addition it **embeds** all *Gist Resource* in the Gist Fox API.
     [Gists Collection][]
 
 ### Create a Gist [POST]
-To create a new Gist simply provide a JSON hash of the *description* and *content* states of the new Gist. 
+To create a new Gist simply provide a JSON hash of the *description* and *content* attributes for the new Gist. 
 
 + Request (application/json)
 
@@ -160,7 +160,7 @@ To create a new Gist simply provide a JSON hash of the *description* and *conten
 ## Star [/gists/{id}/star]
 Star resource represents a Gist starred status. 
 
-The Star resource has the following state:
+The Star resource has the following attribute:
 
 - starred
 
