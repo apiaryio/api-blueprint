@@ -81,7 +81,7 @@ The states *id* and *created_at* are assigned by the Gist Fox API at the moment 
     
     [Gist][]
 
-### Edit a gist [PATCH]
+### Edit a Gist [PATCH]
 To update a Gist send a JSON with updated value for one or more of the Gist resource attributes. All attributes values (states) from the previous version of this Gist are carried over by default if not included in the hash.
 
 + Request (application/json)

@@ -238,7 +238,9 @@ The `id` variable of the URI template is a parameter to every action on this res
                     "content": "String contents"
                 }
                 
-Resource Model is an example representation of the Gist resource. We can reference this resource model later at any point where a response (or request) payload is expected. A resource model has *exactly* the same sections as a response payload. In this case it also includes additional description. However the model may include a response status code.
+Resource Model is an example representation of the Gist resource. We can reference this resource model later at any point where a response (or request) payload is expected. A resource model has *exactly* the same sections as a response payload. In this case it also includes additional description. 
+
+A Resource Model may not include a response status code.
 
 ####  Referring the Resource Model
 
@@ -254,28 +256,15 @@ With Gist Resource Model in place it is super easy to define an action that retr
 ## Modifying a Resource
 Let's add an action to our Gist Resource that will modify its state and another action that deletes a Gist Resource as whole.
 
-    ### Edit a gist [PATCH]
-    All files from the previous version of the gist are carried over by default if not included in the hash. Deletes can be performed by including the filename with a null hash.
-    
+    ### Edit a Gist [PATCH]
+    To update a Gist send a JSON with updated value for one or more of the Gist resource attributes. All attributes values (states) from the previous version of this Gist are carried over by default if not included in the hash.
+
     + Request (application/json)
-    
+
             {
-                "description": "Description of Gist",
-                "files": {
-                    "file.txt": {
-                        "content": "Updated file contents"
-                    },
-                    "old_name.txt": {
-                        "filename": "new_name.txt",
-                        "content": "Modified contents"
-                    },
-                    "new_file.txt": {
-                        "content": "A new file"
-                    },
-                    "delete_this_file.txt": null
-                }
+                "content": "Updated file contents"
             }
-    
+
     + Response 200
         
         [Gist][]
@@ -283,40 +272,26 @@ Let's add an action to our Gist Resource that will modify its state and another 
     ### Delete a Gist [DELETE]
     + Response 204
         
-
 Here are few new things to learn about payloads:
 
 #### Request and its Payload
 
     + Request (application/json)
-    
+
             {
-                "description": "Description of Gist",
-                "files": {
-                    "file.txt": {
-                        "content": "Updated file contents"
-                    },
-                    "old_name.txt": {
-                        "filename": "new_name.txt",
-                        "content": "Modified contents"
-                    },
-                    "new_file.txt": {
-                        "content": "A new file"
-                    },
-                    "delete_this_file.txt": null
-                }
+                "content": "Updated file contents"
             }
 
-Our "Edit a Gist" action needs to receive some input data to update the state of the Gist resource with it. The data are part of the HTTP request message. This section defines such a request and an example [payload][] of the request message.
+Our "Edit a Gist" action needs to receive some input data to update the state of the Gist resource with it. The data are part of an HTTP request message. This section defines such a Request and an example [payload][] of the request message.
 
-> **NOTE:** The request payload has exactly the same structure as a response payload. However it doesn't contain the response status code.
+> **NOTE:** The Request follows exactly the same structure as a Response or Model. As with the Resource Model a Request may not include a response status code.
 
 #### Empty Payload
 
     ### Delete a Gist [DELETE]
     + Response 204
 
-In the case of the "Delete a Gist" action our response bears status "204" indicating that the server has successfully fulfilled the request and that there is no additional content to send in the response payload body. There is no additional payload specified for this response.
+In the case of the "Delete a Gist" action our response bears status code "204" indicating the server has successfully fulfilled the request and that there is no additional content to send in the response payload body. There is no additional payload specified for this response.
 
 ---
 
