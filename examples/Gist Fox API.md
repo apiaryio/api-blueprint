@@ -53,7 +53,7 @@ The states *id* and *created_at* are assigned by the Gist Fox API at the moment 
 
 
 + Parameters
-    + id (string) ... ID of the gist in the form of a hash.
+    + id (string) ... ID of the Gist in the form of a hash.
 
 + Model (application/hal+json)
 

@@ -54,7 +54,7 @@ The first resource in our API is its root. The entry point to our API is defined
     # Gist Fox API Root [/]
     Gist Fox API entry point. 
 
-    This resource does not have any attributes. Instead it offers the initial API affordances in the form of the HTTP Link header and haveL links.
+    This resource does not have any attributes. Instead it offers the initial API affordances in the form of the HTTP Link header and HAL links.
 
     ## Retrieve Entry Point [GET]
 
@@ -156,9 +156,12 @@ With the entry point of our API defined we can move forward. Since our API revol
 
 
     + Parameters
-        + id (string) ... ID of the gist in the form of a hash.
+        + id (string) ... ID of the Gist in the form of a hash.
 
     + Model (application/hal+json)
+
+        HAL+JSON representation of Gist Resource. In addition to representing its state in the JSON form it offers affordances in the form of the HTTP Link header and HAL links.
+
         + Headers
 
                 Link: <http:/api.gistfox.com/gists/42>;rel="self", <http:/api.gistfox.com/gists/42/star>;rel="star"
@@ -170,20 +173,10 @@ With the entry point of our API defined we can move forward. Since our API revol
                         "self": { "href": "/gists/42" },
                         "star": { "href": "/gists/42/star" },
                     },
-                    "_embedded": {
-                        "files": {
-                            "file.txt": {
-                                "_links": {
-                                    "self": { "href": "gists/42/file.txt"}
-                                },
-                                "size": 932,
-                                "filename": "file.txt"
-                            }
-                        },
-                    },
                     "id": "42",
+                    "created_at": "2014-04-14T02:15:15Z",
                     "description": "Description of Gist",
-                    "created_at": "2014-04-14T02:15:15Z"
+                    "content": "String contents"
                 }
 
     ### Retrieve a Single Gist [GET]
@@ -191,7 +184,7 @@ With the entry point of our API defined we can move forward. Since our API revol
         
         [Gist][]
 
-Here we have just defined a group to group our Gist-related resources. We have also defined a Gist resource, its model representation and an action that retrieves a single Gist. 
+Here we have just defined a group of our Gist-related resources. We have also defined a Gist resource, its model representation and an action that retrieves a single Gist. 
 
 Lets break it down to what's new:
 
@@ -211,11 +204,11 @@ A variable component of a Gist URI expressed in the form of [URI Template][]. In
 #### URI Parameters
 
     + Parameters
-        + id (string) ... ID of the gist in the form of a hash.
+        + id (string) ... ID of the Gist in the form of a hash.
 
 The `id` variable of the URI template is a parameter to every action on this resource. Here defined of an arbitrary type `string` and followed by its Markdown-formatted discussion.
 
-> **Note:** You can specify various attributes of an URI parameters. However in its simple form it's syntax is just the parameter name followed by three dots and a Markdown-formatted discussion. For example:
+> **Note:** You can specify various attributes of an URI parameter. But in its simple form the URI parameter syntax is just the parameter name followed by ellipsis (three dots) and a Markdown-formatted discussion. For example:
 >    
 >        + Parameters
             + id ... description
@@ -225,6 +218,9 @@ The `id` variable of the URI template is a parameter to every action on this res
 #### Resource Model
 
     + Model (application/hal+json)
+
+        HAL+JSON representation of Gist Resource. In addition to representing its state in the JSON form it offers affordances in the form of the HTTP Link header and HAL links.
+
         + Headers
 
                 Link: <http:/api.gistfox.com/gists/42>;rel="self", <http:/api.gistfox.com/gists/42/star>;rel="star"
@@ -236,23 +232,13 @@ The `id` variable of the URI template is a parameter to every action on this res
                         "self": { "href": "/gists/42" },
                         "star": { "href": "/gists/42/star" },
                     },
-                    "_embedded": {
-                        "files": {
-                            "file.txt": {
-                                "_links": {
-                                    "self": { "href": "gists/42/file.txt"}
-                                },
-                                "size": 932,
-                                "filename": "file.txt"
-                            }
-                        },
-                    },
                     "id": "42",
+                    "created_at": "2014-04-14T02:15:15Z",
                     "description": "Description of Gist",
-                    "created_at": "2014-04-14T02:15:15Z"
+                    "content": "String contents"
                 }
                 
-Resource Model is one particular representation of the Gist resource. We can reference this resource model later at any point where a response (or request) payload is expected. A resource model has *exactly* the same sections as a response payload. However it doesn't include the response status code.
+Resource Model is an example representation of the Gist resource. We can reference this resource model later at any point where a response (or request) payload is expected. A resource model has *exactly* the same sections as a response payload. In this case it also includes additional description. However the model may include a response status code.
 
 ####  Referring the Resource Model
 
