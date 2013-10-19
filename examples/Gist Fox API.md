@@ -17,9 +17,10 @@ The common [HTTP Response Status Codes](https://github.com/for-GET/know-your-htt
 # Gist Fox API Root [/]
 Gist Fox API entry point.
 
-## Retrieve the Entry Point [GET]
 This resource does not have any attributes. Instead it offers the initial API affordances in the form of the HTTP Link header and 
 HAL links.
+
+## Retrieve the Entry Point [GET]
 
 + Response 200 (application/hal+json)
     + Headers

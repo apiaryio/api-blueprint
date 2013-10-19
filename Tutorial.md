@@ -10,12 +10,10 @@ For the sake of simplicity we will now omit user management and authentication. 
 ## Gist Fox API
 Without further ado our *Gist Fox API* blueprint starts like this:
 
-    ```markdown
     FORMAT: 1A
-    
+
     # Gist Fox API
     Gist Fox API is a **pastes service** similar to [GitHub's Gist][http://gist.github.com].
-    ```
 
 What have we just done? Let's break it line by line:
 
@@ -37,7 +35,7 @@ Every good API should have a name.  So does ours – *"Gist Fox API"*. The first
     
 The API Name header might be followed by any arbitrary Markdown-formatted discussion. Preferably about your API.
 
-> **Note:** We will provide much richer description in the final blueprint of Gist Fox API. By adding details about **authentication, used media types and error handling**. You will find it in the full listing of the Gist Fox API Blueprint at the bottom of this fike.
+> **Note:** We will provide much richer description in the final blueprint of our Gist Fox API adding details about **authentication, used media types and error handling**. You will find it in the full listing of the Gist Fox API Blueprint at the end of this tutorial.
 
 > **Note:** Should you need a clarification of some terms as used through this document refer to [API Blueprint Glossary of Terms](Glossary%20of%20Terms.md).
 
@@ -55,6 +53,8 @@ The first resource in our API is its root. The entry point to our API is defined
 
     # Gist Fox API Root [/]
     Gist Fox API entry point. 
+
+    This resource does not have any attributes. Instead it offers the initial API affordances in the form of the HTTP Link header and haveL links.
 
     ## Retrieve Entry Point [GET]
 
@@ -80,12 +80,14 @@ What is going on here?
 
 In API Blueprint a resource definition starts with a Markdown header of resource name followed by its URI enclosed in square brackets. The URI is relative to the API root. So in this case it is just `/`.
 
-> **NOTE:** Resource name is considered to be and [API Blueprint Identifier][] and as such it can be composed only from a combination of alphanumerical characters, underscores, dashes and a spaces.
+> **NOTE:** Resource name is an [API Blueprint Identifier][] and as such it can be composed only from a combination of alphanumerical characters, underscores, dashes and a spaces.
 
 #### Resource Description
 
     # Gist Fox API Root [/]
     Gist Fox API entry point. 
+
+    This resource does not have any attributes. Instead it offers the initial API affordances in the form of the HTTP Link header and haveL links.
 
 As with the API Name the resource name can be followed by an arbitrary Markdown formatted discussion.
 
@@ -93,7 +95,7 @@ As with the API Name the resource name can be followed by an arbitrary Markdown 
 
     ## Retrieve Entry Point [GET]
 
-Here, we have just defined an action named "Retrieve Entry Point" utilizing the `GET` [HTTP Request Method][]. As with the resource and API name we can add an arbitrary discussion but since the action name is pretty self explanatory lets skip it for now.
+Here, we have just defined an action named "Retrieve Entry Point" utilizing the `GET` [HTTP Request Method][]. As with the resource and API name we can add any arbitrary discussion here but since the action name is pretty self explanatory lets skip it for now.
 
 #### Response
 
@@ -117,13 +119,13 @@ In API Blueprint an action **should** always include at least one response that 
                     }
                 }
 
-A response usually bear some payload returned to our client. Ideally a representation of the resource in question. Our response representation is of the [`application/hal+json`][] media-type. Also in addition to an HTTP response message-body this response also define a HTTP response [message-headers][] in its payload.
+A response usually bear some payload returned to our client. Ideally a representation of the resource in question. In this case our response representation is of the [`application/hal+json`][] media-type. Also in addition to an HTTP response message-body this response defines an HTTP response [message-headers][] in its payload.
 
-> **Note:** API Blueprint is indentation sensitive. Refer to [Note on Indentation](#indentation) for details.
+> **Note:** API Blueprint is **indentation sensitive**. Refer to [Note on Indentation](#indentation) for details.
 >
 >  **Note:** Specifying the media type in brackets after the response status codes generates implicit `Content-Type` HTTP header.  That is you don't have to explicitly specify the `Content-Type` header.
 >
-> **Note:** If your response does not need to define any additional headers but `Content-Type` you can skip the `Headers` section completely and write the `Body` section like so:
+> **Note:** If your response does not need to define any additional headers (but `Content-Type`) you can skip the `Headers` section completely and write the `Body` section like so:
 >               
 >        + Response 200 (application/hal+json)
 >   
@@ -141,7 +143,17 @@ With the entry point of our API defined we can move forward. Since our API revol
     Gist-related resources of *Gist Fox API*.
 
     ## Gist [/gists/{id}]
-    A single Gist object.
+    A single Gist object. The Gist resource is the central resource in the Gist Fox API. It represents one paste - a single text note.
+
+    The Gist resource has the following attributes: 
+
+    - id
+    - created_at
+    - description
+    - content
+
+    The states *id* and *created_at* are assigned by the Gist Fox API at the moment of creation. 
+
 
     + Parameters
         + id (string) ... ID of the gist in the form of a hash.
