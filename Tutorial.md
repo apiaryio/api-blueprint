@@ -376,7 +376,7 @@ As with the URI Parameters the query parameters are defined in the [URI Template
 
 Often a resource query parameters are specific to just one of the resource actions. In this case you can discuss it in the relevant action only using the same syntax as with [URI Parameters][].
 
-## Put it all together
+## Reach to the Stars 
 The last missing piece in the expected functionality is to add the Star Resource and actions to retrieve and manipulate its starred state.
 
     ## Star [/gists/{id}/star]
@@ -420,17 +420,17 @@ The last missing piece in the expected functionality is to add the Star Resource
         [Star][]
 
 ## Complete Blueprint
-You can find Gist Fox API blueprint's [full listing][] in the [API Blueprint Examples][] repository. 
+You can find the complete Gist Fox API blueprint [full listing][] in the [API Blueprint Examples][] repository.
 
 ## API Blueprint Tools
-With Gist Fox Blueprint completed it is time to put it at work. For start, you can browse this API [rendered by GitHub][] or [rendered by Apiary][]. 
+With Gist Fox Blueprint completed it is time to put it at work. For start, you can browse this API [rendered by GitHub][] or enjoy it [rendered by Apiary][]. 
 
-Visit the [Tooling Section][] of the API Blueprint website to find about other tools you can use with your blueprint. 
+Visit the [Tooling Section][] of the [apiblueprint.org][] to find about other tools you can use with your blueprint. 
 
 ---
 
 <a name="indentation"></a>
-## Note on Indentation
+### Note on Indentation
 In API Blueprint payload assets are represented by [Markdown pre-formatted code blocks][]. That means **an asset has to be indented by four spaces** relative to its level. In the case of Markdown list items, which are also by definition indented, it is even one more level further making it a total of **eight spaces** or whopping twelve spaces for list items nested under another list item. 
 
 For example the asset in `Body` list item which is nested under the `Response 200` item is indented by twelve spaces.
@@ -472,4 +472,5 @@ You can save one level of indentation using the [GitHub-flavored Markdown][] syn
 [full listing]: https://raw.github.com/apiaryio/api-blueprint/master/examples/Gist%20Fox%20API.md
 [rendered by GitHub]: examples/Gist%20Fox%20API.md
 [rendered by Apiary]: http://docs.gistfoxapi.apiary.io
-[Tools Section]: http://apiblueprint.org/#tooling
+[Tooling Section]: http://apiblueprint.org/#tooling
+[apiblueprint.org]: http://apiblueprint.org
