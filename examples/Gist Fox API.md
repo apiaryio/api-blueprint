@@ -97,14 +97,14 @@ To update a Gist send a JSON with updated value for one or more of the Gist reso
 ### Delete a Gist [DELETE]
 + Response 204
 
-## Gists Collection [/gists?{since}]
+## Gists Collection [/gists{?since}]
 Collection of all Gists.
 
 The Gist Collection resource has the following attribute:
 
 - total
 
-In addition it **embeds** all *Gist Resource* in the Gist Fox API.
+In addition it **embeds** *Gist Resources* in the Gist Fox API.
 
 
 + Model (application/hal+json)

@@ -121,7 +121,7 @@ In API Blueprint an action **should** always include at least one response that 
 
 A response usually bear some payload returned to our client. Ideally a representation of the resource in question. In this case our response representation is of the [`application/hal+json`][] media-type. Also in addition to an HTTP response message-body this response defines an HTTP response [message-headers][] in its payload.
 
-> **Note:** API Blueprint is **indentation sensitive**. Refer to [Note on Indentation](#indentation) for details.
+> **Note:** API Blueprint is **indentation sensitive**. See the [Note on Indentation][] for details.
 >
 >  **Note:** Specifying the media type in brackets after the response status codes generates implicit `Content-Type` HTTP header.  That is you don't have to explicitly specify the `Content-Type` header.
 >
@@ -207,7 +207,7 @@ A variable component of a Gist URI expressed in the form of [URI Template][]. In
     + Parameters
         + id (string) ... ID of the Gist in the form of a hash.
 
-The *id* variable of the URI template is a parameter to every action on this resource. Here defined of an arbitrary type `string` and followed by its Markdown-formatted discussion.
+The *"id"* variable of the URI template is a parameter to every action on this resource. Here defined of an arbitrary type `string` and followed by its Markdown-formatted discussion.
 
 > **Note:** You can specify various attributes of an URI parameter. But in its simple form the URI parameter syntax is just the parameter name followed by ellipsis (three dots) and a Markdown-formatted discussion. For example:
 >    
@@ -358,7 +358,7 @@ Let's define a collection for our Gist Resources:
 
         [Gist][]
 
-Not much new here except the definition and discussion of query parameter *since*: 
+Not much new here except the definition and discussion of query parameter *"since"*: 
 
 #### Query Parameters
 
@@ -374,7 +374,58 @@ As with the URI Parameters the query parameters are defined in the [URI Template
     + Parameters
         + since (optional, string) ... Timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ Only Gists updated at or after this time are returned.
 
-Often a resource query parameters are specific to just one of the resource actions. In this case you can discuss it in the relevant action only using the same syntax as with [URI Parameter][].
+Often a resource query parameters are specific to just one of the resource actions. In this case you can discuss it in the relevant action only using the same syntax as with [URI Parameters][].
+
+## Put it all together
+The last missing piece in the expected functionality is to add the Star Resource and actions to retrieve and manipulate its starred state.
+
+    ## Star [/gists/{id}/star]
+    Star resource represents a Gist starred status. 
+
+    The Star resource has the following attribute:
+
+    - starred
+
+
+    + Parameters
+
+        + id (string) ... ID of the gist in the form of a hash
+
+    + Model (application/hal+json)
+
+        HAL+JSON representation of Star Resource.
+
+        + Headers
+
+                Link: <http:/api.gistfox.com/gists/42/star>;rel="self"
+
+        + Body
+
+                {
+                    "_links": {
+                        "self": { "href": "/gists/42/star" },
+                    },
+                    "starred": true
+                }
+
+    ### Star a Gist [PUT]
+    + Response 204
+
+    ### Unstar a Gist [DELETE]
+    + Response 204
+
+    ### Check if a Gist is Starred [GET]
+    + Response 200
+
+        [Star][]
+
+## Complete Blueprint
+You can find Gist Fox API blueprint's [full listing][] in the [API Blueprint Examples][] repository. 
+
+## API Blueprint Tools
+With Gist Fox Blueprint completed it is time to put it at work. For start, you can browse this API [rendered by GitHub][] or [rendered by Apiary][]. 
+
+Visit the [Tooling Section][] of the API Blueprint website to find about other tools you can use with your blueprint. 
 
 ---
 
@@ -415,4 +466,10 @@ You can save one level of indentation using the [GitHub-flavored Markdown][] syn
 [Resource Parameters Section]: API%20Blueprint%20Specification.md#ResourceParametersSection
 [payload]: Glossary%20of%20Terms.md#payload
 [API Blueprint Identifier]: https://github.com/apiaryio/api-blueprint/blob/1A/API%20Blueprint%20Specification.md#Identifiers
-[URI Parameter]: #uri_parameter
+[URI Parameters]: #uri_parameter
+[Note on Indentation]: #indentation
+[API Blueprint Examples]: https://github.com/apiaryio/api-blueprint/tree/master/examples
+[full listing]: https://raw.github.com/apiaryio/api-blueprint/master/examples/Gist%20Fox%20API.md
+[rendered by GitHub]: examples/Gist%20Fox%20API.md
+[rendered by Apiary]: http://docs.gistfoxapi.apiary.io
+[Tools Section]: http://apiblueprint.org/#tooling
