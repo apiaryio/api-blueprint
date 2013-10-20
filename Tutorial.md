@@ -1,14 +1,12 @@
 # API Blueprint Tutorial
-Welcome to the API Blueprint Tutorial!  
-
-... actually, let's build an API! Let's build an API for our imaginary industry-changing Gist service. 
+Welcome to the API Blueprint Tutorial! In this tutorial you will learn all about all the key features of the API Blueprint Language on the example of an API for our imaginary industry-changing Gist service. 
 
 Gist is a paste. A snippet of text. Not unrelated to [GitHub Gists][].  To set some expectations let's provide following functionality in our API: *List Gists, Retrieve a Single Gist, Create a Gist, Edit a Gist, Star a Gist, Unstar a Gist, Check if a Gist is starred and Delete a Gist.*
 
-For the sake of simplicity we will now omit user management and authentication. These additions to our service will be discussed in a future installment of API Blueprint Tutorial.
+For the sake of simplicity we will now omit user management and authentication. These features will be discussed in a future installment of the API Blueprint Tutorial.
 
 ## Gist Fox API
-Without further ado our *Gist Fox API* blueprint starts like this:
+Without any further ado our *Gist Fox API* blueprint starts like this:
 
     FORMAT: 1A
 
@@ -21,30 +19,29 @@ What have we just done? Let's break it line by line:
 
     FORMAT: 1A
     
-Depending on the tools you will be using with your blueprint you might want to start the blueprint file with a metadata explicitly stating an API Blueprint version. Since this tutorial is for API Blueprint version `1A` the first line 
+Depending on the tools you will be using with your blueprint you might want to start your blueprint file with a metadata explicitly stating the API Blueprint version you want to use like in this case the version 1A.
+
+> **Note:** Should you need a clarification of some terms as used through this document refer to [API Blueprint Glossary of Terms](Glossary%20of%20Terms.md).
 
 #### API Name
 
     # Gist Fox API
     
-Every good API should have a name.  So does ours – *"Gist Fox API"*. The first Markdown header in our document represents just that – the API name. 
-
+Every good API should have a name. So does ours – *"Gist Fox API"*. The first Markdown header in our document represents just that – the API name. 
 #### API Description
 
     Gist Fox API is a **pastes service** similar to [GitHub's Gist][http://gist.github.com].
     
-The API Name header might be followed by any arbitrary Markdown-formatted discussion. Preferably about your API.
+The API Name might be followed by any arbitrary Markdown-formatted discussion. Preferably about your API.
 
-> **Note:** We will provide much richer description in the final blueprint of our Gist Fox API adding details about **authentication, used media types and error handling**. You will find it in the full listing of the Gist Fox API Blueprint at the end of this tutorial.
-
-> **Note:** Should you need a clarification of some terms as used through this document refer to [API Blueprint Glossary of Terms](Glossary%20of%20Terms.md).
+> **Note:** We will add much richer and more helpful discussion in the final version of this blueprint. Adding details about authentication, used media types and error handling to this discussion is always a great idea!
 
 ## Markdown
-All you really need to write a blueprint is a text editor. A Markdown editor would be even better.  Anything you like. From Vi to Byword. Online editors are great too! Perhaps directly on GitHub in the repository your service will live? 
+All you really need to write a blueprint is a text editor. A Markdown editor even better. Anything you like. From Vi to Byword. Online editors are great too! You can even directly edit a blueprint on GitHub in the repository your service is living!
 
-If you are completely new to Markdown it is now the best time to learn about it. Just head over to [Markdown Tutorial][] and enjoy the ride. Just don't forget to come back we have some cool stuff too! 
+If you are completely new to Markdown it is now the best time to learn about it. Just head over to [Markdown Tutorial][] and enjoy the ride. Just don't forget to come back we have some cool stuff too!
 
-Should you just need to refresh Markdown syntax you can always check the one and only [Gruber's Original][].
+Should you just need to refresh Markdown syntax you can always check the one and only [Gruber's Original][] documentation.
 
 >  **Note:** It is not essentially required to know the Markdown syntax but it will help a lot. The knowledge of Markdown will make some API Blueprint construct more intuitive.
     
@@ -78,7 +75,7 @@ What is going on here?
 
     # Gist Fox API Root [/]
 
-In API Blueprint a resource definition starts with a Markdown header of resource name followed by its URI enclosed in square brackets. The URI is relative to the API root. So in this case it is just `/`.
+In API Blueprint a resource definition starts with a Markdown header with the resource name followed by its URI enclosed in square brackets. The URI is relative to the API root. So in this case it is just `/`.
 
 > **NOTE:** Resource name is an [API Blueprint Identifier][] and as such it can be composed only from a combination of alphanumerical characters, underscores, dashes and a spaces.
 
@@ -95,13 +92,13 @@ As with the API Name the resource name can be followed by an arbitrary Markdown 
 
     ## Retrieve Entry Point [GET]
 
-Here, we have just defined an action named "Retrieve Entry Point" utilizing the `GET` [HTTP Request Method][]. As with the resource and API name we can add any arbitrary discussion here but since the action name is pretty self explanatory lets skip it for now.
+Here we have just defined an action named "Retrieve Entry Point" utilizing the `GET` [HTTP Request Method][]. As with a resource and API name we can add any arbitrary discussion here but since the action name is pretty self explanatory we will skip it for now.
 
 #### Response
 
     + Response 200
 
-In API Blueprint an action **should** always include at least one response that represents the HTTP response message sent back in response to the HTTP request. The response should always bear a [status code][] and possibly an additional [payload][]. We have defined the most common response "200" indicating the request has succeeded.
+In API Blueprint an action **should** always include at least one response representing  the HTTP response message sent back in response to a HTTP request. The response should always bear a [status code][] and possibly an additional [payload][]. Here we have defined the most common response "200" indicating the request has succeeded.
 
 #### Response Payload
 
@@ -119,11 +116,11 @@ In API Blueprint an action **should** always include at least one response that 
                     }
                 }
 
-A response usually bear some payload returned to our client. Ideally a representation of the resource in question. In this case our response representation is of the [`application/hal+json`][] media-type. Also in addition to an HTTP response message-body this response defines an HTTP response [message-headers][] in its payload.
+A response usually bear some payload sent to our client. Ideally a representation of the resource in question. In this case our response representation is of the [`application/hal+json`][] media-type. Also in addition to an HTTP response message-body this response defines an HTTP response [message-headers][] in its payload.
 
 > **Note:** API Blueprint is **indentation sensitive**. See the [Note on Indentation][] for details.
 >
->  **Note:** Specifying the media type in brackets after the response status codes generates implicit `Content-Type` HTTP header.  That is you don't have to explicitly specify the `Content-Type` header.
+>  **Note:** Specifying the media type in brackets after the response status codes generates implicit `Content-Type` HTTP header. That is you don't have to explicitly specify the `Content-Type` header.
 >
 > **Note:** If your response does not need to define any additional headers (but `Content-Type`) you can skip the `Headers` section completely and write the `Body` section like so:
 >               
