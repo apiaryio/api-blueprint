@@ -136,7 +136,7 @@ A response usually bear some payload returned to our client. Ideally a represent
 >              }
 >          }
 
-## Modeling Resource
+## Complex Resource
 With the entry point of our API defined we can move forward. Since our API revolves around a Gists lets define its representation and an action to retrieve it:
 
     # Group Gist
@@ -201,12 +201,13 @@ As our API will eventually provide more resources it is a good practice to group
 
 A variable component of a Gist URI expressed in the form of [URI Template][]. In this case an id of Gist is the variable in its URI expressed as `{id}`. 
 
+<a name="uri_parameter"></a>
 #### URI Parameters
 
     + Parameters
         + id (string) ... ID of the Gist in the form of a hash.
 
-The `id` variable of the URI template is a parameter to every action on this resource. Here defined of an arbitrary type `string` and followed by its Markdown-formatted discussion.
+The *id* variable of the URI template is a parameter to every action on this resource. Here defined of an arbitrary type `string` and followed by its Markdown-formatted discussion.
 
 > **Note:** You can specify various attributes of an URI parameter. But in its simple form the URI parameter syntax is just the parameter name followed by ellipsis (three dots) and a Markdown-formatted discussion. For example:
 >    
@@ -293,6 +294,88 @@ Our "Edit a Gist" action needs to receive some input data to update the state of
 
 In the case of the "Delete a Gist" action our response bears status code "204" indicating the server has successfully fulfilled the request and that there is no additional content to send in the response payload body. There is no additional payload specified for this response.
 
+## Collection Resource
+Let's define a collection for our Gist Resources:
+
+    ## Gists Collection [/gists{?since}]
+    Collection of all Gists.
+
+    The Gist Collection resource has the following attribute:
+
+    - total
+
+    In addition it **embeds** *Gist Resources* in the Gist Fox API.
+
+
+    + Model (application/hal+json)
+
+        HAL+JSON representation of Gist Collection Resource. The Gist resources in collections are embedded. Note the embedded Gists resource are incomplete representations of the Gist in question. Use the respective Gist link to retrieve its full representation.
+
+        + Headers
+
+                Link: <http:/api.gistfox.com/gists>;rel="self"
+
+        + Body
+
+                {
+                    "_links": {
+                        "self": { "href": "/gists" }
+                    },
+                    "_embedded": {
+                        "gists": [
+                            {
+                                "_links" : {
+                                    "self": { "href": "/gists/42" }
+                                },
+                                "id": "42",
+                                "created_at": "2014-04-14T02:15:15Z",
+                                "description": "Description of Gist"
+                            }
+                        ]
+                    },
+                    "total": 1
+                }
+
+    ### List All Gists [GET]
+    + Parameters
+        + since (optional, string) ... Timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ Only Gists updated at or after this time are returned.
+
+    + Response 200
+
+        [Gists Collection][]
+
+    ### Create a Gist [POST]
+    To create a new Gist simply provide a JSON hash of the *description* and *content* attributes for the new Gist. 
+
+    + Request (application/json)
+
+            {
+                "description": "Description of Gist",
+                "content": "String content"
+            }
+
+    + Response 201 (application/hal+json)
+
+        [Gist][]
+
+Not much new here except the definition and discussion of query parameter *since*: 
+
+#### Query Parameters
+
+    ## Gists Collection [/gists{?since}]
+
+As with the URI Parameters the query parameters are defined in the [URI Template][]. The diferrence here is that a query parameter name is preceeded by the questionmark and its definition is always at the end of the URI Template.
+
+> **NOTE:** To define multiple query parameters simply comma-separate their names. For example `{?since,month,year}`. 
+
+#### Action-specific Query Parameters
+
+    ### List All Gists [GET]
+    + Parameters
+        + since (optional, string) ... Timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ Only Gists updated at or after this time are returned.
+
+Often a resource query parameters are specific to just one of the resource actions. In this case you can discuss it in the relevant action only using the same syntax as with [URI Parameter][].
+
 ---
 
 <a name="indentation"></a>
@@ -332,3 +415,4 @@ You can save one level of indentation using the [GitHub-flavored Markdown][] syn
 [Resource Parameters Section]: API%20Blueprint%20Specification.md#ResourceParametersSection
 [payload]: Glossary%20of%20Terms.md#payload
 [API Blueprint Identifier]: https://github.com/apiaryio/api-blueprint/blob/1A/API%20Blueprint%20Specification.md#Identifiers
+[URI Parameter]: #uri_parameter

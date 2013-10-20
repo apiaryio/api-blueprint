@@ -100,7 +100,7 @@ To update a Gist send a JSON with updated value for one or more of the Gist reso
 ## Gists Collection [/gists?{since}]
 Collection of all Gists.
 
-The Star resource has the following attribute:
+The Gist Collection resource has the following attribute:
 
 - total
 
