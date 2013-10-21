@@ -24,7 +24,7 @@ All it really takes to describe an endpoint of your API is write something like 
         
 in your favorite Markdown editor. Now you can share and discuss this API in your API repository and let GitHub to render the API documentation so others can see it. 
 
-Jump directly to the [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md) or browse the [interactive examples](http://apiblueprint.org) to learn more about the API Blueprint syntax.
+Jump directly to the [API Blueprint Tutorial](Tutorial.md) or browse the [interactive examples](http://apiblueprint.org) to learn more about the API Blueprint syntax.
 
 Describing your API is only the start. The API Blueprint can be used by variety of tools from interactive documentation and code generators to API testing tools thanks to its machine-friendly face:
 
@@ -46,9 +46,10 @@ Visit the [tooling section](http://apiblueprint.org/#tooling) of the API Bluepri
 
 ## Learn more
 
-+ [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/examples/1.%20Simplest%20API.md)
-+ [API Blueprint Glossary of Terms](https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md)
-+ [API Blueprint Language Specification](https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md)
++ [API Blueprint Tutorial](Tutorial.md)
++ [API Blueprint Examples](examples)
++ [API Blueprint Glossary of Terms](Glossary%20of%20Terms.md)
++ [API Blueprint Language Specification](API%20Blueprint%20Specification.md)
 + [Tools working with API Blueprint](http://apiblueprint.org/#tooling)
 
 ### Developers 
