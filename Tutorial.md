@@ -120,7 +120,7 @@ A response usually bear some payload sent to our client. Ideally a representatio
 
 > **Note:** API Blueprint is **indentation sensitive**. See the [Note on Indentation][] for details.
 >
->  **Note:** Specifying the media type in brackets after the response status codes generates implicit `Content-Type` HTTP header. That is you don't have to explicitly specify the `Content-Type` header.
+>  **Note:** Specifying the media type in brackets after the response status codes generates implicit `Content-Type` HTTP header. Therefore you do not have to explicitly specify the `Content-Type` header.
 >
 > **Note:** If your response does not need to define any additional headers (but `Content-Type`) you can skip the `Headers` section completely and write the `Body` section like so:
 >               
@@ -190,13 +190,13 @@ Lets break it down to what's new:
     # Group Gist
     Gist-related resources of *Gist Fox API*.
 
-As our API will eventually provide more resources it is a good practice to group related resources together for better orientation. Here we will be grouping all Gist-related resources under a group simply called *"Gist"*.
+As our API will eventually provide more resources it is a good practice to group related resources together for better orientation. Here we will be grouping all Gist-related resources under a group simply called the *"Gist"*.
 
 #### URI Template
 
     ## Gist [/gists/{id}]
 
-A variable component of a Gist URI expressed in the form of [URI Template][]. In this case an id of Gist is the variable in its URI expressed as `{id}`. 
+A variable component of a Gist URI expressed in the form of [URI Template][]. In this case an id of Gist is the URI variable expressed as `{id}`. 
 
 <a name="uri_parameter"></a>
 #### URI Parameters
@@ -204,7 +204,7 @@ A variable component of a Gist URI expressed in the form of [URI Template][]. In
     + Parameters
         + id (string) ... ID of the Gist in the form of a hash.
 
-The *"id"* variable of the URI template is a parameter to every action on this resource. Here defined of an arbitrary type `string` and followed by its Markdown-formatted discussion.
+The *"id"* variable of the URI template is a parameter to every action on this resource. Here defined of an arbitrary type *"string"* and followed by its Markdown-formatted discussion.
 
 > **Note:** You can specify various attributes of an URI parameter. But in its simple form the URI parameter syntax is just the parameter name followed by ellipsis (three dots) and a Markdown-formatted discussion. For example:
 >    
@@ -236,11 +236,9 @@ The *"id"* variable of the URI template is a parameter to every action on this r
                     "content": "String contents"
                 }
                 
-Resource Model is an example representation of the Gist resource. We can reference this resource model later at any point where a response (or request) payload is expected. A resource model has *exactly* the same sections as a response payload. In this case it also includes additional description. 
+Resource Model is an example representation of the Gist resource. It can be referenced later at any point where a response (or request) payload is expected. A resource model has *exactly* the same structure as a response payload. In this case it also includes additional description. A Resource Model may not include a response status code.
 
-A Resource Model may not include a response status code.
-
-####  Referring the Resource Model
+#### Referring the Resource Model
 
     ### Retrieve a Single Gist [GET]
     + Response 200
@@ -249,10 +247,10 @@ A Resource Model may not include a response status code.
         
 With Gist Resource Model in place it is super easy to define an action that retrieves a single gist. 
 
-> **NOTE:** The syntax for referring a resource model is `[<resource identifier>][]`.  You can only refer to already defined models. The model must be referred as "whole".  You can't reuse just a model's body or headers.
+> **NOTE:** The syntax for referencing a resource model is `[<resource identifier>][]`.  You can only refer to already defined models. The model must be referred as "whole" - you can't reuse just a model's body or headers.
 
 ## Modifying a Resource
-Let's add an action to our Gist Resource that will modify its state and another action that deletes a Gist Resource as whole.
+Let's add an action to our Gist Resource that will allows us to modify its state and another action that deletes a Gist Resource as whole.
 
     ### Edit a Gist [PATCH]
     To update a Gist send a JSON with updated value for one or more of the Gist resource attributes. All attributes values (states) from the previous version of this Gist are carried over by default if not included in the hash.
@@ -289,10 +287,10 @@ Our "Edit a Gist" action needs to receive some input data to update the state of
     ### Delete a Gist [DELETE]
     + Response 204
 
-In the case of the "Delete a Gist" action our response bears status code "204" indicating the server has successfully fulfilled the request and that there is no additional content to send in the response payload body. There is no additional payload specified for this response.
+In the case of the "Delete a Gist" action our response bears status code "204" indicating the server has successfully fulfilled the request and that there is no additional content to be send in the response payload body.
 
 ## Collection Resource
-Let's define a collection for our Gist Resources:
+With single the Gist Resource in place let's define the collection of our Gist Resources:
 
     ## Gists Collection [/gists{?since}]
     Collection of all Gists.
@@ -355,15 +353,15 @@ Let's define a collection for our Gist Resources:
 
         [Gist][]
 
-Not much new here except the definition and discussion of query parameter *"since"*: 
+At this point you should be familiar with everything in this listing expect the definition and discussion of the query parameter *"since"*:
 
 #### Query Parameters
 
     ## Gists Collection [/gists{?since}]
 
-As with the URI Parameters the query parameters are defined in the [URI Template][]. The diferrence here is that a query parameter name is preceeded by the questionmark and its definition is always at the end of the URI Template.
+As with the URI parameters the Query parameters are defined in the [URI Template][]. The difference here is that a query parameter name is preceded by the question mark and its is always at the end of the URI Template.
 
-> **NOTE:** To define multiple query parameters simply comma-separate their names. For example `{?since,month,year}`. 
+> **NOTE:** To define multiple query parameters simply comma-separate their names. For example `{?month,year}`. 
 
 #### Action-specific Query Parameters
 
@@ -371,10 +369,10 @@ As with the URI Parameters the query parameters are defined in the [URI Template
     + Parameters
         + since (optional, string) ... Timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ Only Gists updated at or after this time are returned.
 
-Often a resource query parameters are specific to just one of the resource actions. In this case you can discuss it in the relevant action only using the same syntax as with [URI Parameters][].
+Often a resource query parameter is specific to just one of the resource actions. In this case you can discuss it in the relevant action only. No matter where you discuss a query parameter it follows exactly the same syntax as with [URI Parameters][].
 
-## Reach to the Stars 
-The last missing piece in the expected functionality is to add the Star Resource and actions to retrieve and manipulate its starred state.
+## Subsequent Resource
+The last missing piece in the expected functionality is the Star Resource and its actions. Utilizing everything we have learned so far the Star Resource and its actions are defined as follows:
 
     ## Star [/gists/{id}/star]
     Star resource represents a Gist starred status. 
@@ -420,17 +418,17 @@ The last missing piece in the expected functionality is to add the Star Resource
 You can find the complete Gist Fox API blueprint [full listing][] in the [API Blueprint Examples][] repository.
 
 ## API Blueprint Tools
-With Gist Fox Blueprint completed it is time to put it at work. For start, you can browse this API [rendered by GitHub][] or enjoy it [rendered by Apiary][]. 
+With Gist Fox Blueprint completed it is time to put it at work. For the start you can browse this API [rendered by GitHub][] or enjoy it [rendered by Apiary][]. 
 
-Visit the [Tooling Section][] of the [apiblueprint.org][] to find about other tools you can use with your blueprint. 
+Visit the [Tooling Section][] of the [apiblueprint.org][] to find more about tools you can use with your blueprint. 
 
 ---
 
 <a name="indentation"></a>
 ### Note on Indentation
-In API Blueprint payload assets are represented by [Markdown pre-formatted code blocks][]. That means **an asset has to be indented by four spaces** relative to its level. In the case of Markdown list items, which are also by definition indented, it is even one more level further making it a total of **eight spaces** or whopping twelve spaces for list items nested under another list item. 
+In API Blueprint payload assets are represented by [Markdown pre-formatted code blocks][]. This means **an asset has to be indented by four spaces** relative to its existing indentation level. In the case of Markdown list items, which are also (by definition) indented, it is even one more level further making it a total of **eight spaces** or whopping twelve spaces for list items nested under another list item. 
 
-For example the asset in `Body` list item which is nested under the `Response 200` item is indented by twelve spaces.
+For example, the asset in `Body` list item which is nested under the `Response 200` item is indented by twelve spaces.
 
 You can save one level of indentation using the [GitHub-flavored Markdown][] syntax for [fenced code blocks][]:
 
