@@ -333,7 +333,7 @@ With single the Gist Resource in place let's define the collection of our Gist R
 
     ### List All Gists [GET]
     + Parameters
-        + since (optional, string) ... Timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ Only Gists updated at or after this time are returned.
+        + since (optional, string) ... Timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ` Only Gists updated at or after this time are returned.
 
     + Response 200
 
@@ -367,7 +367,7 @@ As with the URI parameters the Query parameters are defined in the [URI Template
 
     ### List All Gists [GET]
     + Parameters
-        + since (optional, string) ... Timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ Only Gists updated at or after this time are returned.
+        + since (optional, string) ... Timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ` Only Gists updated at or after this time are returned.
 
 Often a resource query parameter is specific to just one of the resource actions. In this case you can discuss it in the relevant action only. No matter where you discuss a query parameter it follows exactly the same syntax as with [URI Parameters][].
 

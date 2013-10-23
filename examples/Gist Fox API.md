@@ -138,7 +138,7 @@ In addition it **embeds** *Gist Resources* in the Gist Fox API.
 
 ### List All Gists [GET]
 + Parameters
-    + since (optional, string) ... Timestamp in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ Only gists updated at or after this time are returned.
+    + since (optional, string) ... Timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ` Only gists updated at or after this time are returned.
 
 + Response 200
 
