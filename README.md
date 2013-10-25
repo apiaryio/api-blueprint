@@ -40,7 +40,7 @@ Describing your API is only the start. The API Blueprint can be used by variety 
 ```
 [\[full listing\]](https://gist.github.com/zdne/6560278#file-gistfile1-json)
 
-It it the task of the native API Blueprint [parser](https://github.com/apiaryio/snowcrash) or one of its [bindings](https://github.com/apiaryio/snowcrash#bindings) to "translate" the API Blueprint Markdown representation into a [machine friendly format – AST](https://github.com/apiaryio/snowcrash/wiki/API-Blueprint-AST-Media-Types).
+It is the task of the native API Blueprint [parser](https://github.com/apiaryio/snowcrash) or one of its [bindings](https://github.com/apiaryio/snowcrash#bindings) to "translate" the API Blueprint Markdown representation into a [machine friendly format – AST](https://github.com/apiaryio/snowcrash/wiki/API-Blueprint-AST-Media-Types).
 
 Visit the [tooling section](http://apiblueprint.org/#tooling) of the API Blueprint website to find more about the actual tools or check the [**Developing tools for API Blueprint**](https://github.com/apiaryio/api-blueprint/wiki/Developing-tools-for-API-Blueprint) if you are interested in using API Blueprint in your tool chain.
 
