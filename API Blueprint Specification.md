@@ -613,7 +613,7 @@ Example:
 
 <a name="PayloadSchemaSection"></a>
 ### 5.3. Payload Schema Section
-**Optional**. Where applicable, specifies a schema used to validate this Payload's [Body Section](PayloadBodySection) content.
+**Optional**. Where applicable, specifies a schema used to validate this Payload's [Body Section](#PayloadBodySection) content.
 
 This subsection is **recognized** by the `Schema` reserved **keyword** written as a Markdown list item.
 
