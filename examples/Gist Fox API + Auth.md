@@ -25,7 +25,7 @@ HAL links.
 + Response 200 (application/hal+json)
     + Headers
     
-            Link: <http:/api.gistfox.com/>;rel="self",<http:/api.gistfox.com/gists>;rel="gists",<http:/api.gistfox.com/authorizations>;rel="authorizations"
+            Link: <http:/api.gistfox.com/>;rel="self",<http:/api.gistfox.com/gists>;rel="gists",<http:/api.gistfox.com/authorization>;rel="authorization"
 
     + Body
 
@@ -33,7 +33,7 @@ HAL links.
                 "_links": {
                     "self": { "href": "/" },
                     "gists": { "href": "/gists?{since}", "templated": true }
-                    "authorizations": { "href": "/authorizations"}
+                    "authorization": { "href": "/authorization"}
                 }
             }
 
