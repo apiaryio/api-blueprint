@@ -147,6 +147,8 @@ In addition it **embeds** *Gist Resources* in the Gist Fox API.
 ### Create a Gist [POST]
 To create a new Gist simply provide a JSON hash of the *description* and *content* attributes for the new Gist. 
 
+This action requries an `access_token` with `gist_write` scope. 
+
 + Parameters
     + access_token (string, optional) ... Gist Fox API access token.
 
@@ -167,7 +169,6 @@ Star resource represents a Gist starred status.
 The Star resource has the following attribute:
 
 - starred
-
 
 + Parameters
     + id (string) ... ID of the gist in the form of a hash
@@ -191,9 +192,13 @@ The Star resource has the following attribute:
             }
 
 ### Star a Gist [PUT]
+This action requries an `access_token` with `gist_write` scope. 
+
 + Response 204
 
 ### Unstar a Gist [DELETE]
+This action requries an `access_token` with `gist_write` scope. 
+
 + Response 204
 
 ### Check if a Gist is Starred [GET]
