@@ -154,7 +154,7 @@ To create a new Gist simply provide a JSON hash of the *description* and *conten
             "content": "String content"
         }
 
-+ Response 201 (application/hal+json)
++ Response 201
 
     [Gist][]
 
