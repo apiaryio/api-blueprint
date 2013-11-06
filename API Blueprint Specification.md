@@ -131,7 +131,7 @@ There are **two additional** sections of an API Blueprint Document that are not 
 
 <a name="Identifiers"></a>
 ### 3.6. Identifiers 
-Several sections names might include an identifier. An identifier is any **non-empty combination** of a **alphanumerical character**, **underscore**, **dash**  and a **space** unless stated otherwise. **No other characters** (e.g. punctation or other whitespace characters) **are allowed**. An identifier **should not** include any [reserved keyword](ReservedSectionNames).
+Several sections names might include an identifier. An identifier is any **non-empty combination** of a **alphanumerical character**, **underscore**, **dash**  and a **space** unless stated otherwise. **No other characters** (e.g. punctation or other whitespace characters) **are allowed**. An identifier **should not** include any [reserved keyword](#ReservedSectionNames).
 
 Example:
 
