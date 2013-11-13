@@ -438,10 +438,12 @@ You can save one level of indentation using the [GitHub-flavored Markdown][] syn
 
     + Response 200 (application/hal+json)
         + Headers
+
             ```
             Link: <http:/api.gistfox.com/>;rel="self",<http:/api.gistfox.com/gists>;rel="gists"
             ```
         + Body
+        
             ```
             {
               "_links": {
