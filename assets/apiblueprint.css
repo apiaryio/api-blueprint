@@ -1534,6 +1534,20 @@ a:hover {
   height: 62px;
   width: 65px;
 }
+.tooling__ico--construction.tooling__sublime-plugin,
+.tooling__ico--construction.tooling__dredd {
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: auto 60px;
+  -moz-background-size: auto 60px;
+  background-size: auto 60px;
+}
+.tooling__ico--construction.tooling__dredd {
+  background-image: url("dredd.png");
+}
+.tooling__ico--construction.tooling__sublime-plugin {
+  background-image: url("st2.png");
+}
 .tooling__ico--question {
   position: relative;
 }
