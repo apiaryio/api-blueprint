@@ -1535,7 +1535,8 @@ a:hover {
   width: 65px;
 }
 .tooling__ico--construction.tooling__sublime-plugin,
-.tooling__ico--construction.tooling__dredd {
+.tooling__ico--construction.tooling__dredd,
+.tooling__ico--construction.tooling__aglio {
   background-position: center center;
   background-repeat: no-repeat;
   -webkit-background-size: auto 60px;
@@ -1547,6 +1548,9 @@ a:hover {
 }
 .tooling__ico--construction.tooling__sublime-plugin {
   background-image: url("st2.png");
+}
+.tooling__ico--construction.tooling__aglio {
+  background-image: url("aglio.png");
 }
 .tooling__ico--question {
   position: relative;
