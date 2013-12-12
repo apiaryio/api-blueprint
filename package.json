@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "engines": {
     "node": "0.8.x",
-    "npm": "1.2.x"
+    "npm": "1.3.x"
   },
   "private": true,
   "homepage": "http://apiblueprint.org/",
@@ -27,7 +27,7 @@
     "express": "",
     "gzippo": "",
     "node-hipchat": "",
-    "protagonist": "0.5.7",
+    "protagonist": "0.6.0",
     "winston": "git://github.com/apiaryio/winston.git#production"
   },
   "devDependencies": {
