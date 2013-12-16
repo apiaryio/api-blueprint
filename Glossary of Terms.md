@@ -1,8 +1,6 @@
 # API Blueprint Glossary of Terms
 
-A brief list of terms as used in the [API Blueprint](http://apiblueprint.org) context. 
-
-Refer to W3C [Glossary of Terms for Device Independence](http://www.w3.org/TR/di-gloss/) for additional terms. 
+A brief list of terms as used in the [API Blueprint](http://apiblueprint.org) context.
 
 ## Glossary
 
@@ -28,6 +26,10 @@ The **API Blueprint language**. A format used to describe API in an API blueprin
 ### Blueprint
 An **API description**. A **blueprint file** (or a set of files) that describes an API using the API Blueprint language.
 
+<a name="def-entity"></a>
+### Entity
+[Entity](http://www.w3.org/Protocols/rfc2616/rfc2616-sec7.html) being transferred in a [**payload**](#def-payload).
+
 <a name="def-header"></a>
 ### Header
 A [**message-header**](#def-message-header).
@@ -47,7 +49,6 @@ An [**asset**](#def-asset) representing [**HTTP transaction message body**](http
 <a name="def-message-header"></a>
 ### Message header
 An [**asset**](#def-asset) representing [**HTTP transaction message header**](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields). 
-
 <a name="def-parameter"></a>
 ### Parameter
 An [**URI template**](#def-uri-template) **variable**. Also a **message-body key** (field/object) where applicable. 
@@ -85,3 +86,9 @@ A **validation schema** in a form of an [**asset**](#def-asset) used to validate
 <a name="def-uri-template"></a>
 ### URI template
 A compact sequence of characters for describing a range of **Uniform Resource Identifiers** through **variable** expansion, see [**RFC 6570**](http://tools.ietf.org/html/rfc6570).
+
+## Additional resources
+
++ [HTTP/1.1 Terminology](http://www.w3.org/Protocols/rfc2616/rfc2616-sec1.html#sec1.3)
++ [W3C Glossary of Terms for Device Independence](http://www.w3.org/TR/di-gloss)
++ [Know your HTTP well](https://github.com/for-GET/know-your-http-well)
