@@ -330,7 +330,7 @@ This section consist of nested list items with additional formatting. **Full syn
 
 		[<additional description>]
 		
-		[+ Values:
+		[+ Values
 			+ `<enumeration element 1>` 
 			+ `<enumeration element 2>`
 			...
