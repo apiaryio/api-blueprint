@@ -28,7 +28,7 @@ An **API description**. A **blueprint file** (or a set of files) that describes 
 
 <a name="def-entity"></a>
 ### Entity
-[Entity](http://www.w3.org/Protocols/rfc2616/rfc2616-sec7.html) being transferred in a [**payload**](#def-payload).
+[**Entity**](http://www.w3.org/Protocols/rfc2616/rfc2616-sec7.html) being transferred in a [payload](#def-payload).
 
 <a name="def-header"></a>
 ### Header
@@ -51,13 +51,17 @@ An [**asset**](#def-asset) representing [**HTTP transaction message body**](http
 An [**asset**](#def-asset) representing [**HTTP transaction message header**](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields). 
 <a name="def-parameter"></a>
 ### Parameter
-An [**URI template**](#def-uri-template) **variable**. Also a **message-body key** (field/object) where applicable. 
+An [**URI template**](#def-uri-template) **variable**. 
 
 <a name="def-payload"></a>
 ### Payload
 A **HTTP transaction message** as well as its **discussion**,  **parameters description** and any **additional** related [**assets**](#def-asset) such as a validation schema.
 
 A payload may have its **identifier** – a string for a [request](#def-request) payload or an [HTTP status code](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for a [response](#def-response) payload.
+
+<a name="def-property"></a>
+### Property
+An [entinty](#def-entity) field (attribute).
 
 <a name="def-request"></a>
 ### Request
@@ -71,13 +75,17 @@ A [**payload**](#def-payload) containing one specific [HTTP Response](http://www
 ### Resource
 An API [**resource**](http://www.w3.org/TR/di-gloss/#def-resource) specified by its *URI*. It can also refer to a [**set of resources**](#def-resource) matching one [**URI template**](#def-uri-template).
 
-<a name="def-resource-object"></a>
-### Resource Object
-One [**manifestation of a resource**](http://www.w3.org/TR/di-gloss/#def-resource-manifestation) in the form of a [**payload**](#def-payload).
+<a name="def-resource-model"></a>
+### Resource Model
+One [**manifestation of a resource**](http://www.w3.org/TR/di-gloss/#def-resource-manifestation) in the form of a [payload](#def-payload). A resource model is an example representation of its resource. Can be referenced later in the place of a [payload](#def-payload).
 
 <a name="def-resource-set"></a>
 ### Resource Set
 A set of API [**resources**](http://www.w3.org/TR/di-gloss/#def-resource) its *URI* matches one specific  [**URI template**](#def-uri-template).
+
+<a name="def-trait"></a>
+### Trait
+A quality or characteristic of an API Blueprint SECTION.
 
 <a name="def-schema"></a>
 ### Schema

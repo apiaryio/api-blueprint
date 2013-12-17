@@ -5,7 +5,7 @@ Version: 1A3
 ---
 
 # API Blueprint Language Specification
-### Format 1A revision 3
+### Format 1B
 
 ## Contents
 1. [Introduction](#Introduction)
