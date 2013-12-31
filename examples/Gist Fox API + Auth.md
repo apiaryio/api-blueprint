@@ -266,7 +266,7 @@ Where *token* represents an OAuth token and *scopes* is an array of scopes grant
     [Authorization][]
 
 ### Remove an Authorization [DELETE]
-+ Request (application/json)
++ Request
     + Headers
 
             Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
