@@ -288,6 +288,9 @@ initEditors = ->
     editors['output_ast'].setAttribute('data-text', text)
     highlighter.render text, modeJSON, theme, 1, false, (highlighted) ->
       editors['output_ast'].innerHTML = highlighted.html
+      [].slice.call(editors['output_ast'].querySelectorAll('span.ace_gutter-cell'), 0).forEach (gutterCell) ->
+        gutterCell.setAttribute('data-line', gutterCell.firstChild.data)
+        gutterCell.firstChild.data = ''
       return
 
   hashed = false

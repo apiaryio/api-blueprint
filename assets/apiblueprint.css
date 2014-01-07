@@ -300,8 +300,10 @@ a:hover{color:#fff;border-bottom:1px solid #fff;text-decoration:none}
 .examples__json .ace_line{position:relative;clear:both}
 .examples__json .ace_gutter{pointer-events:none;text-align:right;display:block;float:left;padding:0 3px 0 0;margin-right:3px;position:static}
 .examples__json .ace_folding-enabled .ace_gutter-cell{padding-right:13px;-moz-user-select:-moz-none;-khtml-user-select:none;-webkit-user-select:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;min-width:40px}
+.examples__json .ace_gutter-cell:before{content:attr(data-line);pointer-events:none}
 .examples__json{height:auto;background-color:#272333}
-#output_ast{background-color:#272333;position:relative;overflow:auto;height:auto}
+#output_ast{background-color:#272333;position:relative;overflow:auto;height:auto;}
+#output_ast.ace_editor{-ms-user-select:text;-moz-user-select:text;-webkit-user-select:text;-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
 .link,.link:hover,.examples__switch,.examples__switch:hover,.examples__links a,.examples__links a:hover,.binding__link,.binding__link:hover,.tooling__link,.tooling__link:hover,.tooling__title a,.tooling__title a:hover,.fork__link,.fork__link:hover,.button__link,.button__link:hover,.noB,.noB:hover{border-bottom:0 none}
 @-moz-keyframes scaler{0%{-webkit-transform:translateX(164px) translateZ(0);-moz-transform:translateX(164px) translateZ(0);-o-transform:translateX(164px) translateZ(0);-ms-transform:translateX(164px) translateZ(0);transform:translateX(164px) translateZ(0)}
 100%{-webkit-transform:translateX(0) translateZ(0);-moz-transform:translateX(0) translateZ(0);-o-transform:translateX(0) translateZ(0);-ms-transform:translateX(0) translateZ(0);transform:translateX(0) translateZ(0)}

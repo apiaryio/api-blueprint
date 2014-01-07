@@ -1587,6 +1587,9 @@ a
       user-select none
       box-sizing border-box
       min-width 40px
+  .ace_gutter-cell:before
+    content attr(data-line)
+    pointer-events none
 
 .examples__json
   height auto
@@ -1596,6 +1599,12 @@ a
   position relative
   overflow auto
   height auto
+
+  &.ace_editor
+    -ms-user-select text
+    -moz-user-select text
+    -webkit-user-select text
+    user-select text
 
 .link
 .link:hover

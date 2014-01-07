@@ -346,6 +346,10 @@ initEditors = function() {
     editors['output_ast'].setAttribute('data-text', text);
     return highlighter.render(text, modeJSON, theme, 1, false, function(highlighted) {
       editors['output_ast'].innerHTML = highlighted.html;
+      [].slice.call(editors['output_ast'].querySelectorAll('span.ace_gutter-cell'), 0).forEach(function(gutterCell) {
+        gutterCell.setAttribute('data-line', gutterCell.firstChild.data);
+        return gutterCell.firstChild.data = '';
+      });
     });
   };
   hashed = false;
