@@ -72,3 +72,5 @@ Alternatively, mention [@apiblueprint](https://twitter.com/apiblueprint). if you
 
 ## License
 MIT License. See the [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
+
+[![Analytics](https://ga-beacon.appspot.com/UA-18252923-4/api-blueprint/readme?pixel)](https://github.com/apiaryio/api-blueprint)
