@@ -542,9 +542,6 @@ Example (request payload section):
 			
 				X-My-Payload-Size: 42
 
-		+ Parameters
-			+ message ... A message.
-
 		+ Body
 			
 				{ ... }
@@ -603,9 +600,6 @@ Example:
 		+ Headers
 	
 				X-My-Payload-Size: 42
-
-		+ Parameters
-			+ message (string) ... A message from **ACME Blog** API.
 
 		+ Body
 	
