@@ -1,4 +1,4 @@
-FORMAT: X-1A
+FORMAT: 1A
 HOST: https://alpha-api.app.net
 
 # Real World API
