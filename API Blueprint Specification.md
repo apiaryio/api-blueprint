@@ -35,8 +35,7 @@ Author: z@apiary.io
 	1. [Payload Headers Section](#PayloadHeadersSection)
 	2. [Payload Body Section](#PayloadBodySection)
 	3. [Payload Schema Section](#PayloadSchemaSection)
-6. [Assets](#DocumentAssets)
-	1. [Inline Asset](#InlineDocumentAsset)
+
 
 ---
 
@@ -492,8 +491,8 @@ Example:
 	-- or --
 
 	+ Request Create Blog Post (application/json)
-	    
-	    	{ "message" : "Hello World." }
+		
+			{ "message" : "Hello World." }
 
 <a name="ActionResponseSection"></a>
 #### 4.3.1.4.4. Action Response Section
@@ -567,7 +566,7 @@ This section is **recognized** by the `Headers` reserved **keyword** written in 
 
 	+ Headers
 
-The subsection is formatted as a Markdown's [Pre-formatted code blocks](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
+The subsection is formatted as a Markdown's [pre-formatted code blocks](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
 
 	<HTTP header name>: <value>
 
@@ -580,9 +579,9 @@ Example:
 	+ Request (application/json)
 		+ Headers
 	
-	    		Accept-Charset: utf-8
-		    	Connection: keep-alive
-		    	Content-Type: multipart/form-data, boundary=AaB03x
+				Accept-Charset: utf-8
+				Connection: keep-alive
+				Content-Type: multipart/form-data, boundary=AaB03x
 
 <a name="PayloadBodySection"></a>
 ### 5.2. Payload Body Section
@@ -590,7 +589,7 @@ Example:
 
 This subsection is **recognized** by the `Body` reserved **keyword** written as a Markdown list item.
 
-This subsection is an API Blueprint Document [Asset](#DocumentAssets).
+The content of this subsection is an *asset* – an atomic data written in the form of a Markdown [pre-formatted code block](http://daringfireball.net/projects/markdown/syntax#precode).
 
 This subsection **does not include** any **other subsections**.
 
@@ -611,45 +610,6 @@ Example:
 
 This subsection is **recognized** by the `Schema` reserved **keyword** written as a Markdown list item.
 
-This subsection is an API Blueprint Document [Asset](#DocumentAssets).
+The content of this subsection is an *asset* – an atomic data written in the form of a Markdown [pre-formatted code block](http://daringfireball.net/projects/markdown/syntax#precode).
 
 This subsection **does not include** any **other sections**.
-
-<a name="DocumentAssets"></a>
-## 6. Assets
-An API Blueprint Document Asset is simply a resource (not to be confused with API Resource) – an atomic data used in [payloads](#Payload).
-
-<a name="InlineDocumentAsset"></a>
-### 6.1. Inline Asset
-In its simplest form an asset is essentially a Markdown [Pre-formatted code block](http://daringfireball.net/projects/markdown/syntax#precode). The sole content of this block is considered to represent the Asset's data.
-
-Example:
-
-	# Asset Name
-		
-		{ "message" : "Hello World." }
-		
-	-- or --
-	
-	+ Asset Name
-
-			{ "message" : "Hello World." }
-
-
-Using GitHub Flavored Markdown [Fenced Code blocks](https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks):
-
-
-	# Asset Name
-	
-	```	
-	{ "message" : "Hello World." }
-	```
-		
-	-- or --
-	
-	+ Asset Name
-
-		```
-		{ "message" : "Hello World." }
-		```
-
