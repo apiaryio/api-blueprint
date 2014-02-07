@@ -1,42 +1,40 @@
+---
 Author: z@apiary.io
+Version: 1A2
+
+---
 
 # API Blueprint Language Specification
-
----
-
-### Format 1A
-
----
+### Format 1A revison 2
 
 ## Contents
 1. [Introduction](#Introduction)
 2. [API Blueprint Language](#Language)
 3. [API Blueprint Document](#Document)
-	1. [Sections](#Sections)
-	2. [Reserved Section Names](#ReservedSectionNames)
-	3. [Nested sections](#NestedSections)
-	4. [Other Markdown headers](#OtherMarkdownHeaders)
-	5. [Sections without keyword](#SpecialSections)
-	6. [Identifiers](#Identifiers)
+    1. [Sections](#Sections)
+    2. [Reserved Section Names](#ReservedSectionNames)
+    3. [Nested sections](#NestedSections)
+    4. [Other Markdown headers](#OtherMarkdownHeaders)
+    5. [Sections without keyword](#SpecialSections)
+    6. [Identifiers](#Identifiers)
 4. [API Blueprint Document Structure](#DocumentStructure)
-	1. [Metadata Section](#MetadataSection)
-	2. [API Name & Overview Section](#APINameOverviewSection)
-	3. [Resource Group Section](#ResourceGroups)	
-		1. [Resource Section](#ResourceSection)
-			1. [Resource Parameters Section](#ResourceParametersSection)
-			2. [Resource Headers Section](#ResourceHeadersSection)
-			3. [Resource Model Section](#ResourceModelSection)
-			4. [Resource Action Section](#ResourceActionSection)
-				1. [Action Parameters Section](#ActionParametersSection)
-				2. [Action Headers Section](#ActionHeadersSection)
-				3. [Action Request Section](#ActionRequestSection)
-				4. [Action Response Section](#ActionResponseSection)
+    1. [Metadata Section](#MetadataSection)
+    2. [API Name & Overview Section](#APINameOverviewSection)
+    3. [Resource Group Section](#ResourceGroups)    
+        1. [Resource Section](#ResourceSection)
+            1. [Resource Parameters Section](#ResourceParametersSection)
+            2. [Resource Headers Section](#ResourceHeadersSection)
+            3. [Resource Model Section](#ResourceModelSection)
+            4. [Resource Action Section](#ResourceActionSection)
+                1. [Action Parameters Section](#ActionParametersSection)
+                2. [Action Headers Section](#ActionHeadersSection)
+                3. [Action Request Section](#ActionRequestSection)
+                4. [Action Response Section](#ActionResponseSection)
 5. [Payload Structure](#Payload)
-	1. [Payload Headers Section](#PayloadHeadersSection)
-	2. [Payload Body Section](#PayloadBodySection)
-	3. [Payload Schema Section](#PayloadSchemaSection)
-6. [Assets](#DocumentAssets)
-	1. [Inline Asset](#InlineDocumentAsset)
+    1. [Payload Headers Section](#PayloadHeadersSection)
+    2. [Payload Body Section](#PayloadBodySection)
+    3. [Payload Schema Section](#PayloadSchemaSection)
+
 
 ---
 
@@ -77,20 +75,20 @@ Each section or subsection has a strictly defined name, meaning and expected con
 Reserved keywords are:
 
 - Markdown Headers:
-	- HTTP methods: `GET, POST, PUT, DELETE, OPTIONS, PATCH, PROPPATCH, LOCK, UNLOCK, COPY, MOVE, MKCOL, HEAD`
-	- URI templates (e.g. `/resource/{id}`)
-	- Combinations of HTTP method and URI Template (e.g. `GET /resource/{id}`)
-	- `Group`
+    - HTTP methods: `GET, POST, PUT, DELETE, OPTIONS, PATCH, PROPPATCH, LOCK, UNLOCK, COPY, MOVE, MKCOL, HEAD`
+    - URI templates (e.g. `/resource/{id}`)
+    - Combinations of HTTP method and URI Template (e.g. `GET /resource/{id}`)
+    - `Group`
 
 - Markdown List items: 
-	- `Request`
-	- `Response`
-	- `Body`
-	- `Schema`
-	- `Model`
-	- `Header` & `Headers`
-	- `Parameter` & `Parameters`
-	- `Values`
+    - `Request`
+    - `Response`
+    - `Body`
+    - `Schema`
+    - `Model`
+    - `Header` & `Headers`
+    - `Parameter` & `Parameters`
+    - `Values`
 
 **NOTE:** With the exception of HTTP methods keywords the section keywords are **case insensitive**.
 
@@ -102,22 +100,22 @@ Some sections might be nested under another section. To nest a section simply **
 
 Example:
 
-	# Section A
-	... Section A content ...
+    # Section A
+    ... Section A content ...
 
-	## Nested Section of Section A
-	... Nested Section content ...
+    ## Nested Section of Section A
+    ... Nested Section content ...
 
-	# Section B
-	... Section B content...
-	
+    # Section B
+    ... Section B content...
+    
 Nested List Item Sections:
-	
-	+ Section C
-	  ... Section C content...
+    
+    + Section C
+      ... Section C content...
 
-		+ Section D
-		  ... Section D content...
+        + Section D
+          ... Section D content...
 
 Which sections can be nested depends upon the section in case, as described in the relevant [API Blueprint Document Structure](#DocumentStructure) section's entry.
 
@@ -131,15 +129,21 @@ There are **two additional** sections of an API Blueprint Document that are not 
 
 <a name="Identifiers"></a>
 ### 3.6. Identifiers 
-Several sections names might include an identifier. An identifier is any **non-empty combination** of a **alphanumerical character**, **underscore**, **dash**  and a **space** unless stated otherwise. **No other characters** (e.g. punctation or other whitespace characters) **are allowed**. An identifier **should not** include any [reserved keyword](#ReservedSectionNames).
+Some section definitions might include an **identifier** of the section. Unless stated otherwise **an identifier is any non-empty combination of any character except `[`, `]`, `(`, `)` and newline characters**.
+
+An identifier **should not** include any [reserved keyword](#ReservedSectionNames).
 
 Example:
 
-	My Awesome Message
+    My Awesome Message
 
-	-- or --
+    -- or --
 
-	my-awesome-message_2
+    my-awesome-message_2
+
+    -- or --
+
+    Joe's message @!@#%    
 
 <a name="DocumentStructure"></a>
 ## 4. API Blueprint Document Structure
@@ -147,72 +151,72 @@ Description of the structure of API Blueprint Document. Every section is, by def
 
 Full API Blueprint Document layout:
 
-	+ Metadata
-	|
-	+ API Name & Overview Section
-	| 
-	+ Resource Group Section
-	|	|
-	|	+ Resource Section 
-	|	|	|
-	|	|	+ Parameters Section 
-	|	|	|
-	|	|	+ Headers Sections
-	|	|	|
-	|	|	+ Resource Model Section
-	|	|	|	|
-	|	|	|	...
-	|	|	|
-	|	|	+ Action Section
-	|	|	|	|
-	|	|	|	+ Parameters Section 
-	|	|	|	|
-	|	|	|	+ Headers Sections				
-	|	|	|	|
-	|	|	|	+ Request Section
-	|	|	|	|	|
-	|	|	|	|	+ Headers Section
-	|	|	|	|	|
-	|	|	|	|	+ Body Section
-	|	|	|	|	|
-	|	|	|	|	+ Schema Section
-	|	|	|	|
-	|	|	|	+ Response Section
-	|	|	|		|
-	|	|	|		+ Headers Section
-	|	|	|		|
-	|	|	|		+ Body Section
-	|	|	|		|
-	|	|	|		+ Schema Section					
-	|	|	|
-	|	|	+ Action Section
-	|	|	|	|
-	|	|	|	...
-	|	|	...
-	|	|
-	|	+ Resource Section 
-	|	|	|
-	|	|	... 
-	|	...
-	|
-	+ Resource Group Section
-	|	|
-	|	...
-	...
+    + Metadata
+    |
+    + API Name & Overview Section
+    | 
+    + Resource Group Section
+    |   |
+    |   + Resource Section 
+    |   |   |
+    |   |   + Parameters Section 
+    |   |   |
+    |   |   + Headers Sections
+    |   |   |
+    |   |   + Resource Model Section
+    |   |   |   |
+    |   |   |   ...
+    |   |   |
+    |   |   + Action Section
+    |   |   |   |
+    |   |   |   + Parameters Section 
+    |   |   |   |
+    |   |   |   + Headers Sections              
+    |   |   |   |
+    |   |   |   + Request Section
+    |   |   |   |   |
+    |   |   |   |   + Headers Section
+    |   |   |   |   |
+    |   |   |   |   + Body Section
+    |   |   |   |   |
+    |   |   |   |   + Schema Section
+    |   |   |   |
+    |   |   |   + Response Section
+    |   |   |       |
+    |   |   |       + Headers Section
+    |   |   |       |
+    |   |   |       + Body Section
+    |   |   |       |
+    |   |   |       + Schema Section                    
+    |   |   |
+    |   |   + Action Section
+    |   |   |   |
+    |   |   |   ...
+    |   |   ...
+    |   |
+    |   + Resource Section 
+    |   |   |
+    |   |   ... 
+    |   ...
+    |
+    + Resource Group Section
+    |   |
+    |   ...
+    ...
 
 
 Layout of a resource section without a parent group:
 
-	+ Metadata
-	|
-	+ API Name & Overview Section
-	|
-	...
-	| 
-	+ Resource Section 
-	|	|
-	|	...	
-	...
+    + Metadata
+    |
+    + API Name & Overview Section
+    |
+    ...
+    | 
+    + Resource Section 
+    |   |
+    |   ... 
+    ...
 
 
 <a name="MetadataSection"></a>
@@ -227,8 +231,8 @@ Metadata keys and its values are tool-specific. Please refer to relevant tool do
 
 Example:
 
-	HOST: http://blog.acme.com
-	FORMAT: 1A
+    HOST: http://blog.acme.com
+    FORMAT: 1A
 
 <a name="APINameOverviewSection"></a>
 ### 4.2. API Name & Overview Section
@@ -242,12 +246,12 @@ This section **does not include** any **other sections**.
 
 Example:
 
-	# My API Name
+    # My API Name
 
-	-- or --
+    -- or --
 
-	# Basic ACME Blog API
-	Welcome to the **ACME Blog** API. This API provides access to the **ACME Blog** service.
+    # Basic ACME Blog API
+    Welcome to the **ACME Blog** API. This API provides access to the **ACME Blog** service.
 
 <a name="ResourceGroups"></a>
 ### 4.3. Resource Group Section
@@ -255,7 +259,7 @@ Example:
 
 This section is **recognized** by the `Group` **keyword** followed by a name of group in the form of a [identifier](#Identifiers). The syntax is as follows:
 
-	# Group <identifier>
+    # Group <identifier>
 
 A Group section may contain **further Markdown-formatted content**. If a content is provided it is considered to represent the group description.
 
@@ -263,21 +267,21 @@ A Group **should include** at least one [Resource Section](#ResourceSection).
 
 Example:
 
-	# Group Blog Posts
-	Resources in this groups are related to **ACME Blog** posts.
+    # Group Blog Posts
+    Resources in this groups are related to **ACME Blog** posts.
 
-	## GET /posts{/id}
-		...
+    ## GET /posts{/id}
+        ...
 
-	## PUT /posts
-		...
+    ## PUT /posts
+        ...
 
-	# Group Authors
-	## GET /authors
-		...
+    # Group Authors
+    ## GET /authors
+        ...
 
-	# Comments
-		...
+    # Comments
+        ...
 
 <a name="ResourceSection"></a>
 ### 4.3.1 Resource Section
@@ -304,19 +308,19 @@ In addition to any mandatory nested sections this section **may include** the fo
 
 Example:
 
-	# PUT /posts
+    # PUT /posts
 
-	-- or --
+    -- or --
 
-	# GET /posts{/id}
+    # GET /posts{/id}
 
-	-- or --
+    -- or --
 
-	# /posts
-	
-	-- or --
-	
-	# My Resource [/resource]
+    # /posts
+    
+    -- or --
+    
+    # My Resource [/resource]
 
 <a name="ResourceParametersSection"></a>
 #### 4.3.1.1. Resource Parameters Section
@@ -326,15 +330,15 @@ This section is **recognized** by the `Parameters` reserved **keyword** written 
 
 This section consist of nested list items with additional formatting. **Full syntax of one parameter description is:
 
-	+ <parameter name> [= `<default value>`] [([required | optional ], [<type>], [`<example value>`])] [... <description>]
+    + <parameter name> [= `<default value>`] [([required | optional ], [<type>], [`<example value>`])] [... <description>]
 
-		[<additional description>]
-		
-		[+ Values
-			+ `<enumeration element 1>` 
-			+ `<enumeration element 2>`
-			...
-			+ `<enumeration element N>`]	
+        [<additional description>]
+        
+        [+ Values
+            + `<enumeration element 1>` 
+            + `<enumeration element 2>`
+            ...
+            + `<enumeration element N>`]    
 
 Note the abbreviated syntax can be freely mixed with the full syntax.
 
@@ -355,33 +359,33 @@ This section does not have to list every URI parameter. It **should not**, howev
 
 Example:
 
-	# GET /posts{/id}
-	+ Parameters
+    # GET /posts{/id}
+    + Parameters
 
-		+ id ... Id of a post.
+        + id ... Id of a post.
 
-	-- or --
+    -- or --
 
-		+ id (number) ... Id of a post.
+        + id (number) ... Id of a post.
 
-	-- or --
+    -- or --
 
-		+ id (required, number, `1001`) ... Id of a post.
+        + id (required, number, `1001`) ... Id of a post.
 
-	-- or --
+    -- or --
 
-		+ id = `20` (optional, number, `1001`) ... Id of a post.
+        + id = `20` (optional, number, `1001`) ... Id of a post.
 
-	-- or --
+    -- or --
 
-		+ id (string)
+        + id (string)
 
-			Id of a Post
+            Id of a Post
 
-			+ Values
-				+ `A`
-				+ `B`
-				+ `C`
+            + Values
+                + `A`
+                + `B`
+                + `C`
 
 
 <a name="ResourceHeadersSection"></a>
@@ -398,7 +402,7 @@ This section is **recognized** by the `Model` **keyword** followed an optional m
 
 The Full list section syntax is as follows:
 
-	+ Model [(<media type>)]
+    + Model [(<media type>)]
 
 The Model defined in this section can be **referred later by it's resource identifier** from any other [Request](#ActionRequestSection) or [Response](#ActionResponseSection) payload sections, including those of the following [Resource sections](#ResourceSection).
 
@@ -408,15 +412,15 @@ Refer to the [Payloads](#Payload) discussion for a detailed description of this 
 
 Example:
 
-	# My Resource [/resource]
-	+ Model (text/plain)
-		
-			Hello World
-			
-	## Retrieve My Resource [GET]
-	+ Response 200
-		
-		[My Resource][]
+    # My Resource [/resource]
+    + Model (text/plain)
+        
+            Hello World
+            
+    ## Retrieve My Resource [GET]
+    + Response 200
+        
+        [My Resource][]
 
 <a name="ResourceActionSection"></a>
 #### 4.3.1.4 Resource Action Section
@@ -441,19 +445,19 @@ One [Resource Section](#ResourceSection) can contain **one or more different** A
 
 Example:
 
-	# /posts{/id}
-	+ Parameters
-	...
+    # /posts{/id}
+    + Parameters
+    ...
 
-	## GET
-	Retrieves a **ACME Blog** posts.
-	...
+    ## GET
+    Retrieves a **ACME Blog** posts.
+    ...
 
-	## PUT
-	...
-	
-	### Delete post [DELETE]
-	...
+    ## PUT
+    ...
+    
+    ### Delete post [DELETE]
+    ...
 
 <a name="ActionParametersSection"></a>
 #### 4.3.1.4.1. Action Parameters Section
@@ -475,7 +479,7 @@ This section is **recognized** by the `Request` reserved **keyword** written in 
 
 The Full Request Subsection list syntax is as follows:
 
-	+ Request [<identifier>] [(<Media Type>)]
+    + Request [<identifier>] [(<Media Type>)]
 
 This subsection **must** be nested under an [Action Section](#ResourceActionSection).
 
@@ -485,15 +489,15 @@ One [Resource Section](#ResourceSection) or [Action Section](#ResourceActionSect
 
 Example:
 
-	+ Request (text/plain)
-		
-			Hello World
+    + Request (text/plain)
+        
+            Hello World
 
-	-- or --
+    -- or --
 
-	+ Request Create Blog Post (application/json)
-	    
-	    	{ "message" : "Hello World." }
+    + Request Create Blog Post (application/json)
+        
+            { "message" : "Hello World." }
 
 <a name="ActionResponseSection"></a>
 #### 4.3.1.4.4. Action Response Section
@@ -503,7 +507,7 @@ This subsection is **recognized** by the `Response` reserved **keyword** written
 
 The Full Response Subsection list syntax is as follows:
 
-	+ Response <Status Code> [(<Media Type>)]
+    + Response <Status Code> [(<Media Type>)]
 
 This subsection **must** be nested under an [Action Section](#ResourceActionSection).
 
@@ -513,9 +517,9 @@ One [Action Section](#ResourceActionSection) can contain **one or more different
 
 Example:
 
-	+ Response 201 (application/json)
-		
-				{ "message" : "created" }
+    + Response 201 (application/json)
+        
+                { "message" : "created" }
 
 
 <a name="Payload"></a>
@@ -534,30 +538,30 @@ The Payload might include following **optional** subsections:
 
 Example (request payload section):
 
-	+ Request (application/json)
+    + Request (application/json)
 
-		Any Markdown formatted *discussion* might be here.
+        Any Markdown formatted *discussion* might be here.
 
-		+ Headers
-			
-				X-My-Payload-Size: 42
+        + Headers
+            
+                X-My-Payload-Size: 42
 
-		+ Body
-			
-				{ ... }
+        + Body
+            
+                { ... }
 
-		+ Schema
-		
-				{ ... }
-			
-			
+        + Schema
+        
+                { ... }
+            
+            
 **If no subsection is specified the content of the payload section is considered to represent the [Body Subsection](#PayloadBodySection).**
-			
+            
 Example:
 
-	+ Request (application/json)
-			
-			{ ... }
+    + Request (application/json)
+            
+            { ... }
 
 <a name="PayloadHeadersSection"></a>
 ### 5.1. Payload Headers Section
@@ -565,11 +569,11 @@ Example:
 
 This section is **recognized** by the `Headers` reserved **keyword** written in a Markdown list as follows:
 
-	+ Headers
+    + Headers
 
-The subsection is formatted as a Markdown's [Pre-formatted code blocks](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
+The subsection is formatted as a Markdown's [pre-formatted code blocks](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
 
-	<HTTP header name>: <value>
+    <HTTP header name>: <value>
 
 One HTTP header per line.
 
@@ -577,12 +581,12 @@ This subsection **does not include** any **other sections**.
 
 Example:
 
-	+ Request (application/json)
-		+ Headers
-	
-	    		Accept-Charset: utf-8
-		    	Connection: keep-alive
-		    	Content-Type: multipart/form-data, boundary=AaB03x
+    + Request (application/json)
+        + Headers
+    
+                Accept-Charset: utf-8
+                Connection: keep-alive
+                Content-Type: multipart/form-data, boundary=AaB03x
 
 <a name="PayloadBodySection"></a>
 ### 5.2. Payload Body Section
@@ -590,20 +594,20 @@ Example:
 
 This subsection is **recognized** by the `Body` reserved **keyword** written as a Markdown list item.
 
-This subsection is an API Blueprint Document [Asset](#DocumentAssets).
+The content of this subsection is an *asset* – an atomic data written in the form of a Markdown [pre-formatted code block](http://daringfireball.net/projects/markdown/syntax#precode).
 
 This subsection **does not include** any **other subsections**.
 
 Example:
 
-	+ Request (application/json)
-		+ Headers
-	
-				X-My-Payload-Size: 42
+    + Request (application/json)
+        + Headers
+    
+                X-My-Payload-Size: 42
 
-		+ Body
-	
-				{ "message" : "Hello World." }
+        + Body
+    
+                { "message" : "Hello World." }
 
 <a name="PayloadSchemaSection"></a>
 ### 5.3. Payload Schema Section
@@ -611,45 +615,6 @@ Example:
 
 This subsection is **recognized** by the `Schema` reserved **keyword** written as a Markdown list item.
 
-This subsection is an API Blueprint Document [Asset](#DocumentAssets).
+The content of this subsection is an *asset* – an atomic data written in the form of a Markdown [pre-formatted code block](http://daringfireball.net/projects/markdown/syntax#precode).
 
 This subsection **does not include** any **other sections**.
-
-<a name="DocumentAssets"></a>
-## 6. Assets
-An API Blueprint Document Asset is simply a resource (not to be confused with API Resource) – an atomic data used in [payloads](#Payload).
-
-<a name="InlineDocumentAsset"></a>
-### 6.1. Inline Asset
-In its simplest form an asset is essentially a Markdown [Pre-formatted code block](http://daringfireball.net/projects/markdown/syntax#precode). The sole content of this block is considered to represent the Asset's data.
-
-Example:
-
-	# Asset Name
-		
-		{ "message" : "Hello World." }
-		
-	-- or --
-	
-	+ Asset Name
-
-			{ "message" : "Hello World." }
-
-
-Using GitHub Flavored Markdown [Fenced Code blocks](https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks):
-
-
-	# Asset Name
-	
-	```	
-	{ "message" : "Hello World." }
-	```
-		
-	-- or --
-	
-	+ Asset Name
-
-		```
-		{ "message" : "Hello World." }
-		```
-

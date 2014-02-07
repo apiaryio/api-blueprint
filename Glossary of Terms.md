@@ -56,7 +56,7 @@ An [**URI template**](#def-uri-template) **variable**. Also a **message-body key
 ### Payload
 A **HTTP transaction message** as well as its **discussion**,  **parameters description** and any **additional** related [**assets**](#def-asset) such as a validation schema.
 
-A payload may have its **identifier** – an alphanumerical string for a [request](#def-request) payload or an [HTTP status code](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for a [response](#def-response) payload.
+A payload may have its **identifier** – a string for a [request](#def-request) payload or an [HTTP status code](http://en.wikipedia.org/wiki/List_of_HTTP_status_codes) for a [response](#def-response) payload.
 
 <a name="def-request"></a>
 ### Request
