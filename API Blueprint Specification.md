@@ -130,7 +130,7 @@ There are **two additional** sections of an API Blueprint Document that are not 
 
 <a name="Identifiers"></a>
 ### 3.6. Identifiers 
-Some section definitions might include an **identifier** of the section. Unless stated otherwise **an identifier is any non-empty combination of any characters except `[`, `]`, `(` and `)`**.
+Some section definitions might include an **identifier** of the section. Unless stated otherwise **an identifier is any non-empty combination of any character except `[`, `]`, `(`, `)` and newline characters**.
 
 An identifier **should not** include any [reserved keyword](#ReservedSectionNames).
 
