@@ -1,12 +1,11 @@
+---
 Author: z@apiary.io
+Version: 1A2
+
+---
 
 # API Blueprint Language Specification
-
----
-
-### Format 1A
-
----
+### Format 1A revison 2
 
 ## Contents
 1. [Introduction](#Introduction)
