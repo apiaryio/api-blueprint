@@ -1,11 +1,11 @@
 ---
 Author: z@apiary.io
-Version: 1A2
+Version: 1A3
 
 ---
 
 # API Blueprint Language Specification
-### Format 1A revison 2
+### Format 1A revision 3
 
 ## Contents
 1. [Introduction](#Introduction)
@@ -23,11 +23,11 @@ Version: 1A2
     3. [Resource Group Section](#ResourceGroups)    
         1. [Resource Section](#ResourceSection)
             1. [Resource Parameters Section](#ResourceParametersSection)
-            2. [Resource Headers Section](#ResourceHeadersSection)
+            2. [Resource Headers Section](#ResourceHeadersSection) (deprecated)
             3. [Resource Model Section](#ResourceModelSection)
             4. [Resource Action Section](#ResourceActionSection)
                 1. [Action Parameters Section](#ActionParametersSection)
-                2. [Action Headers Section](#ActionHeadersSection)
+                2. [Action Headers Section](#ActionHeadersSection) (deprecated)
                 3. [Action Request Section](#ActionRequestSection)
                 4. [Action Response Section](#ActionResponseSection)
 5. [Payload Structure](#Payload)
@@ -302,7 +302,7 @@ If no **HTTP Request Method** is specified, this section **should include** at l
 In addition to any mandatory nested sections this section **may include** the following additional subsections:
  
 * [Parameters Section](#ResourceParametersSection)
-* [Headers Section](#ResourceHeadersSection)
+* [Headers Section](#ResourceHeadersSection) (deprecated)
 * [Model Section](#ResourceModelSection)
 * [Action Section](#ResourceActionSection),  if **no** HTTP Request Method is specified
 
@@ -390,6 +390,8 @@ Example:
 
 <a name="ResourceHeadersSection"></a>
 #### 4.3.1.2 Resource Headers Section
+**Deprecated:** This section is deprecated as of 1A3 and will be removed in a future revision of API Blueprint. Use respective request / response [headers section](#PayloadHeadersSection) instead.
+
 **Optional**. Specifies the message-headers of every transaction on this resource.
 
 Refer to [Payload Headers Subsection](#PayloadHeadersSection) for this section's syntax definition.
@@ -439,7 +441,7 @@ This section **should include** at least one [Response Subsection](#ActionRespon
 * [Parameters Section](#ResourceParametersSection)
 * [Request Section](#ActionRequestSection)
 * [Response Section](#ActionResponseSection)
-* [Headers Section](#ResourceHeadersSection)
+* [Headers Section](#AactionHeadersSection) (deprecated)
 
 One [Resource Section](#ResourceSection) can contain **one or more different** Action Sections.
 
@@ -467,6 +469,8 @@ Refer to [Resource Parameters Section](#ResourceParametersSection) for this sect
 
 <a name="ActionHeadersSection"></a>
 #### 4.3.1.4.2. Action Headers Section
+**Deprecated:** This section is deprecated as of 1A3 and will be removed in a future revision of API Blueprint. Use respective request / response [headers section](#PayloadHeadersSection) instead.    
+
 **Optional**. Specifies the message-headers of every transaction within this action's context.
 
 Refer to [Payload Headers Subsection](#PayloadHeadersSection) for this section's syntax definition.
