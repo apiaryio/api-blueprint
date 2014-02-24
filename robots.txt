@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: http://apiblueprint.org/sitemap.xml?
