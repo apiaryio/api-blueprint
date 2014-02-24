@@ -3,11 +3,11 @@
 <url>
 <loc>http://apiblueprint.org</loc>
 <priority>0.5</priority>
-<changefreg>weekly</changefreg>
+<changefreq>weekly</changefreq>
 </url>
 <url>
 <loc>http://apiblueprint.org/api/index.html</loc>
 <priority>0.7</priority>
-<changefreg>daily</changefreg>
+<changefreq>daily</changefreq>
 </url>
 </urlset>
