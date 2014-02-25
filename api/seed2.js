@@ -21,17 +21,8 @@
     writeIt(options);
   };
 
-  writeIt = function (where) {
-    if (where && where.element) {
-      if (where.element.indexOf('#') === 0) {
-        document.getElementById(where.element.substring(1)).innerHTML = generatedHtml;
-        document.getElementById(where.element.substring(1)).className += ' apiary';
-      }
-      else {
-        document.querySelector(where.element).innerHTML = generatedHtml;
-        document.querySelector(where.element).className += ' apiary';
-      }
-    }
+  writeIt = function () {
+    document.write(generatedHtml);
   };
 
 })((function(){
