@@ -13,6 +13,7 @@
 
       <h2>#10</h2>
       <h1>&lt;iframe&gt; containing old documentation <em>(V1)</em> inside the &lt;noscript&gt; tag</h1>
+      <p>Width of the &lt;iframe&gt; is 0px, height is set to 0px. All via explicit attributes <em>(e.g. <code>&lt;iframe width="0" height="0"...&gt;</code>)</em>.</p>
 
       <table>
         <tr>
@@ -24,7 +25,12 @@
       <hr>
 
       <!-- Playground -->
-      <div id="playground"></div>
+      <div id="playground">
+        <noscript>
+          <!-- We add the ‘dogfooding’ URI parameter in case the user is logged in. -->
+          <iframe src="http://docs.zooexperiment10.apiary.io/?dogfooding=false" width="0" height="0"></iframe>
+        </noscript>
+      </div>
       <!-- /Playground -->
 
     </div>
