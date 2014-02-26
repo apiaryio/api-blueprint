@@ -30,5 +30,23 @@
 
     </div>
   </div>
+
+  <!--
+    Please note — prerender is enabled by default,
+    we have to disable the feature for the sake of this experiment.
+  -->
+  <script src="https://api.apiary.io/apis/zooexperiment3/embed/seed.js?prerender=0"></script>
+
+  <script>
+    var embed = new Apiary.Embed({
+      subdomain: 'zooexperiment3'
+    });
+
+    embed.resource({
+      element: '#playground',
+      method: 'GET',
+      uri: '/notes'
+    });
+  </script>
 </body>
 </html>
