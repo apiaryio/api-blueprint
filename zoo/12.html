@@ -13,6 +13,7 @@
 
       <h2>#12</h2>
       <h1>&lt;iframe&gt; containing prerendered embedded documentation inside the &lt;noscript&gt; tag</h1>
+      <p>Width of the &lt;iframe&gt; is 0px, height is set to 0px. All via explicit attributes <em>(e.g. <code>&lt;iframe width="0" height="0"...&gt;</code>)</em>.</p>
 
       <table>
         <tr>
@@ -24,7 +25,11 @@
       <hr>
 
       <!-- Playground -->
-      <div id="playground"></div>
+      <div id="playground">
+        <noscript>
+          <iframe src="http://prerender.apiary.io/apis/zooexperiment12/embed" width="0" height="0"></iframe>
+        </noscript>
+      </div>
       <!-- /Playground -->
 
     </div>
