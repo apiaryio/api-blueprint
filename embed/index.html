@@ -4,29 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0">
 
-  <title>API Blueprint - API Documentation with powerful tooling</title>
+  <title>Embed of API-Blueprint documentation.</title>
 
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
 
-  <link rel="stylesheet" href="assets/normalize.min.css">
-  <link rel="stylesheet" href="assets/fonts.css">
-  <link rel="stylesheet" href="assets/apiblueprint.css">
-  <script src="https://api.apiary.io/apis/apiblueprint/embed/seed.js"></script>
+  <link rel="stylesheet" href="/assets/normalize.min.css">
+  <link rel="stylesheet" href="/assets/fonts.css">
+  <link rel="stylesheet" href="/assets/apiblueprint.css">
+
+  <script src="seed2.js"></script>
+
 </head>
 <body>
-  <h1>Future API Blueprint</h1>
-    
+  <h1>Future API Blueprint (new version)</h1>
+
   <div id="content" class="positioning">
       <div class="textPage">
 
-          <div id="embed"></div>
-
-      </div>
-  </div>
-
-
+          <div id="embed">
 
   <script type="text/javascript">
       var embed = new Apiary.Embed({
@@ -37,6 +34,11 @@
           element: '#embed'
       });
   </script>
+
+          </div>
+
+      </div>
+  </div>
 
   <noscript><iframe src="http://docs.apiblueprint.apiary.io/?iframe=true" width="100%" height="800" frameborder="0" align="baseline" scrolling="no" name="documentation"></iframe></noscript>
 
