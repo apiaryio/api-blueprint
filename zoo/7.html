@@ -5,6 +5,22 @@
 
   <title>Experiment #7 • Zoo • API Blueprint</title>
 
+  <!--
+    Please note — prerender is enabled by default,
+    we have to disable the feature for the sake of this experiment.
+  -->
+  <script src="https://api.apiary.io/apis/zooexperiment7/embed/seed.js?prerender=0"></script>
+
+  <script>
+    var embed = new Apiary.Embed({
+      subdomain: 'zooexperiment7'
+    });
+
+    embed.documentation({
+      element: '#playground'
+    });
+  </script>
+
 </head>
 <body>
   <div class="container">
