@@ -441,7 +441,7 @@ This section **should include** at least one [Response Subsection](#ActionRespon
 * [Parameters Section](#ResourceParametersSection)
 * [Request Section](#ActionRequestSection)
 * [Response Section](#ActionResponseSection)
-* [Headers Section](#AactionHeadersSection) (deprecated)
+* [Headers Section](#ActionHeadersSection) (deprecated)
 
 One [Resource Section](#ResourceSection) can contain **one or more different** Action Sections.
 
