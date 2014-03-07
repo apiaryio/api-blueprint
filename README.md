@@ -64,7 +64,7 @@ Fork & pull request.
 ## Have a question?
 Ask at [Stack Overflow](http://stackoverflow.com/questions/tagged/apiblueprint), make sure to use the `apiblueprint` tag. Alternatively, mention [@apiblueprint](https://twitter.com/apiblueprint) on Twitter. 
 
-If you are a contributor check out the [API Blueprint Developers Discussion Group](https://groups.google.com/forum/?fromgroups#!forum/apiblueprint-dev) as well as the [Issues Page](https://github.com/apiaryio/api-blueprint/issues).
+Check out the API Blueprint [Issues Page](https://github.com/apiaryio/api-blueprint/issues) for planned features, API Blueprint and issues discussion.
 
 ## License
 MIT License. See the [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
