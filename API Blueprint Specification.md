@@ -1,5 +1,12 @@
+---
+
+Author: z@apiary.io
+Version: 1A4
+
+---
+
 # API Blueprint
-#### Format 1B
+#### Format 1A revision 4
 
 ## [I. API Blueprint Language](#def-api-blueprint-language)
 1. [Introduction](#def-introduction)
