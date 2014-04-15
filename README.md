@@ -43,10 +43,10 @@ It is the task of the native API Blueprint [parser](https://github.com/apiaryio/
 Visit the [tooling section](http://apiblueprint.org/#tooling) of the API Blueprint website to find more about the actual tools or check the [Developing tools for API Blueprint](https://github.com/apiaryio/api-blueprint/wiki/Developing-tools-for-API-Blueprint) article if you are interested in using API Blueprint in your tool chain.
 
 ## Learn more
-+ [API Blueprint Tutorial](Tutorial.md)
-+ [API Blueprint Examples](examples)
-+ [API Blueprint Glossary of Terms](Glossary%20of%20Terms.md)
-+ [API Blueprint Language Specification](API%20Blueprint%20Specification.md)
++ [Tutorial](Tutorial.md)
++ [Examples](examples)
++ [Glossary of Terms](Glossary%20of%20Terms.md)
++ [Language Specification](API%20Blueprint%20Specification.md)
 + [Tools working with API Blueprint](http://apiblueprint.org/#tooling)
 
 ### Developers 
