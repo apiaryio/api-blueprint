@@ -69,6 +69,9 @@ All of the blueprint sections are optional. However, when present, a section **m
 + [`0+` **Resource** sections](#def-resource-section)
     + [`0-1` **URI Parameters** section](#def-uriparameters-section)
     + [`0-1` **Model** section](#def-model-section)
+        + [`0-1` **Headers** section](#def-headers-section)
+        + [`0-1` **Body** section](#def-body-section)
+        + [`0-1` **Schema** section](#def-schema-section)    
     + [`1+` **Action** sections](#def-action-section)
         + [`0-1` **URI Parameters** section](#def-uriparameters-section)
         + [`0+` **Request** sections](#def-request-section)
@@ -107,6 +110,20 @@ A section definition **may** also contain additional variable components such as
 
      ...
 
+
+> **NOTE:** While this specification uses "atx" -style headers (using `#`s)
+>  you can also use "Setext" [header syntax][] interchangably:
+>
+>     <keyword>
+>     =========
+>
+>     ...
+>
+>     <keyword>
+>     =========
+>
+>     ...
+
 #### Example: List-defined sections
 
     + <keyword>
@@ -116,6 +133,16 @@ A section definition **may** also contain additional variable components such as
     + <keyword>
 
      ...
+
+> **NOTE:**  While this specification uses pluses (`+`) as list markers you can use any Markdown [list syntax][] using asterisks (`*`), pluses (`+`) and hyphens (`-`) interchangably:
+>
+>     * <keyword>
+>
+>     ...
+>
+>     - <keyword>
+>
+>     ...
 
 <a name="def-section-types"></a>
 ### 4.1 Section types
@@ -232,7 +259,7 @@ What sections can be nested an where depends upon the section in case, as descri
 
 <a name="def-sections-reference"></a>
 # II. Sections Reference
-> **NOTE:** Sections marked as "Abstract" serve as a base for other sections and as such they **must not** be used directly.
+> **NOTE:** Sections marked as "Abstract" serve as a base for other sections and as such they **cannot** be used directly.
 
 <a name="def-named-section"></a>
 ## 1. Named section
@@ -775,3 +802,5 @@ One HTTP response-message example – payload.
 [httpmethods]: https://github.com/for-GET/know-your-http-well/blob/master/methods.md#know-your-http-methods-well
 [uritemplate]: http://tools.ietf.org/html/rfc6570
 [HTTP status code]: https://github.com/for-GET/know-your-http-well/blob/master/status-codes.md
+[header syntax]: https://daringfireball.net/projects/markdown/syntax#header
+[list syntax]: https://daringfireball.net/projects/markdown/syntax#list
