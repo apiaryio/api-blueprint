@@ -131,8 +131,8 @@ layout: nil
 
 </code></pre>
 <pre><code class="ast">{
-    "_version": "1.0",
-    "metadata": {},
+    "_version": "2.0",
+    "metadata": [],
     "name": "",
     "description": "",
     "resourceGroups": [
@@ -145,15 +145,13 @@ layout: nil
                     "description": "",
                     "uriTemplate": "/message",
                     "model": {},
-                    "parameters": {},
-                    "headers": {},
+                    "parameters": [],
                     "actions": [
                         {
                             "name": "",
                             "description": "",
                             "method": "GET",
-                            "parameters": {},
-                            "headers": {},
+                            "parameters": [],
                             "examples": [
                                 {
                                     "name": "",
@@ -163,11 +161,12 @@ layout: nil
                                         {
                                             "name": "200",
                                             "description": "",
-                                            "headers": {
-                                                "Content-Type": {
+                                            "headers": [
+                                                {
+                                                    "name": "Content-Type",
                                                     "value": "text/plain"
                                                 }
-                                            },
+                                            ],
                                             "body": "Hello World!\n",
                                             "schema": ""
                                         }
@@ -195,8 +194,8 @@ layout: nil
 
 </code></pre>
 <pre><code class="ast">{
-    "_version": "1.0",
-    "metadata": {},
+    "_version": "2.0",
+    "metadata": [],
     "name": "",
     "description": "",
     "resourceGroups": [
@@ -209,15 +208,13 @@ layout: nil
                     "description": "",
                     "uriTemplate": "/messages/{id}",
                     "model": {},
-                    "parameters": {},
-                    "headers": {},
+                    "parameters": [],
                     "actions": [
                         {
                             "name": "",
                             "description": "",
                             "method": "GET",
-                            "parameters": {},
-                            "headers": {},
+                            "parameters": [],
                             "examples": [
                                 {
                                     "name": "",
@@ -227,11 +224,12 @@ layout: nil
                                         {
                                             "name": "200",
                                             "description": "",
-                                            "headers": {
-                                                "Content-Type": {
+                                            "headers": [
+                                                {
+                                                    "name": "Content-Type",
                                                     "value": "text/plain"
                                                 }
-                                            },
+                                            ],
                                             "body": "Hello World!\n",
                                             "schema": ""
                                         }
@@ -243,8 +241,7 @@ layout: nil
                             "name": "",
                             "description": "",
                             "method": "DELETE",
-                            "parameters": {},
-                            "headers": {},
+                            "parameters": [],
                             "examples": [
                                 {
                                     "name": "",
@@ -254,7 +251,7 @@ layout: nil
                                         {
                                             "name": "204",
                                             "description": "",
-                                            "headers": {},
+                                            "headers": [],
                                             "body": "",
                                             "schema": ""
                                         }
@@ -282,8 +279,8 @@ layout: nil
 
 </code></pre>
 <pre><code class="ast">{
-    "_version": "1.0",
-    "metadata": {},
+    "_version": "2.0",
+    "metadata": [],
     "name": "",
     "description": "",
     "resourceGroups": [
@@ -296,15 +293,13 @@ layout: nil
                     "description": "",
                     "uriTemplate": "/messages/{id}",
                     "model": {},
-                    "parameters": {},
-                    "headers": {},
+                    "parameters": [],
                     "actions": [
                         {
                             "name": "Retrieve Message",
                             "description": "",
                             "method": "GET",
-                            "parameters": {},
-                            "headers": {},
+                            "parameters": [],
                             "examples": [
                                 {
                                     "name": "",
@@ -314,11 +309,12 @@ layout: nil
                                         {
                                             "name": "200",
                                             "description": "",
-                                            "headers": {
-                                                "Content-Type": {
+                                            "headers": [
+                                                {
+                                                    "name": "Content-Type",
                                                     "value": "text/plain"
                                                 }
-                                            },
+                                            ],
                                             "body": "Hello World!\n",
                                             "schema": ""
                                         }
@@ -330,8 +326,7 @@ layout: nil
                             "name": "Delete Message",
                             "description": "",
                             "method": "DELETE",
-                            "parameters": {},
-                            "headers": {},
+                            "parameters": [],
                             "examples": [
                                 {
                                     "name": "",
@@ -341,7 +336,7 @@ layout: nil
                                         {
                                             "name": "204",
                                             "description": "",
-                                            "headers": {},
+                                            "headers": [],
                                             "body": "",
                                             "schema": ""
                                         }
@@ -377,8 +372,8 @@ Delete a message. **Warning:** This action **permanently** removes the message f
 
 </code></pre>
 <pre><code class="ast">{
-    "_version": "1.0",
-    "metadata": {},
+    "_version": "2.0",
+    "metadata": [],
     "name": "Message of the Day API",
     "description": "A simple [MOTD](http://en.wikipedia.org/wiki/Motd_(Unix)) API.\n\n",
     "resourceGroups": [
@@ -391,15 +386,13 @@ Delete a message. **Warning:** This action **permanently** removes the message f
                     "description": "This resource represents one particular message identified by its *id*.\n\n",
                     "uriTemplate": "/messages/{id}",
                     "model": {},
-                    "parameters": {},
-                    "headers": {},
+                    "parameters": [],
                     "actions": [
                         {
                             "name": "Retrieve Message",
                             "description": "Retrieve a message by its *id*.\n\n",
                             "method": "GET",
-                            "parameters": {},
-                            "headers": {},
+                            "parameters": [],
                             "examples": [
                                 {
                                     "name": "",
@@ -409,11 +402,12 @@ Delete a message. **Warning:** This action **permanently** removes the message f
                                         {
                                             "name": "200",
                                             "description": "",
-                                            "headers": {
-                                                "Content-Type": {
+                                            "headers": [
+                                                {
+                                                    "name": "Content-Type",
                                                     "value": "text/plain"
                                                 }
-                                            },
+                                            ],
                                             "body": "Hello World!\n",
                                             "schema": ""
                                         }
@@ -425,8 +419,7 @@ Delete a message. **Warning:** This action **permanently** removes the message f
                             "name": "Delete Message",
                             "description": "Delete a message. **Warning:** This action **permanently** removes the message from the database.\n\n",
                             "method": "DELETE",
-                            "parameters": {},
-                            "headers": {},
+                            "parameters": [],
                             "examples": [
                                 {
                                     "name": "",
@@ -436,7 +429,7 @@ Delete a message. **Warning:** This action **permanently** removes the message f
                                         {
                                             "name": "204",
                                             "description": "",
-                                            "headers": {},
+                                            "headers": [],
                                             "body": "",
                                             "schema": ""
                                         }
