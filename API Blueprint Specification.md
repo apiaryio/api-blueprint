@@ -782,7 +782,7 @@ One HTTP request-message example – payload.
 #### Definition
 Defined by the `Response` keyword. The response section definition **should** include an [HTTP status code][] as its identifier.
 
-    + Request <HTTP status code> (<Media Type>)
+    + Response <HTTP status code> (<Media Type>)
 
 #### Description
 One HTTP response-message example – payload.
