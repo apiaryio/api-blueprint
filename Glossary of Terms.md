@@ -8,7 +8,7 @@ A brief list of terms as used in the [API Blueprint](http://apiblueprint.org) co
 ### Action
 An **HTTP transaction** (a request-response transaction). 
 
-Actions are specified by a [HTTP request method](#def-method) within a [resource](#def-resource). 
+Actions are specified by an [HTTP request method](#def-method) within a [resource](#def-resource). 
 
 <a name="def-api"></a>
 ### API
