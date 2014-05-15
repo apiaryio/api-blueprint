@@ -1,12 +1,12 @@
 ---
 
 Author: z@apiary.io
-Version: 1A4
+Version: 1A5
 
 ---
 
 # API Blueprint
-#### Format 1A revision 4
+#### Format 1A revision 5
 
 ## [I. API Blueprint Language](#def-api-blueprint-language)
 1. [Introduction](#def-introduction)
@@ -724,27 +724,80 @@ Defined by an action [name (identifier)](#def-identifier) followed by an [HTTP r
     # <identifier> [<HTTP request method>]
 
 #### Description
-Definition of at least one complete HTTP transaction as performed with the parent resource section. An action section **may** consists of multiple HTTP transaction examples using the same HTTP request method.
+Definition of at least one complete HTTP transaction as performed with the parent resource section. An action section **may** consists of multiple HTTP transaction examples for the given HTTP request method.
 
-This section **may** include one nested [URI parameters section](#def-uriparameters-section) describing any URI parameters specific to the action. It **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections. Multiple nested request and response sections **should** differ in their respective identifiers (status codes).
+This section **may** include one nested [URI parameters section](#def-uriparameters-section) describing any URI parameters _specific_ to the action. It **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections.
+
+Nested Request and Response sections **may** be ordered into groups where each groups represent one transaction example. First transaction example group starts with the first nested Request or Response section. Subsequent groups start with the first nested Request section following a Response section.
+
+Mutliple Request and Response nested sections within one transaction example **should** have different identifiers.
 
 #### Example
 
-    # Blog Posts [/posts{/id}]
-    
+    # Blog Posts [/posts{?limit}]
      ...    
 
-    ## Retrieve post [GET]
-    Retrieves a **ACME Blog** posts.
+    ## Retrieve Blog Posts [GET]
+    Retrieves the list of **ACME Blog** posts.
     
+    + Parameters
+        + limit (optional, number) ... Maximum number of posts ot retrieve
+
     + Response 200
 
-     ...
+            ...
 
-    ### Delete post [DELETE]
-    + Response 204
+    ### Create a Post [POST]
+    + Request
 
-     ...     
+            ...
+
+    + Response 201
+
+            ...
+
+#### Example Multiple Transaction Examples
+
+    # Resource [/resource]
+    ## Create Resource [POST]
+
+    + request A
+        
+            ...
+
+    + response 200
+        
+            ...
+
+    + request B
+        
+            ...
+
+    + response 200    
+            
+            ...
+
+    + response 500
+        
+            ...
+
+    + request C
+        
+            ...
+
+    + request D
+        
+            ...
+
+    + response 200
+        
+            ...
+
+> **NOTE:** The "Multiple Transaction Examples" example demonstrates three transaction examples for one given action:
+>
+> 1. 1st example: request `A`, response `200`
+> 2. 2nd example: request `B`, responses `200` and `500`
+> 3. 3rd example: requests `C` and `D`, response `200`
 
 ---
 
