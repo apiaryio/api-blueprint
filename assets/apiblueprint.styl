@@ -1298,6 +1298,7 @@ a
 
   &.tooling__sublime-plugin
   &.tooling__dredd
+  &.tooling__atom
   &.tooling__aglio
     background-position center center
     background-repeat no-repeat
@@ -1306,6 +1307,8 @@ a
     background-image url('dredd.png')
   &.tooling__sublime-plugin
     background-image url('st2.png')
+  &.tooling__atom
+    background-image url('atom.png')
   &.tooling__aglio
     background-image url('aglio.png')
 
@@ -1514,11 +1517,11 @@ a
 .examples__editor
   &:before
     position absolute
-    left (-1 * image-size('edit_here.png')[0]) - 20px
+    left (-1 * image-size('./assets/edit_here.png')[0]) - 20px
     content ' '
     top 0
-    width image-size('edit_here.png')[0]
-    height image-size('edit_here.png')[1]
+    width image-size('./assets/edit_here.png')[0]
+    height image-size('./assets/edit_here.png')[1]
     background url('edit_here.png') 0 0 no-repeat
 
   .ace-twilight
