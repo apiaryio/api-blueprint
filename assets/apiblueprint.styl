@@ -1211,6 +1211,10 @@ a
   font-size 100%
   min-height 120px
   font-weight normal
+
+@media screen and (min-width:990px)
+  .tooling__text
+    min-width 430px
   
 .tooling__item:last-of-type
   .tooling__ico
@@ -1514,11 +1518,11 @@ a
 .examples__editor
   &:before
     position absolute
-    left (-1 * image-size('edit_here.png')[0]) - 20px
+    left (-1 * image-size('assets/edit_here.png')[0]) - 20px
     content ' '
     top 0
-    width image-size('edit_here.png')[0]
-    height image-size('edit_here.png')[1]
+    width image-size('assets/edit_here.png')[0]
+    height image-size('assets/edit_here.png')[1]
     background url('edit_here.png') 0 0 no-repeat
 
   .ace-twilight
