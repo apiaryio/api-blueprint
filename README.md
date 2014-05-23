@@ -6,7 +6,7 @@ API Blueprint is a documentation-oriented API description language. A couple of 
 
 API Blueprint is perfect for designing your Web API and its comprehensive documentation but also for quick prototyping and collaboration. It is easy to learn and even easier to read – after all it is just a form of plain text.
 
-API Blueprint, its parser, and most of its tools are completely open sourced so you don't have to worry about vendor lock-in. This also means you have the power to take the API Blueprint future into your hands!
+API Blueprint, its parser, and most of its tools are completely open sourced so you don't have to worry about vendor lock-in. This also means you can freely integrate API Blueprint into any type of product, commercial or not.
 
 ## TL;DR
 + Web API description language
