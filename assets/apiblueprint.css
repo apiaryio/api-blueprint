@@ -217,7 +217,8 @@ a:hover{color:#fff;border-bottom:1px solid #fff;text-decoration:none}
 .tooling__item .smaller,.tooling__item .tooling__text{color:#d7d2ff}
 .tooling__item--wrap{display:block;position:relative;overflow:hidden;height:100%;width:100%}
 .tooling__ico,.tooling__title,.tooling__text{display:table-cell;border-collapse:collapse;border:1px solid #7c69ae;border-width:0 1px 1px 0;padding:2em;margin:0;font-size:100%;min-height:120px;font-weight:normal}
-.tooling__item:last-of-type .tooling__ico,.tooling__item:last-of-type .tooling__title,.tooling__item:last-of-type .tooling__text{border-bottom-width:0}
+@media screen and (min-width:990px){.tooling__text{min-width:430px}
+}.tooling__item:last-of-type .tooling__ico,.tooling__item:last-of-type .tooling__title,.tooling__item:last-of-type .tooling__text{border-bottom-width:0}
 .tooling__ico{padding-top:1.75em;padding-bottom:1.2em;padding-left:0;padding-right:0;width:130px;vertical-align:middle;text-align:center}
 .tooling__title{width:260px}
 .tooling__text{border-right-width:0}
