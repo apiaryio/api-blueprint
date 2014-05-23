@@ -236,9 +236,10 @@ a:hover{color:#fff;border-bottom:1px solid #fff;text-decoration:none}
 @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 144dpi){.tooling__ico__logo{background-image:url("sprite@2x.png");-webkit-background-size:853px auto;-moz-background-size:853px auto;background-size:853px auto}
 }.tooling__ico__logo--apiary{background-position:-693px -140px;height:60px;width:65px}
 .tooling__ico--construction{background-position:-795px -135px;height:62px;width:65px;}
-.tooling__ico--construction.tooling__sublime-plugin,.tooling__ico--construction.tooling__dredd,.tooling__ico--construction.tooling__aglio{background-position:center center;background-repeat:no-repeat;-webkit-background-size:auto 60px;-moz-background-size:auto 60px;background-size:auto 60px}
+.tooling__ico--construction.tooling__sublime-plugin,.tooling__ico--construction.tooling__dredd,.tooling__ico--construction.tooling__atom,.tooling__ico--construction.tooling__aglio{background-position:center center;background-repeat:no-repeat;-webkit-background-size:auto 60px;-moz-background-size:auto 60px;background-size:auto 60px}
 .tooling__ico--construction.tooling__dredd{background-image:url("dredd.png")}
 .tooling__ico--construction.tooling__sublime-plugin{background-image:url("st2.png")}
+.tooling__ico--construction.tooling__atom{background-image:url("atom.png")}
 .tooling__ico--construction.tooling__aglio{background-image:url("aglio.png")}
 .tooling__ico--question{position:relative}
 .tooling__ico--question:before,.tooling__ico--question:after,.tooling__icon--cube{content:'?';position:absolute;right:0;top:25px;margin:0 9px;height:20px;width:20px;font-weight:bold;font-size:22px;-webkit-transform:skewY(327deg);-moz-transform:skewY(327deg);-o-transform:skewY(327deg);-ms-transform:skewY(327deg);transform:skewY(327deg)}
