@@ -430,7 +430,7 @@ Visit the [Tooling Section][] of the [apiblueprint.org][] to find more about too
 
 <a name="indentation"></a>
 ### Note on Indentation
-In API Blueprint payload assets are represented by [Markdown pre-formatted code blocks][]. This means **an asset has to be indented by four spaces** relative to its existing indentation level. In the case of Markdown list items, which are also (by definition) indented, it is even one more level further making it a total of **eight spaces** or whopping twelve spaces for list items nested under another list item. 
+In API Blueprint payload assets are represented by [Markdown pre-formatted code blocks][]. This means **an asset has to be indented by four spaces** relative to its existing indentation level. In the case of Markdown list items, which are also (by definition) indented, it is even one more level further making it a total of **eight spaces** or whopping twelve spaces for list items nested under another list item.
 
 For example, the asset in `Body` list item which is nested under the `Response 200` item is indented by twelve spaces.
 
@@ -443,7 +443,7 @@ You can save one level of indentation using the [GitHub-flavored Markdown][] syn
             Link: <http:/api.gistfox.com/>;rel="self",<http:/api.gistfox.com/gists>;rel="gists"
             ```
         + Body
-        
+
             ```
             {
               "_links": {
@@ -473,6 +473,6 @@ You can save one level of indentation using the [GitHub-flavored Markdown][] syn
 [API Blueprint Examples]: https://github.com/apiaryio/api-blueprint/tree/master/examples
 [full listing]: https://raw.github.com/apiaryio/api-blueprint/master/examples/Gist%20Fox%20API.md
 [rendered by GitHub]: https://github.com/apiaryio/api-blueprint/blob/master/examples/Gist%20Fox%20API.md
-[rendered by Apiary]: http://docs.gistfoxapi.apiary.io
+[rendered by Apiary]: http://docs.gistfoxapi1.apiary.io
 [Tooling Section]: http://apiblueprint.org/#tooling
 [apiblueprint.org]: http://apiblueprint.org
