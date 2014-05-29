@@ -121,7 +121,7 @@ A response usually bears some payload sent to our client. Ideally it details the
 
 > **Note:** API Blueprint is **indentation sensitive**. See the [Note on Indentation][] for details.
 >
-> **Note:** Specifying the media type in brackets after the response status codes generates implicit `Content-Type` HTTP header. Therefore you do not have to explicitly specify the `Content-Type` header.
+> **Note:** Specifying the media type in parenthesis after the response status codes generates implicit `Content-Type` HTTP header. Therefore you do not have to explicitly specify the `Content-Type` header.
 >
 > **Note:** If your response does not need to define any additional headers (but `Content-Type`) you can skip the `Headers` section completely and write the `Body` section like so:
 >
