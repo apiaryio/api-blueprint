@@ -15,10 +15,11 @@ blueprint = require '../blueprint'
 log       = require('../logging').get 'app/controllers/api'
 
 # Constants
-BUFFER_LIMIT   = parseInt(process.env.BUFFER_LIMIT, 10)
-ORIGIN_REGEXP  = new RegExp "#{process.env.DOMAIN}".replace(/[\-{}\[\]+?.,\\\^$|#\s]/g, '\\$&') + "$"
-APIARY_REGEXP  = new RegExp /apiary\.io$/
-DEVELOP_REGEXP = new RegExp /apiblueprint\.dev:([\d]{1,})$/
+DEVELOPMENT_MODE = process.env.NODE_ENV is 'development'
+BUFFER_LIMIT     = parseInt(process.env.BUFFER_LIMIT, 10)
+ORIGIN_REGEXP    = new RegExp "#{process.env.DOMAIN}".replace(/[\-{}\[\]+?.,\\\^$|#\s]/g, '\\$&') + "$"
+APIARY_REGEXP    = new RegExp /apiary\.io$/
+DEVELOP_REGEXP   = new RegExp /apiblueprint\.dev:([\d]{1,})$/
 
 
 # Local functions
@@ -60,17 +61,15 @@ exports.setup = (app) ->
 
   app.use compression(threshold: 512)
 
-  # setup error handlers based on production vs. development use
-  # modify `NODE_ENV` environment variable to force the right scope
-  if process.env.NODE_ENV is 'development'
+  # Setup development error handler.
+  # Modify `NODE_ENV` environment variable to force the right scope.
+  if DEVELOPMENT_MODE
     app.use errorHandler
       dumpExceptions: true
       showStack: true
       fileUrls: 'txmt'
-
   else
     app.use logger('tiny')
-    app.use errorHandler()
 
 
   app.options '/blueprint/ast', addCORS, (req, res) ->
@@ -132,5 +131,19 @@ exports.setup = (app) ->
     req.once 'close', onEnd
     req.once 'error', onEnd
 
-  app.all '/', (req, res) ->
+  app.get '/', (req, res) ->
     res.send 200, '<!doctype html><html><head><title>Greetings</title></head><body><h>Hi there!</h1></body>'
+
+  # Setup production error handler returning JSON.
+  # Modify `NODE_ENV` environment variable to force the right scope.
+  if not DEVELOPMENT_MODE
+    app.use (error, req, res, next) ->
+      res.json 500,
+        message: 'Internal server error.'
+        description: error.toString()
+
+  # HTTP 404 error handler. We're not serving any static files,
+  # so this is okay.
+  app.get '*', (req, res) ->
+    res.json 404,
+      message: 'Specified resource was not found.'
