@@ -2,8 +2,11 @@
 config    = require '../config'
 
 # Packages
-express   = require 'express'
-gzippo    = require 'gzippo'
+express      = require 'express'
+compression  = require 'compression'
+errorHandler = require 'errorhandler'
+logger       = require 'morgan'
+qs           = require 'qs'
 
 # Modules
 blueprint = require '../blueprint'
@@ -16,6 +19,7 @@ BUFFER_LIMIT   = parseInt(process.env.BUFFER_LIMIT, 10)
 ORIGIN_REGEXP  = new RegExp "#{process.env.DOMAIN}".replace(/[\-{}\[\]+?.,\\\^$|#\s]/g, '\\$&') + "$"
 APIARY_REGEXP  = new RegExp /apiary\.io$/
 DEVELOP_REGEXP = new RegExp /apiblueprint\.dev:([\d]{1,})$/
+
 
 # Local functions
 parseBlueprintCodeLocal = (code, cb) ->
@@ -32,6 +36,7 @@ parseBlueprintCodeLocal = (code, cb) ->
       'message' : 'Cannot parse blueprint code',   'description' : err.message if err.message
       'code'    : err.code if err.code,            'location'    : err.location if err.location
 
+
 addCORS = (req, res, next) ->
   res.set 'Access-Control-Allow-Credentials', 'true'
   res.set 'Access-Control-Allow-Methods', 'POST, GET'
@@ -47,52 +52,85 @@ addCORS = (req, res, next) ->
 
   next()
 
+
 # Setup
 exports.setup = (app) ->
 
-  app.enable 'trust proxy' # trust headers like X-Forwarded-* for setting req.proto et al
+  app.set 'trust proxy', true # trust headers like X-Forwarded-* for setting req.proto et al
 
-  app.configure ->
-    app.use gzippo.compress()
+  app.use compression(threshold: 512)
 
   # setup error handlers based on production vs. development use
   # modify `NODE_ENV` environment variable to force the right scope
-  app.configure 'development', ->
-    app.use express.errorHandler
+  if process.env.NODE_ENV is 'development'
+    app.use errorHandler
       dumpExceptions: true
       showStack: true
       fileUrls: 'txmt'
 
-  app.configure 'production', ->
-    app.use express.logger()
-    app.use express.errorHandler()
+  else
+    app.use logger('tiny')
+    app.use errorHandler()
+
 
   app.options '/blueprint/ast', addCORS, (req, res) ->
     res.send ''
 
+
+  processIt = (req, res, data) ->
+    data.blueprintCode = data.blueprintCode.replace(/\r\n/g,"\n").replace(/\r/g,"\n")
+    t = process.hrtime()
+    parseBlueprintCodeLocal data.blueprintCode, (errCode, parsedData) ->
+      t = process.hrtime(t)
+      t = t[0] + ' s, ' + (t[1]/1000000).toFixed(3) + ' ms' # nano (1/1000) => mikro (1/1000000) => ms
+      res.set 'X-Parser-Time', t
+      if errCode then return res.json errCode, parsedData
+      return res.json parsedData
+
+
   app.post '/blueprint/ast', addCORS, (req, res) ->
     buffer = new Buffer(0)
+    errorException = null
+    bodyBufferFull = false
+    received = 0
 
-    req.on 'data', (chunk) ->
+    onData = (chunk) ->
+      received += chunk.length
       buffer = Buffer.concat [buffer, chunk] unless bodyBufferFull
-      if buffer.length > BUFFER_LIMIT
+      if received > BUFFER_LIMIT
         bodyBufferFull = true
 
-    # end should be enough as in this case, we'll just discard request on 'close'
-    req.on 'end', ->
-      try
-        data = JSON.parse buffer.toString 'utf-8'
-      catch err
-        return res.send 400, 'message': 'Cannot JSON-parse retrieved data'
+    onEnd = (err) ->
+      errorException = null
+      data = null
+      if err
+        res.send 400, 'message': 'An error with your request happened. The server cannot go further.'
+      else
+        try
+          data = qs.parse buffer.toString 'utf-8'
+        catch exc
+          errorException = exc
+        finally
+          if errorException
+            res.send 400, 'message': 'Cannot parse retrieved data'
+          else if not data.blueprintCode
+            res.send 400, 'message', 'No blueprint code, nothing to parse'
+          else
+            processIt(req, res, data)
 
-      data.blueprintCode = data.blueprintCode.replace(/\r\n/g,"\n").replace(/\r/g,"\n")
-      t = process.hrtime()
-      parseBlueprintCodeLocal data.blueprintCode, (errCode, parsedData) ->
-        t = process.hrtime(t)
-        t = t[0] + ' s, ' + (t[1]/1000000).toFixed(3) + ' ms' # nano (1/1000) => mikro (1/1000000) => ms
-        res.set 'X-Parser-Time', t
-        if errCode then return res.json errCode, parsedData
-        return res.json parsedData
+        cleanup()
 
-  app.get '/', (req, res) ->
+    cleanup = ->
+      buffer = errorException = received = null
+      req.removeListener 'data',  onData
+      req.removeListener 'end',   onEnd
+      req.removeListener 'error', onEnd
+      req.removeListener 'close', onEnd
+
+    req.on 'data', onData
+    req.once 'end', onEnd
+    req.once 'close', onEnd
+    req.once 'error', onEnd
+
+  app.all '/', (req, res) ->
     res.send 200, '<!doctype html><html><head><title>Greetings</title></head><body><h>Hi there!</h1></body>'

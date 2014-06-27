@@ -1,6 +1,6 @@
-process.env.DOMAIN           ?= 'apiblueprint.dev'
+process.env.DOMAIN           ?= 'api.apiblueprint.dev'
 process.env.PORT             ?= 8000
-process.env.BUFFER_LIMIT     ?= 20000 # ms before a proxy request times out; note that Heroku kills anything over 30s anyway
+process.env.BUFFER_LIMIT     ?= 200000 # bytes for buffering sent body
 process.env.VERBOSE          ?= ''
 
 process.env.NODE_ENV         ?= 'development'

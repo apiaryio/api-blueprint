@@ -649,7 +649,7 @@ Delete a message. **Warning:** This action **permanently** removes the message f
   <script>
     var astParserURI = 'http://api.apiblueprint.org/blueprint/ast';
     yepnope.paths = {
-      'acePath': './assets/ace-noconflict-min'
+      'acePath': '/assets/ace-noconflict-min'
     };
     var loadTheRest = function (testResults) {
       var scriptSrcs = [];
@@ -667,7 +667,7 @@ Delete a message. **Warning:** This action **permanently** removes the message f
         }
       });
     };
-    yepnope.injectJs('./assets/safemap-store-promise.min.js', function () {
+    yepnope.injectJs('/assets/safemap-store-promise.min.js', function () {
       initLocalStore(loadTheRest);
     });
   </script>

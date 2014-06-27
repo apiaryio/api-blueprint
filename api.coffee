@@ -4,6 +4,7 @@ config  = require './app/config'
 # System libraries
 express = require 'express'
 http    = require 'http'
+logger  = require 'morgan'
 
 # Logging
 logging         = require('./app/logging')
@@ -13,18 +14,15 @@ logExpressError = logging.get 'express/error'
 # Export
 module.exports = new (require 'events').EventEmitter()
 
-# Create the VHost multiplexer server instance.
-multiplexer = express()
-
-# Instance
-module.exports.instance = http.createServer multiplexer
-
 # Express Server
 apiServer = express()
+apiServer.disable   'x-powered-by'
 
-apiServer  .disable 'x-powered-by'
-multiplexer.disable 'x-powered-by'
+# logger
+if process.env.NODE_ENV is 'development'
+  apiServer.use logger('dev')
 
+# api controller
 apiModule = require './app/controllers/api'
 apiModule.setup(apiServer)
 
@@ -34,16 +32,19 @@ apiServer.use logExpressError
 # catch EXCEPTIONS...
 process.on 'uncaughtException', (err) ->
   console.trace 'EXCEPTION uncaught: ', err
-  log = require('./app/logging').get 'index'
   log.error 'Uncaught exception: ', err
 
 
-multiplexer.use express.vhost '*', apiServer
-
 port = process.env.PORT * 1
 
-module.exports.instance.listen port
-log.info "Started server on port #{port}"
-log.debug 'Application started'
+# Instance
+module.exports.instance = apiServer
 
-module.exports.emit 'start'
+module.exports.instance.listen port, (err) ->
+  if err
+    log.error 'Unable to start api.apiblueprint.org server', err
+
+  log.info "Started server on port #{port}"
+  log.debug 'Application started'
+
+  module.exports.emit 'start'

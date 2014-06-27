@@ -2,8 +2,8 @@
   "name": "apiblueprint",
   "version": "0.0.1",
   "engines": {
-    "node": "0.8.x",
-    "npm": "1.3.x"
+    "node": "0.10.x",
+    "npm": "1.4.x"
   },
   "private": true,
   "homepage": "http://apiblueprint.org/",
@@ -22,12 +22,15 @@
     "url": "https://github.com/apiaryio/api-blueprint/issues"
   },
   "dependencies": {
-    "coffee-script": "",
+    "coffee-script": "~1.6.3",
+    "compression": "",
     "connect": "",
-    "express": "3.6",
-    "gzippo": "",
+    "errorhandler": "",
+    "express": "",
+    "morgan": "",
     "node-hipchat": "",
     "protagonist": "0.11.0",
+    "qs": "",
     "winston": "git://github.com/apiaryio/winston.git#production"
   },
   "devDependencies": {

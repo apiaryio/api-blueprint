@@ -96,11 +96,8 @@ getAST = function(code, thenBack) {
     thenBack.apply(this, args);
     return;
   }
-  promise.post(window.astParserURI + '?_t=' + (1 * (new Date())), JSON.stringify({
-    blueprintCode: code
-  }), {
-    "Accept": "application/json",
-    'Content-type': 'application/json; charset=utf-8'
+  promise.post(window.astParserURI + '?_t=' + (1 * (new Date())), "blueprintCode=" + (encodeURIComponent(code)), {
+    "Accept": "application/json"
   }).then(function(err, text, xhr) {
     args = [err, text, code];
     if (!codeCache.get(code, false)) {
