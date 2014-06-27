@@ -2,6 +2,7 @@
 config    = require '../config'
 
 # Packages
+bodyParser   = require 'body-parser'
 express      = require 'express'
 compression  = require 'compression'
 errorHandler = require 'errorhandler'
@@ -77,60 +78,18 @@ exports.setup = (app) ->
     res.send ''
 
 
-  processIt = (req, res, data) ->
-    data.blueprintCode = data.blueprintCode.replace(/\r\n/g,"\n").replace(/\r/g,"\n")
-    t = process.hrtime()
-    parseBlueprintCodeLocal data.blueprintCode, (errCode, parsedData) ->
-      t = process.hrtime(t)
-      t = t[0] + ' s, ' + (t[1]/1000000).toFixed(3) + ' ms' # nano (1/1000) => mikro (1/1000000) => ms
-      res.set 'X-Parser-Time', t
-      if errCode then return res.json errCode, parsedData
-      return res.json parsedData
-
-
-  app.post '/blueprint/ast', addCORS, (req, res) ->
-    buffer = new Buffer(0)
-    errorException = null
-    bodyBufferFull = false
-    received = 0
-
-    onData = (chunk) ->
-      received += chunk.length
-      buffer = Buffer.concat [buffer, chunk] unless bodyBufferFull
-      if received > BUFFER_LIMIT
-        bodyBufferFull = true
-
-    onEnd = (err) ->
-      errorException = null
-      data = null
-      if err
-        res.send 400, 'message': 'An error with your request happened. The server cannot go further.'
-      else
-        try
-          data = qs.parse buffer.toString 'utf-8'
-        catch exc
-          errorException = exc
-        finally
-          if errorException
-            res.send 400, 'message': 'Cannot parse retrieved data'
-          else if not data.blueprintCode
-            res.send 400, 'message', 'No blueprint code, nothing to parse'
-          else
-            processIt(req, res, data)
-
-        cleanup()
-
-    cleanup = ->
-      buffer = errorException = received = null
-      req.removeListener 'data',  onData
-      req.removeListener 'end',   onEnd
-      req.removeListener 'error', onEnd
-      req.removeListener 'close', onEnd
-
-    req.on 'data', onData
-    req.once 'end', onEnd
-    req.once 'close', onEnd
-    req.once 'error', onEnd
+  app.post '/blueprint/ast', addCORS, bodyParser.urlencoded(extended: false, limit: '1mb'), (req, res) ->
+    if not req.body.blueprintCode
+      res.send 400, 'message', 'No blueprint code, nothing to parse'
+    else
+      blueprintCode = req.body.blueprintCode.replace(/\r\n/g,"\n").replace(/\r/g,"\n")
+      t = process.hrtime()
+      parseBlueprintCodeLocal blueprintCode, (errCode, parsedData) ->
+        t = process.hrtime(t)
+        t = t[0] + ' s, ' + (t[1]/1000000).toFixed(3) + ' ms' # nano (1/1000) => mikro (1/1000000) => ms
+        res.set 'X-Parser-Time', t
+        if errCode then return res.json errCode, parsedData
+        return res.json parsedData
 
   app.all '/', (req, res) ->
     res.send 200, '<!doctype html><html><head><title>Greetings</title></head><body><h>Hi there!</h1></body>'
