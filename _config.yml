@@ -1,6 +1,6 @@
 safe:         true
 lsi:          false
-pygments:     true
+highlighter:  pygments
 url:          http://apiblueprint.org
 include:      ['favicon.png', 'favicon.ico']
 exclude:      ['*.styl', '*.coffee', 'node_modules', 'package.json', 'app', 'api']
