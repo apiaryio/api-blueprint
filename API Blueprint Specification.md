@@ -904,6 +904,8 @@ The first variable in the braces **might** be preceded by an operator. API Bluep
 {?var}
 ```
 
+> **NOTE:** The [explode variable modifier][uri-explode] is also supported. Refer to RFC6570 for its description.
+
 #### Variable Reserved Values
 
 Following characters are **reserved** in variable _values_:
@@ -977,3 +979,4 @@ With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path
 [header syntax]: https://daringfireball.net/projects/markdown/syntax#header
 [list syntax]: https://daringfireball.net/projects/markdown/syntax#list
 [pct-encoded]: http://en.wikipedia.org/wiki/Percent-encoding
+[uri-explode]: http://tools.ietf.org/html/rfc6570#section-2.4.2
