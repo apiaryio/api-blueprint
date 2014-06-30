@@ -570,6 +570,9 @@ This section **should** include at least one nested [Action section](#def-action
  
 - [`0-1` Model section](#def-model-section)
 - [`0-1` URI parameters section](#def-uriparameters-section)
+
+    URI parameters discussed in the scope of a Resource section apply to _any and all_ nested Action sections.
+
 - Additional [Action sections](#def-action-section)
 
 > **NOTE:** A blueprint document may contain multiple sections for the same resource (or resource set), as long as their HTTP methods differ. However it is considered good practice to group multiple HTTP methods under one resource (resource set).
@@ -637,7 +640,7 @@ Defined by the `Parameters` keyword written in a Markdown list item:
     + Parameters
 
 #### Description
-Discussion of parent section's URI parameters.
+Discussion of URI parameters in the _scope of the parent section_.
 
 This section **must** be composed of nested list items only. This section **must not** contain any other elements. One list item per URI parameter. The nested list items subsections inherit from the [Named section](#def-named-section) and are subject to additional formatting as follows:
 
@@ -726,7 +729,9 @@ Defined by an action [name (identifier)](#def-identifier) followed by an [HTTP r
 #### Description
 Definition of at least one complete HTTP transaction as performed with the parent resource section. An action section **may** consists of multiple HTTP transaction examples for the given HTTP request method.
 
-This section **may** include one nested [URI parameters section](#def-uriparameters-section) describing any URI parameters _specific_ to the action. It **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections.
+This section **may** include one nested [URI parameters section](#def-uriparameters-section) describing any URI parameters _specific_ to the action – URI parameters discussed in the scope of an Action section apply to the respective Action section ONLY.
+
+It **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections.
 
 Nested Request and Response sections **may** be ordered into groups where each groups represent one transaction example. First transaction example group starts with the first nested Request or Response section. Subsequent groups start with the first nested Request section following a Response section.
 
