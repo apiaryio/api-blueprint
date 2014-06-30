@@ -72,9 +72,9 @@ getAST = (code, thenBack) ->
     thenBack.apply this, args
     return
 
-  promise.post(window.astParserURI + '?_t=' + ( 1 * ( new Date() ) ), "blueprintCode=#{encodeURIComponent code}", {
+  promise.post(window.astParserURI + '?_t=' + ( 1 * ( new Date() ) ), code, {
     "Content-type": 'application/x-www-form-urlencoded; charset=utf-8'
-    "Accept": "application/json"
+    "Accept": "vnd.apiblueprint.parseresult.raw+json"
   }).then (err, text, xhr) ->
     args = [err, text, code]
 
@@ -124,7 +124,7 @@ handleErrors = (data, sess, doc, text) ->
         type: 'error'
         row: positioning.row
         column: positioning.column
-        html: '<span class="code_errortip">' + data.description.substr(0, 1).toUpperCase() + data.description.slice(1) + '</span>'
+        html: '<span class="code_errortip">' + data.message.substr(0, 1).toUpperCase() + data.message.slice(1) + '</span>'
       })
       sess.setAnnotations editorErrors
   else

@@ -12,7 +12,7 @@ STRICT_OPTIONS =
 getLocalAst = (code, cb) ->
   protagonist.parse code, STRICT_OPTIONS, (err, result) ->
     if err then return cb err
-    cb null, result.ast, (result.warnings or [])
+    cb null, result
 
 # Export
 module.exports = {
