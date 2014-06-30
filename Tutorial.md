@@ -3,7 +3,13 @@ Welcome to the API Blueprint Tutorial! In this tutorial you will learn all about
 
 Gist is a paste. A snippet of text. Not unrelated to [GitHub Gists][].  To set some expectations let's provide following functionality in our API: *List Gists, Retrieve a Single Gist, Create a Gist, Edit a Gist, Star a Gist, Unstar a Gist, Check if a Gist is starred and Delete a Gist.*
 
-> **Note:** For the sake of simplicity we will now omit user management and authentication. These features will be discussed in a future installment of the API Blueprint Tutorial.
+> **Note:** **Additional API Blueprint Resources**
+>
+> + [Language Specification][specification]
+> + [Examples][API Blueprint Examples]
+> + [Glossary of Terms][API Blueprint Glossary of Terms]
+> + [API Blueprint Map][map]
+> + [Tools for API Blueprint][Tooling Section]
 
 ## Gist Fox API
 Without any further ado our *Gist Fox API* blueprint starts like this:
@@ -36,6 +42,8 @@ Every good API should have a name. So does ours – *"Gist Fox API"*. The first 
 The API Name might be followed by any arbitrary Markdown-formatted discussion. Preferably about your API.
 
 > **Note:** We will add much richer and more helpful discussion in the final version of this blueprint. Adding details about authentication, used media types and error handling to API description is always a great idea!
+>
+> **Note:** For the sake of simplicity we will now omit user management and authentication. These features will be discussed in a future installment of the API Blueprint Tutorial.
 
 ## Markdown
 All you really need to write a blueprint is a text editor. A Markdown editor is even better. Anything you like. From Vi to Byword. Online editors are great too! You can even directly edit a blueprint on GitHub in the repository your service is living!
@@ -476,3 +484,5 @@ You can save one level of indentation using the [GitHub-flavored Markdown][] syn
 [rendered by Apiary]: http://docs.gistfoxapi.apiary.io
 [Tooling Section]: http://apiblueprint.org/#tooling
 [apiblueprint.org]: http://apiblueprint.org
+[specification]: https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md
+[map]: https://github.com/apiaryio/api-blueprint/wiki/API-Blueprint-Map
