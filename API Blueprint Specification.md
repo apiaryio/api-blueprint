@@ -893,6 +893,7 @@ The first variable in the braces **might** be preceded by an operator. API Bluep
 - `#` – _fragment identifier_ operator 
 - `+` – _reserved value_ operator
 - `?` – _form-style query_ operator
+- `&` – _form-style query continuation_ operator
 
 #### Examples
 
@@ -902,6 +903,7 @@ The first variable in the braces **might** be preceded by an operator. API Bluep
 {#var}
 {+var}
 {?var}
+{&var}
 ```
 
 > **NOTE:** The [explode variable modifier][uri-explode] is also supported. Refer to RFC6570 for its description.
@@ -950,13 +952,15 @@ With `var := to/resources` the expansion is `/path/to/resources/42`.
 
 ### Form-style Query Variable
 
-To define variables for a form-style query use the ampersand (`&`) operator: 
+To define variables for a form-style query use the question mark (`?`) operator
 
 ```
-/path/to/resources/{varone}{&vartwo}
+/path/to/resources/{varone}{?vartwo}
 ```
 
 With `varone := 42` and `vartwo = hello` the expansion is `/path/to/resources/42?vartwo=hello`.
+
+To continue a form-style query use the ampersand (`&`) operator: 
 
 ```
 /path/to/resources/{varone}?path=test{&vartwo,varthree}
