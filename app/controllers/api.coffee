@@ -2,11 +2,11 @@
 config    = require '../config'
 
 # Packages
-bodyParser   = require 'body-parser'
 express      = require 'express'
 compression  = require 'compression'
 errorHandler = require 'errorhandler'
 logger       = require 'morgan'
+YAML         = require 'json2yaml'
 qs           = require 'qs'
 
 # Modules
@@ -24,19 +24,25 @@ DEVELOP_REGEXP   = new RegExp /apiblueprint\.dev:([\d]{1,})$/
 
 
 # Local functions
-parseBlueprintCodeLocal = (code, cb) ->
-  blueprint.getLocalAst code, (err, ast, warnings) ->
-    if not err
-      log.debug 'Parsing code successful'
-      return cb null,
-        'ast': ast
-        'warnings': warnings if warnings
+normalizeNewlines = (s) ->
+  s.replace(/\r\n/g, "\n").replace(/\r/g, "\n")
 
-    # TODO: log.debug is here until we have client-side parser
-    log.debug 'Cannot parse blueprint code', err
-    return cb 400,
-      'message' : 'Cannot parse blueprint code',   'description' : err.message if err.message
-      'code'    : err.code if err.code,            'location'    : err.location if err.location
+
+formatTime = (hrtime) ->
+  # nano (1/1000) => mikro (1/1000000) => ms
+  hrtime[0] + ' s, ' + (hrtime[1] / 1000000).toFixed(3) + ' ms'
+
+
+parseBlueprintCodeLocal = (blueprintCode, cb) ->
+  blueprint.getLocalAst blueprintCode, (err, result) ->
+    if err
+      log.debug 'Cannot parse blueprint code', err
+      result.error = err
+    else
+      log.debug 'Parsing code successful'
+      result.error = {code: 0}
+
+    cb result
 
 
 addCORS = (req, res, next) ->
@@ -55,11 +61,29 @@ addCORS = (req, res, next) ->
   next()
 
 
+bodyParser = (req, res, next) ->
+  req.setEncoding 'utf8'
+  req.body = ''
+  req.on 'data', (chunk) ->
+    req.body += chunk
+  req.on 'end', ->
+    next()
+
+
+sendParserResult = (reqHeaders, res, result) ->
+  formatName = 'json'
+  format = JSON
+  if reqHeaders.accept is 'vnd.apiblueprint.parseresult.raw+yaml'
+    formatName = 'yaml'
+    format = YAML
+
+  res.set 'Content-Type', "vnd.apiblueprint.parseresult.raw+#{formatName}; version=1.0"
+  res.send (if result.error.code is 0 then 200 else 400), format.stringify result
+
+
 # Setup
 exports.setup = (app) ->
-
-  app.set 'trust proxy', true # trust headers like X-Forwarded-* for setting req.proto et al
-
+  app.set 'trust proxy', true  # trust headers like X-Forwarded-* for setting req.proto et al
   app.use compression(threshold: 512)
 
   # Setup development error handler.
@@ -73,25 +97,33 @@ exports.setup = (app) ->
     app.use logger('tiny')
 
 
-  app.options '/blueprint/ast', addCORS, (req, res) ->
+  app.options '/parser', addCORS, (req, res) ->
     res.send ''
 
 
-  app.post '/blueprint/ast', addCORS, bodyParser.urlencoded(extended: false, limit: '1mb'), (req, res) ->
-    if not req.body.blueprintCode
-      res.send 400, 'message', 'No blueprint code, nothing to parse'
+  app.post '/parser', addCORS, bodyParser, (req, res) ->
+    if not req.body
+      res.send 400, format.stringify
+        error:
+          code: -1  # TODO consult this with proper snowcrash/protagonist error codes
+          message: 'No blueprint code, nothing to parse'
+        warnings: []
     else
-      blueprintCode = req.body.blueprintCode.replace(/\r\n/g,"\n").replace(/\r/g,"\n")
+      blueprintCode = normalizeNewlines req.body
       t = process.hrtime()
-      parseBlueprintCodeLocal blueprintCode, (errCode, parsedData) ->
-        t = process.hrtime(t)
-        t = t[0] + ' s, ' + (t[1]/1000000).toFixed(3) + ' ms' # nano (1/1000) => mikro (1/1000000) => ms
-        res.set 'X-Parser-Time', t
-        if errCode then return res.json errCode, parsedData
-        return res.json parsedData
+      parseBlueprintCodeLocal blueprintCode, (result) ->
+        result._version = '1.0'
+        res.set 'X-Parser-Time', formatTime process.hrtime t
+        sendParserResult req.headers, res, result
+
 
   app.get '/', (req, res) ->
-    res.send 200, '<!doctype html><html><head><title>Greetings</title></head><body><h>Hi there!</h1></body>'
+    res.set 'Content-Type', 'application/hal+json'
+    res.set 'Link', '<http://docs.apiblueprintapi.apiary.io>; rel="profile"'
+    res.json 200,
+      _links:
+        self: {href: '/'}
+        parse: {href: '/parser'}
 
   # Setup production error handler returning JSON.
   # Modify `NODE_ENV` environment variable to force the right scope.

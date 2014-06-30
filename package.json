@@ -22,12 +22,12 @@
     "url": "https://github.com/apiaryio/api-blueprint/issues"
   },
   "dependencies": {
-    "body-parser": "",
     "coffee-script": "~1.6.3",
     "compression": "",
     "connect": "",
     "errorhandler": "",
     "express": "",
+    "json2yaml": "",
     "morgan": "",
     "node-hipchat": "",
     "protagonist": "0.11.0",
