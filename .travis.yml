@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - 0.10
+env:
+  - PORT=4000
+branches:
+  only:
+    - gh-pages  # TravisCI ignores gh-pages if not present in branches.only
+    - /.*/  # branches.only is exclusive, this includes back the other branches
