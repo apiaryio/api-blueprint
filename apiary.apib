@@ -206,6 +206,14 @@ Parse a blueprint (`vnd.apiblueprint+markdown`) into a serialized API Blueprint 
                                 schema:
         error: null
         warnings: []
+        
+### Parse [GET]
+
++ Response 405
+
+### Parse [HEAD]
+
++ Response 405
 
 ## Blueprint Composer [/composer]
 API Blueprint AST Media Types to API Blueprint conversions as provided by the [Matter Compiler](https://github.com/apiaryio/matter_compiler) tool.
@@ -307,8 +315,10 @@ Convert a serialized API Blueprint AST (`vnd.apiblueprint.ast.raw+json` or `vnd.
 
                 Hello World!
 
+### Compose [GET]
 
-# Group Error responses
++ Response 405
 
-## Trallalala [POST]
+### Compose [HEAD]
 
++ Response 405
