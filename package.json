@@ -7,7 +7,9 @@
   },
   "private": true,
   "homepage": "http://apiblueprint.org/",
-  "scripts": {},
+  "scripts": {
+    "test": "scripts/dredd-test.sh"
+  },
   "description": "```markdown # GET /message + Response 200 (text/plain)",
   "directories": {
     "example": "examples"
@@ -35,6 +37,7 @@
     "winston": "git://github.com/apiaryio/winston.git#production"
   },
   "devDependencies": {
+    "dredd": "",
     "nib": "",
     "stylus": ""
   }
