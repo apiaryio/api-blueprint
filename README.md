@@ -1,6 +1,6 @@
-![logo](https://raw.github.com/apiaryio/api-blueprint/gh-pages/assets/logo_apiblueprint.png) 
+![logo](https://raw.github.com/apiaryio/api-blueprint/master/assets/logo_apiblueprint.png)
 
-# API Blueprint 
+# API Blueprint
 ### API Design for Humans
 API Blueprint is a documentation-oriented API description language. A couple of semantical assumptions over the plain [Markdown](http://daringfireball.net/projects/markdown/).
 
@@ -21,7 +21,7 @@ All it takes to describe that `message` endpoint of your API is to write:
 ```md
 # GET /message
 + Response 200 (text/plain)
-    
+
         Hello World!
 ```
 
@@ -63,7 +63,7 @@ If you are interested in building tools for API Blueprint or just to integrate i
 + [Language Specification](API%20Blueprint%20Specification.md)
 + [Tools working with API Blueprint](http://apiblueprint.org/#tooling)
 
-### Developers 
+### Developers
 + [API Blueprint reference parser – Snow Crash](https://github.com/apiaryio/snowcrash)
 + [Snow Crash Bindings to other languages](https://github.com/apiaryio/snowcrash#bindings)
 + [API Blueprint AST Serialization Media Types](https://github.com/apiaryio/api-blueprint-ast)
@@ -71,7 +71,7 @@ If you are interested in building tools for API Blueprint or just to integrate i
 
 ## Future of API Blueprint
 Check out the API Blueprint [Issues Page](https://github.com/apiaryio/api-blueprint/issues) for planned features and issues discussion.
- 
+
 ## Contribute
 Fork & pull request.
 
