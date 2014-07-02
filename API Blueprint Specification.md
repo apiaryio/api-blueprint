@@ -903,6 +903,8 @@ The first variable in the braces **might** be preceded by an operator. API Bluep
 {#var}
 {+var}
 {?var}
+{?var1,var2}
+{?%24var}
 {&var}
 ```
 
@@ -940,7 +942,7 @@ With `var := my_id` the expansion is `/path/to/resources/42#my_id`.
 
 ### Variable with Reserved Characters Values
 
-To define URI Template variables with reserved URI characters (e.g. ) use the plus (`+`) operator:
+To define URI Template variables with reserved URI characters use the plus (`+`) operator:
 
 ```
 /path/{+var}/42
