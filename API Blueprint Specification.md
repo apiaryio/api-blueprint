@@ -1,12 +1,12 @@
 ---
 
 Author: z@apiary.io
-Version: 1A5
+Version: 1A6
 
 ---
 
 # API Blueprint
-#### Format 1A revision 5
+#### Format 1A revision 6
 
 ## [I. API Blueprint Language](#def-api-blueprint-language)
 1. [Introduction](#def-introduction)
@@ -36,6 +36,9 @@ Version: 1A5
 13. [Action section](#def-action-section)
 14. [Request section](#def-request-section)
 15. [Response section](#def-response-section)
+
+## [III. Appendix](#def-appendix)
+1. [URI Templates](#def-uri-templates)
 
 ---
 
@@ -545,13 +548,13 @@ This sections represents a group of resources (Resource Sections). **May** inclu
 - **Inherits from**: [Named section](#def-named-section)
 
 #### Definition
-Defined by an [RFC 6570 URI template][uritemplate]:
+Defined by an [URI template][uritemplate]:
 
     # <URI template>
 
 **-- or --**
 
-Defined by a resource [name (identifier)](#def-identifier) followed by URI template enclosed in square brackets `[]`.
+Defined by a resource [name (identifier)](#def-identifier) followed by an URI template enclosed in square brackets `[]`.
 
     # <identifier> [<URI template>]
 
@@ -570,6 +573,9 @@ This section **should** include at least one nested [Action section](#def-action
  
 - [`0-1` Model section](#def-model-section)
 - [`0-1` URI parameters section](#def-uriparameters-section)
+
+    URI parameters discussed in the scope of a Resource section apply to _any and all_ nested Action sections.
+
 - Additional [Action sections](#def-action-section)
 
 > **NOTE:** A blueprint document may contain multiple sections for the same resource (or resource set), as long as their HTTP methods differ. However it is considered good practice to group multiple HTTP methods under one resource (resource set).
@@ -637,7 +643,7 @@ Defined by the `Parameters` keyword written in a Markdown list item:
     + Parameters
 
 #### Description
-Discussion of parent section's URI parameters.
+Discussion of URI parameters in the _scope of the parent section_.
 
 This section **must** be composed of nested list items only. This section **must not** contain any other elements. One list item per URI parameter. The nested list items subsections inherit from the [Named section](#def-named-section) and are subject to additional formatting as follows:
 
@@ -726,7 +732,9 @@ Defined by an action [name (identifier)](#def-identifier) followed by an [HTTP r
 #### Description
 Definition of at least one complete HTTP transaction as performed with the parent resource section. An action section **may** consists of multiple HTTP transaction examples for the given HTTP request method.
 
-This section **may** include one nested [URI parameters section](#def-uriparameters-section) describing any URI parameters _specific_ to the action. It **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections.
+This section **may** include one nested [URI parameters section](#def-uriparameters-section) describing any URI parameters _specific_ to the action – URI parameters discussed in the scope of an Action section apply to the respective Action section ONLY.
+
+It **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections.
 
 Nested Request and Response sections **may** be ordered into groups where each groups represent one transaction example. First transaction example group starts with the first nested Request or Response section. Subsequent groups start with the first nested Request section following a Response section.
 
@@ -848,12 +856,133 @@ One HTTP response-message example – payload.
 
 ---
 
+<br>
+
+<a name="def-appendix"></a>
+# III. Appendix
+
+<a name="def-uri-templates"></a>
+## 1. URI Templates
+
+The API Blueprint uses a subset of [RFC6570][rfc6570] to define a resource URI Template.
+
+### URI Path Segment
+
+At its simplest form – without any variables – a path segment of an URI Template is identical to an URI path segment:
+
+```
+/path/to/resources/42
+```
+
+### URI Template Variable
+
+Variable names are case-sensitive. The variable name may consists of following characters **only**:
+
+- ASCII alpha numeric characters (`a-z`, `A-Z`)
+- Decimal digits (`0-9`)
+- `_`
+- [Percent-encoded][pct-encoded] characters 
+- `.`
+
+Multiple variables are separated by the comma **without** any leading or trailing spaces. A variable(s) **must** be enclosed in braces – `{}` **without** any additional leading or trailing whitespace. 
+
+#### Operators
+
+The first variable in the braces **might** be preceded by an operator. API Blueprint currently supports following operators:
+
+- `#` – _fragment identifier_ operator 
+- `+` – _reserved value_ operator
+- `?` – _form-style query_ operator
+- `&` – _form-style query continuation_ operator
+
+#### Examples
+
+```
+{var}
+{var1,var2,var3}
+{#var}
+{+var}
+{?var}
+{?var1,var2}
+{?%24var}
+{&var}
+```
+
+> **NOTE:** The [explode variable modifier][uri-explode] is also supported. Refer to RFC6570 for its description.
+
+#### Variable Reserved Values
+
+Following characters are **reserved** in variable _values_:
+
+`:` / `/` / `?` / `#` / `[` / `]` / `@` / `!` / `$` / `&` / `'` / `(` / `)` / `*` / `+` / `,` / `;` / `=`
+
+### Path Segment Variable
+
+Simple path segment component variable is defined without any operator:
+
+```
+/path/to/resources/{var}
+```
+
+With `var := 42` the expansion is `/path/to/resources/42`.
+
+> **NOTE:** RFC6570 – Level 1
+
+### Fragment Identifier Variable
+
+URI Template variables for fragment identifiers are defined using the crosshatch (`#`) operator: 
+
+```
+/path/to/resources/42{#var}
+```
+
+With `var := my_id` the expansion is `/path/to/resources/42#my_id`.
+
+> **NOTE:** RFC6570 – Level 2
+
+### Variable with Reserved Characters Values
+
+To define URI Template variables with reserved URI characters use the plus (`+`) operator:
+
+```
+/path/{+var}/42
+```
+
+With `var := to/resources` the expansion is `/path/to/resources/42`.
+
+> **NOTE:** RFC6570 – Level 2
+
+### Form-style Query Variable
+
+To define variables for a form-style query use the question mark (`?`) operator
+
+```
+/path/to/resources/{varone}{?vartwo}
+```
+
+With `varone := 42` and `vartwo = hello` the expansion is `/path/to/resources/42?vartwo=hello`.
+
+To continue a form-style query use the ampersand (`&`) operator: 
+
+```
+/path/to/resources/{varone}?path=test{&vartwo,varthree}
+```
+
+With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path/to/resources/42?path=test&vartwo=hello&varthree=1024`.
+
+> **NOTE:** RFC6570 – Part of Level 3
+
+---
+
 [apiblueprint.org]: http://apiblueprint.org
 [markdown syntax]: http://daringfireball.net/projects/markdown
 [reference syntax]: http://daringfireball.net/projects/markdown/syntax#link
 [gitHub flavored markdown syntax]: https://help.github.com/articles/github-flavored-markdown
 [httpmethods]: https://github.com/for-GET/know-your-http-well/blob/master/methods.md#know-your-http-methods-well
-[uritemplate]: http://tools.ietf.org/html/rfc6570
+[uritemplate]: #def-uri-templates
+[rfc6570]: http://tools.ietf.org/html/rfc6570
 [HTTP status code]: https://github.com/for-GET/know-your-http-well/blob/master/status-codes.md
 [header syntax]: https://daringfireball.net/projects/markdown/syntax#header
 [list syntax]: https://daringfireball.net/projects/markdown/syntax#list
+[pct-encoded]: http://en.wikipedia.org/wiki/Percent-encoding
+[uri-explode]: http://tools.ietf.org/html/rfc6570#section-2.4.2
