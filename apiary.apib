@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://www.google.com
+HOST: https://api.agrofoto.pl
 
 # Agrofoto
 Agrofoto REST API
@@ -7,8 +7,8 @@ Agrofoto REST API
 Collection always consists of:
 
  - `href`that uniqly identifies the collection, 
- - `items` table that contains all or some of the actual resources,
- - `previous` and `next` which allow for paging
+ - `items table that contains all or some of the actual resources,
+ - `previous and `next` which allow for paging
 
 # Agrofoto API Root [/]
 API Root
@@ -59,9 +59,9 @@ Following gallery object types should be considered:
                 "href": "/galleries/29-case",
                 "title": "Case",
                 "desc": null,
-                "updated_time": "2014-04-14T02:15:15Z",
-                "photos_count": 3724,
-                "comments_count": 15286,
+                "updatedTime": "2014-04-14T02:15:15Z",
+                "photosCount": 3724,
+                "commentsCount": 15286,
                 "cover": {
                     "href": "/photos/514762-case-115-i-claas-dominator-86",
                     "user": {
@@ -76,18 +76,18 @@ Following gallery object types should be considered:
                         "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
                         "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
                     },
-                    "created_time": "2011-09-02T15:41:47+0000",
-                    "updated_time": "2011-09-02T16:12:33+0000",
-                    "displayed_count": 91,
-                    "comments_count": 1
+                    "createdTime": "2011-09-02T15:41:47+0000",
+                    "updatedTime": "2011-09-02T16:12:33+0000",
+                    "displayedCount": 91,
+                    "commentsCount": 1
                 },
-                "subscribe_count": 3,
-                "user_subscribing": true,
+                "subscribeCount": 3,
+                "userSubscribing": true,
                 "subscribe": {
                     "href": "/galleries/29-case/subscribe"
                 },
                 "share": "http://www.agrofoto.pl/forum/gallery/category/29-case/",
-                "can_upload": true,
+                "canUpload": true,
                 "parent": {
                     "href": "/galleries/4-ciagniki-tractors",
                     "title": "Ciągniki / Tractors",
@@ -119,10 +119,10 @@ Following gallery object types should be considered:
                                 "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
                                 "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
                             },
-                            "created_time": "2011-09-02T15:41:47+0000",
-                            "updated_time": "2011-09-02T16:12:33+0000",
-                            "displayed_count": 91,
-                            "comments_count": 1
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 91,
+                            "commentsCount": 1
                         }
                     ],
                     "next": { 
@@ -147,10 +147,10 @@ Following gallery object types should be considered:
                                 "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
                                 "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
                             },
-                            "created_time": "2011-09-02T15:41:47+0000",
-                            "updated_time": "2011-09-02T16:12:33+0000",
-                            "displayed_count": 91,
-                            "comments_count": 1
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 91,
+                            "commentsCount": 1
                         }
                     ],
                     "next": null,
@@ -169,7 +169,7 @@ Following gallery object types should be considered:
     + Body
     
             {
-                "subscribe_count": 3
+                "subscribeCount": 3
             }
 
 ### Subscribe the gallery [PUT]
@@ -195,7 +195,7 @@ Rate the gallery
                 "href": "/gallery/29-case/rate",
                 "rating": 5,
                 "count": 2,
-                "user_rating": 5
+                "userRating": 5
             }
 
 ### Get gallery rating [GET]
@@ -245,10 +245,10 @@ Photos collection for given gallery leaf
                             "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
                             "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
                         },
-                        "created_time": "2011-09-02T15:41:47+0000",
-                        "updated_time": "2011-09-02T16:12:33+0000", 
-                        "displayed_count": 91,
-                        "comments_count": 1
+                        "createdTime": "2011-09-02T15:41:47+0000",
+                        "updatedTime": "2011-09-02T16:12:33+0000", 
+                        "displayedCount": 91,
+                        "commentsCount": 1
                     }
                 ],
                 "next": { 
@@ -301,10 +301,10 @@ Hot photos collection for given gallery root/node/leaf
                             "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
                             "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
                         },
-                        "created_time": "2011-09-02T15:41:47+0000",
-                        "updated_time": "2011-09-02T16:12:33+0000",
-                        "displayed_count": 91,
-                        "comments_count": 1
+                        "createdTime": "2011-09-02T15:41:47+0000",
+                        "updatedTime": "2011-09-02T16:12:33+0000",
+                        "displayedCount": 91,
+                        "commentsCount": 1
                     }
                 ],
                 "next": {
@@ -343,19 +343,19 @@ Single photo resource
                     "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
                     "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
                 },
-                "created_time": "2011-09-02T15:41:47+0000",
-                "updated_time": "2011-09-02T16:12:33+0000",
-                "displayed_count": 91,
-                "comments_count": 1,
+                "createdTime": "2011-09-02T15:41:47+0000",
+                "updatedTime": "2011-09-02T16:12:33+0000",
+                "displayedCount": 91,
+                "commentsCount": 1,
                 "link": "http://www.agrofoto.pl/forum/gallery/image/514762-case-115-i-claas-dominator-86/",
                 "rate": {
                     "href": "/photos/514762-case-115-i-claas-dominator-86/rate",
                     "rating": 5,
-                    "rating_count": 2,
-                    "user_rating": 5
+                    "ratingCount": 2,
+                    "userRating": 5
                 },
-                "subscribe_count": 4,
-                "user_subscribing": true,
+                "subscribeCount": 4,
+                "userSubscribing": true,
                 "subscribe": {
                     "href": "/photos/514762-case-115-i-claas-dominator-86/observe"
                 },
@@ -398,8 +398,8 @@ Rate the photo
             {
                 "href": "/photos/514762-case-115-i-claas-dominator-86/rate",
                 "rating": 5.0,
-                "rating_count": 2,
-                "user_rating": 5.0
+                "ratingCount": 2,
+                "userRating": 5.0
             }
 
 
@@ -430,7 +430,7 @@ Rate or update user vote
     + Body
     
             {
-                "subscribe_count": 3
+                "subscribeCount": 3
             }
 
 ### Subscribe the photo [PUT]
