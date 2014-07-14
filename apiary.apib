@@ -4,6 +4,11 @@ HOST: https://api.agrofoto.pl
 # Agrofoto
 Agrofoto REST API
 
+## Access token
+Access token should be obtained after logging in.
+Every request will contain an access_token parameter eg. https://api.agrofoto.pl/galleries?access_token=CAACEdEose0c
+If annonymous (without logging in) application access should be possible - no access token in request present case support is needed and treated as a request from unauthenticated user.
+
 Collection always consists of:
 
  - `href`that uniquely identifies the collection, 
@@ -14,6 +19,7 @@ Collection always consists of:
 API Root
 
 References other api resources, field expansion allows to fetch content with single request
+
 
 Attributes of the root resource:
 
