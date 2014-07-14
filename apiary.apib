@@ -1,0 +1,551 @@
+FORMAT: 1A
+HOST: http://www.google.com
+
+# Agrofoto
+Agrofoto REST API
+
+Collection always consists of:
+
+ - `href`that uniqly identifies the collection, 
+ - `items` table that contains all or some of the actual resources,
+ - `previous` and `next` which allow for paging
+
+# Agrofoto API Root [/]
+API Root
+
+References other api resources, field expansion allows to fetch content with single request
+
+Attributes of the root resource:
+
+ - `gallery` is a root gallery resource
+ - `forum` is a root forum resource
+
+## Retrieve Entry Point [GET]
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "/",
+                "gallery": {
+                    "href": "/galleries"
+                },
+                "forums": {
+                    "href": "/forums"
+                }
+            }
+
+# Group Galleries
+Gallery releated resources
+
+## Gallery [/galleries/{id}]
+A single Gallery object. Gallery object represents a node in the tree of galleries.
+
+Following gallery object types should be considered:
+
+- root - hot photos, children, no parent, no photos
+- node - hot photos, children, parent, no photos
+- leaf - hot photos, no children, parent, photos
+- leaf-vip - leaf with from and rating
+
++ Parameters
+    + id (string)
+
+### Get the Gallery [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "/galleries/29-case",
+                "title": "Case",
+                "desc": null,
+                "updated_time": "2014-04-14T02:15:15Z",
+                "photos_count": 3724,
+                "comments_count": 15286,
+                "cover": {
+                    "href": "/photos/514762-case-115-i-claas-dominator-86",
+                    "user": {
+                        "href": "/users/14237-mat",
+                        "name": "Mat"
+                    },
+                    "name": "Case 115 i Claas Dominator 86",
+                    "desc": "1-szy dzień żniw.",
+                    "images": {
+                        "square": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/square/",
+                        "small": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/small/",
+                        "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
+                        "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
+                    },
+                    "created_time": "2011-09-02T15:41:47+0000",
+                    "updated_time": "2011-09-02T16:12:33+0000",
+                    "displayed_count": 91,
+                    "comments_count": 1
+                },
+                "subscribe_count": 3,
+                "user_subscribing": true,
+                "subscribe": {
+                    "href": "/galleries/29-case/subscribe"
+                },
+                "share": "http://www.agrofoto.pl/forum/gallery/category/29-case/",
+                "can_upload": true,
+                "parent": {
+                    "href": "/galleries/4-ciagniki-tractors",
+                    "title": "Ciągniki / Tractors",
+                    "parent": {
+                        "href": "/galleries/2-maszyny-machines",
+                        "title": "Maszyny / Machines",
+                        "parent": {
+                            "href": "/galleries",
+                            "title": "Galerie",
+                            "parent": null
+                        }
+                    }
+                },
+                "children": null,
+                "photos": {
+                    "href": "/gallery/29-case/photos",
+                    "items": [
+                        {
+                            "href": "/photos/514762-case-115-i-claas-dominator-86",
+                            "user": {
+                                "href": "/users/14237-mat",
+                                "name": "Mat"
+                            },
+                            "name": "Case 115 i Claas Dominator 86",
+                            "desc": "1-szy dzień żniw.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/square/",
+                                "small": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/small/",
+                                "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
+                                "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
+                            },
+                            "created_time": "2011-09-02T15:41:47+0000",
+                            "updated_time": "2011-09-02T16:12:33+0000",
+                            "displayed_count": 91,
+                            "comments_count": 1
+                        }
+                    ],
+                    "next": { 
+                        "href": "gallery/29-case/photos?page=1&limit=25" 
+                    },
+                    "previous": null
+                },
+                "hot": {
+                    "href": "/gallery/29-case/hot",
+                    "items": [
+                        {
+                            "href": "/photos/514762-case-115-i-claas-dominator-86",
+                            "user": {
+                                "href": "/users/14237-mat",
+                                "name": "Mat"
+                            },
+                            "name": "Case 115 i Claas Dominator 86",
+                            "desc": "1-szy dzień żniw.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/square/",
+                                "small": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/small/",
+                                "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
+                                "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
+                            },
+                            "created_time": "2011-09-02T15:41:47+0000",
+                            "updated_time": "2011-09-02T16:12:33+0000",
+                            "displayed_count": 91,
+                            "comments_count": 1
+                        }
+                    ],
+                    "next": null,
+                    "previous": null
+                },
+                "rate": null,
+                "from": null
+            }
+
+## Gallery subscribing [/galleries/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "subscribe_count": 3
+            }
+
+### Subscribe the gallery [PUT]
++ Response 200 (application/json)
+
+    [Gallery subscribing][]    
+
+### Unsubscribe the gallery [DELETE]
++ Response 200 
+
+    [Gallery subscribing][]
+
+## Gallery rating [/galleries/{id}/rate]
+Rate the gallery
+
++ Parameters
+    + id (string)
+
++ Model (application/json)
+    + Body
+    
+            {
+                "href": "/gallery/29-case/rate",
+                "rating": 5,
+                "count": 2,
+                "user_rating": 5
+            }
+
+### Get gallery rating [GET]
++ Response 200 (application/json)
+
+    [Gallery rating][]
+
+### Rate the gallery [PUT]
+Rate or update user vote
+
++ Request (application/json)
+
+            {
+                "rating": 5.0
+            }
+            
++ Response 200 (application/json)
+
+    [Gallery rating][]
+
+# Group Photos
+    
+## Photos Collection [/galleries/{id}/photos]
+Photos collection for given gallery leaf
+    
+### List all Photos [GET]
++ Parameters
+    + id (string)
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "/gallery/29-case/photos",   
+                "items": [ 
+                    {
+                        "href": "/photos/514762-case-115-i-claas-dominator-86",
+                        "user": {
+                            "href": "/users/14237-mat",
+                            "name": "Mat"
+                        },
+                        "name": "Case 115 i Claas Dominator 86",
+                        "desc": "1-szy dzień żniw.",
+                        "images": {
+                            "square": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/square/",
+                            "small": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/small/",
+                            "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
+                            "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
+                        },
+                        "created_time": "2011-09-02T15:41:47+0000",
+                        "updated_time": "2011-09-02T16:12:33+0000", 
+                        "displayed_count": 91,
+                        "comments_count": 1
+                    }
+                ],
+                "next": { 
+                    "href": "/galleries/29-case/photos?page=1&limit=25" 
+                },
+                "previous": null
+            }
+
+### Photo upload [POST]
+Photo upload is a multipart entity, not sure how to model that...
+
++ Request (applicatoin/json)
+
+            {
+                "name": "Case 115 i Claas Dominator 86",
+                "desc": "1-szy dzień żniw."
+            }
+
++ Response 201 (application/json)
+    + Body
+            
+            {
+                "href": "/photos/514762-case-115-i-claas-dominator-86"
+            }
+
+## Hot photos collection [/galleries/{id}/hot]
+Hot photos collection for given gallery root/node/leaf
+    
+### List all hot photos [GET]
++ Parameters
+    + id (string)
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "/gallery/29-case/hot",
+                "items": [
+                    {
+                        "href": "/photos/514762-case-115-i-claas-dominator-86",
+                        "user": {
+                            "href": "/users/14237-mat",
+                            "name": "Mat"
+                        },
+                        "name": "Case 115 i Claas Dominator 86",
+                        "desc": "1-szy dzień żniw.",
+                        "images": {
+                            "square": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/square/",
+                            "small": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/small/",
+                            "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
+                            "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
+                        },
+                        "created_time": "2011-09-02T15:41:47+0000",
+                        "updated_time": "2011-09-02T16:12:33+0000",
+                        "displayed_count": 91,
+                        "comments_count": 1
+                    }
+                ],
+                "next": {
+                    "href": "/galleries/29-case/hot?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## Photo [/photos/{id}]
+Single photo resource
+
++ Parameters
+    + id (string)
+
+### Get the Photo [GET]
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "/photos/514762-case-115-i-claas-dominator-86",
+                "gallery": {
+                    "href": "/galleries/29-case",
+                    "title": "Case"
+                },
+                "user": {
+                    "href": "/users/14237-mat",
+                    "name": "Mat",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-14237.jpg"
+                },
+                "name": "Case 115 i Claas Dominator 86",
+                "desc": "1-szy dzień żniw.",
+                "images": {
+                    "square": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/square/",
+                    "small": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/small/",
+                    "medium": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/medium/",
+                    "large": "http://www.agrofoto.pl/forum/gallery/sizes/514762-case-115-i-claas-dominator-86/large/"
+                },
+                "created_time": "2011-09-02T15:41:47+0000",
+                "updated_time": "2011-09-02T16:12:33+0000",
+                "displayed_count": 91,
+                "comments_count": 1,
+                "link": "http://www.agrofoto.pl/forum/gallery/image/514762-case-115-i-claas-dominator-86/",
+                "rate": {
+                    "href": "/photos/514762-case-115-i-claas-dominator-86/rate",
+                    "rating": 5,
+                    "rating_count": 2,
+                    "user_rating": 5
+                },
+                "subscribe_count": 4,
+                "user_subscribing": true,
+                "subscribe": {
+                    "href": "/photos/514762-case-115-i-claas-dominator-86/observe"
+                },
+                "comments": {
+                    "href": "/photos/514762-case-115-i-claas-dominator-86/comments",
+                    "items": [
+                        {
+                            "href": "/comments/1544809",
+                            "user": {
+                                "href": "/users/19727-michal15555",
+                                "name": "michal15555",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
+                            },
+                            "message": "Jaki plon ?",
+                            "recommend": {
+                                "href": "/comments/1544809/recommend"
+                            }
+                        }
+                    ],
+                    "previous": null,
+                    "next": null
+                },
+                "recommend": {
+                    "href": "/photos/514762-case-115-i-claas-dominator-86/recommend"
+                }
+            }
+
+### Delete the photo [DELETE]
++ Response 204
+
+## Photo rating [/photos/{id}/rate]
+Rate the photo
+
++ Parameters
+    + id (string)
+
++ Model (application/json)
+    + Body
+    
+            {
+                "href": "/photos/514762-case-115-i-claas-dominator-86/rate",
+                "rating": 5.0,
+                "rating_count": 2,
+                "user_rating": 5.0
+            }
+
+
+### Get photo rating [GET]
++ Response 200 (application/json)
+
+    [Photo rating][]
+
+### Rate the photo [PUT]
+Rate or update user vote
+
++ Request (application/json)
+
+            {
+                "rating": 5.0
+            }
+            
++ Response 200 (application/json)
+
+    [Photo rating][]
+
+## Photo subscribing [/photos/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "subscribe_count": 3
+            }
+
+### Subscribe the photo [PUT]
++ Response 200 (application/json)
+
+    [Photo subscribing][]    
+
+### Unsubscribe the photo [DELETE]
++ Response 200 
+
+    [Photo subscribing][]
+
+## Photo recommending [/photos/{id}/recommend]
+
++ Parameters
+    + id (string)
+
+### Recommend the photo [PUT]
++ Response 204
+
+### Remove recommendation [DELETE]
++ Response 204
+
+# Group Comments
+
+## Comments collection [/photos/{id}/comments]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "/photos/514762-case-115-i-claas-dominator-86/comments",
+                "items": [
+                    {
+                        "href": "/comments/1544809",
+                        "user": {
+                            "href": "/users/19727-michal15555",
+                            "name": "michal15555",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
+                        },
+                        "message": "Jaki plon ?",
+                        "recommend": {
+                            "href": "/comments/1544809/recommend"
+                        }
+                    }
+                ],
+                "previous": null,
+                "next": null
+            }  
+
+### Get all comments [GET]
++ Response 200 (application/json)
+
+    [Comments collection][]
+
+### Post a comment [POST]
++ Request (application/json)
+
+            {
+                "message": "Jaki plon ?"
+            }
+            
++ Response 200 (application/json)
+
+    [Comments collection][]
+    
+## Comment [/comments/{id}]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "/comments/1544809",
+                "user": {
+                    "href": "/users/19727-michal15555",
+                    "name": "michal15555",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
+                },
+                "message": "Jaki plon ?",
+                "recommend": {
+                    "href": "/comments/1544809/recommend"
+                }
+            }
+
+### Get the comment [GET]
++ Response 200 (application/json)
+
+    [Comment][]
+    
+### Update the comment [PUT]
++ Request (application/json)
+
+            {
+                "message": "Jaki plon ?"
+            }
+            
++ Response 200 (application/json)
+
+    [Comments collection][]
+    
+### Delete the comment [DELETE]
++ Response 204
+
+## Comment recommending [/comments/{id}/recommend]
++ Parameters
+    + id (string)
+
+### Recommend the comment [PUT]
++ Response 204
+
+### Remove recommendation [DELETE]
++ Response 204
