@@ -81,10 +81,10 @@ Following gallery object types should be considered:
                     "displayedCount": 91,
                     "commentsCount": 1
                 },
-                "subscribeCount": 3,
-                "userSubscribing": true,
                 "subscribe": {
-                    "href": "https://api.agrofoto.pl/galleries/29-case/subscribe"
+                    "href": "https://api.agrofoto.pl/gallery/29-case/subscribe",
+                    "count": 3,
+                    "subscribed": true
                 },
                 "share": "http://www.agrofoto.pl/forum/gallery/category/29-case/",
                 "canUpload": true,
@@ -101,7 +101,35 @@ Following gallery object types should be considered:
                         }
                     }
                 },
-                "children": null,
+                "children": [
+                    {
+                        "href": "https://api.agrofoto.pl/galleries/224-challenger"
+                        "title": "Challenger",
+                        "desc": null,
+                        "updatedTime": "2014-04-14T02:15:15Z",
+                        "photosCount": 83,
+                        "commentsCount": 394,
+                        "cover": {
+                            "href": "http://www.agrofoto.pl/photos/504435-challenger-mt-765c",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/1342-mnich",
+                                "name": "mnich"
+                            },
+                            "name": "Challenger MT 765C",
+                            "desc": "Siew kukurydzy siewnikiem horsch.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/square/",
+                                "small": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/small/",
+                                "medium": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/medium/",
+                                "large": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/large/"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 433,
+                            "commentsCount": 4
+                        }
+                    }
+                ],
                 "photos": {
                     "href": "https://api.agrofoto.pl/gallery/29-case/photos",
                     "items": [
@@ -156,8 +184,16 @@ Following gallery object types should be considered:
                     "next": null,
                     "previous": null
                 },
-                "rate": null,
-                "from": null
+                "rate": {
+                    "href": "https://api.agrofoto.pl/gallery/29-case/rate",
+                    "rating": 5,
+                    "count": 2,
+                    "userRating": 5
+                },
+                "from": {
+                    "href": "https://api.agrofoto.pl/users/14237-mat",
+                    "name": "Mat"
+                }
             }
 
 ## Gallery subscribing [/galleries/{id}/subscribe]
@@ -169,7 +205,9 @@ Following gallery object types should be considered:
     + Body
     
             {
-                "subscribeCount": 3
+                "href": "https://api.agrofoto.pl/gallery/29-case/subscribe",
+                "count": 3,
+                "subscribed": true
             }
 
 ### Subscribe the gallery [PUT]
@@ -354,10 +392,10 @@ Single photo resource
                     "ratingCount": 2,
                     "userRating": 5
                 },
-                "subscribeCount": 4,
-                "userSubscribing": true,
                 "subscribe": {
-                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/observe"
+                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/subscribe",
+                    "count": 4,
+                    "subscribed": true
                 },
                 "comments": {
                     "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/comments",
@@ -430,7 +468,9 @@ Rate or update user vote
     + Body
     
             {
-                "subscribeCount": 3
+                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/subscribe",
+                "count": 4,
+                "subscribed": true
             }
 
 ### Subscribe the photo [PUT]
