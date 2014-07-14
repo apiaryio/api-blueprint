@@ -26,12 +26,12 @@ Attributes of the root resource:
     + Body
     
             {
-                "href": "/",
-                "gallery": {
-                    "href": "/galleries"
+                "href": "https://api.agrofoto.pl/",
+                "galleries": {
+                    "href": "https://api.agrofoto.pl/galleries"
                 },
                 "forums": {
-                    "href": "/forums"
+                    "href": "https://api.agrofoto.pl/forums"
                 }
             }
 
@@ -56,16 +56,16 @@ Following gallery object types should be considered:
     + Body
     
             {
-                "href": "/galleries/29-case",
+                "href": "https://api.agrofoto.pl/galleries/29-case",
                 "title": "Case",
                 "desc": null,
                 "updatedTime": "2014-04-14T02:15:15Z",
                 "photosCount": 3724,
                 "commentsCount": 15286,
                 "cover": {
-                    "href": "/photos/514762-case-115-i-claas-dominator-86",
+                    "href": "http://www.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
                     "user": {
-                        "href": "/users/14237-mat",
+                        "href": "https://api.agrofoto.pl/users/14237-mat",
                         "name": "Mat"
                     },
                     "name": "Case 115 i Claas Dominator 86",
@@ -84,18 +84,18 @@ Following gallery object types should be considered:
                 "subscribeCount": 3,
                 "userSubscribing": true,
                 "subscribe": {
-                    "href": "/galleries/29-case/subscribe"
+                    "href": "https://api.agrofoto.pl/galleries/29-case/subscribe"
                 },
                 "share": "http://www.agrofoto.pl/forum/gallery/category/29-case/",
                 "canUpload": true,
                 "parent": {
-                    "href": "/galleries/4-ciagniki-tractors",
+                    "href": "https://api.agrofoto.pl/galleries/4-ciagniki-tractors",
                     "title": "Ciągniki / Tractors",
                     "parent": {
-                        "href": "/galleries/2-maszyny-machines",
+                        "href": "https://api.agrofoto.pl/galleries/2-maszyny-machines",
                         "title": "Maszyny / Machines",
                         "parent": {
-                            "href": "/galleries",
+                            "href": "https://api.agrofoto.pl/galleries",
                             "title": "Galerie",
                             "parent": null
                         }
@@ -103,12 +103,12 @@ Following gallery object types should be considered:
                 },
                 "children": null,
                 "photos": {
-                    "href": "/gallery/29-case/photos",
+                    "href": "https://api.agrofoto.pl/gallery/29-case/photos",
                     "items": [
                         {
-                            "href": "/photos/514762-case-115-i-claas-dominator-86",
+                            "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
                             "user": {
-                                "href": "/users/14237-mat",
+                                "href": "https://api.agrofoto.pl/users/14237-mat",
                                 "name": "Mat"
                             },
                             "name": "Case 115 i Claas Dominator 86",
@@ -126,17 +126,17 @@ Following gallery object types should be considered:
                         }
                     ],
                     "next": { 
-                        "href": "gallery/29-case/photos?page=1&limit=25" 
+                        "href": "https://api.agrofoto.pl/gallery/29-case/photos?page=1&limit=25" 
                     },
                     "previous": null
                 },
                 "hot": {
-                    "href": "/gallery/29-case/hot",
+                    "href": "https://api.agrofoto.pl/gallery/29-case/hot",
                     "items": [
                         {
-                            "href": "/photos/514762-case-115-i-claas-dominator-86",
+                            "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
                             "user": {
-                                "href": "/users/14237-mat",
+                                "href": "https://api.agrofoto.pl/users/14237-mat",
                                 "name": "Mat"
                             },
                             "name": "Case 115 i Claas Dominator 86",
@@ -192,7 +192,7 @@ Rate the gallery
     + Body
     
             {
-                "href": "/gallery/29-case/rate",
+                "href": "https://api.agrofoto.pl/gallery/29-case/rate",
                 "rating": 5,
                 "count": 2,
                 "userRating": 5
@@ -229,12 +229,12 @@ Photos collection for given gallery leaf
     + Body
     
             {
-                "href": "/gallery/29-case/photos",   
+                "href": "https://api.agrofoto.pl/gallery/29-case/photos",   
                 "items": [ 
                     {
-                        "href": "/photos/514762-case-115-i-claas-dominator-86",
+                        "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
                         "user": {
-                            "href": "/users/14237-mat",
+                            "href": "https://api.agrofoto.pl/users/14237-mat",
                             "name": "Mat"
                         },
                         "name": "Case 115 i Claas Dominator 86",
@@ -252,7 +252,7 @@ Photos collection for given gallery leaf
                     }
                 ],
                 "next": { 
-                    "href": "/galleries/29-case/photos?page=1&limit=25" 
+                    "href": "https://api.agrofoto.pl/galleries/29-case/photos?page=1&limit=25" 
                 },
                 "previous": null
             }
@@ -271,7 +271,7 @@ Photo upload is a multipart entity, not sure how to model that...
     + Body
             
             {
-                "href": "/photos/514762-case-115-i-claas-dominator-86"
+                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86"
             }
 
 ## Hot photos collection [/galleries/{id}/hot]
@@ -285,12 +285,12 @@ Hot photos collection for given gallery root/node/leaf
     + Body
     
             {
-                "href": "/gallery/29-case/hot",
+                "href": "https://api.agrofoto.pl/gallery/29-case/hot",
                 "items": [
                     {
-                        "href": "/photos/514762-case-115-i-claas-dominator-86",
+                        "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
                         "user": {
-                            "href": "/users/14237-mat",
+                            "href": "https://api.agrofoto.pl/users/14237-mat",
                             "name": "Mat"
                         },
                         "name": "Case 115 i Claas Dominator 86",
@@ -308,7 +308,7 @@ Hot photos collection for given gallery root/node/leaf
                     }
                 ],
                 "next": {
-                    "href": "/galleries/29-case/hot?page=1&limit=25"
+                    "href": "https://api.agrofoto.pl/galleries/29-case/hot?page=1&limit=25"
                 },
                 "previous": null
             }
@@ -325,13 +325,13 @@ Single photo resource
     + Body
     
             {
-                "href": "/photos/514762-case-115-i-claas-dominator-86",
+                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
                 "gallery": {
-                    "href": "/galleries/29-case",
+                    "href": "https://api.agrofoto.pl/galleries/29-case",
                     "title": "Case"
                 },
                 "user": {
-                    "href": "/users/14237-mat",
+                    "href": "https://api.agrofoto.pl/users/14237-mat",
                     "name": "Mat",
                     "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-14237.jpg"
                 },
@@ -349,7 +349,7 @@ Single photo resource
                 "commentsCount": 1,
                 "link": "http://www.agrofoto.pl/forum/gallery/image/514762-case-115-i-claas-dominator-86/",
                 "rate": {
-                    "href": "/photos/514762-case-115-i-claas-dominator-86/rate",
+                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/rate",
                     "rating": 5,
                     "ratingCount": 2,
                     "userRating": 5
@@ -357,21 +357,21 @@ Single photo resource
                 "subscribeCount": 4,
                 "userSubscribing": true,
                 "subscribe": {
-                    "href": "/photos/514762-case-115-i-claas-dominator-86/observe"
+                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/observe"
                 },
                 "comments": {
-                    "href": "/photos/514762-case-115-i-claas-dominator-86/comments",
+                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/comments",
                     "items": [
                         {
-                            "href": "/comments/1544809",
+                            "href": "https://api.agrofoto.pl/comments/1544809",
                             "user": {
-                                "href": "/users/19727-michal15555",
+                                "href": "https://api.agrofoto.pl/users/19727-michal15555",
                                 "name": "michal15555",
                                 "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
                             },
                             "message": "Jaki plon ?",
                             "recommend": {
-                                "href": "/comments/1544809/recommend"
+                                "href": "https://api.agrofoto.pl/comments/1544809/recommend"
                             }
                         }
                     ],
@@ -379,7 +379,7 @@ Single photo resource
                     "next": null
                 },
                 "recommend": {
-                    "href": "/photos/514762-case-115-i-claas-dominator-86/recommend"
+                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/recommend"
                 }
             }
 
@@ -396,7 +396,7 @@ Rate the photo
     + Body
     
             {
-                "href": "/photos/514762-case-115-i-claas-dominator-86/rate",
+                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/rate",
                 "rating": 5.0,
                 "ratingCount": 2,
                 "userRating": 5.0
@@ -465,18 +465,18 @@ Rate or update user vote
     + Body
     
             {
-                "href": "/photos/514762-case-115-i-claas-dominator-86/comments",
+                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/comments",
                 "items": [
                     {
-                        "href": "/comments/1544809",
+                        "href": "https://api.agrofoto.pl/comments/1544809",
                         "user": {
-                            "href": "/users/19727-michal15555",
+                            "href": "https://api.agrofoto.pl/users/19727-michal15555",
                             "name": "michal15555",
                             "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
                         },
                         "message": "Jaki plon ?",
                         "recommend": {
-                            "href": "/comments/1544809/recommend"
+                            "href": "https://api.agrofoto.pl/comments/1544809/recommend"
                         }
                     }
                 ],
@@ -509,15 +509,15 @@ Rate or update user vote
     + Body
     
             {
-                "href": "/comments/1544809",
+                "href": "https://api.agrofoto.pl/comments/1544809",
                 "user": {
-                    "href": "/users/19727-michal15555",
+                    "href": "https://api.agrofoto.pl/users/19727-michal15555",
                     "name": "michal15555",
                     "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
                 },
                 "message": "Jaki plon ?",
                 "recommend": {
-                    "href": "/comments/1544809/recommend"
+                    "href": "https://api.agrofoto.pl/comments/1544809/recommend"
                 }
             }
 
