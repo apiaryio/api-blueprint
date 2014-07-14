@@ -109,35 +109,40 @@ Following gallery object types should be considered:
                         }
                     }
                 },
-                "children": [
-                    {
-                        "href": "https://api.agrofoto.pl/galleries/224-challenger",
-                        "title": "Challenger",
-                        "desc": null,
-                        "updatedTime": "2014-04-14T02:15:15Z",
-                        "photosCount": 83,
-                        "commentsCount": 394,
-                        "cover": {
-                            "href": "http://www.agrofoto.pl/photos/504435-challenger-mt-765c",
-                            "user": {
-                                "href": "https://api.agrofoto.pl/users/1342-mnich",
-                                "name": "mnich"
-                            },
-                            "name": "Challenger MT 765C",
-                            "desc": "Siew kukurydzy siewnikiem horsch.",
-                            "images": {
-                                "square": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/square/",
-                                "small": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/small/",
-                                "medium": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/medium/",
-                                "large": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/large/"
-                            },
-                            "createdTime": "2011-09-02T15:41:47+0000",
-                            "updatedTime": "2011-09-02T16:12:33+0000",
-                            "displayedCount": 433,
-                            "commentsCount": 4
+                "children": {
+                    "href": "https://api.agrofoto.pl/galleries/{id}/children",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/galleries/224-challenger",
+                            "title": "Challenger",
+                            "desc": null,
+                            "updatedTime": "2014-04-14T02:15:15Z",
+                            "photosCount": 83,
+                            "commentsCount": 394,
+                            "cover": {
+                                "href": "http://www.agrofoto.pl/photos/504435-challenger-mt-765c",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/1342-mnich",
+                                    "name": "mnich"
+                                },
+                                "name": "Challenger MT 765C",
+                                "desc": "Siew kukurydzy siewnikiem horsch.",
+                                "images": {
+                                    "square": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/square/",
+                                    "small": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/small/",
+                                    "medium": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/medium/",
+                                    "large": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/large/"
+                                },
+                                "createdTime": "2011-09-02T15:41:47+0000",
+                                "updatedTime": "2011-09-02T16:12:33+0000",
+                                "displayedCount": 433,
+                                "commentsCount": 4
+                            }
                         }
-                    }
-                ],
+                    ],
+                    "next": null,
+                    "previous": null
+                },
                 "photos": {
                     "href": "https://api.agrofoto.pl/gallery/29-case/photos",
                     "items": [
@@ -261,6 +266,52 @@ Rate or update user vote
 + Response 200 (application/json)
 
     [Gallery rating][]
+
+## Gallery children [/galleries/{id}/children]
+Subgalleries of given gallery node, also user albums
+
++ Parameters
+    + id (string)
+    
+### List gallery children [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/galleries/{id}/children",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/galleries/224-challenger",
+                        "title": "Challenger",
+                        "desc": null,
+                        "updatedTime": "2014-04-14T02:15:15Z",
+                        "photosCount": 83,
+                        "commentsCount": 394,
+                        "cover": {
+                            "href": "http://www.agrofoto.pl/photos/504435-challenger-mt-765c",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/1342-mnich",
+                                "name": "mnich"
+                            },
+                            "name": "Challenger MT 765C",
+                            "desc": "Siew kukurydzy siewnikiem horsch.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/square/",
+                                "small": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/small/",
+                                "medium": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/medium/",
+                                "large": "http://www.agrofoto.pl/forum/gallery/sizes/504435-challenger-mt-765c/large/"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 433,
+                            "commentsCount": 4
+                        }
+                    }
+                ],
+                "next": null,
+                "previous": null
+            }
+
 
 # Group Photos
     
