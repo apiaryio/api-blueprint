@@ -43,6 +43,28 @@ Attributes of the root resource:
                 }
             }
 
+# Group Authentication
+Seesion management
+
+## Login [/login]
+If some other session parameters are neccessary prior to actual login request, they could be obtained with GET request on login endpoint. Please report this issue if necessary.
+
+### Login [POST]
+Performs the login.
+
++ Request (application/x-www-form-urlencoded)
+
+        login=test&password=qq
+            
++ Response 204
+    + Headers
+    
+            Set-Cookie: token=xxx; path=/; expires=Fri, 03-May-2013 03:01:54 GMT; secure; HttpOnly
+
+### Logout [DELETE]
+Performs logout.
++ Response 204
+
 # Group Galleries
 Gallery releated resources
 
