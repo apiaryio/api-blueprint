@@ -785,3 +785,27 @@ The following example api response is a hybrid of all three node types.
                     "subscribed": true
                 }
             }
+
+## Subscribe Forum [/forums/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/forums/178-jeczmien/subscribe",
+                "count": 3,
+                "subscribed": true
+            }
+
+### Subscribe Forum [PUT]
++ Response 200 (application/json)
+
+    [Subscribe Forum][]
+
+### Unsubscribe Forum [DELETE]
++ Response 200
+
+    [Subscribe Forum][]
