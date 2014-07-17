@@ -809,3 +809,38 @@ The following example api response is a hybrid of all three node types.
 + Response 200
 
     [Subscribe Forum][]
+    
+## Forum children [/forums/{id}/children]
+Subforums of given forum node.
+
+### List forum children [GET]
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/forums/178-jeczmien/children",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/forums/178-jeczmien",
+                        "title": "Jęczmień",
+                        "icon": "http://www.agrofoto.pl/forum/uploads/forumicons/41-icon-2145d8666c5e8ca7b66e6f57d61b939b.jpg",
+                        "unread": true,
+                        "topic_count": 107,
+                        "posts_count": 4472,
+                        "latest_topic": {
+                            "href": "https://api.agrofoto.pl/topics/54612-jeczmien-hybrydowy",
+                            "title": "jęczmień hybrydowy",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/69429-rapscase",
+                                "name": "RAPSCASE",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-14237.jpg"
+                            },
+                            "updated_time": "2011-09-02T16:12:33+0000"
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/forums/178-jeczmien/children?page=1&limit=25"
+                },
+                "previous": null
+            }
