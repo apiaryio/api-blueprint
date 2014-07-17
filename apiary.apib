@@ -680,3 +680,141 @@ Rate or update user vote
 
 ### Remove recommendation [DELETE]
 + Response 204
+
+# Group Forums
+Forum related resources
+
+## Forum [/forums/{id}]
+A single forum object. Forum object represents a node in the tree of forums.
+
+Following forum object types should be considered:
+
+- root - hot topics, children, no parent, no topics
+- node - no hot topics, children, parent, topics/no topics
+- leaf - no hot topics, no children, parent, topics
+
+The following example api response is a hybrid of all three node types.
+
++ Parameters
+    + id (string)
+
+### Get Forum [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/forums/178-jeczmien",
+                "title": "Jęczmień",
+                "icon": "http://www.agrofoto.pl/forum/uploads/forumicons/41-icon-2145d8666c5e8ca7b66e6f57d61b939b.jpg",
+                "unread": true,
+                "topic_count": 107,
+                "posts_count": 4472,
+                "latest_topic": {
+                    "href": "https://api.agrofoto.pl/topics/54612-jeczmien-hybrydowy",
+                    "title": "jęczmień hybrydowy",
+                    "user": {
+                        "href": "https://api.agrofoto.pl/users/69429-rapscase",
+                        "name": "RAPSCASE",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-14237.jpg"
+                    },
+                    "updated_time": "2011-09-02T16:12:33+0000"
+                },
+                "children": {
+                    "href": "https://api.agrofoto.pl/forums/178-jeczmien/children",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/forums/178-jeczmien",
+                            "title": "Jęczmień",
+                            "icon": "http://www.agrofoto.pl/forum/uploads/forumicons/41-icon-2145d8666c5e8ca7b66e6f57d61b939b.jpg",
+                            "unread": true,
+                            "topic_count": 107,
+                            "posts_count": 4472,
+                            "latest_topic": {
+                                "href": "https://api.agrofoto.pl/topics/54612-jeczmien-hybrydowy",
+                                "title": "jęczmień hybrydowy",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/69429-rapscase",
+                                    "name": "RAPSCASE",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-14237.jpg"
+                                },
+                                "updated_time": "2011-09-02T16:12:33+0000"
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/forums/178-jeczmien/children?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "parent": {
+                    "href": "https://api.agrofoto.pl/forums/41-zboza",
+                    "title": "Zboża",
+                    "parent": {
+                        "href": "https://api.agrofoto.pl/forums/19-produkcja-roslinna",
+                        "title": "Produkcja roślinna",
+                        "parent": {
+                            "href": "https://api.agrofoto.pl/forums/0",
+                            "title": "Forum"
+                        }
+                    }
+                },
+                "hot": {
+                    "href": "https://api.agrofoto.pl/forums/0/hot",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady",
+                            "title": "MŁODY ROLNIK (nowe zasady)",
+                            "posts_count": 13807,
+                            "displayed_count": 1497404,
+                            "latest_post": {
+                                "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady/posts/13808",
+                                "from": {
+                                    "href": "https://api.agrofoto.pl/users/136140-kamilek1",
+                                    "name": "Kamilek1",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-136140.jpg"
+                                },
+                                "created_time": "2011-09-02T16:12:33+0000"
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/forums/0/hot?page=1&limit=25"
+                    }
+                },
+                "topics": {
+                    "href": "https://api.agrofoto.pl/forums/178-jeczmien/topics",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
+                            "title": "Jęczmień ozimy i jary",
+                            "from": {
+                                "href": "https://api.agrofoto.pl/users/837-miki7211",
+                                "name": "Miki7211"
+                            },
+                            "created_time": "2011-09-02T16:12:33+0000",
+                            "posts_count": 3068,
+                            "displayed_count": 371883,
+                            "latest_post": {
+                                "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts/3069",
+                                "from": {
+                                    "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                                    "name": "milanreal1",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                                },
+                                "created_time": "2011-09-02T16:12:33+0000"
+                            },
+                            "pinned": true,
+                            "hot": true
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/forums/178-jeczmien/topics?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "subscribe": {
+                    "href": "https://api.agrofoto.pl/forums/178-jeczmien/subscribe",
+                    "count": 3,
+                    "subscribed": true
+                }
+            }
