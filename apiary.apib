@@ -494,19 +494,13 @@ Single photo resource
                                 "name": "michal15555",
                                 "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
                             },
-                            "message": "Jaki plon ?",
-                            "recommend": {
-                                "href": "https://api.agrofoto.pl/comments/1544809/recommend"
-                            }
+                            "message": "Jaki plon ?"
                         }
                     ],
                     "next": {
                         "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/comments?page=1&limit=25"
                     },
                     "previous": null
-                },
-                "recommend": {
-                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/recommend"
                 }
             }
 
@@ -572,17 +566,6 @@ Rate or update user vote
 
     [Photo subscribing][]
 
-## Photo recommending [/photos/{id}/recommend]
-
-+ Parameters
-    + id (string)
-
-### Recommend the photo [PUT]
-+ Response 204
-
-### Remove recommendation [DELETE]
-+ Response 204
-
 # Group Comments
 
 ## Comments collection [/photos/{id}/comments]
@@ -603,10 +586,7 @@ Rate or update user vote
                             "name": "michal15555",
                             "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
                         },
-                        "message": "Jaki plon ?",
-                        "recommend": {
-                            "href": "https://api.agrofoto.pl/comments/1544809/recommend"
-                        }
+                        "message": "Jaki plon ?"
                     }
                 ],
                 "next": {
@@ -646,10 +626,7 @@ Rate or update user vote
                     "name": "michal15555",
                     "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
                 },
-                "message": "Jaki plon ?",
-                "recommend": {
-                    "href": "https://api.agrofoto.pl/comments/1544809/recommend"
-                }
+                "message": "Jaki plon ?"
             }
 
 ### Get the comment [GET]
@@ -669,16 +646,6 @@ Rate or update user vote
     [Comments collection][]
     
 ### Delete the comment [DELETE]
-+ Response 204
-
-## Comment recommending [/comments/{id}/recommend]
-+ Parameters
-    + id (string)
-
-### Recommend the comment [PUT]
-+ Response 204
-
-### Remove recommendation [DELETE]
 + Response 204
 
 # Group Forums
