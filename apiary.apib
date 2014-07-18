@@ -13,7 +13,11 @@ Collection always consists of:
 
 ### Access token
 Access token should be obtained after logging in.
-Every request will contain an access_token parameter eg. https://api.agrofoto.pl/galleries?access_token=CAACEdEose0c
+
+Every authenticated request will contain HTTP header `Authorization` with an access token.
+
+`Authorization: token OAUTH-TOKEN`
+
 If annonymous (without logging in) application access should be possible - no access token in request present case support is needed and treated as a request from unauthenticated user.
 
 
@@ -56,10 +60,12 @@ Performs the login.
 
         login=test&password=qq
             
-+ Response 204
-    + Headers
-    
-            Set-Cookie: token=xxx; path=/; expires=Fri, 03-May-2013 03:01:54 GMT; secure; HttpOnly
++ Response 200
+    + Body
+
+            {
+                "token": "OAUTH-TOKEN"
+            }
 
 ### Logout [DELETE]
 Performs logout.
