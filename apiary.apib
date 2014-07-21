@@ -229,15 +229,53 @@ Following gallery object types should be considered:
                     },
                     "previous": null
                 },
-                "rate": {
-                    "href": "https://api.agrofoto.pl/galleries/29-case/rate",
-                    "rating": 5,
-                    "count": 2,
-                    "userRating": 5
-                },
-                "from": {
-                    "href": "https://api.agrofoto.pl/users/14237-mat",
-                    "name": "Mat"
+                "albums": {
+                    "href": "https://api.agrofoto.pl/galleries/1-albumy-uzytkownikow-users-albums/albums",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/albums/2322-sezon-2014",
+                            "title": "Sezon 2014",
+                            "desc": "Prace polowe 2014",
+                            "updatedTime": "2014-04-14T02:15:15Z",
+                            "photosCount": 32,
+                            "commentsCount": 190,
+                            "from": {
+                                "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                                "name": "michallek4",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                            },
+                            "cover": {
+                                "href": "https://api.agrofoto.pl/photos/516351-new-holland-tc5070",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                                    "name": "michallek4",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                                },
+                                "name": "New Holland TC5070",
+                                "desc": "Dalszy ciag usług :)",
+                                "images": {
+                                    "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/tn_gallery_26381_2322_274253.jpg",
+                                    "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/sml_gallery_26381_2322_274253.jpg",
+                                    "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/med_gallery_26381_2322_274253.jpg",
+                                    "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/gallery_26381_2322_274253.jpg"
+                                },
+                                "createdTime": "2011-09-02T15:41:47+0000",
+                                "updatedTime": "2011-09-02T16:12:33+0000",
+                                "displayedCount": 82,
+                                "commentsCount": 0
+                            },
+                            "rate": {
+                                "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/rate",
+                                "rating": 5,
+                                "count": 2,
+                                "userRating": 5
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/galleries/1-albumy-uzytkownikow-users-albums/albums?page=1&limit=25"
+                    },
+                    "previous": null
                 }
             }
 
@@ -265,40 +303,6 @@ Following gallery object types should be considered:
 
     [Gallery subscribing][]
 
-## Gallery rating [/galleries/{id}/rate]
-Rate the gallery
-
-+ Parameters
-    + id (string)
-
-+ Model (application/json)
-    + Body
-    
-            {
-                "href": "https://api.agrofoto.pl/galleries/29-case/rate",
-                "rating": 5,
-                "count": 2,
-                "userRating": 5
-            }
-
-### Get gallery rating [GET]
-+ Response 200 (application/json)
-
-    [Gallery rating][]
-
-### Rate the gallery [PUT]
-Rate or update user vote
-
-+ Request (application/json)
-
-            {
-                "rating": 5.0
-            }
-            
-+ Response 200 (application/json)
-
-    [Gallery rating][]
-
 ## Gallery children [/galleries/{id}/children]
 Subgalleries of given gallery node, also user albums
 
@@ -310,7 +314,7 @@ Subgalleries of given gallery node, also user albums
     + Body
     
             {
-                "href": "https://api.agrofoto.pl/galleries/{id}/children",
+                "href": "https://api.agrofoto.pl/galleries/29-case/children",
                 "items": [
                     {
                         "href": "https://api.agrofoto.pl/galleries/224-challenger",
@@ -320,7 +324,7 @@ Subgalleries of given gallery node, also user albums
                         "photosCount": 83,
                         "commentsCount": 394,
                         "cover": {
-                            "href": "http://www.agrofoto.pl/photos/504435-challenger-mt-765c",
+                            "href": "https://api.agrofoto.pl/photos/504435-challenger-mt-765c",
                             "user": {
                                 "href": "https://api.agrofoto.pl/users/1342-mnich",
                                 "name": "mnich"
@@ -346,10 +350,223 @@ Subgalleries of given gallery node, also user albums
                 "previous": null
             }
 
+# Group Albums
+
+## Gallery Albums Collection [/galleries/{id}/albums]
+VIP users' albums, similiar to a leaf gallery node but with addition rate and from endpoints
+
+### List all Albums
++ Parameters
+    + id (string)
+
+### List gallery albums [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/galleries/1-albumy-uzytkownikow-users-albums/albums",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/albums/2322-sezon-2014",
+                        "title": "Sezon 2014",
+                        "desc": "Prace polowe 2014",
+                        "updatedTime": "2014-04-14T02:15:15Z",
+                        "photosCount": 32,
+                        "commentsCount": 190,
+                        "from": {
+                            "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                            "name": "michallek4",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                        },
+                        "cover": {
+                            "href": "https://api.agrofoto.pl/photos/516351-new-holland-tc5070",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                                "name": "michallek4",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                            },
+                            "name": "New Holland TC5070",
+                            "desc": "Dalszy ciag usług :)",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/tn_gallery_26381_2322_274253.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/sml_gallery_26381_2322_274253.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/med_gallery_26381_2322_274253.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/gallery_26381_2322_274253.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 82,
+                            "commentsCount": 0
+                        },
+                        "rate": {
+                            "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/rate",
+                            "rating": 5,
+                            "count": 2,
+                            "userRating": 5
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/galleries/1-albumy-uzytkownikow-users-albums/albums?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## Album [/albums/{id}]
+
+### Get album [GET]
+
++ Parameters
+    + id (string)
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/albums/2322-sezon-2014",
+                "title": "Sezon 2014",
+                "desc": "Prace polowe 2014",
+                "updatedTime": "2014-04-14T02:15:15Z",
+                "photosCount": 32,
+                "commentsCount": 190,
+                "from": {
+                    "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                    "name": "michallek4",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                },
+                "cover": {
+                    "href": "https://api.agrofoto.pl/photos/516351-new-holland-tc5070",
+                    "user": {
+                        "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                        "name": "michallek4",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                    },
+                    "name": "New Holland TC5070",
+                    "desc": "Dalszy ciag usług :)",
+                    "images": {
+                        "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/tn_gallery_26381_2322_274253.jpg",
+                        "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/sml_gallery_26381_2322_274253.jpg",
+                        "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/med_gallery_26381_2322_274253.jpg",
+                        "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/gallery_26381_2322_274253.jpg"
+                    },
+                    "createdTime": "2011-09-02T15:41:47+0000",
+                    "updatedTime": "2011-09-02T16:12:33+0000",
+                    "displayedCount": 82,
+                    "commentsCount": 0
+                },
+                "share": "http://www.agrofoto.pl/forum/gallery/image/516351-new-holland-tc5070/",
+                "canUpload": true,
+                "parent": {
+                    "href": "https://api.agrofoto.pl/galleries/1-albumy-uzytkownikow-users-albums",
+                    "title": "Albumy użytkowników / Users' albums",
+                    "parent": {
+                        "href": "https://api.agrofoto.pl/galleries",
+                        "title": "Galerie",
+                        "parent": null
+                    }
+                },
+                "photos": {
+                    "href": "https://api.agrofoto.pl/albums/29-case/photos",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                                "name": "michallek4",
+                            },
+                            "name": "New Holland T7530 + Agromax 8,4 m",
+                            "desc": "Sezon 2014 rozpoczęty z lekkim opóźnieniem bo czekałem na Vipa :) Zapraszam do komentowania i oceniania ;) ",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/tn_gallery_26381_2322_130951.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/sml_gallery_26381_2322_130951.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/med_gallery_26381_2322_130951.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/gallery_26381_2322_130951.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 91,
+                            "commentsCount": 1
+                        }
+                    ],
+                    "next": { 
+                        "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/photos?page=1&limit=25" 
+                    },
+                    "previous": null
+                },
+                "subscribe": {
+                    "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/subscribe",
+                    "count": 3,
+                    "subscribed": true
+                },
+                "rate": {
+                    "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/rate",
+                    "rating": 5,
+                    "count": 2,
+                    "userRating": 5
+                }
+            }
+
+## Album subscribing [/albums/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/subscribe",
+                "count": 3,
+                "subscribed": true
+            }
+
+### Subscribe album [PUT]
++ Response 200 (application/json)
+
+    [Album subscribing][]    
+
+### Unsubscribe album [DELETE]
++ Response 200 
+
+    [Album subscribing][]
+
+## Album rating [/albums/{id}/rate]
+Rate the album
+
++ Parameters
+    + id (string)
+
++ Model (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/rate",
+                "rating": 5,
+                "count": 2,
+                "userRating": 5
+            }
+
+### Get album rating [GET]
++ Response 200 (application/json)
+
+    [Album rating][]
+
+### Rate album [PUT]
+Rate or update user vote
+
++ Request (application/json)
+
+            {
+                "rating": 5.0
+            }
+            
++ Response 200 (application/json)
+
+    [Album rating][]
 
 # Group Photos
     
-## Photos Collection [/galleries/{id}/photos]
+## Gallery Photos Collection [/galleries/{id}/photos]
 Photos collection for given gallery leaf
     
 ### List all Photos [GET]
@@ -442,6 +659,61 @@ Hot photos collection for given gallery root/node/leaf
                     "href": "https://api.agrofoto.pl/galleries/29-case/hot?page=1&limit=25"
                 },
                 "previous": null
+            }
+
+## Album Photos Collection [/albums/{id}/photos]
+Photos collection for given user album
+
+### List all Photos [GET]
++ Parameters
+    + id (string)
+    
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/photos",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                            "name": "michallek4",
+                        },
+                        "name": "New Holland T7530 + Agromax 8,4 m",
+                        "desc": "Sezon 2014 rozpoczęty z lekkim opóźnieniem bo czekałem na Vipa :) Zapraszam do komentowania i oceniania ;) ",
+                        "images": {
+                            "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/tn_gallery_26381_2322_130951.jpg",
+                            "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/sml_gallery_26381_2322_130951.jpg",
+                            "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/med_gallery_26381_2322_130951.jpg",
+                            "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/gallery_26381_2322_130951.jpg"
+                        },
+                        "createdTime": "2011-09-02T15:41:47+0000",
+                        "updatedTime": "2011-09-02T16:12:33+0000",
+                        "displayedCount": 91,
+                        "commentsCount": 1
+                    }
+            "next": {
+                    "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/photos?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+### Photo upload [POST]
+Photo upload is a multipart entity, not sure how to model that...
+
++ Request (applicatoin/json)
+
+            {
+                "name": "New Holland T7530 + Agromax 8,4 m",
+                "desc": "Sezon 2014 rozpoczęty z lekkim opóźnieniem bo czekałem na Vipa :) Zapraszam do komentowania i oceniania ;) ",
+            }
+
++ Response 201 (application/json)
+    + Body
+            
+            {
+                "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m"
             }
 
 ## Photo [/photos/{id}]
