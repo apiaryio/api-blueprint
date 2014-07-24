@@ -606,14 +606,26 @@ Photos collection for given gallery leaf
             }
 
 ### Photo upload [POST]
-Photo upload is a multipart entity, not sure how to model that...
+Single photo upload
 
-+ Request (applicatoin/json)
-
++ Request (multipart/form-data; boundary=AaB03x)
+            
+            --AaB03x
+            Content-Disposition: form-data; name="photo"
+            Content-Type: application/json
+            
             {
                 "name": "Case 115 i Claas Dominator 86",
                 "desc": "1-szy dzień żniw."
+                "subscribe": true
             }
+            --AaB03x
+            Content-Disposition: form-data; name="file"; filename="photo.jpg"
+            Content-Type: image/jpeg
+            Content-Transfer-Encoding: binary
+            
+            ... contents of photo.jpeg ...
+            --AaB03x--
 
 + Response 201 (application/json)
     + Body
@@ -700,14 +712,26 @@ Photos collection for given user album
             }
             
 ### Photo upload [POST]
-Photo upload is a multipart entity, not sure how to model that...
-
-+ Request (applicatoin/json)
-
+Single photo upload
+            
++ Request (multipart/form-data; boundary=AaB03x)
+            
+            --AaB03x
+            Content-Disposition: form-data; name="photo"
+            Content-Type: application/json
+            
             {
                 "name": "New Holland T7530 + Agromax 8,4 m",
-                "desc": "Sezon 2014 rozpoczęty z lekkim opóźnieniem bo czekałem na Vipa :) Zapraszam do komentowania i oceniania ;) ",
+                "desc": "Sezon 2014 rozpoczęty z lekkim opóźnieniem bo czekałem na Vipa :) Zapraszam do komentowania i oceniania ;) "
+                "subscribe": true
             }
+            --AaB03x
+            Content-Disposition: form-data; name="file"; filename="photo.jpg"
+            Content-Type: image/jpeg
+            Content-Transfer-Encoding: binary
+            
+            ... contents of photo.jpeg ...
+            --AaB03x--
 
 + Response 201 (application/json)
     + Body
