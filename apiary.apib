@@ -1427,7 +1427,7 @@ Unsupported properties:
     + Body
 
             {
-                "href": "https://api.agrofoto.pl/18309-piwex16",
+                "href": "https://api.agrofoto.pl/users/18309-piwex16",
                 "name": "piwex16",
                 "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-18309.jpg",
                 "createdTime": "2011-09-02T15:41:47+0000",
@@ -1449,21 +1449,21 @@ Unsupported properties:
                 "jabber": "piwex16@agrofoto.pl",
                 "skype": "piwex16",
                 "friends": {
-                    "href": "https://api.agrofoto.pl/18309-piwex16/friends",
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/friends",
                     "items": [
                         {
                             "href": "https://api.agrofoto.pl/users/57548-312fendt512",
-                            "name": "piwex16",
+                            "name": "312fendt512",
                             "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-57548.jpg"
                         }
                     ],
                     "next": {
-                        "href": "https://api.agrofoto.pl/18309-piwex16/friends?page=1&limit=25"
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16/friends?page=1&limit=25"
                     },
                     "previous": null
                 },
                 "albums": {
-                    "href": "https://api.agrofoto.pl/18309-piwex16/albums",
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/albums",
                     "items": [
                         {
                             "href": "https://api.agrofoto.pl/albums/1492-wystawy-maszyn-rolniczych",
@@ -1506,12 +1506,12 @@ Unsupported properties:
                         }
                     ],
                     "next": {
-                        "href": "https://api.agrofoto.pl/18309-piwex16/albums?page=1&limit=25"
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16/albums?page=1&limit=25"
                     },
                     "previous": null
                 },
                 "photos": {
-                    "href": "https://api.agrofoto.pl/user/18309-piwex16/photos",
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/photos",
                     "items": [
                         {
                             "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m",
@@ -1534,12 +1534,12 @@ Unsupported properties:
                         }
                     ],
                     "next": {
-                        "href": "https://api.agrofoto.pl/user/18309-piwex16/photos?page=1&limit=25"
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16/photos?page=1&limit=25"
                     },
                     "previous": null
                 },
                 "topics": {
-                    "href": "https://api.agrofoto.pl/user/18309-piwex16/topics",
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/topics",
                     "items": [
                         {
                             "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
@@ -1549,12 +1549,12 @@ Unsupported properties:
                         }
                     ],
                     "next": {
-                        "href": "https://api.agrofoto.pl/user/18309-piwex16/topics?page=1&limit=25"
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16/topics?page=1&limit=25"
                     },
                     "previous": null
                 },
                 "posts": {
-                    "href": "https://api.agrofoto.pl/user/18309-piwex16/posts",
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/posts",
                     "items": [
                         {
                             "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts/1",
@@ -1567,22 +1567,248 @@ Unsupported properties:
                         }
                     ],
                     "next": {
-                        "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts?page=1&limit=25"
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16/posts?page=1&limit=25"
                     },
-                    "previous": null,
-                    "last": {
-                        "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts?page=117&limit=25"
-                    }
+                    "previous": null
                 },
                 "rate": {
-                    "href": "https://api.agrofoto.pl/user/18309-piwex16/rate",
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/rate",
                     "rating": 5.0,
                     "ratingCount": 1,
                     "userRating": 5.0
                 },
                 "status": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/status",
                     "online": true,
                     "last_active": "2011-09-02T16:12:33+0000"
                 }
             }
 
+## User Friends Collection [/users/{id}/friends]
+
++ Parameters
+    + id (string)
+
+### Get Friends [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/friends",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/57548-312fendt512",
+                        "name": "312fendt512",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-57548.jpg"
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/friends?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+## User Albums Collection [/users/{id}/albums]
+
++ Parameters
+    + id (string)
+
+### Get Albums [GET]
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/albums",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/albums/1492-wystawy-maszyn-rolniczych",
+                        "title": "Wystawy maszyn rolniczych",
+                        "desc": "Jak co roku do 18 lat w każdą drugą niedziele września w gminie Charsznica odbywają się dni kapusty Serdecznie zapraszam w przyszłym roku :)",
+                        "updatedTime": "2014-04-14T02:15:15Z",
+                        "photosCount": 11,
+                        "commentsCount": 4,
+                        "from": {
+                            "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                            "name": "piwex16",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-18309.jpg"
+                        },
+                        "cover": {
+                            "href": "https://api.agrofoto.pl/photos/394377-valtr-y",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                                "name": "piwex16",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-18309.jpg"
+                            },
+                            "name": "Valtr-y",
+                            "desc": "Pana Jurak :)",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/1352387820/tn_gallery_18309_1492_102938.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/1352387820/sml_gallery_18309_1492_102938.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/1352387820/med_gallery_18309_1492_102938.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/1352387820/gallery_18309_1492_102938.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 242,
+                            "commentsCount": 0
+                        },
+                        "rate": {
+                            "href": "https://api.agrofoto.pl/albums/1492-wystawy-maszyn-rolniczych",
+                            "rating": 0,
+                            "count": 0,
+                            "userRating": 0
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/albums?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## User Photos Collection [/users/{id}/photos]
+
++ Parameters
+    + id (string)
+
+### Get Photos [GET]
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/photos",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                            "name": "piwex16"
+                        },
+                        "name": "New holland i Zetor",
+                        "desc": "Wypucowane i oczekują na żniwa w tym tyg zaczynam koszenie :D ",
+                        "images": {
+                            "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/tn_gallery_18309_1140_86569.jpg",
+                            "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/sml_gallery_18309_1140_86569.jpg",
+                            "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/med_gallery_18309_1140_86569.jpg",
+                            "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/gallery_18309_1140_86569.jpg"
+                        },
+                        "createdTime": "2011-09-02T15:41:47+0000",
+                        "updatedTime": "2011-09-02T16:12:33+0000",
+                        "displayedCount": 213,
+                        "commentsCount": 2
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/photos?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## User Topics Collection [/users/{id}/topics]
+
++ Parameters
+    + id (string)
+
+### Get Topics [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/topics",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
+                        "title": "Jęczmień ozimy i jary",
+                        "created_time": "2011-09-02T16:12:33+0000",
+                        "message": "Po wstępnych oględzinach  działu zboża stwierdziłem ze jest masa podobnych tematów."
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/topics?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+## User Posts Collection [/users/{id}/posts]
+
++ Parameters
+    + id (string)
+
+### Get Posts [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/posts",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts/1",
+                        "created_time": "2011-09-02T16:12:33+0000",
+                        "topic": {
+                            "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
+                            "title": "Jęczmień ozimy i jary"
+                        },
+                        "message": "Po wstępnych oględzinach  działu zboża stwierdziłem ze jest masa podobnych tematów."
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/posts?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+## User rating [/users/{id}/rate]
+Rate the user
+
++ Parameters
+    + id (string)
+
++ Model (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/rate",
+                "rating": 5.0,
+                "ratingCount": 2,
+                "userRating": 5.0
+            }
+
+
+### Get user rating [GET]
++ Response 200 (application/json)
+
+    [User rating][]
+
+### Rate the user [PUT]
+Rate or update user vote
+
++ Request (application/json)
+
+            {
+                "rating": 5.0
+            }
+            
++ Response 200 (application/json)
+
+    [User rating][]
+    
+## User status [/users/{id}/status]
+
++ Parameters
+    + id (string)
+
+### Get User status [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/status",
+                "online": true,
+                "last_active": "2011-09-02T16:12:33+0000"
+            }
+    
