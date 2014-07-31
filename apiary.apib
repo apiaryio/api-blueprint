@@ -1462,6 +1462,10 @@ Unsupported properties:
                     },
                     "previous": null
                 },
+                "friendship": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/friendship",
+                    "is_friend": "yes"
+                }
                 "albums": {
                     "href": "https://api.agrofoto.pl/users/18309-piwex16/albums",
                     "items": [
@@ -1811,6 +1815,74 @@ Rate or update user vote
                 "online": true,
                 "last_active": "2011-09-02T16:12:33+0000"
             }
+
+## Invite User [/users/{id}/invite]
+
+# Group Friendship
+
+## Friendship [/users/{id}/friendship]
+Query relationship with the given user.
+
+"is_friend" can have three values: yes, no and pending, the last one means that invitation waits for acceptance on the other user side
+
++ Parameters
+    + id (string) ... user id of the user we want to be logged user's friends
+
+### Get Friendship status [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/friendship",
+                "is_friend": "yes"
+            }
+
+### Make Friendship [PUT]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/friendship",
+                "is_friend": "pending"
+            }
+
+### End Friendship [DELETE]
++ Response 204
+
+## Pending Invites Collection [/pending]
+
+### List all Pending Invites [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/pending",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/pending/57548-312fendt512",
+                        "user": {
+                            "https://api.agrofoto.pl/users/57548-312fendt512",
+                            "name": "312fendt512",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-57548.jpg"
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/pending?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## Pending Invite [/pending/{id}]
+
++ Parameters
+    + id (string) ... id of the user that sent an invitation
+
+### Accept invitation [PUT]
++ Response 204
+
+### Reject invitation [DELETE]
++ Response 204
 
 # Group Search
 
