@@ -1811,4 +1811,45 @@ Rate or update user vote
                 "online": true,
                 "last_active": "2011-09-02T16:12:33+0000"
             }
+
+# Group Search
+
+Supported search types:
+
+ - user
+ 
+Unsupported/planned search types:
+
+ - topics/posts
+ - events
+ - galleries
+ - blogs
+ - market
+
+## Search User [/search?type=user{&q}]
+
+### Search User Query [GET]
+
++ Parameters
+    + q (string) ... query string 
     
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/search?type=user&q=piw",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                        "name": "piwex16",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-18309.jpg",
+                        "createdTime": "2011-09-02T15:41:47+0000",
+                        "group": "V.I.P.",
+                        "posts": 182,
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/search?type=user&q=piw&page=1&limit=25"
+                },
+                "previous": null
+            }
