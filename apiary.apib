@@ -1853,3 +1853,102 @@ Unsupported/planned search types:
                 },
                 "previous": null
             }
+
+# Group Messaging
+
+## Folder [/folders/{id}]
+
++ Parameters
+    + id (string)
+    
++ Model
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/folders/dir_1",
+                "name": "test",
+                "conversations_count": 4,
+                "conversations": {
+                    "href": "https://api.agrofoto.pl/folders/dir_1/conversations",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/conversations/1578792",
+                            "title": "test",
+                            messages_count: 4,
+                            "created_time": "2011-09-02T16:12:33+0000"
+                            "from": {
+                                "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                                "name": "milanreal1",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                            },
+                            "latest_message": {
+                                "href": "https://api.agrofoto.pl/conversations/1578792/messages/3069445",
+                                "from": {
+                                    "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                                    "name": "milanreal1",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                                },
+                                "created_time": "2011-09-02T16:12:33+0000"
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/folders/dir_1/conversations?page=1&limit=25"
+                    },
+                    "previous": null   
+                }
+            }
+
+### Get a Folder [GET]
++ Response 200 (application/json)
+
+    [Folder][]
+
+### Edit Folder name [PUT]
++ Request (application/json)
+    + Body
+    
+            {
+                "name": "test2"
+            }
+
++ Response 200 (applicaton/json)
+
+    [Folder][]
+    
+### Delete a Folder [DELETE]
++ Response 204 (application/json)
+
+## Folders Collection [/folders]
+
+### Get Folders [GET]
+Lists user folders. Also predefined ones like new, all and drafts
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/folders",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/folders/dir_1",
+                        "name": "test",
+                        "conversations_count": 4
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/folders?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+### Create a Folder [POST]
+Creates a new Folder
++ Request (application/json)
+
+        {
+            "name": "test"
+        }
+        
++ Response 201 (application/json)
+
+    [Folder][]
