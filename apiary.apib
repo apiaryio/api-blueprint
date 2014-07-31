@@ -1856,6 +1856,8 @@ Unsupported/planned search types:
 
 # Group Messaging
 
+Starting and moving a conversation as well as conversation paticipants management are not HATEOAS.
+
 ## Folder [/folders/{id}]
 
 + Parameters
@@ -1874,8 +1876,8 @@ Unsupported/planned search types:
                         {
                             "href": "https://api.agrofoto.pl/conversations/1578792",
                             "title": "test",
-                            messages_count: 4,
-                            "created_time": "2011-09-02T16:12:33+0000"
+                            "messages_count": 4,
+                            "created_time": "2011-09-02T16:12:33+0000",
                             "from": {
                                 "href": "https://api.agrofoto.pl/users/8527-milanreal1",
                                 "name": "milanreal1",
@@ -1889,6 +1891,17 @@ Unsupported/planned search types:
                                     "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
                                 },
                                 "created_time": "2011-09-02T16:12:33+0000"
+                            },
+                            "move": {
+                                "href": "https://api.agrofoto.pl/conversations/1578792/move"
+                            },
+                            "read": {
+                                "href": "https://api.agrofoto.pl/conversations/1578792/read",
+                                "read": true
+                            },
+                            "subscribe": {
+                                "href": "https://api.agrofoto.pl/conversations/1578792/subscribe",
+                                "subscribed": true
                             }
                         }
                     ],
@@ -1952,3 +1965,428 @@ Creates a new Folder
 + Response 201 (application/json)
 
     [Folder][]
+
+## Conversation [/conversation/{id}]
+
++ Parameters
+    + id (string)
+    
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792",
+                "title": "test",
+                "messages_count": 4,
+                "created_time": "2011-09-02T16:12:33+0000",
+                "from": {
+                    "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                    "name": "milanreal1",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                },
+                "latest_message": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/messages/3069445",
+                    "from": {
+                        "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                        "name": "milanreal1",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                    },
+                    "created_time": "2011-09-02T16:12:33+0000"
+                },
+                "messages": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/messages",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/messages/1434554",
+                            "created_time": "2011-09-02T16:12:33+0000",
+                            "from": {
+                                "href": "https://api.agrofoto.pl/users/837-miki7211",
+                                "name": "Miki7211",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                            },
+                            "message": "Po wstępnych oględzinach działu zboża stwierdziłem ze jest masa podobnych tematów."
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/topics/conversations/1578792/messages?page=1&limit=25"
+                    },
+                    "previous": null,
+                    "last": {
+                        "href": "https://api.agrofoto.pl/topics/conversations/1578792/messages?page=117&limit=25"
+                    }
+                },
+                "participants": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/participants",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/participants/837",
+                            "user" : {
+                                "href": "https://api.agrofoto.pl/users/837-miki7211",
+                                "name": "Miki7211",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"                             
+                            },
+                            "block": {
+                                "href": "https://api.agrofoto.pl/conversations/1578792/participants/837/block",
+                                "blocked": false
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/topics/conversations/1578792/participants?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "move": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/move"
+                },
+                "read": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/read",
+                    "read": true
+                },
+                "subscribe": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/subscribe",
+                    "subscribed": true
+                }
+            }
+
+### Get a conversation [GET]
++ Response 200 (applicaton/json)
+
+    [Conversation][]
+
+### Delete a conversation [DELETE]
++ Response 204
+
+## Conversations collection [/folders/{id}/conversations]
+Collection of conversations given the folder
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/folders/dir_1/conversations",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/conversations/1578792",
+                        "title": "test",
+                        "messages_count": 4,
+                        "created_time": "2011-09-02T16:12:33+0000",
+                        "from": {
+                            "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                            "name": "milanreal1",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                        },
+                        "latest_message": {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/messages/3069445",
+                            "from": {
+                                "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                                "name": "milanreal1",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                            },
+                            "created_time": "2011-09-02T16:12:33+0000"
+                        },
+                        "move": {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/move"
+                        },
+                        "read": {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/read",
+                            "read": true
+                        },
+                        "subscribe": {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/subscribe",
+                            "subscribed": true
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/folders/dir_1/conversations?page=1&limit=25"
+                },
+                "previous": null   
+            }
+
+### Get conversations list [GET]
++ Response 200 (application/json)
+
+    [Conversations collection][]
+
+### Create a new conversations [POST]
+Not sure is it a good way to handle recipient
+
++ Request (application/json)
+    + Body
+
+            {
+                "title": "Jęczmień,
+                "message": "Czy siejecie Jęczmień ozimy bo ja w tym roku posiałem jakie opryski proponujecie i ile można nakosić z ha ?",
+                "to": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                        "name": "milanreal1"
+                    }
+                ],
+                "copy": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/837-miki7211",
+                        "name": "Miki7211"
+                    }
+                ],
+                "invite": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/19727-michal15555",
+                        "name": "michal15555"
+                    }
+                ]
+            }
+            
++ Response 200 (application/json)
+
+    [Conversations collection][]
+    
+### Empty a folder [DELETE]
+Deletes all folder conversations
++ Response 204
+
+## Participant [/conversation/{cid}/participants/{pid}]
+
++ Parameters
+    + cid (string) ... conversation id
+    + pid (string) ... participant id
+
+### Get Participant [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/participants/837",
+                "user" : {
+                    "href": "https://api.agrofoto.pl/users/837-miki7211",
+                    "name": "Miki7211",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"                             
+                },
+                "block": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/participants/837/block",
+                    "blocked": false
+                }
+            }
+
+## Participants Collection [/conversations/{id}/participants]
+
++ Parameters
+    + id (string)
+    
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/participants",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/conversations/1578792/participants/837",
+                        "user" : {
+                            "href": "https://api.agrofoto.pl/users/837-miki7211",
+                            "name": "Miki7211",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"                             
+                        },
+                        "block": {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/participants/837/block",
+                            "blocked": false
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/topics/conversations/1578792/participants?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+### List Conversation Participants [GET]
++ Response 200 (application/json)
+
+    [Participants Collection][]
+    
+### Add a Participant [POST]
++ Request (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/users/837-miki7211",
+                "name": "Miki7211"
+            }
+
++ Response 200 (application/json)
+
+    [Participants Collection][]
+    
+## Block Participant [/conversations/{cid}/participants/{pid}/block]
+
++ Parameters
+    + cid (string) ... conversation id
+    + pid (string) ... participant id
+
+### Block [PUT]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/participants/837/block",
+                "blocked": true
+            }
+
+### Unblock [DELETE]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/participants/837/block",
+                "blocked": false
+            }
+
+## Move Conversation [/conversations/{id}/move]
+Not sure about moving... folder "href" as well as "name" might be both good identifiers of the destination, but both are subject to changes with time
+
++ Parameters
+    + id (string)
+
+### Move [PUT]
++ Request (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/folders/dir_1",
+                "name": "test"
+            }
+
++ Response 304
+
+## Read Conversation [/conversations/{id}/read]
+
++ Parameters
+    + id (string)
+
+### Make read [PUT]
++ Response 200 (applicaton/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/read",
+                "read": true
+            }
+
+### Make unread [DELETE]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/read",
+                "read": false
+            }
+
+## Conversation Subscribe [/conversations/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
+### Subscribe conversation [PUT]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/subscribe",
+                "subscribed": true
+            }
+
+### Unsubscribe conversation [DELETE]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/subscribe",
+                "subscribed": false
+            }
+
+## Message [/conversations/{cid}/messages/{mid}]
+
++ Parameters
+    + cid (string) ... conversation id
+    + mid (string) ... message id
+    
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/messages/1434554",
+                "created_time": "2011-09-02T16:12:33+0000",
+                "from": {
+                    "href": "https://api.agrofoto.pl/users/837-miki7211",
+                    "name": "Miki7211",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                },
+                "message": "Po wstępnych oględzinach działu zboża stwierdziłem ze jest masa podobnych tematów."
+            }
+    
+### Get a Message [GET]
++ Response 200 (application/json)
+
+    [Message][]
+
+### Update a Message [PUT]
++ Request (application/json)
+    + Body
+    
+            {
+                "message": "Czy siejecie Jęczmień ozimy bo ja w tym roku posiałem jakie opryski proponujecie i ile można nakosić z ha ?"
+            }
+
++ Response 200 (applicatoin/json)
+
+    [Message][]
+
+### Delete a Message [DELETE]
++ Response 204
+
+## Messages Collection [/conversations/{id}/messages]
+
++ Parameters
+    + id (string)
+
+### Get Messages list [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/messages",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/conversations/1578792/messages/1434554",
+                        "created_time": "2011-09-02T16:12:33+0000",
+                        "from": {
+                            "href": "https://api.agrofoto.pl/users/837-miki7211",
+                            "name": "Miki7211",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                        },
+                        "message": "Po wstępnych oględzinach działu zboża stwierdziłem ze jest masa podobnych tematów."
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/topics/conversations/1578792/messages?page=1&limit=25"
+                },
+                "previous": null,
+                "last": {
+                    "href": "https://api.agrofoto.pl/topics/conversations/1578792/messages?page=117&limit=25"
+                }
+            }
+
+### Send a message [POST]
++ Request (application/json)
+    + Body
+    
+            {
+                "message": "Czy siejecie Jęczmień ozimy bo ja w tym roku posiałem jakie opryski proponujecie i ile można nakosić z ha ?"
+            }
+
++ Response 201 (applicatoin/json)
+
+    [Message][]
