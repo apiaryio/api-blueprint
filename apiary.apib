@@ -2480,11 +2480,11 @@ Not sure about moving... folder "href" as well as "name" might be both good iden
                     }
                 ],
                 "next": {
-                    "href": "https://api.agrofoto.pl/topics/conversations/1578792/messages?page=1&limit=25"
+                    "href": "https://api.agrofoto.pl/conversations/1578792/messages?page=1&limit=25"
                 },
                 "previous": null,
                 "last": {
-                    "href": "https://api.agrofoto.pl/topics/conversations/1578792/messages?page=117&limit=25"
+                    "href": "https://api.agrofoto.pl/conversations/1578792/messages?page=117&limit=25"
                 }
             }
 
@@ -2499,3 +2499,145 @@ Not sure about moving... folder "href" as well as "name" might be both good iden
 + Response 201 (applicatoin/json)
 
     [Message][]
+    
+# Group Notifications
+
+possible type identifiers and associated additional parameters
+
+striked through items are currently not supported
+
+Tematy i posty  
+100 Metoda powiadomień używana dla odpowiedzi w śledzonych tematach - "link" zawiera identyfikator tematu  
+101 Metoda powiadomień używana dla tematów w śledzonym forum - "link" zawiera identyfikator forum  
+102 Metoda powiadomień używana dla śledzonych tematów dzienna/tygodniowa - ??  
+103 Metoda powiadomień używana dla śledzonych forów dzienna/tygodniowa - ??  
+104 Powiadom mnie jeśli ktoś zacytuje mojego posta (i nie jestem obserwującym) - "link" zawiera identyfikator tematu  
+
+Aktualizacje statusów  
+~~200 Powiadom mnie jeśli ktoś odpowie na zmianę mojego statusu~~    
+~~201 Powiadom mnie jeśli ktoś odpowie na zmianę statusu, na którą ja odpowiedziałem~~  
+~~202 Powiadom mnie kiedy jeden z moich znajomych zaktualizuje swój status~~
+
+Profile i znajomi  
+~~300 Powiadom mnie kiedy ktoś napisze komentarz w moim profilu~~  
+~~301 Powiadom mnie kiedy ktoś mnie doda jako przyjaciela~~  
+~~302 Powiadom mnie kiedy ktoś potwierdzi prośbę o dodanie do znajomych~~  
+
+Prywatne wiadomości  
+400 Powiadom mnie kiedy otrzymam prywatną konwersację - "link" zawiera identyfikator konwersacji  
+401 Powiadom mnie jeśli ktoś odpisze na prywatną konwersację - "link" zawiera identyfikator konwersacji  
+402 Powiadom mnie kiedy zostanę zaproszony do prywatnej konwersacji - "link" zawiera identyfikator konwersacji
+
+Pozostałe powiadomienia  
+~~500 Powiadom mnie o nowych komentarzach~~
+
+Użytkownicy  
+~~600 Powiadom mnie jeśli zostanę ostrzeżony przez moderatora~~
+
+Kalendarz  
+~~700 Powiadom mnie o aktualizacji wydarzenia~~   
+~~701 Powiadom mnie kiedy zostanie dodane nowe wydarzenie w kalendarzu, który śledzę~~
+
+Galerie  
+800 Powiadom mnie o nowych obrazkach w albumach i kategoriach, które obserwuje - "link" zawiera identyfikator galerii   
+801 Powiadom mnie o nowych komentarzach w obrazkach, które obserwuje - "link" zawiera identyfikator zdjecia
+
+Blogi  
+~~900 Powiadom mnie o nowych wpisach na blogach, które lubię~~
+
+System filmów  
+~~1000 Powiadom mnie, kiedy komentarz zostanie dodany do jednego z moich filmów.~~
+
+Tracker  
+~~1100 Powiadom mnie, kiedy nowe zgłoszenie zostanie dodane w obserwowanym projekcie~~  
+~~1101 Powiadom mnie kiedy zostanie dodana odpowiedź do obserwowanego zgłoszenia~~
+
+Grupy  
+~~1200 Notify me of new members pending approval in Social Groups which I moderate~~
+
+Pliki  
+~~1300 Metoda powiadomień używana, kiedy lubiany plik zostanie zaktualizowany~~  
+~~1301 Metoda powiadomień używana, kiedy plik zostanie dodany do kategorii, którą lubię~~  
+~~1302 Metoda powiadomień używana kiedy plik, który wysłałem został zatwierdzony lub odrzucony~~  
+~~1303 Powiadom mnie, kiedy plik, który dodam zostanie zaraportowany jako uszkodzony~~
+
+Katalog firm  
+~~1400 Metoda powiadomień używana dla obserwowanych województw~~  
+~~1401 Metoda powiadomień używana dla obserwowanych firm~~
+
+Giełda  
+~~1500 Metoda powiadomień używana kiedy obserwowana oferta zostanie zaktualizowana~~  
+~~1501 Metoda powiadomień używana kiedy zostanie dodana oferta do obserwowanej kategorii~~  
+~~1502 Metoda powiadomień używana kiedy wysłana przeze mnie oferta zostanie zatwierdzona lub odrzucona~~
+
+## Notification Collection [/notifications]
+
+### Get Notifications [GET]
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/notifications",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/notifications/9213848",
+                        "created_time": "2011-09-02T16:12:33+0000",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/837-miki7211",
+                            "name": "Miki7211",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                        },
+                        "read": {
+                            "href": "https://api.agrofoto.pl/notifications/9213848/read",
+                            "read": true
+                        },
+                        "type": 100,
+                        "link": "https://api.agrofoto.pl/topics/2868",
+                        "message": "Miki7217 odpisał na MŁODY ROLNIK (nowe zasady)"
+                        
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/notifications?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## Notification [/notification/{id}]
++ Parameters
+    + id (string)
+
+### Get Notification [GET]
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/notifications/9213848",
+                "created_time": "2011-09-02T16:12:33+0000",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/837-miki7211",
+                    "name": "Miki7211",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                },
+                "read": {
+                    "href": "https://api.agrofoto.pl/notifications/9213848/read",
+                    "read": true
+                },
+                "type": 100,
+                "link": "https://api.agrofoto.pl/topics/2868",
+                "message": "Miki7217 odpisał na MŁODY ROLNIK (nowe zasady)"
+                
+            }
+
+## Read notification [/notificatons/{id}/read]
+
+### Make read [PUT]
++ Response 200 (applicaton/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/notifications/9213848/read",
+                "read": true
+            }
