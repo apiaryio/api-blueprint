@@ -71,6 +71,40 @@ Performs the login.
 Performs logout.
 + Response 204
 
+# Group Push
+
+## Register [/register]
+
+### Register device [POST]
+"user" value must be forwarded with push message payload to help aplication filter messages that are destined to another user
+
+"type" can be either "android" or "ios"
+
++ Request (application/json)
+    + Body
+    
+            {
+                "user":"user1",
+                "type":"android",
+                "token":"CAFEBABE"
+            }
+
++ Response 204
+
+## Unregister [/unregister]
+
+### Unregister device [POST]
+
++ Request (application/json)
+    + Body
+
+            {
+                "token":"CAFEBABE"
+            }
+            
++ Response 204
+
+
 # Group Galleries
 Gallery releated resources
 
