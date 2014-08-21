@@ -71,9 +71,24 @@ Performs the login.
 Performs logout.
 + Response 204
 
+## Register [/register]
+
+### Register [POST]
+
++ Request (applicatoin/x-www-form-urlencoded)
+
+        login=test&password=qq&email=test@test.com&zipcode=12-123&agree1=false&agree2=false
+        
++ Response 200
+    + Body
+
+            {
+                "token": "OAUTH-TOKEN"
+            }
+
 # Group Push
 
-## Register [/register]
+## Register [/subscribe]
 
 ### Register device [POST]
 "user" value must be forwarded with push message payload to help aplication filter messages that are destined to another user
@@ -91,7 +106,7 @@ Performs logout.
 
 + Response 204
 
-## Unregister [/unregister]
+## Unregister [/unsubscribe]
 
 ### Unregister device [POST]
 
