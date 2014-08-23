@@ -61,7 +61,7 @@ A payload may have its **identifier** – a string for a [request](#def-request)
 
 <a name="def-property"></a>
 ### Property
-An [entinty](#def-entity) field (attribute).
+An [entity](#def-entity) field (attribute).
 
 <a name="def-request"></a>
 ### Request
