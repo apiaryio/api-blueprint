@@ -2527,7 +2527,7 @@ striked through items are currently not supported
 
 Tematy i posty  
 100 Metoda powiadomień używana dla odpowiedzi w śledzonych tematach - "link" zawiera identyfikator tematu  
-101 Metoda powiadomień używana dla tematów w śledzonym forum - "link" zawiera identyfikator forum  
+101 Metoda powiadomień używana dla tematów w śledzonym forum - "link" zawiera identyfikator ~~forum~~ tematu  
 102 Metoda powiadomień używana dla śledzonych tematów dzienna/tygodniowa - ??  
 103 Metoda powiadomień używana dla śledzonych forów dzienna/tygodniowa - ??  
 104 Powiadom mnie jeśli ktoś zacytuje mojego posta (i nie jestem obserwującym) - "link" zawiera identyfikator tematu  
@@ -2685,4 +2685,160 @@ Marks all notifications as read
                 "link": "http://www.topfarms-nasiona.pl/e-doradca/public/",
                 "title": "TOP FARMS | NASIONA"
                 "message": "Oferujemy najwyższej jakości nasiona kwalifikowane pochodzące z własnych upraw na ponad 30 000 ha w Polsce."
+            }
+            
+# Group Blogs
+
+## Blogs [/blogs]
+
+### Get blogs collection [GET]
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/blogs",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/blogs/11-news",
+                        "title": "Aktualności",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                            "name": "agrofoto",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/blogs?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## Blog [/blogs/{id}]
++ Parameters
+    + id (string)
+
+### Get blog [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/blogs/11-news",
+                "title": "Aktualności",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                    "name": "agrofoto",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                },
+                "entries": {
+                    "href": "https://api.agrofoto.pl/blogs/11-news/entries",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/entries/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie",
+                            "title": "Szkolenie Fundacji \"Młody Hodowca\" w Dobrzyniewie",
+                            "createdTime": "2011-09-02T16:12:33+0000",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                                "name": "agrofoto",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                            },
+                            "displayedCount": 91,
+                            "thumbnail": "http://www.agrofoto.pl/forum/uploads/thumb_blog-0365527001409576688.jpg",
+                            "preview": "W dniach 28 i 29 sierpnia 2014 roku w Dobrzyniewie, Gleśnie i Mrozowie odbyło się szkolenie przygotowawcze bydła do wystawy. Organizatorem kursu była... ",
+                            "link": "http://www.agrofoto.pl/forum/blog/11/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie/"
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/blogs/11-news/entries?page=1&limit=25"
+                    },
+                    "previous": null
+                }
+            }
+            
+## Blog Entries [/blogs/{id}/entries]
++ Parameters
+    + id (string)
+
+### Get Blog Entries Collection [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/blogs/11-news/entries",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/entries/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie",
+                        "title": "Szkolenie Fundacji \"Młody Hodowca\" w Dobrzyniewie",
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                            "name": "agrofoto",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                        },
+                        "displayedCount": 91,
+                        "thumbnail": "http://www.agrofoto.pl/forum/uploads/thumb_blog-0365527001409576688.jpg",
+                        "preview": "W dniach 28 i 29 sierpnia 2014 roku w Dobrzyniewie, Gleśnie i Mrozowie odbyło się szkolenie przygotowawcze bydła do wystawy. Organizatorem kursu była... "
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/blogs/11-news/entries?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## News [/news]
+Taka sama odpowiedź jak dla Blog Entries z na sztywno ustowionym id bloga aktualności z wyjątkiem odpowiednich pól "href"
+
+### Get News [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/news",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/entries/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie",
+                        "title": "Szkolenie Fundacji \"Młody Hodowca\" w Dobrzyniewie",
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                            "name": "agrofoto",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                        },
+                        "displayedCount": 91,
+                        "thumbnail": "http://www.agrofoto.pl/forum/uploads/thumb_blog-0365527001409576688.jpg",
+                        "preview": "W dniach 28 i 29 sierpnia 2014 roku w Dobrzyniewie, Gleśnie i Mrozowie odbyło się szkolenie przygotowawcze bydła do wystawy. Organizatorem kursu była... "
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/news?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+## Entry [/entries/{id}]
++ Parameters
+    + id (string)
+
+### Get Entry [GET]
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/entries/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie",
+                "title": "Szkolenie Fundacji \"Młody Hodowca\" w Dobrzyniewie",
+                "createdTime": "2011-09-02T16:12:33+0000",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                    "name": "agrofoto",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                },
+                "displayedCount": 91,
+                "content": "strona html z contentem wpisu dostosowana do wyswietlenia na urzadzeniu mobilnym",
+                "link": "http://www.agrofoto.pl/forum/blog/11/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie/"
             }
