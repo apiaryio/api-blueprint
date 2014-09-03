@@ -2519,6 +2519,30 @@ Not sure about moving... folder "href" as well as "name" might be both good iden
 
     [Message][]
     
+## Recipients Query [/recipients?{&q}]
++ Parameters
+    + q (string) ... search phrase
+
+### Get Recipients [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/recipients?q=miki",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/837-miki7211",
+                        "name": "Miki7211",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/recipients?q=miki&page=1&limit=25"
+                },
+                "previous": null
+            }
+
+    
 # Group Notifications
 
 possible type identifiers and associated additional parameters
