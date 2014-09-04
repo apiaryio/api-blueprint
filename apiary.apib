@@ -791,15 +791,16 @@ Single photo upload
                 "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m"
             }
 
-## Photo [/photos/{id}]
+## Photo [/photos/{id}{?limit,page,item}]
 Single photo resource
 
 + Parameters
-    + id (string)
+    + id (string) ... photo identifier
+    + limit (string) ... number of comments per page
+    + page (string) ... comments page number to fetch, no arguments means first page, value "last" means last page 
+    + item (string) ... comment identifier, fetch comments page with that item included
 
-### Get the Photo [GET]
-    
-+ Response 200 (application/json)
++ Model
     + Body
     
             {
@@ -857,6 +858,12 @@ Single photo resource
                     "previous": null
                 }
             }
+
+### Get the Photo [GET]
+    
++ Response 200 (application/json)
+
+    [Photo][]
 
 ### Delete the photo [DELETE]
 + Response 204
@@ -922,10 +929,12 @@ Rate or update user vote
 
 # Group Comments
 
-## Comments collection [/photos/{id}/comments]
+## Comments collection [/photos/{id}/comments?{limit,page}]
 
 + Parameters
     + id (string)
+    + limit (string) ... number of comments per page
+    + page (string) ... comments page number to fetch, no arguments means first page, value "last" means last page 
 
 + Model
     + Body
@@ -964,7 +973,7 @@ Rate or update user vote
             
 + Response 200 (application/json)
 
-    [Comments collection][]
+    [Photo][]
     
 ## Comment [/comments/{id}]
 
@@ -1206,10 +1215,13 @@ Subforums of given forum node.
 
 # Group Topics
 
-## Topic [/topics/{id}]
+## Topic [/topics/{id}{?limit,page,item}]
 
 + Parameters
     + id (string) ... Topic id
+    + limit (string) ... number of posts per page
+    + page (string) ... posts page number to fetch, no argument means first page, value "last" means last page 
+    + item (string) ... post identifier, fetch posts page with that item included
     
 + Model
     + Body
@@ -1352,9 +1364,11 @@ Not sure about attaching files...
 
     [Subscribe Topic][]
 
-## Posts Collection [/topic/{id}/posts]
+## Posts Collection [/topic/{id}/posts{?limit,page}]
 + Parameters
-    + id (string)
+    + id (string) ... topic identifier
+    + limit (string) ... number of posts per page
+    + page (string) ... posts page number to fetch, no argument means first page, value "last" means last page 
     
 + Model
     + Body
@@ -1403,7 +1417,7 @@ Not sure about attaching a file...
         
 + Response 201 (application/json)
 
-    [Posts Collection][]
+    [Topic][]
     
 ## Post [/topics/{tid}/posts/{pid}]
 + Parameters
@@ -2094,10 +2108,13 @@ Creates a new Folder
 
     [Folder][]
 
-## Conversation [/conversation/{id}]
+## Conversation [/conversation/{id}{?limit,page,item}]
 
 + Parameters
-    + id (string)
+    + id (string) ... conversation identifier
+    + limit (string) ... number of messages per page
+    + page (string) ... messages page number to fetch, no argument means first page, value "last" means last page 
+    + item (string) ... message identifier, fetch messages page with that item included
     
 + Model
     + Body
@@ -2475,10 +2492,12 @@ Not sure about moving... folder "href" as well as "name" might be both good iden
 ### Delete a Message [DELETE]
 + Response 204
 
-## Messages Collection [/conversations/{id}/messages]
+## Messages Collection [/conversations/{id}/messages{?limit,page}]
 
 + Parameters
-    + id (string)
+    + id (string) ... conversation identifier
+    + limit (string) ... number of messages per page
+    + page (string) ... messages page number to fetch, no argument means first page, value "last" means last page
 
 ### Get Messages list [GET]
 + Response 200 (application/json)
@@ -2517,7 +2536,7 @@ Not sure about moving... folder "href" as well as "name" might be both good iden
 
 + Response 201 (applicatoin/json)
 
-    [Message][]
+    [Conversation][]
     
 ## Recipients Query [/recipients?{&q}]
 + Parameters
