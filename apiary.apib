@@ -2920,3 +2920,58 @@ Taka sama odpowiedź jak dla Blog Entries z na sztywno ustowionym id bloga aktua
                 "banner": "http://link-do-baneru.com/baner.jpg",
                 "link": "http://link-do-reklamowanej-strony.com"
             }
+            
+# Group Category
+
+## Categories Tree [/categories]
+
+### Get Categories Tree [GET]
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/galleries/0",
+                "canUpload": false,
+                "name": "",
+                "children": [
+                    {
+                        "href": null,
+                        "name": "Moje albumy",
+                        "children": [
+                            {
+                                "href": "https://api.agrofoto.pl/albums/54345",
+                                "name": "Mój album 2014",
+                                "canUpload": true
+                            },
+                            {
+                                "href": "https://api.agrofoto.pl/albums/45652",
+                                "name": "Mój album 2013",
+                                "canUpload": true
+                            }
+                        ]
+                    },
+                    {
+                        "href": "https://api.agrofoto.pl/galleries/463",
+                        "name": "Galeria chwastów,insektów i grzybów",
+                        "children": [
+                            {
+                                "href": "https://api.agrofoto.pl/galleries/464",
+                                "name": "Chwasty",
+                                "canUpload": true
+                            },
+                            {
+                                "href": "https://api.agrofoto.pl/galleries/465",
+                                "name": "Insekty",
+                                "canUpload": true
+                            },
+                            {
+                                "href": "https://api.agrofoto.pl/galleries/466",
+                                "name": "Grzyby",
+                                "canUpload": true
+                            }
+                        ]
+                    }
+                ]
+            }
