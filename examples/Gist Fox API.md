@@ -68,7 +68,7 @@ The states *id* and *created_at* are assigned by the Gist Fox API at the moment 
             {
                 "_links": {
                     "self": { "href": "/gists/42" },
-                    "star": { "href": "/gists/42/star" },
+                    "star": { "href": "/gists/42/star" }
                 },
                 "id": "42",
                 "created_at": "2014-04-14T02:15:15Z",
