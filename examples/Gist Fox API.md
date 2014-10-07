@@ -182,7 +182,7 @@ The Star resource has the following attribute:
 
             {
                 "_links": {
-                    "self": { "href": "/gists/42/star" },
+                    "self": { "href": "/gists/42/star" }
                 },
                 "starred": true
             }
