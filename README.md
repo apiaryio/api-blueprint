@@ -2,7 +2,7 @@
 
 # API Blueprint
 ### API Design for Humans
-API Blueprint is a documentation-oriented API description language. A couple of semantical assumptions over the plain [Markdown](http://daringfireball.net/projects/markdown/).
+API Blueprint is a documentation-oriented API description language. A couple of semantic assumptions over the plain [Markdown](http://daringfireball.net/projects/markdown/).
 
 API Blueprint is perfect for designing your Web API and its comprehensive documentation but also for quick prototyping and collaboration. It is easy to learn and even easier to read – after all it is just a form of plain text.
 
@@ -25,7 +25,7 @@ All it takes to describe that `message` endpoint of your API is to write:
         Hello World!
 ```
 
-in your favorite Markdown editor. With this API description in your API GitHub repository you can discuss it with others and iterate on your API Design.
+in your favourite Markdown editor. With this API description in your API GitHub repository you can discuss it with others and iterate on your API Design.
 
 To learn more about the API Blueprint syntax jump directly to the [API Blueprint Tutorial](Tutorial.md) or take a look at some [examples](https://github.com/apiaryio/api-blueprint/tree/master/examples).
 
