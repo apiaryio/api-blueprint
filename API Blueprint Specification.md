@@ -53,7 +53,7 @@ This documents is full specification of the API Blueprint format. For a less for
 
 <a name="def-api-blueprint"></a>
 ## 2. API Blueprint
-API Blueprint is documentation-oriented web API description language. The API Blueprint is essentially a set of semantical assumptions laid on top of the Markdown syntax used to describe a web API.
+API Blueprint is documentation-oriented web API description language. The API Blueprint is essentially a set of semantic assumptions laid on top of the Markdown syntax used to describe a web API.
 
 In addition to the regular [Markdown syntax][] API Blueprint conforms to the [GitHub Flavored Markdown syntax][].
 
@@ -115,7 +115,7 @@ A section definition **may** also contain additional variable components such as
 
 
 > **NOTE:** While this specification uses "atx" -style headers (using `#`s)
->  you can also use "Setext" [header syntax][] interchangably:
+>  you can also use "Setext" [header syntax][] interchangeably:
 >
 >     <keyword>
 >     =========
@@ -137,7 +137,7 @@ A section definition **may** also contain additional variable components such as
 
      ...
 
-> **NOTE:**  While this specification uses pluses (`+`) as list markers you can use any Markdown [list syntax][] using asterisks (`*`), pluses (`+`) and hyphens (`-`) interchangably:
+> **NOTE:**  While this specification uses pluses (`+`) as list markers you can use any Markdown [list syntax][] using asterisks (`*`), pluses (`+`) and hyphens (`-`) interchangeably:
 >
 >     * <keyword>
 >
@@ -738,7 +738,7 @@ It **should** include at least one nested [Response section](#def-response-secti
 
 Nested Request and Response sections **may** be ordered into groups where each groups represent one transaction example. First transaction example group starts with the first nested Request or Response section. Subsequent groups start with the first nested Request section following a Response section.
 
-Mutliple Request and Response nested sections within one transaction example **should** have different identifiers.
+Multiple Request and Response nested sections within one transaction example **should** have different identifiers.
 
 #### Example
 
@@ -749,7 +749,7 @@ Mutliple Request and Response nested sections within one transaction example **s
     Retrieves the list of **ACME Blog** posts.
     
     + Parameters
-        + limit (optional, number) ... Maximum number of posts ot retrieve
+        + limit (optional, number) ... Maximum number of posts to retrieve
 
     + Response 200
 

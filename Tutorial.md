@@ -43,7 +43,7 @@ The API Name might be followed by any arbitrary Markdown-formatted discussion. P
 
 > **Note:** We will add much richer and more helpful discussion in the final version of this blueprint. Adding details about authentication, used media types and error handling to API description is always a great idea!
 >
-> **Note:** For the sake of simplicity we will now omit user management and authentication. These features will be discussed in a future installment of the API Blueprint Tutorial.
+> **Note:** For the sake of simplicity we will now omit user management and authentication. These features will be discussed in a future instalment of the API Blueprint Tutorial.
 
 ## Markdown
 All you really need to write a blueprint is a text editor. A Markdown editor is even better. Anything you like. From Vi to Byword. Online editors are great too! You can even directly edit a blueprint on GitHub in the repository your service is living!
