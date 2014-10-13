@@ -246,7 +246,7 @@ The *"id"* variable of the URI template is a parameter to every action on this r
                     "content": "String contents"
                 }
 
-Resource Model is an example representation of the Gist resource. It can be referenced later at any point where a response (or request) payload is expected. A resource model has *exactly* the same structure as a response payload. In this case it also includes additional description. A Resource Model may not include a response status code.
+Resource Model is an example representation of the Gist resource. It can be referenced elsewhere at any point where a response (or request) payload is expected. A resource model has *exactly* the same structure as a response payload. In this case it also includes additional description. A Resource Model may not include a response status code.
 
 <a name="refer_model"></a>
 #### Referring the Resource Model
@@ -258,7 +258,7 @@ Resource Model is an example representation of the Gist resource. It can be refe
 
 With Gist Resource Model in place it is super easy to define an action that retrieves a single gist.
 
-> **NOTE:** The syntax for referencing a resource model is `[<resource identifier>][]`.  You can only refer to *already defined models*. The model must be referred as "whole" - you can't reuse just a model's body or headers.
+> **NOTE:** The syntax for referencing a resource model is `[<resource identifier>][]`. The model must be referred as "whole" - you can't reuse just a model's body or headers.
 
 ## Modifying a Resource
 Let's add an action to our Gist Resource that will allow us to modify its state and another action that deletes a Gist Resource as whole.

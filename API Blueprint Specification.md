@@ -366,7 +366,7 @@ This section **should** include at least one following nested sections:
 If there is no nested section the content of the payload section is considered as content of the [Body section](#def-body-section).
 
 #### Referencing
-Instead of providing a payload section content a previously defined [model payload section](#def-model-section) can be referenced using the Markdown implicit [reference syntax][]:
+Instead of providing a payload section content a [model payload section](#def-model-section) can be referenced using the Markdown implicit [reference syntax][]:
 
     [<identifier>][]
 
@@ -613,7 +613,7 @@ Defined by the `Model` keyword followed by an optional media type:
 A [resource manifestation](http://www.w3.org/TR/di-gloss/#def-resource-manifestation) - one exemplar representation of the resource in the form of a [payload](#def-payload-section).
 
 #### Referencing
-The payload defined in this section **may** be referenced later using parent section's identifier. You can refer to this payload in any of the following [Request](#def-request-section) or [Response](#def-response-section) payload sections using the Markdown implicit [reference syntax][].
+The payload defined in this section **may** be referenced in any response or request section in the document using parent section's identifier. You can refer to this payload in any of the following [Request](#def-request-section) or [Response](#def-response-section) payload sections using the Markdown implicit [reference syntax][].
 
 #### Example
 
