@@ -1,12 +1,12 @@
 ---
 
 Author: z@apiary.io
-Version: 1A6
+Version: 1A7
 
 ---
 
 # API Blueprint
-#### Format 1A revision 6
+#### Format 1A revision 7
 
 ## [I. API Blueprint Language](#def-api-blueprint-language)
 1. [Introduction](#def-introduction)
