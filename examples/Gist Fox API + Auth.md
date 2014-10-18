@@ -32,7 +32,7 @@ HAL links.
             {
                 "_links": {
                     "self": { "href": "/" },
-                    "gists": { "href": "/gists?{since}", "templated": true }
+                    "gists": { "href": "/gists?{since}", "templated": true },
                     "authorization": { "href": "/authorization"}
                 }
             }
