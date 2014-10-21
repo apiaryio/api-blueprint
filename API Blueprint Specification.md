@@ -232,7 +232,7 @@ A section **may** contain another nested section(s).
 
 Depending on the nested section type, to nest a section simply increase its header level or its list item indentation. Anything between the section start and the start of following section at the same level is considered to be part of the section. 
 
-What sections can be nested an where depends upon the section in case, as described in the relevant section's entry.
+What sections can be nested and where depends upon the section in case, as described in the relevant section's entry.
 
 #### Example: Nested header-defined section
 
