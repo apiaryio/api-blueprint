@@ -670,7 +670,7 @@ Where:
 * `required` is the **optional** specifier of a required parameter (this is the **default**)
 * `optional` is the **optional** specifier of an optional parameter.
 
-> **NOTE:** This section does not have to list every URI parameter. It **should not**, however, contain parameters that are not specified in the parents' URI template.
+> **NOTE:** This section **should only** contain parameters that are specified in the parents' URI template, and does not have to list every URI parameter. 
 
 #### Example
 
