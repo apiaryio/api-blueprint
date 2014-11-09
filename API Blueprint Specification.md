@@ -366,6 +366,7 @@ This section **should** include at least one following nested sections:
 - [`0-1` Headers section](#def-headers-section)
 - [`0-1` Body section](#def-body-section)
 - [`0-1` Schema section](#def-schema-section)
+- [`0-1` Attributes section](#def-attributes-section)
 
 If there is no nested section the content of the payload section is considered as content of the [Body section](#def-body-section).
 
