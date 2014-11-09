@@ -1,12 +1,12 @@
 ---
 
 Author: z@apiary.io
-Version: 1A7
+Version: 1A8
 
 ---
 
 # API Blueprint
-#### Format 1A revision 7
+#### Format 1A revision 8
 
 ## [I. API Blueprint Language](#def-api-blueprint-language)
 1. [Introduction](#def-introduction)
@@ -471,7 +471,7 @@ Specifies a validation schema for the HTTP message-body of parent payload sectio
 
 ---
 
-<a name="#def-attributes-section"></a>
+<a name="def-attributes-section"></a>
 ## 7. Attributes Section
 - **Parent sections:** [Payload section](#def-payload-section)
 - **Nested sections:** See **[Markdown Syntax for Object Notation][MSON]**
