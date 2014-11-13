@@ -358,18 +358,31 @@ Defined by a [keyword](#def-keywords) in Markdown list entity. The keyword **may
 #### Description
 Payload sections represent the information transferred as a payload of an HTTP request or response messages. A Payload consists of optional meta information in the form of HTTP headers and optional content in the form HTTP body.
 
-Furthermore, in API Blueprint context, a payload include a description and a validation schema.
+Furthermore, in API Blueprint context, a payload include its description, description of its message-body attributes and a message-body validation schema.
 
-A payload section **may** have its media type associated. A payload's media type represents the metadata received or sent in the form of a HTTP `Content-Type` header. When specified a payload **should** include nested [Body section](#def-body-section).
+A payload **may** have its media type associated. A payload's media type represents the metadata received or sent in the form of a HTTP `Content-Type` header. When specified a payload **should** include nested [Body section](#def-body-section).
 
 This section **should** include at least one following nested sections:
 
 - [`0-1` Headers section](#def-headers-section)
+- [`0-1` Attributes section](#def-attributes-section)
 - [`0-1` Body section](#def-body-section)
 - [`0-1` Schema section](#def-schema-section)
-- [`0-1` Attributes section](#def-attributes-section)
 
 If there is no nested section the content of the payload section is considered as content of the [Body section](#def-body-section).
+
+#### Relation of Body, Schema and Attributes sections
+Each of body, schema and attributes sections describe a message payload's body. These descriptions **should** be consistent, not violating each other. When multiple body descriptions are provided they **should** be prioritized as follows:
+
+1. For resolving message-body schema
+    1. Schema section
+    2. Attributes section
+    3. Body section
+
+2. For resolving message-body example
+    1. Body section
+    2. Attributes section
+    3. Schema section
 
 #### Referencing
 Instead of providing a payload section content a [model payload section](#def-model-section) can be referenced using the Markdown implicit [reference syntax][]:
