@@ -37,6 +37,7 @@ Version: 1A8
 14. [Action section](#def-action-section)
 15. [Request section](#def-request-section)
 16. [Response section](#def-response-section)
+17. [Data Structures section](#def-data-structures)
 
 ## [III. Appendix](#def-appendix)
 1. [URI Templates](#def-uri-templates)
@@ -72,6 +73,7 @@ All of the blueprint sections are optional. However, when present, a section **m
 + [`0-1` **API Name & overview** section](#def-api-name-section)
 + [`0+` **Resource** sections](#def-resource-section)
     + [`0-1` **URI Parameters** section](#def-uriparameters-section)
+    + [`0-1` **Attributes** section](#def-attributes-section)    
     + [`0-1` **Model** section](#def-model-section)
         + [`0-1` **Headers** section](#def-headers-section)
         + [`0-1` **Body** section](#def-body-section)
@@ -79,18 +81,20 @@ All of the blueprint sections are optional. However, when present, a section **m
         + [`0-1` **Attributes** section](#def-attributes-section)
     + [`1+` **Action** sections](#def-action-section)
         + [`0-1` **URI Parameters** section](#def-uriparameters-section)
+        + [`0-1` **Attributes** section](#def-attributes-section)
         + [`0+` **Request** sections](#def-request-section)
             + [`0-1` **Headers** section](#def-headers-section)
+            + [`0-1` **Attributes** section](#def-attributes-section)
             + [`0-1` **Body** section](#def-body-section)
             + [`0-1` **Schema** section](#def-schema-section)
-            + [`0-1` **Attributes** section](#def-attributes-section)
         + [`1+` **Response** sections](#def-response-section)
             + [`0-1` **Headers** section](#def-headers-section)
+            + [`0-1` **Attributes** section](#def-attributes-section)
             + [`0-1` **Body** section](#def-body-section)
             + [`0-1` **Schema** section](#def-schema-section)
-            + [`0-1` **Attributes** section](#def-attributes-section)
 + [`0+` **Resource Group** sections](#def-resourcegroup-section)
     + [`0+` **Resource** sections](#def-resource-section) (see above)
++ [`0+` **Data Structures** section](#def-data-structures)
 
 > **NOTE:** The number prior to a section name denotes the allowed number of the section occurrences.
 
@@ -187,6 +191,7 @@ Following reserved keywords are used in section definitions:
 
 #### Header keywords
 - `Group`
+- `Data Structures`
 - [HTTP methods][httpmethods] (e.g. `GET, POST, PUT, DELETE`...)
 - [URI templates][uritemplate] (e.g. `/resource/{id}`)
 - Combinations of an HTTP method and URI Template (e.g. `GET /resource/{id}`)
@@ -344,7 +349,7 @@ Asset section is the base section for atomic data in API Blueprint. The content 
 ## 3. Payload section
 - **Abstract**
 - **Parent sections:** vary, see descendants
-- **Nested sections:** [`0-1` Headers section](#def-headers-section), [`0-1` Body section](#def-body-section), [`0-1` Schema section](#def-schema-section), [`0-1` Attributes section](#def-attributes-section)
+- **Nested sections:** [`0-1` Headers section](#def-headers-section), [`0-1` Attributes section](#def-attributes-section), [`0-1` Body section](#def-body-section), [`0-1` Schema section](#def-schema-section)
 - **Markdown entity:** list
 - **Inherits from**: [Named section](#def-named-section)
 
@@ -488,46 +493,74 @@ Specifies a validation schema for the HTTP message-body of parent payload sectio
 
 <a name="def-attributes-section"></a>
 ## 7. Attributes Section
-- **Parent sections:** [Payload section](#def-payload-section)
+- **Parent sections:** [Resource section](#def-resource-section) | [Action section](#def-action-section) | [Payload section](#def-payload-section)
 - **Nested sections:** See **[Markdown Syntax for Object Notation][MSON]**
 - **Markdown entity:** list
 - **Inherits from**: none
 
 #### Definition
-Defined by the `Attributes` keyword followed by an optional body base type enclosed in parenthesses
+Defined by the `Attributes` keyword followed by an optional body base type enclosed in parentheses.
 
     + Attributes (<base type>)
 
 Where `<base type>` is the base type of the data structure being described. If no `<base type>` is specified the `object` base type is assumed.
 
 #### Description
-Description of payload message-body attributes. This section describes the message body attributes using the **Markdown Syntax for Object Notation ([MSON][])**.
+This section describes data structures using the **Markdown Syntax for Object Notation ([MSON][])**. What data structure is being described depends on the parent section of the attributes section.
 
-Not every attribute has to be described. When an attribute is described it should (may) appear also appear in any explicit body example.
+Data structures defined in this section **may** refer to any arbitrary data structures defined [Data Structures section](#def-data-structures) as well as to any data structures defined by a named resource attributes description (see bellow).
 
-In addition to the description of message-body attributes this section can can be used to describe message-body validation complementary to the Schema section.
+#### Resource Attributes description
+Description of the resource data structure. 
 
-#### Example
+If used in a named [Resource section](#def-resource-section) this data structure **may** be referenced by other data structures using the resource name.
 
-**Given Body section**
+##### Example
+
+    # Blog Posts [/posts/{id}]
+    Resource representing **ACME Blog** posts.
+
+    + Attributes
+        + id (number)
+        + message (string) - The blog post article
+        + author: john@appleseed.com (string) - Author of the blog post
+
+#### Action Attributes description
+Description of the default request message-body data structure.
+
+If provided, all of the [Request sections](#def-request-section) of the respective [Action section](#def-action-section) are inherits these attributes unless specified otherwise (in Request Attributes description).
+
+##### Example
+
+    ### Create a Post [POST]
+    + Attributes
+        + message (string) - The blog post article
+        + author: john@appleseed.com (string) - Author of the blog post        
+
+    + Request (application/json)
+
+    + Request (application/yaml)
+
+    + Response 201
+
+#### Payload Attributes description
+Description of payload (request, response, model) message-body attributes.
+
+Not every attribute has to be described. However, when an attribute is described it **should** appear in the respective [Body section](#def-body-section) example, if a Body section is provided.
+
+If every attribute in the message-body is descibed the [Body section](#def-body-section) **may** be omitted and the example representation **should** be generated from the attribtes description.
+
+The description of message-body attributes **may** be used to describe message-body validation, if no [Schema section](#def-schema-section) is provided. When a Schema section is provided, the attributes description **should** conform to the schema.
+
+##### Example
+
+    + Attributes (object)
+
+        + message (string) - Message to the world
 
     + Body
 
         { "message" : "Hello World." }
-
-**Type-only example**
-
-    + Attributes (object)
-
-        + message (string)
-
-**Elaborate description example**
-
-    + Attributes (object)
-
-        + message: Hello World. (string) - Message to the world
-
-            Additional description **may** follow here.
 
 ---
 
@@ -920,6 +953,39 @@ One HTTP response-message example – payload.
 
 ---
 
+<a name="def-data-structures"></a>
+## 17. Data Structures section
+- **Parent sections:** none
+- **Nested sections:** _MSON Named Type definition_ (see bellow)
+- **Markdown entity:** header
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Data Structures` keyword.
+
+    # Data Structures
+
+#### Description
+This section holds arbitrary data structures definitions defined in the form of [MSON Named Types][]. 
+
+Data structures defined in this section **may** be used in any [Attributes section][]. Similarly any data structures defined in a [Attributes section][] **may** be used in a data structure definition.
+
+Refer to the [MSON][] specification for full details on how to define an MSON Named type.
+
+#### Example
+
+    # Data Structures
+
+    ## Message (object)
+    + text (string) - text of the message
+    + author (Author) - author of the message
+
+    ## Author (object)
+    + name: John
+    + email: john@appleseed.com
+
+---
+
 <br>
 
 <a name="def-appendix"></a>
@@ -1050,4 +1116,7 @@ With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path
 [list syntax]: https://daringfireball.net/projects/markdown/syntax#list
 [pct-encoded]: http://en.wikipedia.org/wiki/Percent-encoding
 [uri-explode]: http://tools.ietf.org/html/rfc6570#section-2.4.2
+
 [MSON]: https://github.com/apiaryio/mson
+[MSON Named Types]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#22-named-types
+[Attributes section]: #def-attributes-section
