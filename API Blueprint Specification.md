@@ -498,7 +498,7 @@ Defined by the `Attributes` keyword followed by an optional body base type enclo
 
     + Attributes (<base type>)
 
-Where `<base type>` is the base type of the data structure being described. If no `<base type>` is specified the `object` is assumed.
+Where `<base type>` is the base type of the data structure being described. If no `<base type>` is specified the `object` base type is assumed.
 
 #### Description
 Description of payload message-body attributes. This section describes the message body attributes using the **Markdown Syntax for Object Notation ([MSON][])**.
