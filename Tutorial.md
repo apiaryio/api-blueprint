@@ -17,7 +17,7 @@ Without any further ado our *Gist Fox API* blueprint starts like this:
     FORMAT: 1A
 
     # Gist Fox API
-    Gist Fox API is a **pastes service** similar to [GitHub's Gist][http://gist.github.com].
+    Gist Fox API is a **pastes service** similar to [GitHub's Gist](http://gist.github.com).
 
 What have we just done? Let's break it line by line:
 
