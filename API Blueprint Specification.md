@@ -503,6 +503,8 @@ Where `<base type>` is the base type of the data structure being described. If n
 #### Description
 Description of payload message-body attributes. This section describes the message body attributes using the **Markdown Syntax for Object Notation ([MSON][])**.
 
+Not every attribute has to be described. When an attribute is described it should (may) appear also appear in any explicit body example.
+
 In addition to the description of message-body attributes this section can can be used to describe message-body validation complementary to the Schema section.
 
 #### Example
