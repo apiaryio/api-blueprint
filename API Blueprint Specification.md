@@ -649,7 +649,7 @@ This sections represents a group of resources (Resource Sections). **May** inclu
 <a name="def-resource-section"></a>
 ## 11. Resource section
 - **Parent sections:** none, [Resource group section](#def-resourcegroup-section)
-- **Nested sections:** [`0-1` Parameters section](#def-uriparameters-section), [`0-1` Model section](#def-model-section), [`1+` Action section](#def-action-section)
+- **Nested sections:** [`0-1` Parameters section](#def-uriparameters-section), [`0-1` Attributes section](#def-attributes-section), [`0-1` Model section](#def-model-section), [`1+` Action section](#def-action-section)
 - **Markdown entity:** header
 - **Inherits from**: [Named section](#def-named-section)
 
@@ -677,10 +677,15 @@ An API [resource](http://www.w3.org/TR/di-gloss/#def-resource) as specified by i
 
 This section **should** include at least one nested [Action section](#def-action-section) and **may** include following nested sections:
 
-- [`0-1` Model section](#def-model-section)
 - [`0-1` URI parameters section](#def-uriparameters-section)
 
-    URI parameters discussed in the scope of a Resource section apply to _any and all_ nested Action sections.
+    URI parameters defined in the scope of a Resource section apply to _any and all_ nested Action sections.
+
+- [`0-1` Attributes section][]
+
+    Attributes defined in the scope of a Resource section represent Resource attributes (semantic descriptors). If the resource is defined with a name these attributes **may** be referenced in [Attributes sections][].
+
+- [`0-1` Model section](#def-model-section)
 
 - Additional [Action sections](#def-action-section)
 
@@ -820,7 +825,7 @@ Where:
 <a name="def-action-section"></a>
 ## 14. Action section
 - **Parent sections:** [Resource section](#def-resource-section)
-- **Nested sections:** [`0-1` URI parameters section](#def-uriparameters-section), [`0+` Request section](#def-request-section), [`1+` Response section](#def-response-section)
+- **Nested sections:** [`0-1` URI parameters section](#def-uriparameters-section), [`0-1` Attributes section](#def-attributes-section), [`0+` Request section](#def-request-section), [`1+` Response section](#def-response-section)
 - **Markdown entity:** header
 - **Inherits from**: [Named section](#def-named-section)
 
@@ -840,7 +845,9 @@ Definition of at least one complete HTTP transaction as performed with the paren
 
 This section **may** include one nested [URI parameters section](#def-uriparameters-section) describing any URI parameters _specific_ to the action – URI parameters discussed in the scope of an Action section apply to the respective Action section ONLY.
 
-It **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections.
+This section **may** include one nested [Attributes section][] defining the input (request) attributes of the section. If present, these attributes **should** be inherited in every Actions' [Request section][] unless specified otherwise.
+
+Action section **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections, in the respective section.
 
 Nested Request and Response sections **may** be ordered into groups where each groups represent one transaction example. First transaction example group starts with the first nested Request or Response section. Subsequent groups start with the first nested Request section following a Response section.
 
@@ -1128,5 +1135,11 @@ With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path
 
 [MSON]: https://github.com/apiaryio/mson
 [MSON Named Types]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#22-named-types
+
+[`0-1` Attributes section]: #def-attributes-section
 [Attributes section]: #def-attributes-section
+[Attributes sections]: #def-attributes-section
+
 [Resource Section]: #def-resource-section
+
+[Request section]: #def-request-section
