@@ -503,21 +503,25 @@ Defined by the `Attributes` keyword followed by an optional body base type enclo
 
     + Attributes (<base type>)
 
-Where `<base type>` is the base type of the data structure being described. If no `<base type>` is specified the `object` base type is assumed.
+Where `<base type>` is the base type of the data structure being described. If the `<base type>` is not specified, `object` base type is assumed.
 
 #### Description
-This section describes data structures using the **Markdown Syntax for Object Notation ([MSON][])**. What data structure is being described depends on the parent section of the attributes section.
+This section describes a data structure using the **Markdown Syntax for Object Notation ([MSON][])**. Based on the parent section, the data structure being described is one of the following:
+    
+1. Resource data structure attributes ([Resource section](#def-resource-section))
+2. Action request attributes ([Action section](#def-action-section))
+3. Payload message-body attributes ([Payload section](#def-payload-section))
 
-Data structures defined in this section **may** refer to any arbitrary data structures defined [Data Structures section](#def-data-structures) as well as to any data structures defined by a named resource attributes description (see bellow).
+Data structures defined in this section **may** refer to any arbitrary data structures defined [Data Structures section](#def-data-structures) as well as to any data structures defined by a named resource attributes description (see below).
 
 #### Resource Attributes description
 Description of the resource data structure. 
 
-If used in a named [Resource section](#def-resource-section) this data structure **may** be referenced by other data structures using the resource name.
+If defined in a named [Resource section](#def-resource-section), this data structure **may** be referenced by other data structures using the resource name.
 
 ##### Example
 
-    # Blog Posts [/posts/{id}]
+    # Blog Post [/posts/{id}]
     Resource representing **ACME Blog** posts.
 
     + Attributes
@@ -525,10 +529,15 @@ If used in a named [Resource section](#def-resource-section) this data structure
         + message (string) - The blog post article
         + author: john@appleseed.com (string) - Author of the blog post
 
+> **NOTE:** Since the data structure above, is defined in a named Resource it can be referred by other data structures using the `Blog Post` name, e.g.:
+>   
+>           + Attributes (Blog Post)
+>
+
 #### Action Attributes description
 Description of the default request message-body data structure.
 
-If provided, all of the [Request sections](#def-request-section) of the respective [Action section](#def-action-section) are inherits these attributes unless specified otherwise (in Request Attributes description).
+If defined, all the [Request sections](#def-request-section) of the respective [Action section](#def-action-section) are inherits these attributes unless specified otherwise (in Request Attributes description).
 
 ##### Example
 
@@ -548,7 +557,7 @@ Description of payload (request, response, model) message-body attributes.
 
 Not every attribute has to be described. However, when an attribute is described it **should** appear in the respective [Body section](#def-body-section) example, if a Body section is provided.
 
-If every attribute in the message-body is descibed the [Body section](#def-body-section) **may** be omitted and the example representation **should** be generated from the attribtes description.
+If defined, the [Body section](#def-body-section) **may** be omitted and the example representation **should** be generated from the attributes description.
 
 The description of message-body attributes **may** be used to describe message-body validation, if no [Schema section](#def-schema-section) is provided. When a Schema section is provided, the attributes description **should** conform to the schema.
 
@@ -956,7 +965,7 @@ One HTTP response-message example – payload.
 <a name="def-data-structures"></a>
 ## 17. Data Structures section
 - **Parent sections:** none
-- **Nested sections:** _MSON Named Type definition_ (see bellow)
+- **Nested sections:** _MSON Named Type definition_ (see below)
 - **Markdown entity:** header
 - **Inherits from**: none
 
@@ -968,7 +977,7 @@ Defined by the `Data Structures` keyword.
 #### Description
 This section holds arbitrary data structures definitions defined in the form of [MSON Named Types][]. 
 
-Data structures defined in this section **may** be used in any [Attributes section][]. Similarly any data structures defined in a [Attributes section][] **may** be used in a data structure definition.
+Data structures defined in this section **may** be used in any [Attributes section][]. Similarly, any data structures defined in a [Attributes section][] of a named [Resource Section][] **may** be used in a data structure definition.
 
 Refer to the [MSON][] specification for full details on how to define an MSON Named type.
 
@@ -1120,3 +1129,4 @@ With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path
 [MSON]: https://github.com/apiaryio/mson
 [MSON Named Types]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#22-named-types
 [Attributes section]: #def-attributes-section
+[Resource Section]: #def-resource-section
