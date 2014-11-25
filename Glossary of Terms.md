@@ -24,7 +24,7 @@ The **API Blueprint language**. A format used to describe API in an API blueprin
 
 <a name="def-attribute"></a>
 ### Attribute
-Based on the context, attribute (property) of a message-body data structure, or attribute (semantic descriptor) of a resource, or an input attribute of a transition – [Action](#def-action).
+Based on the context, attribute (property) of a message-body data structure, or attribute of a resource, or an input attribute of a transition – [Action](#def-action).
 
 <a name="def-blueprint"></a>
 ### Blueprint

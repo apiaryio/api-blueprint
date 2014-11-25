@@ -499,20 +499,24 @@ Specifies a validation schema for the HTTP message-body of parent payload sectio
 - **Inherits from**: none
 
 #### Definition
-Defined by the `Attributes` keyword followed by an optional body base type enclosed in parentheses.
+Defined by the `Attributes` keyword followed by an optional [MSON Type Definition][] enclosed in parentheses.
 
-    + Attributes (<base type>)
+    + Attributes <Type Definition>
 
-Where `<base type>` is the base type of the data structure being described. If the `<base type>` is not specified, `object` base type is assumed.
+`<Type Definition>` is the type definition of the data structure being described. If the `<Type Definition>` is not specified, an `object` base type is assumed. See [MSON Type Definition][] for details.
+
+##### Example 
+
+    + Attributes (object)
 
 #### Description
-This section describes a data structure using the **Markdown Syntax for Object Notation ([MSON][])**. Based on the parent section, the data structure being described is one of the following:
+This section describes a data structure using the **[Markdown Syntax for Object Notation][MSON] (MSON)**. Based on the parent section, the data structure being described is one of the following:
     
 1. Resource data structure attributes ([Resource section](#def-resource-section))
 2. Action request attributes ([Action section](#def-action-section))
 3. Payload message-body attributes ([Payload section](#def-payload-section))
 
-Data structures defined in this section **may** refer to any arbitrary data structures defined [Data Structures section](#def-data-structures) as well as to any data structures defined by a named resource attributes description (see below).
+Data structures defined in this section **may** refer to any arbitrary data structures defined in the [Data Structures section](#def-data-structures) as well as to any data structures defined by a named resource attributes description (see below).
 
 #### Resource Attributes description
 Description of the resource data structure. 
@@ -529,19 +533,20 @@ If defined in a named [Resource section](#def-resource-section), this data struc
         + message (string) - The blog post article
         + author: john@appleseed.com (string) - Author of the blog post
 
-> **NOTE:** Since the data structure above, is defined in a named Resource it can be referred by other data structures using the `Blog Post` name, e.g.:
->   
->           + Attributes (Blog Post)
->
+> **NOTE:** This data structure can be later referred as:
+> 
+>     + Attributes (Blog Post)
+> 
 
 #### Action Attributes description
 Description of the default request message-body data structure.
 
-If defined, all the [Request sections](#def-request-section) of the respective [Action section](#def-action-section) are inherits these attributes unless specified otherwise (in Request Attributes description).
+If defined, all the [Request sections](#def-request-section) of the respective [Action section](#def-action-section) inherits these attributes unless specified otherwise.
 
 ##### Example
 
     ### Create a Post [POST]
+
     + Attributes
         + message (string) - The blog post article
         + author: john@appleseed.com (string) - Author of the blog post        
@@ -559,17 +564,20 @@ Not every attribute has to be described. However, when an attribute is described
 
 If defined, the [Body section](#def-body-section) **may** be omitted and the example representation **should** be generated from the attributes description.
 
-The description of message-body attributes **may** be used to describe message-body validation, if no [Schema section](#def-schema-section) is provided. When a Schema section is provided, the attributes description **should** conform to the schema.
+The description of message-body attributes **may** be used to describe message-body validation if no [Schema section](#def-schema-section) is provided. When a Schema section is provided, the attributes description **should** conform to the schema.
 
 ##### Example
 
-    + Attributes (object)
+    ### Retrieve a Post [GET]
 
-        + message (string) - Message to the world
+    + Response 200 (application/json)
 
-    + Body
+        + Attributes (object)
+            + message (string) - Message to the world
 
-        { "message" : "Hello World." }
+        + Body
+
+            { "message" : "Hello World." }
 
 ---
 
@@ -683,7 +691,7 @@ This section **should** include at least one nested [Action section](#def-action
 
 - [`0-1` Attributes section][]
 
-    Attributes defined in the scope of a Resource section represent Resource attributes (semantic descriptors). If the resource is defined with a name these attributes **may** be referenced in [Attributes sections][].
+    Attributes defined in the scope of a Resource section represent Resource attributes. If the resource is defined with a name these attributes **may** be referenced in [Attributes sections][].
 
 - [`0-1` Model section](#def-model-section)
 
@@ -729,11 +737,13 @@ The payload defined in this section **may** be referenced in any response or req
 #### Example
 
     # My Resource [/resource]
+    
     + Model (text/plain)
 
             Hello World
 
     ## Retrieve My Resource [GET]
+    
     + Response 200
 
         [My Resource][]
@@ -781,7 +791,7 @@ Where:
 * `required` is the **optional** specifier of a required parameter (this is the **default**)
 * `optional` is the **optional** specifier of an optional parameter.
 
-> **NOTE:** This section **should only** contain parameters that are specified in the parents' URI template, and does not have to list every URI parameter.
+> **NOTE:** This section **should only** contain parameters that are specified in the parent's resource URI template, and does not have to list every URI parameter.
 
 #### Example
 
@@ -845,9 +855,9 @@ Definition of at least one complete HTTP transaction as performed with the paren
 
 This section **may** include one nested [URI parameters section](#def-uriparameters-section) describing any URI parameters _specific_ to the action – URI parameters discussed in the scope of an Action section apply to the respective Action section ONLY.
 
-This section **may** include one nested [Attributes section][] defining the input (request) attributes of the section. If present, these attributes **should** be inherited in every Actions' [Request section][] unless specified otherwise.
+This section **may** include one nested [Attributes section][] defining the input (request) attributes of the section. If present, these attributes **should** be inherited in every Action's [Request section][] unless specified otherwise.
 
-Action section **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections, in the respective section.
+Action section **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections.
 
 Nested Request and Response sections **may** be ordered into groups where each groups represent one transaction example. First transaction example group starts with the first nested Request or Response section. Subsequent groups start with the first nested Request section following a Response section.
 
@@ -869,6 +879,11 @@ Multiple Request and Response nested sections within one transaction example **s
             ...
 
     ### Create a Post [POST]
+
+    + Attributes
+
+            ...    
+
     + Request
 
             ...
@@ -993,12 +1008,40 @@ Refer to the [MSON][] specification for full details on how to define an MSON Na
     # Data Structures
 
     ## Message (object)
+
     + text (string) - text of the message
     + author (Author) - author of the message
 
     ## Author (object)
+
     + name: John
     + email: john@appleseed.com
+
+
+#### Example reusing Data Structure in Resource 
+
+    # User [/user]
+
+    + Attributes (Author)
+
+    # Data Structures
+
+    ## Author (object)
+
+    + name: John
+    + email: john@appleseed.com
+
+#### Example reusing Resource-defined Data Structure
+
+    # User [/user]
+
+    + Attributes
+        + name: John
+        + email: john@appleseed.com
+
+    # Data Structures
+
+    ## Author (User)
 
 ---
 
@@ -1135,6 +1178,7 @@ With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path
 
 [MSON]: https://github.com/apiaryio/mson
 [MSON Named Types]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#22-named-types
+[MSON Type Definition]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#35-type-definition
 
 [`0-1` Attributes section]: #def-attributes-section
 [Attributes section]: #def-attributes-section
