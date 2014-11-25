@@ -560,7 +560,7 @@ If defined, all the [Request sections](#def-request-section) of the respective [
 #### Payload Attributes description
 Description of payload (request, response, model) message-body attributes.
 
-Not every attribute has to be described. However, when an attribute is described it **should** appear in the respective [Body section](#def-body-section) example, if a Body section is provided.
+Not every attribute has to be described. However, when an attribute is described, it **should** appear in the respective [Body section](#def-body-section) example, if a Body section is provided.
 
 If defined, the [Body section](#def-body-section) **may** be omitted and the example representation **should** be generated from the attributes description.
 
