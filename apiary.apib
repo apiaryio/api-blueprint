@@ -1231,13 +1231,14 @@ Subforums of given forum node.
 
 # Group Topics
 
-## Topic [/topics/{id}{?limit,page,item}]
+## Topic [/topics/{id}{?limit,page,item,latest}]
 
 + Parameters
     + id (string) ... Topic id
-    + limit (string) ... number of posts per page
-    + page (string) ... posts page number to fetch, no argument means first page, value "last" means last page 
-    + item (string) ... post identifier, fetch posts page with that item included
+    + limit (string, optional) ... number of posts per page
+    + page (string, optional) ... posts page number to fetch, no argument means first page, value "last" means last page 
+    + item (string, optional) ... post identifier, fetch posts page with that item included
+    + latest (boolean, optional) ... posts collection represents lastest page (the page with the first unread post or the last one), requires limit parameter, implies firstUnread field of topic object
     
 + Model
     + Body
@@ -1254,6 +1255,7 @@ Subforums of given forum node.
                 "postsCount": 3068,
                 "displayedCount": 371883,
                 "unread": true,
+                "firstUnread": 344,
                 "pinned": true,
                 "hot": true,
                 "link": "http://www.agrofoto.pl/forum/topic/5005-jeczmien-ozimy-i-jary/",
