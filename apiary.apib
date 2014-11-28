@@ -137,6 +137,119 @@ Performs logout.
             
 + Response 204
 
+# Group Main
+
+## Main [/main]
+
+### Get main screen
++ Response 200 (application/json)
+    + Body
+
+            {
+                "hotPhotos": {
+                    "href": "https://api.agrofoto.pl/main/hotPhotos",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/14237-mat",
+                                "name": "Mat"
+                            },
+                            "name": "Case 115 i Claas Dominator 86",
+                            "desc": "1-szy dzień żniw.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 91,
+                            "commentsCount": 1
+                        }
+                    ],
+                    "next": null,
+                    "previous": null
+                },
+                "newPhotos": {
+                    "href": "https://api.agrofoto.pl/main/newPhotos",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/14237-mat",
+                                "name": "Mat"
+                            },
+                            "name": "Case 115 i Claas Dominator 86",
+                            "desc": "1-szy dzień żniw.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 91,
+                            "commentsCount": 1
+                        }
+                    ],
+                    "next": null,
+                    "previous": null
+                },
+                "newTopics": {
+                    "href": "https://api.agrofoto.pl/main/newTopics",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady",
+                            "title": "MŁODY ROLNIK (nowe zasady)",
+                            "postsCount": 13807,
+                            "displayedCount": 1497404,
+                            "latestPost": {
+                                "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady/posts/13808",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/136140-kamilek1",
+                                    "name": "Kamilek1",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-136140.jpg"
+                                },
+                                "createdTime": "2011-09-02T16:12:33+0000"
+                            }
+                        }
+                    ],
+                    "next": null,
+                    "previous": null
+                },
+                "newPosts": {
+                    "href": "https://api.agrofoto.pl/main/newPosts",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady",
+                            "title": "MŁODY ROLNIK (nowe zasady)",
+                            "postsCount": 13807,
+                            "displayedCount": 1497404,
+                            "latestPost": {
+                                "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady/posts/13808",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/136140-kamilek1",
+                                    "name": "Kamilek1",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-136140.jpg"
+                                },
+                                "createdTime": "2011-09-02T16:12:33+0000"
+                            }
+                        }
+                    ],
+                    "next": null,
+                    "previous": null
+                },
+                "bannerads": [    
+                    {
+                        "banner": "http://link-do-baneru.com/baner.jpg",
+                        "link": "http://link-do-reklamowanej-strony.com"
+                    }
+                ]
+            }
+
 # Group Galleries
 Gallery releated resources
 
