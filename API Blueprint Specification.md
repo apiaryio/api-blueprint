@@ -483,8 +483,8 @@ Metadata keys and its values are tool-specific. Refer to relevant tool documenta
 
 #### Example
 
-    HOST: http://blog.acme.com
     FORMAT: 1A
+    HOST: http://blog.acme.com
 
 ---
 
