@@ -2,6 +2,9 @@
 
 # API Blueprint
 ### API Design for Humans
+
+[![Join the chat at https://gitter.im/apiaryio/api-blueprint](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/apiaryio/api-blueprint?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 API Blueprint is a documentation-oriented API description language. A couple of semantic assumptions over the plain [Markdown](http://daringfireball.net/projects/markdown/).
 
 API Blueprint is perfect for designing your Web API and its comprehensive documentation but also for quick prototyping and collaboration. It is easy to learn and even easier to read – after all it is just a form of plain text.
