@@ -2,7 +2,7 @@ FORMAT: 1A
 
 # Polls
 
-Polls is a simple web service that allows consumers to view polls and vote in them.
+Polls is a simple web service that allows consumers to view polls and vote in them. You can view this documentation over at [Apiary](http://docs.pollsapi.apiary.io).
 
 # Polls API Root [/]
 
@@ -24,12 +24,12 @@ Resource related to questions in the API.
 
 ## Question [/questions/{question_id}]
 
-A Question object has the following attributes.
+A Question object has the following attributes:
 
 - question
-- published_at
+- published_at - An ISO8601 date when the question was published.
 - url
-- choices (an array of Choice objects).
+- choices - An array of Choice objects.
 
 + Parameters
 
