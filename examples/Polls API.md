@@ -15,7 +15,7 @@ It is recommend to follow the “url” link values, [Link](https://tools.ietf.o
 + Response 200 (application/json)
 
         {
-            "questions_url": "/questions{?page}"
+            "questions_url": "/questions"
         }
 
 ## Group Question
@@ -82,8 +82,6 @@ This action allows you to vote on a question's choice.
             Location: /questions/1
 
 ## Questions collection [/questions{?page}]
-
-Again, instead of constructing the URLs for the next page. It is **highly** recommended that you follow the `next` link header in the response.
 
 + Parameters
 
