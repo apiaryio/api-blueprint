@@ -40,7 +40,7 @@ Then we have a description of our API. Where we have mentioned what this is. You
 
 ## Resource Groups
 
-Now it's time to start documenting our resources in our API. To start of with, we're going to can use the `Group` keyword inside a heading to specify a group of related resources. This allows us to group all of our resources related to questions in our API togeher.
+Now it's time to start documenting our resources in our API. To start of with, we're going to can use the `Group` keyword inside a heading to specify a group of related resources. This allows us to group all of our resources related to questions in our API together.
 
 ```markdown
 # Group Questions
