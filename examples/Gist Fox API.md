@@ -53,7 +53,7 @@ The states *id* and *created_at* are assigned by the Gist Fox API at the moment 
 
 
 + Parameters
-    + id (string) ... ID of the Gist in the form of a hash.
+    + id (string) - ID of the Gist in the form of a hash.
 
 + Model (application/hal+json)
 
@@ -138,7 +138,7 @@ In addition it **embeds** *Gist Resources* in the Gist Fox API.
 
 ### List All Gists [GET]
 + Parameters
-    + since (optional, string) ... Timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ` Only gists updated at or after this time are returned.
+    + since (string, optional) - Timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ` Only gists updated at or after this time are returned.
 
 + Response 200
 
@@ -168,7 +168,7 @@ The Star resource has the following attribute:
 
 + Parameters
 
-    + id (string) ... ID of the gist in the form of a hash
+    + id (string) - ID of the gist in the form of a hash
 
 + Model (application/hal+json)
 
