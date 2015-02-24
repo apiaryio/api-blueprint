@@ -53,8 +53,8 @@ The Gist resource has the following attributes:
 The states *id* and *created_at* are assigned by the Gist Fox API at the moment of creation. 
 
 + Parameters
-    + id (string) ... ID of the Gist in the form of a hash.
-    + access_token (string, optional) ... Gist Fox API access token.
+    + id (string) - ID of the Gist in the form of a hash.
+    + access_token (string, optional) - Gist Fox API access token.
 
 + Model (application/hal+json)
 
@@ -138,7 +138,7 @@ In addition it **embeds** *Gist Resources* in the Gist Fox API.
 
 ### List All Gists [GET]
 + Parameters
-    + since (optional, string) ... Timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ` Only gists updated at or after this time are returned.
+    + since (string, optional) - Timestamp in ISO 8601 format: `YYYY-MM-DDTHH:MM:SSZ` Only gists updated at or after this time are returned.
 
 + Response 200
 
@@ -150,7 +150,7 @@ To create a new Gist simply provide a JSON hash of the *description* and *conten
 This action requires an `access_token` with `gist_write` scope. 
 
 + Parameters
-    + access_token (string, optional) ... Gist Fox API access token.
+    + access_token (string, optional) - Gist Fox API access token.
 
 + Request (application/json)
 
@@ -171,8 +171,8 @@ The Star resource has the following attribute:
 - starred
 
 + Parameters
-    + id (string) ... ID of the gist in the form of a hash
-    + access_token (string, optional) ... Gist Fox API access token.    
+    + id (string) - ID of the gist in the form of a hash
+    + access_token (string, optional) - Gist Fox API access token.
 
 + Model (application/hal+json)
 
