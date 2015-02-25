@@ -2,7 +2,7 @@
 
 Welcome to the API Blueprint Tutorial! In this tutorial you will learn about the basics to getting started with the API Blueprint language.
 
-We’re going to build an API Blueprint for a service called polls, a simple web service that allows consumers to view polls and vote in them.
+We’re going to build an API Blueprint for a service called Polls – a simple web service that allows consumers to view polls and vote in them.
 
 > **Note:** **Additional API Blueprint Resources**
 >
@@ -14,7 +14,7 @@ We’re going to build an API Blueprint for a service called polls, a simple web
 
 ## API Blueprint
 
-The start of our blueprint is going to look as follows:
+The start of the Blueprint is going to look as follows:
 
 ```markdown
 FORMAT: 1A
@@ -26,7 +26,7 @@ Polls is a simple web service that allows consumers to view polls and vote in th
 
 ## Metadata
 
-At the top of our blueprint, you will find a metadata section. In this case we have specified that "FORMAT" has the value of "1A". The format keyword is to specify the version, or format of API Blueprint we're using. In this case 1A.
+At the very top of this Blueprint, you will find a metadata section. In this case we have specified that "FORMAT" has the value of "1A". The format keyword is to specify the version, or format of API Blueprint we're using. In this case 1A.
 
 The metadata section allows you to place information for use by [tooling around API Blueprint][Tooling Section]. For example, [Apiary.io](https://apiary.io/) uses a piece of metadata called `HOST`. When specified, it allows you to specify where an implementation of the API can be found.
 
@@ -34,13 +34,13 @@ The metadata section allows you to place information for use by [tooling around 
 
 ## Title & Description
 
-After the metadata we have a heading, headings start with a hash (#) followed by a title. In this case `# Polls`. You can use up to 6 hashes which allows you to have sub-headings. The first heading in our API Blueprint document serves as the API Name.
+After the metadata we have a heading, headings start with a hash (#) followed by a title. In this case `# Polls`. You can use up to 6 hashes which allows you to have sub-headings. The first heading in the Blueprint document serves as the API Name.
 
-Then we have a description of our API. Where we have mentioned what this is. You can use further headings to break up the description sections.
+Then we have a description of the Polls API. Where we have mentioned what the API does. You can use further headings to break up the description sections.
 
 ## Resource Groups
 
-Now it's time to start documenting our resources in our API. To start of with, we're going to can use the `Group` keyword inside a heading to specify a group of related resources. This allows us to group all of our resources related to questions in our API together.
+Now it's time to start documenting the resources inside of the API. To start of with, we're going to can use the `Group` keyword inside a heading to specify a group of related resources. This allows us to group all of the resources related to questions in the API together.
 
 ```markdown
 # Group Questions
@@ -50,7 +50,7 @@ Resource related to questions in the API.
 
 ## Resource
 
-Inside of questions resource group, we have a resource in our API called "Questions collection". This resource allows you to view a list of questions. We've created a sub-heading inside our group called `Questions collection` which then specifies the URI for this resource inside our API which is placed inside square brackets at the end of the title.
+Inside of the questions resource group, we have a resource in called "Questions collection". This resource allows you to view a list of questions. We've created a sub-heading inside of this group called `Questions collection` which then specifies the URI for this resource inside of the API which is placed inside square brackets at the end of the title.
 
 ```markdown
 ## Questions collection [/questions]
@@ -60,7 +60,7 @@ Inside of questions resource group, we have a resource in our API called "Questi
 
 In an API Blueprint, you need to specify the actions you can make on this resource in HTTP. For example, we can retrive the list of questions using the HTTP method `GET`.
 
-We can create a sub-heading inside our resource with a title for our action, followed by the HTTP method to use inside the square brackets.
+We can create a sub-heading inside this resource with a title for an action, followed by the HTTP method to use inside the square brackets.
 
 ```markdown
 ### List all questions [GET]
@@ -105,7 +105,7 @@ For example, we can define the most common response "200" indicating the request
 
 > **Note:** API Blueprint is **indentation sensitive**. Assets have to be **indented by four spaces** relative to it's existing indentation level. In the case of list items or sections, which are already indented. It results in having you include additional indentation, this further makes it a total of **eight spaces** when using assets inside a list item.
 
-In our API, the polls resource has a second action allowing you to create a new question. Inside our action, we've added a description which describes the structure you would send to the server to create a new question.
+The polls resource has a second action, allowing you to create a new question. Inside this action, we've added a description which describes the structure you would send to the server to create a new question.
 
 ```markdown
 ### Create a new question [POST]
@@ -169,7 +169,7 @@ This example request will result in a 201 response from the server specifying we
                 }
 ```
 
-The next resource in our group allows you to view the detail of a question directly with an ID of a question.
+The next resource in this group allows you to view the detail of a question directly with an ID of a question.
 
 ```markdown
 ## Question [/questions/{question_id}]
@@ -195,10 +195,10 @@ The *"question_id"* variable of the URI template is a parameter to every action 
 
 ### Actions
 
-Similar to before, we're going to describe our action to view a question detail.
+Similar to before, we're going to describe a new action which allows you to view a questions detail.
 
 ```markdown
-### View a question detail [GET]
+### View a questions detail [GET]
 
 + Response 200 (application/json)
 
@@ -230,7 +230,7 @@ Similar to before, we're going to describe our action to view a question detail.
 
 #### Response without a body
 
-You can describe a response without a body, for example a 204 response when we delete our question:
+You can describe a response without a body, for example a 204 response when we delete a question:
 
 ```
 ### Delete [DELETE]
@@ -245,7 +245,7 @@ You can find the complete Poll API Blueprint [full listing][] in the [API Bluepr
 
 With Poll Blueprint completed it is time to put it at work. For the start you can browse this API [rendered by GitHub][] or enjoy it [rendered by Apiary][].
 
-Visit the [Tooling Section][] of the [apiblueprint.org][] to find more about tools you can use with your blueprint.
+Visit the [Tooling Section][] of [apiblueprint.org][] to find tools that you can use with API Blueprints.
 
 [GitHub Gists]:                     https://gist.github.com
 [API Blueprint Glossary of Terms]:  https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md
