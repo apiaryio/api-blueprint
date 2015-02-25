@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: https://pollsapi.herokuapp.com/
+HOST: http://polls.apiblueprint.org/
 
 # Polls
 
