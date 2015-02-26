@@ -76,19 +76,19 @@ This action returns a `200` status code along with a JSON body.
                 "url": "/questions/1",
                 "choices": [
                     {
-                        "answer": "Swift",
+                        "choice": "Swift",
                         "url": "/questions/1/choices/1",
                         "votes": 2048
                     }, {
-                        "answer": "Python",
+                        "choice": "Python",
                         "url": "/questions/1/choices/2",
                         "votes": 1024
                     }, {
-                        "answer": "Objective-C",
+                        "choice": "Objective-C",
                         "url": "/questions/1/choices/3",
                         "votes": 512
                     }, {
-                        "answer": "Ruby",
+                        "choice": "Ruby",
                         "url": "/questions/1/choices/4",
                         "votes": 256
                     }
@@ -141,20 +141,20 @@ This example returns a 201 status code, along with HTTP headers and a JSON Body.
                     "url": "/questions/1",
                     "choices": [
                         {
-                            "answer": "Swift",
-                            "vote_url": "/questions/1/choices/1",
+                            "choice": "Swift",
+                            "url": "/questions/1/choices/1",
                             "votes": 0
                         }, {
-                            "answer": "Python",
-                            "vote_url": "/questions/1/choices/2",
+                            "choice": "Python",
+                            "url": "/questions/1/choices/2",
                             "votes": 0
                         }, {
-                            "answer": "Objective-C",
-                            "vote_url": "/questions/1/choices/3",
+                            "choice": "Objective-C",
+                            "url": "/questions/1/choices/3",
                             "votes": 0
                         }, {
-                            "answer": "Ruby",
-                            "vote_url": "/questions/1/choices/4",
+                            "choice": "Ruby",
+                            "url": "/questions/1/choices/4",
                             "votes": 0
                         }
                     ]
@@ -200,19 +200,19 @@ Similar to before, this resource has an action to view the question detail.
                 "url": "/questions/1",
                 "choices": [
                     {
-                        "answer": "Swift",
+                        "choice": "Swift",
                         "url": "/questions/1/choices/1",
                         "votes": 2048
                     }, {
-                        "answer": "Python",
+                        "choice": "Python",
                         "url": "/questions/1/choices/2",
                         "votes": 1024
                     }, {
-                        "answer": "Objective-C",
+                        "choice": "Objective-C",
                         "url": "/questions/1/choices/3",
                         "votes": 512
                     }, {
-                        "answer": "Ruby",
+                        "choice": "Ruby",
                         "url": "/questions/1/choices/4",
                         "votes": 256
                     }
