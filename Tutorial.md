@@ -1,8 +1,8 @@
-# API Blueprint Basic Tutorial
+# API Blueprint Tutorial
 
-Welcome to the API Blueprint Tutorial! In this tutorial you will learn about the basics to getting started with the API Blueprint language.
+Welcome to an API Blueprint Tutorial! In this tutorial you will learn about the basics of the API Blueprint language.
 
-We’re going to build an API Blueprint for a service called Polls – a simple web service that allows consumers to view polls and vote in them.
+In this tutorial, we’re going to build an API Blueprint for a service called Polls – a simple web service that allows consumers to view polls and vote in them.
 
 > **Note:** **Additional API Blueprint Resources**
 >
@@ -26,21 +26,17 @@ Polls is a simple web service that allows consumers to view polls and vote in th
 
 ## Metadata
 
-At the very top of this Blueprint, you will find a metadata section. In this case we have specified that "FORMAT" has the value of "1A". The format keyword is to specify the version, or format of API Blueprint we're using. In this case 1A.
+At the very top of this Blueprint, you will find a metadata section. In this case we have specified that `FORMAT` has the value of `1A`. The format keyword is used to specify the version of the API Blueprint. In this case 1A.
 
-The metadata section allows you to place information for use by [tooling around API Blueprint][Tooling Section]. For example, [Apiary.io](https://apiary.io/) uses a piece of metadata called `HOST`. When specified, it allows you to specify where an implementation of the API can be found.
-
-> **Note:** Should you need a clarification of some terms as used through this document refer to [API Blueprint Glossary of Terms][].
-
-## Title & Description
+## API Name & Description
 
 After the metadata we have a heading, headings start with a hash (#) followed by a title. In this case `# Polls`. You can use up to 6 hashes which allows you to have sub-headings. The first heading in the Blueprint document serves as the API Name.
 
-Then we have a description of the Polls API. Where we have mentioned what the API does. You can use further headings to break up the description sections.
+Afterwards, there is a description of the Polls API, this mentions what the API is used for. You can use further headings to break up the description sections.
 
 ## Resource Groups
 
-Now it's time to start documenting the resources inside of the API. To start of with, we're going to can use the `Group` keyword inside a heading to specify a group of related resources. This allows us to group all of the resources related to questions in the API together.
+Now it's time to start documenting the resources inside of the API. To start of with, the `Group` keyword is used inside a heading to specify a group of related resources.
 
 ```markdown
 # Group Questions
@@ -50,7 +46,7 @@ Resource related to questions in the API.
 
 ## Resource
 
-Inside of the questions resource group, we have a resource in called "Questions collection". This resource allows you to view a list of questions. We've created a sub-heading inside of this group called `Questions collection` which then specifies the URI for this resource inside of the API which is placed inside square brackets at the end of the title.
+Inside of the questions resource group, we have a resource called "Questions collection". This resource allows you to view a list of questions. The heading specifies the URI used to access the resource inside of square brackets at the end of the heading.
 
 ```markdown
 ## Questions collection [/questions]
@@ -58,17 +54,15 @@ Inside of the questions resource group, we have a resource in called "Questions 
 
 ### Actions
 
-In an API Blueprint, you need to specify the actions you can make on this resource in HTTP. For example, we can retrive the list of questions using the HTTP method `GET`.
-
-We can create a sub-heading inside this resource with a title for an action, followed by the HTTP method to use inside the square brackets.
+API Blueprint allows you to specify the actions you can make on each resource. A sub-heading inside of the resource with a title, followed by the HTTP method to use inside the square brackets.
 
 ```markdown
 ### List all questions [GET]
 ```
 
-In API Blueprint, an action **should** always include at least one response representing the HTTP response message sent back in response to a HTTP request. The response should always include a [status code][] and possibly an additional [payload][].
+Action's should always include at least one response representing the HTTP response message sent back in response to a HTTP request. The response should always include a [status code][] and possibly a body.
 
-For example, we can define the most common response "200" indicating the request has succeeded, along with an example result which is a JSON array of questions.
+This action returns a `200` status code along with a JSON body.
 
 > **Note:** Specifying the media type in parenthesis after the response status codes generates implicit `Content-Type` HTTP header. Therefore you do not have to explicitly specify the `Content-Type` header.
 
@@ -103,9 +97,7 @@ For example, we can define the most common response "200" indicating the request
         ]
 ```
 
-> **Note:** API Blueprint is **indentation sensitive**. Assets have to be **indented by four spaces** relative to it's existing indentation level. In the case of list items or sections, which are already indented. It results in having you include additional indentation, this further makes it a total of **eight spaces** when using assets inside a list item.
-
-The polls resource has a second action, allowing you to create a new question. Inside this action, we've added a description which describes the structure you would send to the server to create a new question.
+The polls resource has a second action, allowing you to create a new question. Inside this action, there is a description for the structure you would send to the server to create a new question.
 
 ```markdown
 ### Create a new question [POST]
@@ -116,7 +108,7 @@ You can create your own question using this action. It takes a JSON dictionary c
 - choices (array[string]) - A collection of choices.
 ```
 
-We can show an example request, in this case we're showing an example JSON request you can make to the API.
+This action takes a JSON payload as part of the request as follows:
 
 ```markdown
 + Request (application/json)
@@ -132,7 +124,7 @@ We can show an example request, in this case we're showing an example JSON reque
             }
 ```
 
-This example request will result in a 201 response from the server specifying we've created a new resource. The API returns a `Location` header specifying the URI for the created resource along with a JSON body.
+This example returns a 201 status code, along with HTTP headers and a JSON Body.
 
 ```markdown
 + Response 201 (application/json)
@@ -169,7 +161,7 @@ This example request will result in a 201 response from the server specifying we
                 }
 ```
 
-The next resource in this group allows you to view the detail of a question directly with an ID of a question.
+The next resource is “Question”, it allows you to view a single question directly with an ID of a “Question”.
 
 ```markdown
 ## Question [/questions/{question_id}]
@@ -177,25 +169,25 @@ The next resource in this group allows you to view the detail of a question dire
 
 ### URI Template
 
-The URI for “Question” resource uses a variable component, expressed by [URI Template][]. In this case, we have an id variable as `{question_id}`. Representing this resource is for `/questions/{question_id}` where `question_id` can be substituted for a real `id`.
+The URI for the “Question” resource uses a variable component, expressed by [URI Template][]. In this case, we have an id variable called `{question_id}. Where `question_id` is substituted for a real `id`.
 
 <a id="uri-parameters"></a>
 ### URI Parameters
 
-You can describe the parameters in the URI using a list of Parameters. For “Question” it would be as follows:
+URI parameters can be described in the URI using a list of Parameters. For “Question” it would be as follows:
 
 ```markdown
 + Parameters
     + question_id (number) ... ID of the Question in form of an integer
 ```
 
-The *"question_id"* variable of the URI template is a parameter to every action on this resource. Here defined of an arbitrary type *"number"* and followed by a description for the parameter.
+The "`question_id` variable of the URI template is a parameter for every action on this resource. Here defined of an arbitrary type `number`, followed by a description for the parameter.
 
 > Refer to API Blueprint Specification's [Resource Parameters Section][] for additional examples.
 
 ### Actions
 
-Similar to before, we're going to describe a new action which allows you to view a questions detail.
+Similar to before, this resource has an action to view the question detail.
 
 ```markdown
 ### View a questions detail [GET]
@@ -230,7 +222,7 @@ Similar to before, we're going to describe a new action which allows you to view
 
 #### Response without a body
 
-You can describe a response without a body, for example a 204 response when we delete a question:
+This resource has a delete action, the server will return a 204 response without a body.
 
 ```
 ### Delete [DELETE]
@@ -239,34 +231,28 @@ You can describe a response without a body, for example a 204 response when we d
 
 ## Complete Blueprint
 
-You can find the complete Poll API Blueprint [full listing][] in the [API Blueprint Examples][] repository.
+You can find an implementation of this API at `http://polls.apiblueprint.org/` along with the complete [Poll API Blueprint][] in the [API Blueprint Examples][] repository, or you can enjoy it [rendered on Apiary][].
 
 ## API Blueprint Tools
 
-With Poll Blueprint completed it is time to put it at work. For the start you can browse this API [rendered by GitHub][] or enjoy it [rendered by Apiary][].
-
 Visit the [Tooling Section][] of [apiblueprint.org][] to find tools that you can use with API Blueprints.
+
+> **Note:** Should you need a clarification of some terms as used through this document refer to [API Blueprint Glossary of Terms][].
 
 [GitHub Gists]:                     https://gist.github.com
 [API Blueprint Glossary of Terms]:  https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md
-[Markdown Tutorial]:                http://www.markdowntutorial.com
-[Gruber's Original]:                http://daringfireball.net/projects/markdown/syntax
 [API Blueprint Identifier]:         https://github.com/apiaryio/api-blueprint/blob/1A/API%20Blueprint%20Specification.md#Identifiers
 [HTTP Request Method]:              https://github.com/for-GET/know-your-http-well/blob/master/methods.md
 [status code]:                      https://github.com/for-GET/know-your-http-well/blob/master/status-codes.md
 [message-headers]:                  https://github.com/for-GET/know-your-http-well/blob/master/headers.md
 [payload]:                          https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md#payload
-[`application/hal+json`]:           https://github.com/mikekelly/hal_specification
 [URI Template]:                     https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md#uri-template
 [Resource Parameters Section]: https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md#ResourceParametersSection
 [Markdown pre-formatted code blocks]: http://daringfireball.net/projects/markdown/syntax#precode
-[GitHub-flavored Markdown]: https://help.github.com/articles/github-flavored-markdown
-[fenced code blocks]:https://help.github.com/articles/github-flavored-markdown#fenced-code-blocks
 [URI Parameters]: #uri-parameters
 [API Blueprint Examples]: https://github.com/apiaryio/api-blueprint/tree/master/examples
-[full listing]: https://raw.github.com/apiaryio/api-blueprint/master/examples/Polls%20API.md
-[rendered by GitHub]: https://github.com/apiaryio/api-blueprint/blob/master/examples/Polls%20API.md
-[rendered by Apiary]: http://docs.pollsapi.apiary.io
+[Poll API Blueprint]: https://raw.github.com/apiaryio/api-blueprint/master/examples/Polls%20API.md
+[rendered on Apiary]: http://docs.pollsapi.apiary.io
 [Tooling Section]: http://apiblueprint.org/#tooling
 [apiblueprint.org]: http://apiblueprint.org
 [specification]: https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md
