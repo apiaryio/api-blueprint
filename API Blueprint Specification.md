@@ -34,10 +34,11 @@ Version: 1A8
 11. [Resource section](#def-resource-section)
 12. [Resource model section](#def-model-section)
 13. [URI parameters section](#def-uriparameters-section)
-14. [Action section](#def-action-section)
-15. [Request section](#def-request-section)
-16. [Response section](#def-response-section)
-17. [Data Structures section](#def-data-structures)
+14. [Relation section](#def-relation-section)
+15. [Action section](#def-action-section)
+16. [Request section](#def-request-section)
+17. [Response section](#def-response-section)
+18. [Data Structures section](#def-data-structures)
 
 ## [III. Appendix](#def-appendix)
 1. [URI Templates](#def-uri-templates)
@@ -80,6 +81,7 @@ All of the blueprint sections are optional. However, when present, a section **m
         + [`0-1` **Schema** section](#def-schema-section)
         + [`0-1` **Attributes** section](#def-attributes-section)
     + [`1+` **Action** sections](#def-action-section)
+        + [`0-1` **Relation** section](#def-relation-section)
         + [`0-1` **URI Parameters** section](#def-uriparameters-section)
         + [`0-1` **Attributes** section](#def-attributes-section)
         + [`0+` **Request** sections](#def-request-section)
@@ -832,10 +834,46 @@ Where:
 ```
 ---
 
+<a name="def-relation-section"></a>
+## 14. Relation section
+- **Parent sections:** [Action section](#def-action-section)
+- **Nested Sections:** none
+- **Markdown entity:** list
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Relation` keyword written in a Markdown list item followed by a colon (`:`) and a link relation identifier.
+
+    + Relation: <link relation identifier>
+
+#### Description
+This section specifies a [link relation type](https://tools.ietf.org/html/rfc5988#section-4) for the given action as specified by [RFC 5988](https://tools.ietf.org/html/rfc5988).
+
+#### Example
+
+	# Task [/tasks/{id}]
+
+	+ Parameters
+	    + id
+
+	## Retrieve Task [GET]
+
+	+ Relation: task
+	+ Response 200
+	
+	        { ... }
+	
+	## Delete Task [DELETE]
+
+	+ Relation: delete
+	+ Response 204
+
+---
+
 <a name="def-action-section"></a>
-## 14. Action section
+## 15. Action section
 - **Parent sections:** [Resource section](#def-resource-section)
-- **Nested sections:** [`0-1` URI parameters section](#def-uriparameters-section), [`0-1` Attributes section](#def-attributes-section), [`0+` Request section](#def-request-section), [`1+` Response section](#def-response-section)
+- **Nested sections:** [`0-1` Relation section](#def-relation-section), [`0-1` URI parameters section](#def-uriparameters-section), [`0-1` Attributes section](#def-attributes-section), [`0+` Request section](#def-request-section), [`1+` Response section](#def-response-section)
 - **Markdown entity:** header
 - **Inherits from**: [Named section](#def-named-section)
 
@@ -938,7 +976,7 @@ Multiple Request and Response nested sections within one transaction example **s
 ---
 
 <a name="def-request-section"></a>
-## 15. Request section
+## 16. Request section
 - **Parent sections:** [Action section](#def-action-section)
 - **Nested sections:** [Refer to payload section](#def-payload-section)
 - **Markdown entity:** list
@@ -961,7 +999,7 @@ One HTTP request-message example – payload.
 ---
 
 <a name="def-response-section"></a>
-## 16. Response section
+## 17. Response section
 - **Abstract**
 - **Parent sections:** [Action section](#def-action-section)
 - **Nested sections:** [Refer to payload section](#def-payload-section)
@@ -985,7 +1023,7 @@ One HTTP response-message example – payload.
 ---
 
 <a name="def-data-structures"></a>
-## 17. Data Structures section
+## 18. Data Structures section
 - **Parent sections:** none
 - **Nested sections:** _MSON Named Type definition_ (see below)
 - **Markdown entity:** header
