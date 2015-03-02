@@ -226,37 +226,17 @@ You can create your own question using this action. It takes a JSON dictionary c
 
 + Request (application/json)
 
-            {
-                "question": "Favourite programming language?",
-                "choices": [
-                    "Swift",
-                    "Python",
-                    "Objective-C",
-                    "Ruby"
-                ]
-            }
+        {
+            "question": "Favourite programming language?",
+            "choices": [
+                "Swift",
+                "Python",
+                "Objective-C",
+                "Ruby"
+            ]
+        }
 
-+ Response 201
-
-    [Question][]
-
-## Group Question
-
-Resource related to questions in the API.
-
-## Question [/questions/{question_id}]
-
-A Question object has the following attributes:
-
-- question
-- published_at - An ISO8601 date when the question was published.
-- url
-- choices - An array of Choice objects.
-
-+ Parameters
-    + question_id (required, number, `1`) ... ID of the Question in form of an integer
-
-+ Model (application/vnd.siren+json)
++ Response 201 (application/vnd.siren+json)
 
         {
             "actions": [
@@ -285,7 +265,7 @@ A Question object has the following attributes:
                             "method": "POST"
                         }
                     ],
-                    "rel": [ "choice" ],
+                    "rel": [ "choices" ],
                     "properties": {
                         "choice": "Swift",
                         "votes": 2048
@@ -304,7 +284,7 @@ A Question object has the following attributes:
                             "method": "POST"
                         }
                     ],
-                    "rel": [ "choice" ],
+                    "rel": [ "choices" ],
                     "properties": {
                         "choice": "Python",
                         "votes": 1024
@@ -323,7 +303,7 @@ A Question object has the following attributes:
                             "method": "POST"
                         }
                     ],
-                    "rel": [ "choice" ],
+                    "rel": [ "choices" ],
                     "properties": {
                         "choice": "Objective-C",
                         "votes": 512
@@ -342,7 +322,7 @@ A Question object has the following attributes:
                             "method": "POST"
                         }
                     ],
-                    "rel": [ "choice" ],
+                    "rel": [ "choices" ],
                     "properties": {
                         "choice": "Ruby",
                         "votes": 256
@@ -357,11 +337,202 @@ A Question object has the following attributes:
             ]
         }
 
++ Response 201 (application/hal+json)
+
+        {
+            "_links": {
+                "self": { "href": "/questions/1" }
+            },
+            "_embedded": {
+                "choices": [
+                    {
+                        "_links": {
+                            "self": { "self": "/questions/1/choices/1" }
+                        },
+                        "choice": "Swift",
+                        "votes": 2048
+                    }, {
+                        "_links": {
+                            "self": { "self": "/questions/1/choices/2" }
+                        },
+                        "choice": "Python",
+                        "votes": 1024
+                    }, {
+                        "_links": {
+                            "self": { "self": "/questions/1/choices/3" }
+                        },
+                        "choice": "Objective-C",
+                        "votes": 512
+                    }, {
+                        "_links": {
+                            "self": { "self": "/questions/1/choices/4" }
+                        },
+                        "choice": "Ruby",
+                        "votes": 256
+                    }
+                ]
+            },
+            "published_at": "2014-11-11T08:40:51.620Z",
+            "question": "Favourite programming language?"
+        }
+
+## Group Question
+
+Resource related to questions in the API.
+
+## Question [/questions/{question_id}]
+
+A Question object has the following attributes:
+
+- question
+- published_at - An ISO8601 date when the question was published.
+- url
+- choices - An array of Choice objects.
+
++ Parameters
+    + question_id (required, number, `1`) ... ID of the Question in form of an integer
+
 ### View a question detail [GET]
 
-+ Response 200
++ Response 200 (application/vnd.siren+json)
 
-    [Question][]
+        {
+            "actions": [
+                {
+                    "name": "delete",
+                    "href": "/questions/1",
+                    "method": "DELETE"
+                }
+            ],
+            "properties": {
+                "published_at": "2014-11-11T08:40:51.620Z",
+                "question": "Favourite programming language?"
+            },
+            "links": [
+                {
+                    "rel": [ "self" ],
+                    "href": "/questions/1"
+                }
+            ],
+            "entities": [
+                {
+                    "actions": [
+                        {
+                            "name": "vote",
+                            "href": "/questions/1/choices/1",
+                            "method": "POST"
+                        }
+                    ],
+                    "rel": [ "choices" ],
+                    "properties": {
+                        "choice": "Swift",
+                        "votes": 2048
+                    },
+                    "links": [
+                        {
+                            "rel": [ "self" ],
+                            "href": "/questions/1/choices/1"
+                        }
+                    ]
+                }, {
+                    "actions": [
+                        {
+                            "name": "vote",
+                            "href": "/questions/1/choices/2",
+                            "method": "POST"
+                        }
+                    ],
+                    "rel": [ "choices" ],
+                    "properties": {
+                        "choice": "Python",
+                        "votes": 1024
+                    },
+                    "links": [
+                        {
+                            "rel": [ "self" ],
+                            "href": "/questions/1/choices/2"
+                        }
+                    ]
+                }, {
+                    "actions": [
+                        {
+                            "name": "vote",
+                            "href": "/questions/1/choices/3",
+                            "method": "POST"
+                        }
+                    ],
+                    "rel": [ "choices" ],
+                    "properties": {
+                        "choice": "Objective-C",
+                        "votes": 512
+                    },
+                    "links": [
+                        {
+                            "rel": [ "self" ],
+                            "href": "/questions/1/choices/3"
+                        }
+                    ]
+                }, {
+                    "actions": [
+                        {
+                            "name": "vote",
+                            "href": "/questions/1/choices/4",
+                            "method": "POST"
+                        }
+                    ],
+                    "rel": [ "choices" ],
+                    "properties": {
+                        "choice": "Ruby",
+                        "votes": 256
+                    },
+                    "links": [
+                        {
+                            "rel": [ "self" ],
+                            "href": "/questions/1/choices/4"
+                        }
+                    ]
+                }
+            ]
+        }
+
++ Response 200 (application/hal+json)
+
+        {
+            "_links": {
+                "self": { "href": "/questions/1" }
+            },
+            "_embedded": {
+                "choices": [
+                    {
+                        "_links": {
+                            "self": { "self": "/questions/1/choices/1" }
+                        },
+                        "choice": "Swift",
+                        "votes": 2048
+                    }, {
+                        "_links": {
+                            "self": { "self": "/questions/1/choices/2" }
+                        },
+                        "choice": "Python",
+                        "votes": 1024
+                    }, {
+                        "_links": {
+                            "self": { "self": "/questions/1/choices/3" }
+                        },
+                        "choice": "Objective-C",
+                        "votes": 512
+                    }, {
+                        "_links": {
+                            "self": { "self": "/questions/1/choices/4" }
+                        },
+                        "choice": "Ruby",
+                        "votes": 256
+                    }
+                ]
+            },
+            "published_at": "2014-11-11T08:40:51.620Z",
+            "question": "Favourite programming language?"
+        }
 
 ## Choice [/questions/{question_id}/choices/{choice_id}]
 
@@ -369,7 +540,9 @@ A Question object has the following attributes:
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
     + choice_id (required, number, `1`) ... ID of the Choice in form of an integer
 
-+ Model (application/vnd.siren+json)
+### View a choice detail [GET]
+
++ Response 200 (application/vnd.siren+json)
 
         {
             "actions": [
@@ -392,17 +565,49 @@ A Question object has the following attributes:
             ]
         }
 
-### View a choice detail [GET]
++ Response 200 (application/hal+json)
 
-+ Response 200
-
-    [Choice][]
+        {
+            "_links": {
+                "self": { "href": "/questions/1/choices/1" }
+            },
+            "choice": "Swift",
+            "votes": 2048
+        }
 
 ### Vote on a choice [POST]
 
 This action allows you to vote on a question's choice.
 
-+ Response 201
++ Response 201 (application/vnd.siren+json)
 
-    [Choice][]
+        {
+            "actions": [
+                {
+                    "name": "vote",
+                    "href": "/questions/1/choices/1",
+                    "method": "POST"
+                }
+            ],
+            "rel": [ "choice" ],
+            "properties": {
+                "choice": "Swift",
+                "votes": 2049
+            },
+            "links": [
+                {
+                    "rel": [ "self" ],
+                    "href": "/questions/1/choices/1"
+                }
+            ]
+        }
 
++ Response 201 (application/hal+json)
+
+        {
+            "_links": {
+                "self": "/questions/1/choices/1"
+            },
+            "choice": "Swift",
+            "votes": 2049
+        }
