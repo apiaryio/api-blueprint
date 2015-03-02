@@ -219,7 +219,7 @@ This resource does not have any attributes. Instead it offers the initial API af
 
 ### Create a New Question [POST]
 
-You may create your own question using this action. It takes a JSON dictionary containing a question and a collection of answers in the form of choices.
+You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
 
 - question (string) - The question
 - choices (array[string]) - A collection of choices.
