@@ -1,8 +1,6 @@
 # API Blueprint Tutorial
 
-Welcome to an API Blueprint Tutorial! In this tutorial you will learn about the basics of the API Blueprint language.
-
-In this tutorial, we’re going to build an API Blueprint for a service called Polls – a simple web service that allows consumers to view polls and vote in them.
+Welcome to an API Blueprint Tutorial! This tutorial will take you though the basics of the API Blueprint language. We’re going to build an API Blueprint for a service called Polls – a simple API allowing consumers to view polls, and vote in them.
 
 > **Note:** **Additional API Blueprint Resources**
 >
@@ -14,29 +12,29 @@ In this tutorial, we’re going to build an API Blueprint for a service called P
 
 ## API Blueprint
 
-The start of the Blueprint is going to look as follows:
+The start of the blueprint looks as follows:
 
 ```markdown
 FORMAT: 1A
 
 # Polls
 
-Polls is a simple web service that allows consumers to view polls and vote in them.
+Polls is a simple API allowing consumers to view polls, and vote in them.
 ```
 
 ## Metadata
 
-At the very top of this Blueprint, you will find a metadata section. In this case we have specified that `FORMAT` has the value of `1A`. The format keyword is used to specify the version of the API Blueprint. In this case 1A.
+The blueprint starts wih a metadata section. In this case we have specified that `FORMAT` has the value of `1A`. The format keyword is used to specify the version of the API Blueprint. In this case 1A.
 
 ## API Name & Description
 
-After the metadata we have a heading, headings start with a hash (#) followed by a title. In this case `# Polls`. You can use up to 6 hashes which allows you to have sub-headings. The first heading in the Blueprint document serves as the API Name.
+The first heading in the blueprint serves as the name of your API, which in this case is "Polls". Headings start with one or more `#` symbols followed by a title. The API Name here uses one hash to distinguish it as the first level. The number of `#` you use will determine the size of the heading.
 
-Afterwards, there is a description of the Polls API, this mentions what the API is used for. You can use further headings to break up the description sections.
+Following the heading is a description of the API, this mentions what the service is used for. You may use further headings to break up the description section.
 
 ## Resource Groups
 
-Now it's time to start documenting the resources inside of the API. To start of with, the `Group` keyword is used inside a heading to specify a group of related resources.
+Now it's time to start documenting the API resources. Using the `Group` keyword at the start of a heading, we've created a group of related resources.
 
 ```markdown
 # Group Questions
@@ -46,10 +44,10 @@ Resource related to questions in the API.
 
 ## Resource
 
-Inside of the questions resource group, we have a resource called "Questions collection". This resource allows you to view a list of questions. The heading specifies the URI used to access the resource inside of square brackets at the end of the heading.
+Within the questions resource group, we have a resource called "Question Collection". This resource allows you to view a list of questions. The heading specifies the URI used to access the resource inside of square brackets at the end of the heading.
 
 ```markdown
-## Questions collection [/questions]
+## Question Collection [/questions]
 ```
 
 ### Actions
@@ -60,11 +58,9 @@ API Blueprint allows you to specify the actions you can make on each resource. A
 ### List All Questions [GET]
 ```
 
-Action's should always include at least one response representing the HTTP response message sent back in response to a HTTP request. The response should always include a [status code][] and possibly a body.
+An action should include at least one response from the server which must include a status could and may contain a body.
 
 This action returns a `200` status code along with a JSON body.
-
-> **Note:** Specifying the media type in parenthesis after the response status codes generates implicit `Content-Type` HTTP header. Therefore you do not have to explicitly specify the `Content-Type` header.
 
 ```markdown
 + Response 200 (application/json)
@@ -97,12 +93,14 @@ This action returns a `200` status code along with a JSON body.
         ]
 ```
 
-The polls resource has a second action, allowing you to create a new question. Inside this action, there is a description for the structure you would send to the server to create a new question.
+> **Note:** Specifying the media type in parenthesis after the response status code generates implicit `Content-Type` HTTP header. Therefore you do not have to explicitly specify the `Content-Type` header.
+
+The polls resource has a second action which allows you to create a new question. This action includes a description showing the structure you would send to the server to perform this action.
 
 ```markdown
 ### Create a New Question [POST]
 
-You can create your own question using this action. It takes a JSON dictionary containing a question and a collection of answers in the form of choices.
+You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
 
 - question (string) - The question
 - choices (array[string]) - A collection of choices.
@@ -124,7 +122,7 @@ This action takes a JSON payload as part of the request as follows:
             }
 ```
 
-This example returns a 201 status code, along with HTTP headers and a JSON Body.
+This example returns a `201` status code, along with HTTP headers and a body.
 
 ```markdown
 + Response 201 (application/json)
@@ -161,7 +159,7 @@ This example returns a 201 status code, along with HTTP headers and a JSON Body.
                 }
 ```
 
-The next resource is “Question”, it allows you to view a single question directly with an ID of a “Question”.
+The next resource is “Question”, which represents a single question.
 
 ```markdown
 ## Question [/questions/{question_id}]
@@ -169,25 +167,25 @@ The next resource is “Question”, it allows you to view a single question dir
 
 ### URI Template
 
-The URI for the “Question” resource uses a variable component, expressed by [URI Template][]. In this case, we have an id variable called `{question_id}. Where `question_id` is substituted for a real `id`.
+The URI for the “Question” resource uses a variable component, expressed by [URI Template][]. In this case, there is an ID variable called `question_id`, represented in the URI template as `{question_id}`.
 
 <a id="uri-parameters"></a>
 ### URI Parameters
 
-URI parameters can be described in the URI using a list of Parameters. For “Question” it would be as follows:
+URI parameters should be described in the URI using a list of Parameters. For “Question” it would be as follows:
 
 ```markdown
 + Parameters
     + question_id (number) ... ID of the Question in form of an integer
 ```
 
-The "`question_id` variable of the URI template is a parameter for every action on this resource. Here defined of an arbitrary type `number`, followed by a description for the parameter.
+The "`question_id` variable of the URI template is a parameter for every action on this resource. It is defined here using an arbitrary type `number`, followed by a description for the parameter.
 
 > Refer to API Blueprint Specification's [Resource Parameters Section][] for additional examples.
 
 ### Actions
 
-Similar to before, this resource has an action to view the question detail.
+This resource has an action to retrieve the questions detail.
 
 ```markdown
 ### View a Questions Detail [GET]
@@ -235,7 +233,7 @@ You can find an implementation of this API at `http://polls.apiblueprint.org/` a
 
 ## API Blueprint Tools
 
-Visit the [Tooling Section][] of [apiblueprint.org][] to find tools that you can use with API Blueprints.
+Visit the [Tooling Section][] of [apiblueprint.org][] to find tools to use with API Blueprints.
 
 > **Note:** Should you need a clarification of some terms as used through this document refer to [API Blueprint Glossary of Terms][].
 
