@@ -17,7 +17,7 @@ This resource does not have any attributes. Instead it offers the initial API af
             "links": [
                 {
                     "rel": [ "questions" ],
-                    "href": "\/questions"
+                    "href": "/questions"
                 }
             ]
         }
@@ -26,7 +26,7 @@ This resource does not have any attributes. Instead it offers the initial API af
 
         {
             "_links": {
-                "questions": { "href": "\/questions" }
+                "questions": { "href": "/questions" }
             }
         }
 
@@ -43,7 +43,7 @@ This resource does not have any attributes. Instead it offers the initial API af
             "actions": [
                 {
                     "name": "add",
-                    "href": "\/questions",
+                    "href": "/questions",
                     "method": "POST",
                     "type": "application/json",
                     "fields": [
@@ -58,11 +58,11 @@ This resource does not have any attributes. Instead it offers the initial API af
             "links": [
                 {
                   "rel": [ "next" ],
-                  "href": "\/questions?page=2"
+                  "href": "/questions?page=2"
                 },
                 {
                   "rel": [ "self" ],
-                  "href": "\/questions"
+                  "href": "/questions"
                 }
             ],
             "entities": [
@@ -70,7 +70,7 @@ This resource does not have any attributes. Instead it offers the initial API af
                     "actions": [
                         {
                             "name": "delete",
-                            "href": "\/questions\/1",
+                            "href": "/questions/1",
                             "method": "DELETE"
                         }
                     ],
@@ -82,7 +82,7 @@ This resource does not have any attributes. Instead it offers the initial API af
                     "links": [
                         {
                             "rel": [ "self" ],
-                            "href": "\/questions\/1"
+                            "href": "/questions/1"
                         }
                     ],
                     "entities": [
@@ -90,7 +90,7 @@ This resource does not have any attributes. Instead it offers the initial API af
                             "actions": [
                                 {
                                     "name": "vote",
-                                    "href": "\/questions\/1\/choices\/1",
+                                    "href": "/questions/1/choices/1",
                                     "method": "POST"
                                 }
                             ],
@@ -102,14 +102,14 @@ This resource does not have any attributes. Instead it offers the initial API af
                             "links": [
                                 {
                                     "rel": [ "self" ],
-                                    "href": "\/questions\/1\/choices\/1"
+                                    "href": "/questions/1/choices/1"
                                 }
                             ]
                         }, {
                             "actions": [
                                 {
                                     "name": "vote",
-                                    "href": "\/questions\/1\/choices\/2",
+                                    "href": "/questions/1/choices/2",
                                     "method": "POST"
                                 }
                             ],
@@ -121,14 +121,14 @@ This resource does not have any attributes. Instead it offers the initial API af
                             "links": [
                                 {
                                     "rel": [ "self" ],
-                                    "href": "\/questions\/1\/choices\/2"
+                                    "href": "/questions/1/choices/2"
                                 }
                             ]
                         }, {
                             "actions": [
                                 {
                                     "name": "vote",
-                                    "href": "\/questions\/1\/choices\/3",
+                                    "href": "/questions/1/choices/3",
                                     "method": "POST"
                                 }
                             ],
@@ -140,14 +140,14 @@ This resource does not have any attributes. Instead it offers the initial API af
                             "links": [
                                 {
                                     "rel": [ "self" ],
-                                    "href": "\/questions\/1\/choices\/3"
+                                    "href": "/questions/1/choices/3"
                                 }
                             ]
                         }, {
                             "actions": [
                                 {
                                     "name": "vote",
-                                    "href": "\/questions\/1\/choices\/4",
+                                    "href": "/questions/1/choices/4",
                                     "method": "POST"
                                 }
                             ],
@@ -159,7 +159,7 @@ This resource does not have any attributes. Instead it offers the initial API af
                             "links": [
                                 {
                                     "rel": [ "self" ],
-                                    "href": "\/questions\/1\/choices\/4"
+                                    "href": "/questions/1/choices/4"
                                 }
                             ]
                         }
@@ -172,38 +172,38 @@ This resource does not have any attributes. Instead it offers the initial API af
 
         {
             "_links": {
-                "self": { "href": "\/questions" },
-                "next": { "href": "\/questions?page=2" }
+                "self": { "href": "/questions" },
+                "next": { "href": "/questions?page=2" }
             },
             "_embedded": {
                 "question": [
                     {
                         "_links": {
-                            "self": { "self": "\/questions\/1" }
+                            "self": { "self": "/questions/1" }
                         },
                         "_embedded": {
                             "choice": [
                                 {
                                     "_links": {
-                                        "self": { "self": "\/questions\/1\/choices\/1" }
+                                        "self": { "self": "/questions/1/choices/1" }
                                     },
                                     "choice": "Swift",
                                     "votes": 2048
                                 }, {
                                     "_links": {
-                                        "self": { "self": "\/questions\/1\/choices\/2" }
+                                        "self": { "self": "/questions/1/choices/2" }
                                     },
                                     "choice": "Python",
                                     "votes": 1024
                                 }, {
                                     "_links": {
-                                        "self": { "self": "\/questions\/1\/choices\/3" }
+                                        "self": { "self": "/questions/1/choices/3" }
                                     },
                                     "choice": "Objective-C",
                                     "votes": 512
                                 }, {
                                     "_links": {
-                                        "self": { "self": "\/questions\/1\/choices\/4" }
+                                        "self": { "self": "/questions/1/choices/4" }
                                     },
                                     "choice": "Ruby",
                                     "votes": 256
@@ -262,7 +262,7 @@ A Question object has the following attributes:
             "actions": [
                 {
                     "name": "delete",
-                    "href": "\/questions\/1",
+                    "href": "/questions/1",
                     "method": "DELETE"
                 }
             ],
@@ -273,7 +273,7 @@ A Question object has the following attributes:
             "links": [
                 {
                     "rel": [ "self" ],
-                    "href": "\/questions\/1"
+                    "href": "/questions/1"
                 }
             ],
             "entities": [
@@ -281,7 +281,7 @@ A Question object has the following attributes:
                     "actions": [
                         {
                             "name": "vote",
-                            "href": "\/questions\/1\/choices\/1",
+                            "href": "/questions/1/choices/1",
                             "method": "POST"
                         }
                     ],
@@ -293,14 +293,14 @@ A Question object has the following attributes:
                     "links": [
                         {
                             "rel": [ "self" ],
-                            "href": "\/questions\/1\/choices\/1"
+                            "href": "/questions/1/choices/1"
                         }
                     ]
                 }, {
                     "actions": [
                         {
                             "name": "vote",
-                            "href": "\/questions\/1\/choices\/2",
+                            "href": "/questions/1/choices/2",
                             "method": "POST"
                         }
                     ],
@@ -312,14 +312,14 @@ A Question object has the following attributes:
                     "links": [
                         {
                             "rel": [ "self" ],
-                            "href": "\/questions\/1\/choices\/2"
+                            "href": "/questions/1/choices/2"
                         }
                     ]
                 }, {
                     "actions": [
                         {
                             "name": "vote",
-                            "href": "\/questions\/1\/choices\/3",
+                            "href": "/questions/1/choices/3",
                             "method": "POST"
                         }
                     ],
@@ -331,14 +331,14 @@ A Question object has the following attributes:
                     "links": [
                         {
                             "rel": [ "self" ],
-                            "href": "\/questions\/1\/choices\/3"
+                            "href": "/questions/1/choices/3"
                         }
                     ]
                 }, {
                     "actions": [
                         {
                             "name": "vote",
-                            "href": "\/questions\/1\/choices\/4",
+                            "href": "/questions/1/choices/4",
                             "method": "POST"
                         }
                     ],
@@ -350,7 +350,7 @@ A Question object has the following attributes:
                     "links": [
                         {
                             "rel": [ "self" ],
-                            "href": "\/questions\/1\/choices\/4"
+                            "href": "/questions/1/choices/4"
                         }
                     ]
                 }
@@ -375,7 +375,7 @@ A Question object has the following attributes:
             "actions": [
                 {
                     "name": "vote",
-                    "href": "\/questions\/1\/choices\/1",
+                    "href": "/questions/1/choices/1",
                     "method": "POST"
                 }
             ],
@@ -387,7 +387,7 @@ A Question object has the following attributes:
             "links": [
                 {
                     "rel": [ "self" ],
-                    "href": "\/questions\/1\/choices\/1"
+                    "href": "/questions/1/choices/1"
                 }
             ]
         }
