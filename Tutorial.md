@@ -24,7 +24,7 @@ Polls is a simple API allowing consumers to view polls, and vote in them.
 
 ## Metadata
 
-The blueprint starts wih a metadata section. In this case we have specified that `FORMAT` has the value of `1A`. The format keyword is used to specify the version of the API Blueprint. In this case 1A.
+The blueprint starts wih a metadata section. In this case we have specified that `FORMAT` has the value of `1A`. The format keyword specifies the version of the API Blueprint. In this case 1A.
 
 ## API Name & Description
 
@@ -93,7 +93,7 @@ This action returns a `200` status code along with a JSON body.
         ]
 ```
 
-> **Note:** Specifying the media type in parenthesis after the response status code generates implicit `Content-Type` HTTP header. Therefore you do not have to explicitly specify the `Content-Type` header.
+> **Note:** Specifying the media type after the response status code generates `Content-Type` HTTP header. You do not have to explicitly specify the `Content-Type` header.
 
 The polls resource has a second action which allows you to create a new question. This action includes a description showing the structure you would send to the server to perform this action.
 
@@ -172,16 +172,16 @@ The URI for the “Question” resource uses a variable component, expressed by 
 <a id="uri-parameters"></a>
 ### URI Parameters
 
-URI parameters should be described in the URI using a list of Parameters. For “Question” it would be as follows:
+URI parameters should describe  the URI using a list of Parameters. For “Question” it would be as follows:
 
 ```markdown
 + Parameters
     + question_id (number) ... ID of the Question in form of an integer
 ```
 
-The "`question_id` variable of the URI template is a parameter for every action on this resource. It is defined here using an arbitrary type `number`, followed by a description for the parameter.
+The "`question_id` variable of the URI template is a parameter for every action on this resource. It's defined here using an arbitrary type `number`, followed by a description for the parameter.
 
-> Refer to API Blueprint Specification's [Resource Parameters Section][] for additional examples.
+> Refer to API Blueprint Specification's [Resource Parameters Section][] for more examples.
 
 ### Actions
 
@@ -235,7 +235,7 @@ You can find an implementation of this API at `http://polls.apiblueprint.org/` a
 
 Visit the [Tooling Section][] of [apiblueprint.org][] to find tools to use with API Blueprints.
 
-> **Note:** Should you need a clarification of some terms as used through this document refer to [API Blueprint Glossary of Terms][].
+> **Note:** Take a look at the [API Blueprint Glossary of Terms][] if you need clarification of some of the terms used though this document.
 
 [GitHub Gists]:                     https://gist.github.com
 [API Blueprint Glossary of Terms]:  https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md
