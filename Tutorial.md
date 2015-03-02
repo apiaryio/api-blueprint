@@ -57,7 +57,7 @@ Inside of the questions resource group, we have a resource called "Questions col
 API Blueprint allows you to specify the actions you can make on each resource. A sub-heading inside of the resource with a title, followed by the HTTP method to use inside the square brackets.
 
 ```markdown
-### List all questions [GET]
+### List All Questions [GET]
 ```
 
 Action's should always include at least one response representing the HTTP response message sent back in response to a HTTP request. The response should always include a [status code][] and possibly a body.
@@ -100,7 +100,7 @@ This action returns a `200` status code along with a JSON body.
 The polls resource has a second action, allowing you to create a new question. Inside this action, there is a description for the structure you would send to the server to create a new question.
 
 ```markdown
-### Create a new question [POST]
+### Create a New Question [POST]
 
 You can create your own question using this action. It takes a JSON dictionary containing a question and a collection of answers in the form of choices.
 
@@ -190,7 +190,7 @@ The "`question_id` variable of the URI template is a parameter for every action 
 Similar to before, this resource has an action to view the question detail.
 
 ```markdown
-### View a questions detail [GET]
+### View a Questions Detail [GET]
 
 + Response 200 (application/json)
 
@@ -220,7 +220,7 @@ Similar to before, this resource has an action to view the question detail.
             }
 ```
 
-#### Response without a body
+#### Response Without a Body
 
 This resource has a delete action, the server will return a 204 response without a body.
 
