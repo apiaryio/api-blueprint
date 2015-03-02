@@ -3,7 +3,7 @@ HOST: http://polls.apiblueprint.org/
 
 # Polls
 
-Polls is a simple web service that allows consumers to view polls and vote in them. You can view this documentation over at [Apiary](http://docs.pollshypermedia.apiary.io/).
+Polls is a simple API allowing consumers to view polls and vote in them. You can view this documentation over at [Apiary](http://docs.pollshypermedia.apiary.io/).
 
 # Polls API Root [/]
 
@@ -30,12 +30,12 @@ This resource does not have any attributes. Instead it offers the initial API af
             }
         }
 
-## Questions collection [/questions{?page}]
+## Questions Collection [/questions{?page}]
 
 + Parameters
     + page (optional, number, `1`) ... The page of questions to return
 
-### List all questions [GET]
+### List All Questions [GET]
 
 + Response 200 (application/vnd.siren+json)
 
@@ -217,9 +217,9 @@ This resource does not have any attributes. Instead it offers the initial API af
             }
         }
 
-### Create a new question [POST]
+### Create a New Question [POST]
 
-You can create your own question using this action. It takes a JSON dictionary containing a question and a collection of answers in the form of choices.
+You may create your own question using this action. It takes a JSON dictionary containing a question and a collection of answers in the form of choices.
 
 - question (string) - The question
 - choices (array[string]) - A collection of choices.
@@ -392,7 +392,7 @@ A Question object has the following attributes:
 + Parameters
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
 
-### View a question detail [GET]
+### View a Questions Detail [GET]
 
 + Response 200 (application/vnd.siren+json)
 
@@ -540,7 +540,7 @@ A Question object has the following attributes:
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
     + choice_id (required, number, `1`) ... ID of the Choice in form of an integer
 
-### View a choice detail [GET]
+### View a Choice Detail [GET]
 
 + Response 200 (application/vnd.siren+json)
 
@@ -575,7 +575,7 @@ A Question object has the following attributes:
             "votes": 2048
         }
 
-### Vote on a choice [POST]
+### Vote on a Choice [POST]
 
 This action allows you to vote on a question's choice.
 
