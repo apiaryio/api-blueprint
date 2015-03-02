@@ -124,7 +124,7 @@ This action allows you to vote on a question's choice.
 
 ### Create a New Question [POST]
 
-You may create your own question using this action. It takes a JSON dictionary containing a question and a collection of answers in the form of choices.
+You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
 
 - question (string) - The question
 - choices (array[string]) - A collection of choices.
