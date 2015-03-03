@@ -766,17 +766,19 @@ Defined by the `Parameters` keyword written in a Markdown list item:
 #### Description
 Discussion of URI parameters in the _scope of the parent section_.
 
-This section **must** be composed of nested list items only. This section **must not** contain any other elements. One list item per URI parameter. The nested list items subsections inherit from the [Named section](#def-named-section) and are subject to additional formatting as follows:
+This section **must** be composed of nested list items only. This section **must not** contain any other elements. Each of the list items describes a single URI parameter. The nested list items subsections inherit from the [Named section](#def-named-section) and are subject to additional formatting as follows:
 
-    + <parameter name> = `<default value>` (required | optional , <type>, `<example value>`) ... <description>
+    + <parameter name>: `<example value>` (<type> | enum[<type>], required | optional) - <description>
 
         <additional description>
 
-        + Values
-            + `<enumeration element 1>`
-            + `<enumeration element 2>`
+        + Default: `<default value>`
+
+        + Members
+            + `<enumeration value 1>` - <enumeration description 1>
+            + `<enumeration value 2>` - <enumeration description 2>
             ...
-            + `<enumeration element N>`
+            + `<enumeration value N>` - <enumeration description N>
 
 Where:
 
@@ -785,9 +787,10 @@ Where:
 * `<additional description>` is any additional **optional** Markdown-formatted [description](#SectionDescription) of the parameter.
 * `<default value>` is an **optional** default value of the parameter – a value that is used when no value is explicitly set (optional parameters only).
 * `<example value>` is an **optional** example value of the parameter (e.g. `1234`).
-* `<type>` is the **optional** parameter type as expected by the API (e.g. "number").
-* `Values` is the **optional** enumeration of possible values
-*  and `<enumeration element n>` represents an element of enumeration type.
+* `<type>` is the **optional** parameter type as expected by the API (e.g. "number", "string", "boolean"). "string" is the **default**.
+* `Members` is the **optional** enumeration of possible values. `<type>` should be surrounded by `enum[]` if this is present.
+* `<enumeration value n>` represents an element of enumeration type.
+* `<enumeration description n>` represents the description of the corresponding enumeration element.
 * `required` is the **optional** specifier of a required parameter (this is the **default**)
 * `optional` is the **optional** specifier of an optional parameter.
 
@@ -801,34 +804,35 @@ Where:
 
 ```
 + Parameters
-    + id ... Id of a post.
+    + id - Id of a post.
 ```
 
 ```
 + Parameters
-    + id (number) ... Id of a post.
+    + id (number) - Id of a post.
 ```
 
 ```
 + Parameters
-    + id (required, number, `1001`) ... Id of a post.
+    + id: `1001` (number, required) - Id of a post.
 ```
 
 ```
 + Parameters
-    + id = `20` (optional, number, `1001`) ... Id of a post.
+    + id: `1001` (number, optional) - Id of a post.
+        + Default: `20`
 ```
 
 ```
 + Parameters
-    + id (string)
+    + id (enum[string])
 
         Id of a Post
 
-        + Values
-            + `A`
+        + Members
+            + `A` - This is alphabet A
             + `B`
-            + `C`
+            + `C` - This is alphabet C
 ```
 ---
 
