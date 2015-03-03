@@ -1,6 +1,6 @@
 # API Blueprint Tutorial
 
-Welcome to an API Blueprint Tutorial! This tutorial will take you though the basics of the API Blueprint language. We’re going to build an API Blueprint for a service called Polls – a simple API allowing consumers to view polls and vote in them.
+Welcome to an API Blueprint Tutorial! This tutorial will take you though the basics of the API Blueprint language. We’re going to build an API Blueprint step by step for a service called Polls – a simple API allowing consumers to view polls and vote in them.
 
 > **Note:** **Additional API Blueprint Resources**
 >
@@ -24,7 +24,7 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
 ## Metadata
 
-The blueprint starts wih a metadata section. In this case we have specified that `FORMAT` has the value of `1A`. The format keyword denotes the version of the API Blueprint. In this case `1A`.
+The blueprint starts wih a metadata section. In this case we have specified that `FORMAT` has the value of `1A`. The format keyword denotes the version of the API Blueprint.
 
 ## API Name & Description
 
@@ -52,7 +52,9 @@ Within the questions resource group, we have a resource called "Question Collect
 
 ### Actions
 
-API Blueprint allows you to specify the actions you can make on each resource. As a sub-heading inside of the resource with a title, followed by the HTTP method for the action.
+API Blueprint allows you to specify each action you may make on a resource. An
+action is specified with a sub-heading inside of a resource with the name of the
+action followed by the HTTP method.
 
 ```markdown
 ### List All Questions [GET]
