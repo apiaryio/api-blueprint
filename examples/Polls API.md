@@ -3,7 +3,7 @@ HOST: http://polls.apiblueprint.org/
 
 # Polls
 
-Polls is a simple web service that allows consumers to view polls and vote in them. You can view this documentation over at [Apiary](http://docs.pollsapi.apiary.io).
+Polls is a simple API allowing consumers to view polls and vote in them. You can view this documentation over at [Apiary](http://docs.pollsapi.apiary.io).
 
 # Polls API Root [/]
 
@@ -35,7 +35,7 @@ A Question object has the following attributes:
 + Parameters
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
 
-### View a question detail [GET]
+### View a Questions Detail [GET]
 
 + Response 200 (application/json)
 
@@ -80,12 +80,12 @@ This action allows you to vote on a question's choice.
 
             Location: /questions/1
 
-## Questions collection [/questions{?page}]
+## Questions Collection [/questions{?page}]
 
 + Parameters
     + page (optional, number, `1`) ... The page of questions to return
 
-### List all questions [GET]
+### List All Questions [GET]
 
 + Response 200 (application/json)
 
@@ -122,9 +122,9 @@ This action allows you to vote on a question's choice.
                 }
             ]
 
-### Create a new question [POST]
+### Create a New Question [POST]
 
-You can create your own question using this action. It takes a JSON dictionary containing a question and a collection of answers in the form of choices.
+You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
 
 - question (string) - The question
 - choices (array[string]) - A collection of choices.
