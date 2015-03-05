@@ -12,7 +12,7 @@ Welcome to an API Blueprint Tutorial! This tutorial will take you though the bas
 
 ## API Blueprint
 
-The start of the blueprint looks as follows:
+The first step for creating a blueprint is to specify the API Name and metadata. This step looks as follows:
 
 ```markdown
 FORMAT: 1A
