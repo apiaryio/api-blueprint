@@ -108,6 +108,8 @@ You may create your own question using this action. It takes a JSON object conta
 + choices (array[string]) - A collection of choices.
 ```
 
+> **Note:** Lists are created by preceding list items with either a `+`, `*` or `-`.
+
 This action takes a JSON payload as part of the request as follows:
 
 ```markdown
