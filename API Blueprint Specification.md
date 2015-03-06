@@ -766,7 +766,7 @@ Defined by the `Parameters` keyword written in a Markdown list item:
 #### Description
 Discussion of URI parameters in the _scope of the parent section_.
 
-This section **must** be composed of nested list items only. This section **must not** contain any other elements. Each of the list items describes a single URI parameter. The nested list items subsections inherit from the [Named section](#def-named-section) and are subject to additional formatting as follows:
+This section **must** be composed of nested list items only. This section **must not** contain any other elements. Each list item describes a single URI parameter. The nested list items subsections inherit from the [Named section](#def-named-section) and are subject to additional formatting as follows:
 
     + <parameter name>: `<example value>` (<type> | enum[<type>], required | optional) - <description>
 
@@ -788,9 +788,9 @@ Where:
 * `<default value>` is an **optional** default value of the parameter – a value that is used when no value is explicitly set (optional parameters only).
 * `<example value>` is an **optional** example value of the parameter (e.g. `1234`).
 * `<type>` is the **optional** parameter type as expected by the API (e.g. "number", "string", "boolean"). "string" is the **default**.
-* `Members` is the **optional** enumeration of possible values. `<type>` should be surrounded by `enum[]` if this is present.
+* `Members` is the **optional** enumeration of possible values. `<type>` should be surrounded by `enum[]` if this is present. For example, if enumeration values are present for a parameter whose type is `number`, then `enum[number]` should be used instead of `number` to.
 * `<enumeration value n>` represents an element of enumeration type.
-* `<enumeration description n>` represents the description of the corresponding enumeration element.
+* `<enumeration description n>` is the **optional** description of the corresponding enumeration element.
 * `required` is the **optional** specifier of a required parameter (this is the **default**)
 * `optional` is the **optional** specifier of an optional parameter.
 
@@ -830,9 +830,9 @@ Where:
         Id of a Post
 
         + Members
-            + `A` - This is alphabet A
+            + `A` - This is character A
             + `B`
-            + `C` - This is alphabet C
+            + `C` - This is character C
 ```
 ---
 
