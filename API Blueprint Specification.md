@@ -687,7 +687,7 @@ This section **should** include at least one nested [Action section](#def-action
 
 - [`0-1` URI parameters section](#def-uriparameters-section)
 
-    URI parameters defined in the scope of a Resource section apply to _any and all_ nested Action sections.
+    URI parameters defined in the scope of a Resource section apply to _any and all_ nested Action sections except when an [URI template][uritemplate] has been defined for the Action.
 
 - [`0-1` Attributes section][]
 
