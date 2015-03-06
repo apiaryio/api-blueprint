@@ -849,6 +849,8 @@ Defined by the `Relation` keyword written in a Markdown list item followed by a 
 #### Description
 This section specifies a [link relation type](https://tools.ietf.org/html/rfc5988#section-4) for the given action as specified by [RFC 5988](https://tools.ietf.org/html/rfc5988).
 
+> **NOTE:** The link relation identifiers should be unique per resource in the blueprint document.
+
 #### Example
 
 	# Task [/tasks/{id}]
