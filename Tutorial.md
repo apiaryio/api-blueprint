@@ -1,6 +1,6 @@
 # API Blueprint Tutorial
 
-Welcome to an API Blueprint Tutorial! This tutorial will take you though the basics of the API Blueprint language. We’re going to build an API Blueprint step by step for a service called Polls – a simple API allowing consumers to view polls and vote in them. You can take a look at the [full version][Poll API Blueprint] of the blueprint used in this tutorial for reference.
+Welcome to an API Blueprint Tutorial! This tutorial will take you though the basics of the API Blueprint language. We’re going to build an API blueprint step by step for a service called Polls – a simple API allowing consumers to view polls and vote in them. You can take a look at the [full version][Poll API Blueprint] of the blueprint used in this tutorial for reference.
 
 > **Note:** **Additional API Blueprint Resources**
 >
@@ -60,7 +60,7 @@ action followed by the HTTP method.
 ### List All Questions [GET]
 ```
 
-An action should include at least one response from the server which must include a status code and may contain a body.
+An action should include at least one response from the server which must include a status code and may contain a body. A responses is defined as a list item within an action. Lists are created by preceding list items with either a `+`, `*` or `-`.
 
 This action returns a `200` status code along with a JSON body.
 
@@ -107,8 +107,6 @@ You may create your own question using this action. It takes a JSON object conta
 + question (string) - The question
 + choices (array[string]) - A collection of choices.
 ```
-
-> **Note:** Lists are created by preceding list items with either a `+`, `*` or `-`.
 
 This action takes a JSON payload as part of the request as follows:
 
@@ -226,8 +224,9 @@ This resource has an action to retrieve the questions detail.
 
 This resource has a delete action. The server will return a 204 response without a body.
 
-```
+```markdown
 ### Delete [DELETE]
+
 + Response 204
 ```
 
