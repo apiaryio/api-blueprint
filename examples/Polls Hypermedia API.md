@@ -221,8 +221,8 @@ This resource does not have any attributes. Instead it offers the initial API af
 
 You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
 
-- question (string) - The question
-- choices (array[string]) - A collection of choices.
++ question (string) - The question
++ choices (array[string]) - A collection of choices.
 
 + Request (application/json)
 
@@ -384,10 +384,10 @@ Resource related to questions in the API.
 
 A Question object has the following attributes:
 
-- question
-- published_at - An ISO8601 date when the question was published.
-- url
-- choices - An array of Choice objects.
++ question
++ published_at - An ISO8601 date when the question was published.
++ url
++ choices - An array of Choice objects.
 
 + Parameters
     + question_id (required, number, `1`) ... ID of the Question in form of an integer
