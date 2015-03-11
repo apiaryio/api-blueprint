@@ -234,11 +234,11 @@ This resource has a delete action. The server will return a 204 response without
 
 You can find an [implementation](http://github.com/apiaryio/polls-api) of this API at http://polls.apiblueprint.org/ along with the complete [Poll API Blueprint][] in the [API Blueprint Examples][] repository. You can also enjoy it [rendered on Apiary][].
 
+> **Note:** Take a look at the [API Blueprint Glossary of Terms][] if you need clarification of some of the terms used though this document.
+
 ## API Blueprint Tools
 
 Visit the [Tooling Section][] of [apiblueprint.org][] to find tools to use with API Blueprints.
-
-> **Note:** Take a look at the [API Blueprint Glossary of Terms][] if you need clarification of some of the terms used though this document.
 
 [GitHub Gists]:                     https://gist.github.com
 [API Blueprint Glossary of Terms]:  https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md
