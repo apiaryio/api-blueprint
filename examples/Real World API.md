@@ -13,7 +13,7 @@ This section groups App.net post resources.
 A Post is the other central object utilized by the App.net Stream API. It has rich text and annotations which comprise all of the content a users sees in their feed. Posts are closely tied to the follow graph...
 
 + Parameters
-    + post_id (string, `1`) ... The id of the Post.
+    + post_id: `1` (string) - The id of the Post.
 
 + Model (application/json)
     
@@ -127,7 +127,7 @@ Retrieves all posts.
 A User’s stars are visible to others, but they are not automatically added to your followers’ streams.
 
 + Parameters
-    + post_id (string, `1`) ... The id of the Post.
+    + post_id: `1` (string) - The id of the Post.
 
 ### Star a Post [POST]
 Save a given Post to the current User’s stars. This is just a “save” action, not a sharing action.
