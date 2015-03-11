@@ -183,7 +183,7 @@ URI parameters should describe  the URI using a list of Parameters. For “Quest
 
 The `question_id` variable of the URI template is a parameter for every action on this resource. It's defined here using an arbitrary type `number`, followed by a description for the parameter.
 
-> Refer to API Blueprint Specification's [Resource Parameters Section][] for more examples.
+> Refer to API Blueprint Specification's [URI Parameters Section][] for more examples.
 
 ### Actions
 
@@ -234,11 +234,11 @@ This resource has a delete action. The server will return a 204 response without
 
 You can find an [implementation](http://github.com/apiaryio/polls-api) of this API at http://polls.apiblueprint.org/ along with the complete [Poll API Blueprint][] in the [API Blueprint Examples][] repository. You can also enjoy it [rendered on Apiary][].
 
+> **Note:** Take a look at the [API Blueprint Glossary of Terms][] if you need clarification of some of the terms used though this document.
+
 ## API Blueprint Tools
 
 Visit the [Tooling Section][] of [apiblueprint.org][] to find tools to use with API Blueprints.
-
-> **Note:** Take a look at the [API Blueprint Glossary of Terms][] if you need clarification of some of the terms used though this document.
 
 [GitHub Gists]:                     https://gist.github.com
 [API Blueprint Glossary of Terms]:  https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md
@@ -248,7 +248,7 @@ Visit the [Tooling Section][] of [apiblueprint.org][] to find tools to use with 
 [message-headers]:                  https://github.com/for-GET/know-your-http-well/blob/master/headers.md
 [payload]:                          https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md#payload
 [URI Template]:                     https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md#uri-template
-[Resource Parameters Section]: https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md#ResourceParametersSection
+[URI Parameters Section]:           https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md#def-uriparameters-section
 [Markdown pre-formatted code blocks]: http://daringfireball.net/projects/markdown/syntax#precode
 [URI Parameters]: #uri-parameters
 [API Blueprint Examples]: https://github.com/apiaryio/api-blueprint/tree/master/examples
