@@ -39,7 +39,6 @@ Describing your API is only the start. The API Blueprint can be used by variety 
 
 Visit the [tooling section](http://apiblueprint.org/#tooling) of the API Blueprint website to find more about the tools you can use with API Blueprint.
 
-
 ## Machines
 Building tools for API Blueprint is possible thanks to its machine-friendly face:
 
@@ -51,12 +50,17 @@ Building tools for API Blueprint is possible thanks to its machine-friendly face
     "description": "",
 
     ...
+}
 ```
+
 \[[full listing](https://github.com/apiaryio/api-blueprint-ast#json-serialization)\]
 
 It is the task for the API Blueprint parser – [Snow Crash][] or one of its language bindings to translate the API Blueprint Markdown representation into a machine friendly format – AST.
 
 If you are interested in building tools for API Blueprint or just to integrate it with your workflow check out the [Developing tools for API Blueprint](https://github.com/apiaryio/api-blueprint/wiki/Developing-tools-for-API-Blueprint).
+
+## Media Type 
+The media type for API Blueprint is `text/vnd.apiblueprint+markdown`. 
 
 ## Learn more
 + [Tutorial](Tutorial.md)
