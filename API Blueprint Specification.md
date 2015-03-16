@@ -208,6 +208,7 @@ Following reserved keywords are used in section definitions:
 - `Parameter` & `Parameters`
 - `Values`
 - `Attribute` & `Attributes`
+- `Relation`
 
 > **NOTE: Avoid using these keywords in other Markdown headers or lists**
 
