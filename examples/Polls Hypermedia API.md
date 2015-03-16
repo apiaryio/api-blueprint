@@ -37,6 +37,8 @@ This resource does not have any attributes. Instead it offers the initial API af
 
 ### List All Questions [GET]
 
++ Relation: questions
+
 + Response 200 (application/vnd.siren+json)
 
         {
@@ -224,6 +226,8 @@ You may create your own question using this action. It takes a JSON object conta
 + question (string) - The question
 + choices (array[string]) - A collection of choices.
 
++ Relation: create
+
 + Request (application/json)
 
         {
@@ -394,6 +398,8 @@ A Question object has the following attributes:
 
 ### View a Questions Detail [GET]
 
++ Relation: question
+
 + Response 200 (application/vnd.siren+json)
 
         {
@@ -542,6 +548,8 @@ A Question object has the following attributes:
 
 ### View a Choice Detail [GET]
 
++ Relation: choice
+
 + Response 200 (application/vnd.siren+json)
 
         {
@@ -578,6 +586,8 @@ A Question object has the following attributes:
 ### Vote on a Choice [POST]
 
 This action allows you to vote on a question's choice.
+
++ Relation: vote
 
 + Response 201 (application/vnd.siren+json)
 
