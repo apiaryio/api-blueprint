@@ -55,7 +55,7 @@ Building tools for API Blueprint is possible thanks to its machine-friendly face
 
 \[[full listing](https://github.com/apiaryio/api-blueprint-ast#json-serialization)\]
 
-It is the task for the API Blueprint parser – [Snow Crash][] or one of its language bindings to translate the API Blueprint Markdown representation into a machine friendly format – AST.
+It is the task for the API Blueprint parser – [Drafter][] or one of its language bindings to translate the API Blueprint Markdown representation into a machine friendly format – AST.
 
 If you are interested in building tools for API Blueprint or just to integrate it with your workflow check out the [Developing tools for API Blueprint](https://github.com/apiaryio/api-blueprint/wiki/Developing-tools-for-API-Blueprint).
 
@@ -71,8 +71,8 @@ The media type for API Blueprint is `text/vnd.apiblueprint+markdown`.
 + [Tools working with API Blueprint](http://apiblueprint.org/#tooling)
 
 ### Developers
-+ [API Blueprint reference parser – Snow Crash](https://github.com/apiaryio/snowcrash)
-+ [Snow Crash Bindings to other languages](https://github.com/apiaryio/snowcrash#bindings)
++ [API Blueprint reference parser – Drafter](https://github.com/apiaryio/drafter)
++ [Drafter Bindings to other languages](https://github.com/apiaryio/drafter#bindings)
 + [API Blueprint AST Serialization Media Types](https://github.com/apiaryio/api-blueprint-ast)
 + [Developing tools for API Blueprint](https://github.com/apiaryio/api-blueprint/wiki/Developing-tools-for-API-Blueprint)
 
@@ -88,4 +88,4 @@ Ask at [Stack Overflow](http://stackoverflow.com/questions/tagged/apiblueprint),
 ## License
 MIT License. See the [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
 
-[Snow Crash]: https://github.com/apiaryio/snowcrash
+[Drafter]: https://github.com/apiaryio/drafter
