@@ -24,7 +24,7 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
 ## Metadata
 
-The blueprint starts wih a metadata section. In this case we have specified that `FORMAT` has the value of `1A`. The format keyword denotes the version of the API Blueprint.
+The blueprint starts with a metadata section. In this case we have specified that `FORMAT` has the value of `1A`. The format keyword denotes the version of the API Blueprint.
 
 ## API Name & Description
 
