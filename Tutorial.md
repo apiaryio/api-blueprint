@@ -39,7 +39,7 @@ Now it's time to start documenting the API resources. Using the `Group` keyword 
 ```markdown
 # Group Questions
 
-Resource related to questions in the API.
+Resources related to questions in the API.
 ```
 
 ## Resource
