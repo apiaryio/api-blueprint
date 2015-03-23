@@ -21,7 +21,7 @@ It is recommend to follow the “url” link values, [Link](https://tools.ietf.o
 
 ## Group Question
 
-Resource related to questions in the API.
+Resources related to questions in the API.
 
 ## Question [/questions/{question_id}]
 

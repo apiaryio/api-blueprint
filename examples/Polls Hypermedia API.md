@@ -378,7 +378,7 @@ You may create your own question using this action. It takes a JSON object conta
 
 ## Group Question
 
-Resource related to questions in the API.
+Resources related to questions in the API.
 
 ## Question [/questions/{question_id}]
 
