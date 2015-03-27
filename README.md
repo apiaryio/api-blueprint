@@ -18,6 +18,11 @@ API Blueprint, its parser, and most of its tools are completely open sourced so 
 + Understandable by machines
 + Open & free
 
+## Format support
+
+* Current format: [1A8](https://github.com/apiaryio/api-blueprint/releases/tag/format-1A8)
+* Format supported by Apiary: [1A7](https://github.com/apiaryio/api-blueprint/releases/tag/format-1A7)
+
 ## Getting started with API Blueprint
 All it takes to describe that `message` endpoint of your API is to write:
 
@@ -66,7 +71,7 @@ The media type for API Blueprint is `text/vnd.apiblueprint+markdown`.
 + [Tutorial](Tutorial.md)
 + [Examples](examples)
 + [Glossary of Terms](Glossary%20of%20Terms.md)
-+ [API Blueprint Map](https://github.com/apiaryio/api-blueprint/wiki/API-Blueprint-Map)
++ [API Blueprint Map](assets/map.png)
 + [Language Specification](API%20Blueprint%20Specification.md)
 + [Tools working with API Blueprint](http://apiblueprint.org/#tooling)
 
