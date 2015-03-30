@@ -22,9 +22,17 @@ The **API Blueprint language**. A format used to describe API in an API blueprin
 ### Asset
 **Atomic data**. Most often representing one resource representation in the form of message-body or its validation schema.
 
+<a name="def-attribute"></a>
+### Attribute
+Based on the context, attribute (property) of a message-body data structure, or attribute of a resource, or an input attribute of a transition – [Action](#def-action).
+
 <a name="def-blueprint"></a>
 ### Blueprint
 An **API description**. A **blueprint file** (or a set of files) that describes an API using the API Blueprint language.
+
+<a name="def-data-structure"></a>
+### Data Structure
+A particular data organization, or a description of it. In API Blueprint, data structures and its [Attributes](#def-attribute) are described using the Markdown Syntax for Object Notation – [MSON][].
 
 <a name="def-entity"></a>
 ### Entity
@@ -100,3 +108,9 @@ A compact sequence of characters for describing a range of **Uniform Resource Id
 + [HTTP/1.1 Terminology](http://www.w3.org/Protocols/rfc2616/rfc2616-sec1.html#sec1.3)
 + [W3C Glossary of Terms for Device Independence](http://www.w3.org/TR/di-gloss)
 + [Know your HTTP well](https://github.com/for-GET/know-your-http-well)
++ [Markdown Syntax for Object Notation][MSON]
+
+
+
+[MSON]: https://github.com/apiaryio/mson
+

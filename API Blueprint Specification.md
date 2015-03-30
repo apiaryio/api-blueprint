@@ -1,12 +1,12 @@
 ---
 
 Author: z@apiary.io
-Version: 1A7
+Version: 1A8
 
 ---
 
 # API Blueprint
-#### Format 1A revision 7
+#### Format 1A revision 8
 
 ## [I. API Blueprint Language](#def-api-blueprint-language)
 1. [Introduction](#def-introduction)
@@ -27,15 +27,18 @@ Version: 1A7
 4. [Headers section](#def-headers-section)
 5. [Body section](#def-body-section)
 6. [Schema section](#def-schema-section)
-7. [Metadata section](#def-metadata-section)
-8. [API name & overview section](#def-api-name-section)
-9. [Resource group section](#def-resourcegroup-section)
-10. [Resource section](#def-resource-section)
-11. [Resource model section](#def-model-section)
-12. [URI parameters section](#def-uriparameters-section)
-13. [Action section](#def-action-section)
-14. [Request section](#def-request-section)
-15. [Response section](#def-response-section)
+7. [Attributes section](#def-attributes-section)
+8. [Metadata section](#def-metadata-section)
+9. [API name & overview section](#def-api-name-section)
+10. [Resource group section](#def-resourcegroup-section)
+11. [Resource section](#def-resource-section)
+12. [Resource model section](#def-model-section)
+13. [URI parameters section](#def-uriparameters-section)
+14. [Relation section](#def-relation-section)
+15. [Action section](#def-action-section)
+16. [Request section](#def-request-section)
+17. [Response section](#def-response-section)
+18. [Data Structures section](#def-data-structures)
 
 ## [III. Appendix](#def-appendix)
 1. [URI Templates](#def-uri-templates)
@@ -59,7 +62,7 @@ In addition to the regular [Markdown syntax][] API Blueprint conforms to the [Gi
 
 <a name="def-api-blueprint-document"></a>
 ## 3. API Blueprint document
-An API Blueprint document – a blueprint is a plain text Markdown document describing a Web API or its part. The document is structured into logical **sections**. Each section has its distinctive meaning, content and position in the document. 
+An API Blueprint document – a blueprint is a plain text Markdown document describing a Web API or its part. The document is structured into logical **sections**. Each section has its distinctive meaning, content and position in the document.
 
 General section definition and structure is discussed in detail later in the [Blueprint section](#document-sections) chapter.
 
@@ -71,22 +74,29 @@ All of the blueprint sections are optional. However, when present, a section **m
 + [`0-1` **API Name & overview** section](#def-api-name-section)
 + [`0+` **Resource** sections](#def-resource-section)
     + [`0-1` **URI Parameters** section](#def-uriparameters-section)
+    + [`0-1` **Attributes** section](#def-attributes-section)    
     + [`0-1` **Model** section](#def-model-section)
         + [`0-1` **Headers** section](#def-headers-section)
         + [`0-1` **Body** section](#def-body-section)
-        + [`0-1` **Schema** section](#def-schema-section)    
+        + [`0-1` **Schema** section](#def-schema-section)
+        + [`0-1` **Attributes** section](#def-attributes-section)
     + [`1+` **Action** sections](#def-action-section)
+        + [`0-1` **Relation** section](#def-relation-section)
         + [`0-1` **URI Parameters** section](#def-uriparameters-section)
+        + [`0-1` **Attributes** section](#def-attributes-section)
         + [`0+` **Request** sections](#def-request-section)
             + [`0-1` **Headers** section](#def-headers-section)
+            + [`0-1` **Attributes** section](#def-attributes-section)
             + [`0-1` **Body** section](#def-body-section)
             + [`0-1` **Schema** section](#def-schema-section)
         + [`1+` **Response** sections](#def-response-section)
             + [`0-1` **Headers** section](#def-headers-section)
+            + [`0-1` **Attributes** section](#def-attributes-section)
             + [`0-1` **Body** section](#def-body-section)
             + [`0-1` **Schema** section](#def-schema-section)
 + [`0+` **Resource Group** sections](#def-resourcegroup-section)
     + [`0+` **Resource** sections](#def-resource-section) (see above)
++ [`0+` **Data Structures** section](#def-data-structures)
 
 > **NOTE:** The number prior to a section name denotes the allowed number of the section occurrences.
 
@@ -94,10 +104,10 @@ All of the blueprint sections are optional. However, when present, a section **m
 
 <a name="def-blueprint-section"></a>
 ## 4. Blueprint section
-Section represents a logical unit of API Blueprint. For example an API overview, a group of resources or a resource definition. 
+Section represents a logical unit of API Blueprint. For example an API overview, a group of resources or a resource definition.
 
 In general a section is **defined** using a **keyword** in a Markdown entity.
-Depending on the type of section the keyword is written either as a Markdown header entity or in a list item entity. 
+Depending on the type of section the keyword is written either as a Markdown header entity or in a list item entity.
 
 A section definition **may** also contain additional variable components such as its **identifier** and additional modifiers.
 
@@ -105,11 +115,11 @@ A section definition **may** also contain additional variable components such as
 
 #### Example: Header-defined sections
 
-    # <keyword> 
+    # <keyword>
 
      ...
 
-    # <keyword> 
+    # <keyword>
 
      ...
 
@@ -132,7 +142,7 @@ A section definition **may** also contain additional variable components such as
     + <keyword>
 
      ...
-    
+
     + <keyword>
 
      ...
@@ -183,6 +193,7 @@ Following reserved keywords are used in section definitions:
 
 #### Header keywords
 - `Group`
+- `Data Structures`
 - [HTTP methods][httpmethods] (e.g. `GET, POST, PUT, DELETE`...)
 - [URI templates][uritemplate] (e.g. `/resource/{id}`)
 - Combinations of an HTTP method and URI Template (e.g. `GET /resource/{id}`)
@@ -196,6 +207,8 @@ Following reserved keywords are used in section definitions:
 - `Header` & `Headers`
 - `Parameter` & `Parameters`
 - `Values`
+- `Attribute` & `Attributes`
+- `Relation`
 
 > **NOTE: Avoid using these keywords in other Markdown headers or lists**
 
@@ -222,23 +235,23 @@ my-awesome-message_2
 ### 4.5 Description
 A section description is any arbitrary Markdown-formatted content following the section definition.
 
-It is possible to use any Markdown header or list item in a section description as long as it does not clash with any of the [reserved keywords](#def-keywords). 
+It is possible to use any Markdown header or list item in a section description as long as it does not clash with any of the [reserved keywords](#def-keywords).
 
 > **NOTE:** It is considered good practice to keep the header level nested under the actual section.
 
 <a name="def-nested-sections"></a>
 ### 4.6 Nested sections
-A section **may** contain another nested section(s). 
+A section **may** contain another nested section(s).
 
-Depending on the nested section type, to nest a section simply increase its header level or its list item indentation. Anything between the section start and the start of following section at the same level is considered to be part of the section. 
+Depending on the nested section type, to nest a section simply increase its header level or its list item indentation. Anything between the section start and the start of following section at the same level is considered to be part of the section.
 
 What sections can be nested and where depends upon the section in case, as described in the relevant section's entry.
 
 #### Example: Nested header-defined section
 
-    # <section definition> 
+    # <section definition>
 
-     ... 
+     ...
 
     ## <nested section definition>
 
@@ -248,7 +261,7 @@ What sections can be nested and where depends upon the section in case, as descr
 
     + <section definition>
 
-         ... 
+         ...
 
         + <nested section definition>
 
@@ -339,31 +352,45 @@ Asset section is the base section for atomic data in API Blueprint. The content 
 ## 3. Payload section
 - **Abstract**
 - **Parent sections:** vary, see descendants
-- **Nested sections:** [`0-1` Headers section](#def-headers-section), [`0-1` Body section](#def-body-section), [`0-1` Schema section](#def-schema-section)
+- **Nested sections:** [`0-1` Headers section](#def-headers-section), [`0-1` Attributes section](#def-attributes-section), [`0-1` Body section](#def-body-section), [`0-1` Schema section](#def-schema-section)
 - **Markdown entity:** list
 - **Inherits from**: [Named section](#def-named-section)
 
 #### Definition
-Defined by a [keyword](#def-keywords) in Markdown list entity. The keyword **may** be followed by identifier. The definition **may** include payload's media-type enclosed in braces. 
+Defined by a [keyword](#def-keywords) in Markdown list entity. The keyword **may** be followed by identifier. The definition **may** include payload's media-type enclosed in braces.
 
     + <keyword> <identifier> (<media type>)
 
 > **NOTE:** Refer to descendant for the particular section type definition.
 
 #### Description
-Payload sections represent the information transferred as a payload of an HTTP request or response messages. A Payload consists of optional meta information in the form of HTTP headers and optional content in the form HTTP body. 
+Payload sections represent the information transferred as a payload of an HTTP request or response messages. A Payload consists of optional meta information in the form of HTTP headers and optional content in the form HTTP body.
 
-Furthermore, in API Blueprint context, a payload include a description and a validation schema.
+Furthermore, in API Blueprint context, a payload include its description, description of its message-body attributes and a message-body validation schema.
 
-A payload section **may** have its media type associated. A payload's media type represents the metadata received or sent in the form of a HTTP `Content-Type` header. When specified a payload **should** include nested [Body section](#def-body-section).
+A payload **may** have its media type associated. A payload's media type represents the metadata received or sent in the form of a HTTP `Content-Type` header. When specified a payload **should** include nested [Body section](#def-body-section).
 
 This section **should** include at least one following nested sections:
- 
+
 - [`0-1` Headers section](#def-headers-section)
+- [`0-1` Attributes section](#def-attributes-section)
 - [`0-1` Body section](#def-body-section)
 - [`0-1` Schema section](#def-schema-section)
 
 If there is no nested section the content of the payload section is considered as content of the [Body section](#def-body-section).
+
+#### Relation of Body, Schema and Attributes sections
+Each of body, schema and attributes sections describe a message payload's body. These descriptions **should** be consistent, not violating each other. When multiple body descriptions are provided they **should** be prioritized as follows:
+
+1. For resolving message-body schema
+    1. Schema section
+    2. Attributes section
+    3. Body section
+
+2. For resolving message-body example
+    1. Body section
+    2. Attributes section
+    3. Schema section
 
 #### Referencing
 Instead of providing a payload section content a [model payload section](#def-model-section) can be referenced using the Markdown implicit [reference syntax][]:
@@ -377,15 +404,15 @@ Instead of providing a payload section content a [model payload section](#def-mo
         This the `Payload Name` description.
 
         + Headers
-        
+
          ...
 
         + Body
-            
+
          ...
 
         + Schema
-        
+
         ...
 
 #### Example: Referencing model payload
@@ -467,8 +494,98 @@ Specifies a validation schema for the HTTP message-body of parent payload sectio
 
 ---
 
+<a name="def-attributes-section"></a>
+## 7. Attributes Section
+- **Parent sections:** [Resource section](#def-resource-section) | [Action section](#def-action-section) | [Payload section](#def-payload-section)
+- **Nested sections:** See **[Markdown Syntax for Object Notation][MSON]**
+- **Markdown entity:** list
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Attributes` keyword followed by an optional [MSON Type Definition][] enclosed in parentheses.
+
+    + Attributes <Type Definition>
+
+`<Type Definition>` is the type definition of the data structure being described. If the `<Type Definition>` is not specified, an `object` base type is assumed. See [MSON Type Definition][] for details.
+
+##### Example 
+
+    + Attributes (object)
+
+#### Description
+This section describes a data structure using the **[Markdown Syntax for Object Notation][MSON] (MSON)**. Based on the parent section, the data structure being described is one of the following:
+    
+1. Resource data structure attributes ([Resource section](#def-resource-section))
+2. Action request attributes ([Action section](#def-action-section))
+3. Payload message-body attributes ([Payload section](#def-payload-section))
+
+Data structures defined in this section **may** refer to any arbitrary data structures defined in the [Data Structures section](#def-data-structures) as well as to any data structures defined by a named resource attributes description (see below).
+
+#### Resource Attributes description
+Description of the resource data structure. 
+
+If defined in a named [Resource section](#def-resource-section), this data structure **may** be referenced by other data structures using the resource name.
+
+##### Example
+
+    # Blog Post [/posts/{id}]
+    Resource representing **ACME Blog** posts.
+
+    + Attributes
+        + id (number)
+        + message (string) - The blog post article
+        + author: john@appleseed.com (string) - Author of the blog post
+
+> **NOTE:** This data structure can be later referred as:
+> 
+>     + Attributes (Blog Post)
+> 
+
+#### Action Attributes description
+Description of the default request message-body data structure.
+
+If defined, all the [Request sections](#def-request-section) of the respective [Action section](#def-action-section) inherits these attributes unless specified otherwise.
+
+##### Example
+
+    ### Create a Post [POST]
+
+    + Attributes
+        + message (string) - The blog post article
+        + author: john@appleseed.com (string) - Author of the blog post        
+
+    + Request (application/json)
+
+    + Request (application/yaml)
+
+    + Response 201
+
+#### Payload Attributes description
+Description of payload (request, response, model) message-body attributes.
+
+Not every attribute has to be described. However, when an attribute is described, it **should** appear in the respective [Body section](#def-body-section) example, if a Body section is provided.
+
+If defined, the [Body section](#def-body-section) **may** be omitted and the example representation **should** be generated from the attributes description.
+
+The description of message-body attributes **may** be used to describe message-body validation if no [Schema section](#def-schema-section) is provided. When a Schema section is provided, the attributes description **should** conform to the schema.
+
+##### Example
+
+    ### Retrieve a Post [GET]
+
+    + Response 200 (application/json)
+
+        + Attributes (object)
+            + message (string) - Message to the world
+
+        + Body
+
+            { "message" : "Hello World." }
+
+---
+
 <a name="def-metadata-section"></a>
-## 7. Metadata section
+## 8. Metadata section
 - **Parent sections:** none
 - **Nested sections:** none
 - **Markdown entity:** special
@@ -489,7 +606,7 @@ Metadata keys and its values are tool-specific. Refer to relevant tool documenta
 ---
 
 <a name="def-api-name-section"></a>
-## 8. API name & overview section
+## 9. API name & overview section
 - **Parent sections:** none
 - **Nested sections:** none
 - **Markdown entity:** special, header
@@ -499,7 +616,7 @@ Metadata keys and its values are tool-specific. Refer to relevant tool documenta
 Defined by the **first** Markdown header in the blueprint document unless it represents another section definition.
 
 #### Description
-Name and description of the API 
+Name and description of the API
 
 #### Example
 
@@ -509,7 +626,7 @@ Name and description of the API
 ---
 
 <a name="def-resourcegroup-section"></a>
-## 9. Resource group section
+## 10. Resource group section
 - **Parent sections:** none
 - **Nested sections:** [`0+` Resource section](#def-resource-section)
 - **Markdown entity:** header
@@ -532,7 +649,7 @@ This sections represents a group of resources (Resource Sections). **May** inclu
      ...
 
     # Group Authors
-    Resources in this groups are related to **ACME Blog** authors.    
+    Resources in this groups are related to **ACME Blog** authors.
 
     ## Resource 2 [/resource2]
 
@@ -541,9 +658,9 @@ This sections represents a group of resources (Resource Sections). **May** inclu
 ---
 
 <a name="def-resource-section"></a>
-## 10. Resource section
+## 11. Resource section
 - **Parent sections:** none, [Resource group section](#def-resourcegroup-section)
-- **Nested sections:** [`0-1` Parameters section](#def-uriparameters-section), [`0-1` Model section](#def-model-section), [`1+` Action section](#def-action-section)
+- **Nested sections:** [`0-1` Parameters section](#def-uriparameters-section), [`0-1` Attributes section](#def-attributes-section), [`0-1` Model section](#def-model-section), [`1+` Action section](#def-action-section)
 - **Markdown entity:** header
 - **Inherits from**: [Named section](#def-named-section)
 
@@ -554,13 +671,13 @@ Defined by an [URI template][uritemplate]:
 
 **-- or --**
 
-Defined by a resource [name (identifier)](#def-identifier) followed by an URI template enclosed in square brackets `[]`.
+Defined by a resource [name (identifier)](#def-identifier) followed by an [URI template][uritemplate] enclosed in square brackets `[]`.
 
     # <identifier> [<URI template>]
 
 **-- or --**
 
-Defined by an [HTTP request method][httpmethods] followed by URI template:
+Defined by an [HTTP request method][httpmethods] followed by [URI template][uritemplate]:
 
     # <HTTP request method> <URI template>
 
@@ -570,11 +687,16 @@ Defined by an [HTTP request method][httpmethods] followed by URI template:
 An API [resource](http://www.w3.org/TR/di-gloss/#def-resource) as specified by its *URI* or a set of resources (a resource template) matching its *URI template*.
 
 This section **should** include at least one nested [Action section](#def-action-section) and **may** include following nested sections:
- 
-- [`0-1` Model section](#def-model-section)
+
 - [`0-1` URI parameters section](#def-uriparameters-section)
 
-    URI parameters discussed in the scope of a Resource section apply to _any and all_ nested Action sections.
+    URI parameters defined in the scope of a Resource section apply to _any and all_ nested Action sections except when an [URI template][uritemplate] has been defined for the Action.
+
+- [`0-1` Attributes section][]
+
+    Attributes defined in the scope of a Resource section represent Resource attributes. If the resource is defined with a name these attributes **may** be referenced in [Attributes sections][].
+
+- [`0-1` Model section](#def-model-section)
 
 - Additional [Action sections](#def-action-section)
 
@@ -598,7 +720,7 @@ Resource representing **ACME Blog** posts.
 ---
 
 <a name="def-model-section"></a>
-## 11. Resource model section
+## 12. Resource model section
 - **Parent sections:** [Resource section](#def-resource-section)
 - **Nested sections:** [Refer to payload section](#def-payload-section)
 - **Markdown entity:** list
@@ -618,20 +740,22 @@ The payload defined in this section **may** be referenced in any response or req
 #### Example
 
     # My Resource [/resource]
+    
     + Model (text/plain)
-        
+
             Hello World
-            
+
     ## Retrieve My Resource [GET]
+    
     + Response 200
-        
+
         [My Resource][]
 
 
 ---
 
 <a name="def-uriparameters-section"></a>
-## 12. URI parameters section
+## 13. URI parameters section
 - **Parent Sections:** [Resource section](#def-resource-section) | [Action section](#def-action-section)
 - **Nested Sections:** none
 - **Markdown entity:** list
@@ -645,17 +769,19 @@ Defined by the `Parameters` keyword written in a Markdown list item:
 #### Description
 Discussion of URI parameters in the _scope of the parent section_.
 
-This section **must** be composed of nested list items only. This section **must not** contain any other elements. One list item per URI parameter. The nested list items subsections inherit from the [Named section](#def-named-section) and are subject to additional formatting as follows:
+This section **must** be composed of nested list items only. This section **must not** contain any other elements. Each list item describes a single URI parameter. The nested list items subsections inherit from the [Named section](#def-named-section) and are subject to additional formatting as follows:
 
-    + <parameter name> = `<default value>` (required | optional , <type>, `<example value>`) ... <description>
+    + <parameter name>: `<example value>` (<type> | enum[<type>], required | optional) - <description>
 
         <additional description>
-        
-        + Values
-            + `<enumeration element 1>` 
-            + `<enumeration element 2>`
+
+        + Default: `<default value>`
+
+        + Members
+            + `<enumeration value 1>` - <enumeration description 1>
+            + `<enumeration value 2>` - <enumeration description 2>
             ...
-            + `<enumeration element N>`
+            + `<enumeration value N>` - <enumeration description N>
 
 Where:
 
@@ -664,13 +790,14 @@ Where:
 * `<additional description>` is any additional **optional** Markdown-formatted [description](#SectionDescription) of the parameter.
 * `<default value>` is an **optional** default value of the parameter – a value that is used when no value is explicitly set (optional parameters only).
 * `<example value>` is an **optional** example value of the parameter (e.g. `1234`).
-* `<type>` is the **optional** parameter type as expected by the API (e.g. "number").
-* `Values` is the **optional** enumeration of possible values
-*  and `<enumeration element n>` represents an element of enumeration type.
+* `<type>` is the **optional** parameter type as expected by the API (e.g. "number", "string", "boolean"). "string" is the **default**.
+* `Members` is the **optional** enumeration of possible values. `<type>` should be surrounded by `enum[]` if this is present. For example, if enumeration values are present for a parameter whose type is `number`, then `enum[number]` should be used instead of `number` to.
+* `<enumeration value n>` represents an element of enumeration type.
+* `<enumeration description n>` is the **optional** description of the corresponding enumeration element.
 * `required` is the **optional** specifier of a required parameter (this is the **default**)
 * `optional` is the **optional** specifier of an optional parameter.
 
-> **NOTE:** This section **should only** contain parameters that are specified in the parents' URI template, and does not have to list every URI parameter. 
+> **NOTE:** This section **should only** contain parameters that are specified in the parent's resource URI template, and does not have to list every URI parameter.
 
 #### Example
 
@@ -680,41 +807,80 @@ Where:
 
 ```
 + Parameters
-    + id ... Id of a post.
+    + id - Id of a post.
 ```
 
 ```
 + Parameters
-    + id (number) ... Id of a post.
+    + id (number) - Id of a post.
 ```
 
 ```
 + Parameters
-    + id (required, number, `1001`) ... Id of a post.
+    + id: `1001` (number, required) - Id of a post.
 ```
 
 ```
 + Parameters
-    + id = `20` (optional, number, `1001`) ... Id of a post.
+    + id: `1001` (number, optional) - Id of a post.
+        + Default: `20`
 ```
 
 ```
 + Parameters
-    + id (string)
+    + id (enum[string])
 
         Id of a Post
 
-        + Values
-            + `A`
+        + Members
+            + `A` - This is character A
             + `B`
-            + `C`
+            + `C` - This is character C
 ```
 ---
 
+<a name="def-relation-section"></a>
+## 14. Relation section
+- **Parent sections:** [Action section](#def-action-section)
+- **Nested Sections:** none
+- **Markdown entity:** list
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Relation` keyword written in a Markdown list item followed by a colon (`:`) and a link relation identifier.
+
+    + Relation: <link relation identifier>
+
+#### Description
+This section specifies a [link relation type](https://tools.ietf.org/html/rfc5988#section-4) for the given action as specified by [RFC 5988](https://tools.ietf.org/html/rfc5988).
+
+> **NOTE:** The link relation identifiers should be unique per resource in the blueprint document.
+
+#### Example
+
+	# Task [/tasks/{id}]
+
+	+ Parameters
+	    + id
+
+	## Retrieve Task [GET]
+
+	+ Relation: task
+	+ Response 200
+	
+	        { ... }
+	
+	## Delete Task [DELETE]
+
+	+ Relation: delete
+	+ Response 204
+
+---
+
 <a name="def-action-section"></a>
-## 13. Action section
+## 15. Action section
 - **Parent sections:** [Resource section](#def-resource-section)
-- **Nested sections:** [`0-1` URI parameters section](#def-uriparameters-section), [`0+` Request section](#def-request-section), [`1+` Response section](#def-response-section)
+- **Nested sections:** [`0-1` Relation section](#def-relation-section), [`0-1` URI parameters section](#def-uriparameters-section), [`0-1` Attributes section](#def-attributes-section), [`0+` Request section](#def-request-section), [`1+` Response section](#def-response-section)
 - **Markdown entity:** header
 - **Inherits from**: [Named section](#def-named-section)
 
@@ -727,14 +893,22 @@ Defined by an [HTTP request method][httpmethods]:
 
 Defined by an action [name (identifier)](#def-identifier) followed by an [HTTP request method][httpmethods] enclosed in square brackets `[]`.
 
-    # <identifier> [<HTTP request method>]
+    ## <identifier> [<HTTP request method>]
+
+**-- or --**
+
+Defined by an action [name (identifier)](#def-identifier) followed by an [HTTP request method][httpmethods] and [URI template][uritemplate] enclosed in square brackets `[]`.
+
+    ## <identifier> [<HTTP request method> <URI template>]
 
 #### Description
 Definition of at least one complete HTTP transaction as performed with the parent resource section. An action section **may** consists of multiple HTTP transaction examples for the given HTTP request method.
 
 This section **may** include one nested [URI parameters section](#def-uriparameters-section) describing any URI parameters _specific_ to the action – URI parameters discussed in the scope of an Action section apply to the respective Action section ONLY.
 
-It **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections.
+This section **may** include one nested [Attributes section][] defining the input (request) attributes of the section. If present, these attributes **should** be inherited in every Action's [Request section][] unless specified otherwise.
+
+Action section **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections.
 
 Nested Request and Response sections **may** be ordered into groups where each groups represent one transaction example. First transaction example group starts with the first nested Request or Response section. Subsequent groups start with the first nested Request section following a Response section.
 
@@ -743,11 +917,11 @@ Multiple Request and Response nested sections within one transaction example **s
 #### Example
 
     # Blog Posts [/posts{?limit}]
-     ...    
+     ...
 
     ## Retrieve Blog Posts [GET]
     Retrieves the list of **ACME Blog** posts.
-    
+
     + Parameters
         + limit (optional, number) ... Maximum number of posts to retrieve
 
@@ -756,6 +930,11 @@ Multiple Request and Response nested sections within one transaction example **s
             ...
 
     ### Create a Post [POST]
+
+    + Attributes
+
+            ...    
+
     + Request
 
             ...
@@ -764,41 +943,48 @@ Multiple Request and Response nested sections within one transaction example **s
 
             ...
 
+    ### Delete a Post [DELETE /posts/{id}]
+
+    + Parameters
+        + id (string) ... Id of the post
+
+    + Response 204
+
 #### Example Multiple Transaction Examples
 
     # Resource [/resource]
     ## Create Resource [POST]
 
     + request A
-        
+
             ...
 
     + response 200
-        
+
             ...
 
     + request B
-        
-            ...
 
-    + response 200    
-            
-            ...
-
-    + response 500
-        
-            ...
-
-    + request C
-        
-            ...
-
-    + request D
-        
             ...
 
     + response 200
-        
+
+            ...
+
+    + response 500
+
+            ...
+
+    + request C
+
+            ...
+
+    + request D
+
+            ...
+
+    + response 200
+
             ...
 
 > **NOTE:** The "Multiple Transaction Examples" example demonstrates three transaction examples for one given action:
@@ -810,7 +996,7 @@ Multiple Request and Response nested sections within one transaction example **s
 ---
 
 <a name="def-request-section"></a>
-## 14. Request section
+## 16. Request section
 - **Parent sections:** [Action section](#def-action-section)
 - **Nested sections:** [Refer to payload section](#def-payload-section)
 - **Markdown entity:** list
@@ -827,13 +1013,13 @@ One HTTP request-message example – payload.
 #### Example
 
     + Request Create Blog Post (application/json)
-        
+
             { "message" : "Hello World." }
 
 ---
 
 <a name="def-response-section"></a>
-## 15. Response section
+## 17. Response section
 - **Abstract**
 - **Parent sections:** [Action section](#def-action-section)
 - **Nested sections:** [Refer to payload section](#def-payload-section)
@@ -851,8 +1037,69 @@ One HTTP response-message example – payload.
 #### Example
 
     + Response 201 (application/json)
-        
+
                 { "message" : "created" }
+
+---
+
+<a name="def-data-structures"></a>
+## 18. Data Structures section
+- **Parent sections:** none
+- **Nested sections:** _MSON Named Type definition_ (see below)
+- **Markdown entity:** header
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Data Structures` keyword.
+
+    # Data Structures
+
+#### Description
+This section holds arbitrary data structures definitions defined in the form of [MSON Named Types][]. 
+
+Data structures defined in this section **may** be used in any [Attributes section][]. Similarly, any data structures defined in a [Attributes section][] of a named [Resource Section][] **may** be used in a data structure definition.
+
+Refer to the [MSON][] specification for full details on how to define an MSON Named type.
+
+#### Example
+
+    # Data Structures
+
+    ## Message (object)
+
+    + text (string) - text of the message
+    + author (Author) - author of the message
+
+    ## Author (object)
+
+    + name: John
+    + email: john@appleseed.com
+
+
+#### Example reusing Data Structure in Resource 
+
+    # User [/user]
+
+    + Attributes (Author)
+
+    # Data Structures
+
+    ## Author (object)
+
+    + name: John
+    + email: john@appleseed.com
+
+#### Example reusing Resource-defined Data Structure
+
+    # User [/user]
+
+    + Attributes
+        + name: John
+        + email: john@appleseed.com
+
+    # Data Structures
+
+    ## Author (User)
 
 ---
 
@@ -881,16 +1128,16 @@ Variable names are case-sensitive. The variable name may consists of following c
 - ASCII alpha numeric characters (`a-z`, `A-Z`)
 - Decimal digits (`0-9`)
 - `_`
-- [Percent-encoded][pct-encoded] characters 
+- [Percent-encoded][pct-encoded] characters
 - `.`
 
-Multiple variables are separated by the comma **without** any leading or trailing spaces. A variable(s) **must** be enclosed in braces – `{}` **without** any additional leading or trailing whitespace. 
+Multiple variables are separated by the comma **without** any leading or trailing spaces. A variable(s) **must** be enclosed in braces – `{}` **without** any additional leading or trailing whitespace.
 
 #### Operators
 
 The first variable in the braces **might** be preceded by an operator. API Blueprint currently supports following operators:
 
-- `#` – _fragment identifier_ operator 
+- `#` – _fragment identifier_ operator
 - `+` – _reserved value_ operator
 - `?` – _form-style query_ operator
 - `&` – _form-style query continuation_ operator
@@ -930,7 +1177,7 @@ With `var := 42` the expansion is `/path/to/resources/42`.
 
 ### Fragment Identifier Variable
 
-URI Template variables for fragment identifiers are defined using the crosshatch (`#`) operator: 
+URI Template variables for fragment identifiers are defined using the crosshatch (`#`) operator:
 
 ```
 /path/to/resources/42{#var}
@@ -962,7 +1209,7 @@ To define variables for a form-style query use the question mark (`?`) operator
 
 With `varone := 42` and `vartwo = hello` the expansion is `/path/to/resources/42?vartwo=hello`.
 
-To continue a form-style query use the ampersand (`&`) operator: 
+To continue a form-style query use the ampersand (`&`) operator:
 
 ```
 /path/to/resources/{varone}?path=test{&vartwo,varthree}
@@ -986,3 +1233,15 @@ With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path
 [list syntax]: https://daringfireball.net/projects/markdown/syntax#list
 [pct-encoded]: http://en.wikipedia.org/wiki/Percent-encoding
 [uri-explode]: http://tools.ietf.org/html/rfc6570#section-2.4.2
+
+[MSON]: https://github.com/apiaryio/mson
+[MSON Named Types]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#22-named-types
+[MSON Type Definition]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#35-type-definition
+
+[`0-1` Attributes section]: #def-attributes-section
+[Attributes section]: #def-attributes-section
+[Attributes sections]: #def-attributes-section
+
+[Resource Section]: #def-resource-section
+
+[Request section]: #def-request-section
