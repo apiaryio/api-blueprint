@@ -60,7 +60,7 @@ action followed by the HTTP method.
 ### List All Questions [GET]
 ```
 
-An action should include at least one response from the server which must include a status code and may contain a body. A responses is defined as a list item within an action. Lists are created by preceding list items with either a `+`, `*` or `-`.
+An action should include at least one response from the server which must include a status code and may contain a body. A response is defined as a list item within an action. Lists are created by preceding list items with either a `+`, `*` or `-`.
 
 This action returns a `200` status code along with a JSON body.
 
