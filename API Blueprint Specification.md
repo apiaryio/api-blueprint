@@ -580,7 +580,7 @@ The description of message-body attributes **may** be used to describe message-b
 
         + Body
 
-            { "message" : "Hello World." }
+                { "message" : "Hello World." }
 
 ---
 
