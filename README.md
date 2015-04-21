@@ -21,7 +21,7 @@ API Blueprint, its parser, and most of its tools are completely open sourced so 
 ## Format support
 
 * Current format: [1A8](https://github.com/apiaryio/api-blueprint/releases/tag/format-1A8)
-* Format supported by Apiary: [1A7](https://github.com/apiaryio/api-blueprint/releases/tag/format-1A7)
+* Format supported by Apiary: [1A8](https://github.com/apiaryio/api-blueprint/releases/tag/format-1A8)
 
 ## Getting started with API Blueprint
 All it takes to describe that `message` endpoint of your API is to write:
