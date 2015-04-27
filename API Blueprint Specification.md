@@ -21,6 +21,7 @@ Version: 1A8
     6. [Nested sections](#def-nested-sections)
 
 ## [II. Sections Reference](#def-sections-reference)
+
 ### Abstract
 1. [Named section](#def-named-section)
 2. [Asset section](#def-asset-section)
@@ -279,8 +280,12 @@ What sections can be nested and where depends upon the section in case, as descr
 # II. Sections Reference
 > **NOTE:** Sections marked as "Abstract" serve as a base for other sections and as such they **cannot** be used directly.
 
+<!-- BEGIN Abstract -->
+
+# Abstract
+
 <a name="def-named-section"></a>
-## 1. Named section
+## Named section
 - **Abstract**
 - **Parent sections:** vary, see descendants
 - **Nested sections:** vary, see descendants
@@ -315,7 +320,7 @@ Named section is the base section for most of the API Blueprint sections. It con
 ---
 
 <a name="def-asset-section"></a>
-## 2. Asset section
+## Asset section
 - **Abstract**
 - **Parent sections:** vary, see descendants
 - **Nested sections:** none
@@ -351,7 +356,7 @@ Asset section is the base section for atomic data in API Blueprint. The content 
 ---
 
 <a name="def-payload-section"></a>
-## 3. Payload section
+## Payload section
 - **Abstract**
 - **Parent sections:** vary, see descendants
 - **Nested sections:** [`0-1` Headers section](#def-headers-section), [`0-1` Attributes section](#def-attributes-section), [`0-1` Body section](#def-body-section), [`0-1` Schema section](#def-schema-section)
@@ -425,169 +430,18 @@ Instead of providing a payload section content a [model payload section](#def-mo
 
 ---
 
-<a name="def-headers-section"></a>
-## 4. Headers section
-- **Parent sections:** [Payload section](#def-payload-section)
-- **Nested sections:** none
-- **Markdown entity:** list
-- **Inherits from**: none
+<!-- END Abstract -->
 
-#### Definition
-Defined by the `Headers` keyword in Markdown list entity.
 
-    + Headers
 
-#### Description
-Specifies the HTTP message-headers of the parent payload section. The content this section is expected to be a [pre-formatted code block](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
 
-    <HTTP header name>: <value>
+<!-- BEGIN Section Basics -->
 
-One HTTP header per line.
+# Section Basics
 
-#### Example
-
-    + Headers
-
-            Accept-Charset: utf-8
-            Connection: keep-alive
-            Content-Type: multipart/form-data, boundary=AaB03x
-
----
-
-<a name="def-body-section"></a>
-## 5. Body section
-- **Parent sections:** [Payload section](#def-payload-section)
-- **Nested sections:** none
-- **Markdown entity:** list
-- **Inherits from**: [Asset section](#def-asset-section)
-
-#### Definition
-Defined by the `Body` keyword in Markdown list entity.
-
-    + Body
-
-#### Description
-Specifies the HTTP message-body of a payload section.
-
-#### Example
-
-    + Body
-
-            {
-                "message": "Hello"
-            }
-
----
-
-<a name="def-schema-section"></a>
-## 6. Schema section
-- **Parent sections:** [Payload section](#def-payload-section)
-- **Nested sections:** none
-- **Markdown entity:** list
-- **Inherits from**: [Asset section](#def-asset-section)
-
-#### Definition
-Defined by the `Schema` keyword in Markdown list entity.
-
-    + Schema
-
-#### Description
-Specifies a validation schema for the HTTP message-body of parent payload section.
-
----
-
-<a name="def-attributes-section"></a>
-## 7. Attributes Section
-- **Parent sections:** [Resource section](#def-resource-section) | [Action section](#def-action-section) | [Payload section](#def-payload-section)
-- **Nested sections:** See **[Markdown Syntax for Object Notation][MSON]**
-- **Markdown entity:** list
-- **Inherits from**: none
-
-#### Definition
-Defined by the `Attributes` keyword followed by an optional [MSON Type Definition][] enclosed in parentheses.
-
-    + Attributes <Type Definition>
-
-`<Type Definition>` is the type definition of the data structure being described. If the `<Type Definition>` is not specified, an `object` base type is assumed. See [MSON Type Definition][] for details.
-
-##### Example 
-
-    + Attributes (object)
-
-#### Description
-This section describes a data structure using the **[Markdown Syntax for Object Notation][MSON] (MSON)**. Based on the parent section, the data structure being described is one of the following:
-    
-1. Resource data structure attributes ([Resource section](#def-resource-section))
-2. Action request attributes ([Action section](#def-action-section))
-3. Payload message-body attributes ([Payload section](#def-payload-section))
-
-Data structures defined in this section **may** refer to any arbitrary data structures defined in the [Data Structures section](#def-data-structures) as well as to any data structures defined by a named resource attributes description (see below).
-
-#### Resource Attributes description
-Description of the resource data structure. 
-
-If defined in a named [Resource section](#def-resource-section), this data structure **may** be referenced by other data structures using the resource name.
-
-##### Example
-
-    # Blog Post [/posts/{id}]
-    Resource representing **ACME Blog** posts.
-
-    + Attributes
-        + id (number)
-        + message (string) - The blog post article
-        + author: john@appleseed.com (string) - Author of the blog post
-
-> **NOTE:** This data structure can be later referred as:
-> 
->     + Attributes (Blog Post)
-> 
-
-#### Action Attributes description
-Description of the default request message-body data structure.
-
-If defined, all the [Request sections](#def-request-section) of the respective [Action section](#def-action-section) inherits these attributes unless specified otherwise.
-
-##### Example
-
-    ### Create a Post [POST]
-
-    + Attributes
-        + message (string) - The blog post article
-        + author: john@appleseed.com (string) - Author of the blog post        
-
-    + Request (application/json)
-
-    + Request (application/yaml)
-
-    + Response 201
-
-#### Payload Attributes description
-Description of payload (request, response, model) message-body attributes.
-
-Not every attribute has to be described. However, when an attribute is described, it **should** appear in the respective [Body section](#def-body-section) example, if a Body section is provided.
-
-If defined, the [Body section](#def-body-section) **may** be omitted and the example representation **should** be generated from the attributes description.
-
-The description of message-body attributes **may** be used to describe message-body validation if no [Schema section](#def-schema-section) is provided. When a Schema section is provided, the attributes description **should** conform to the schema.
-
-##### Example
-
-    ### Retrieve a Post [GET]
-
-    + Response 200 (application/json)
-
-        + Attributes (object)
-            + message (string) - Message to the world
-
-        + Body
-
-                { "message" : "Hello World." }
-
----
 
 <a name="def-metadata-section"></a>
-## 8. Metadata section
+## Metadata section
 - **Parent sections:** none
 - **Nested sections:** none
 - **Markdown entity:** special
@@ -608,7 +462,7 @@ Metadata keys and its values are tool-specific. Refer to relevant tool documenta
 ---
 
 <a name="def-api-name-section"></a>
-## 9. API name & overview section
+## API name & overview section
 - **Parent sections:** none
 - **Nested sections:** none
 - **Markdown entity:** special, header
@@ -628,7 +482,7 @@ Name and description of the API
 ---
 
 <a name="def-resourcegroup-section"></a>
-## 10. Resource group section
+## Resource group section
 - **Parent sections:** none
 - **Nested sections:** [`0+` Resource section](#def-resource-section)
 - **Markdown entity:** header
@@ -660,7 +514,7 @@ This sections represents a group of resources (Resource Sections). **May** inclu
 ---
 
 <a name="def-resource-section"></a>
-## 11. Resource section
+## Resource section
 - **Parent sections:** none, [Resource group section](#def-resourcegroup-section)
 - **Nested sections:** [`0-1` Parameters section](#def-uriparameters-section), [`0-1` Attributes section](#def-attributes-section), [`0-1` Model section](#def-model-section), [`1+` Action section](#def-action-section)
 - **Markdown entity:** header
@@ -722,7 +576,7 @@ Resource representing **ACME Blog** posts.
 ---
 
 <a name="def-model-section"></a>
-## 12. Resource model section
+## Resource model section
 - **Parent sections:** [Resource section](#def-resource-section)
 - **Nested sections:** [Refer to payload section](#def-payload-section)
 - **Markdown entity:** list
@@ -756,131 +610,25 @@ The payload defined in this section **may** be referenced in any response or req
 
 ---
 
-<a name="def-uriparameters-section"></a>
-## 13. URI parameters section
-- **Parent Sections:** [Resource section](#def-resource-section) | [Action section](#def-action-section)
-- **Nested Sections:** none
+<a name="def-schema-section"></a>
+## Schema section
+- **Parent sections:** [Payload section](#def-payload-section)
+- **Nested sections:** none
 - **Markdown entity:** list
-- **Inherits from**: none, special
+- **Inherits from**: [Asset section](#def-asset-section)
 
 #### Definition
-Defined by the `Parameters` keyword written in a Markdown list item:
+Defined by the `Schema` keyword in Markdown list entity.
 
-    + Parameters
-
-#### Description
-Discussion of URI parameters in the _scope of the parent section_.
-
-This section **must** be composed of nested list items only. This section **must not** contain any other elements. Each list item describes a single URI parameter. The nested list items subsections inherit from the [Named section](#def-named-section) and are subject to additional formatting as follows:
-
-    + <parameter name>: `<example value>` (<type> | enum[<type>], required | optional) - <description>
-
-        <additional description>
-
-        + Default: `<default value>`
-
-        + Members
-            + `<enumeration value 1>` - <enumeration description 1>
-            + `<enumeration value 2>` - <enumeration description 2>
-            ...
-            + `<enumeration value N>` - <enumeration description N>
-
-Where:
-
-* `<parameter name>` is the parameter name as written in [Resource Section](#ResourceSection)'s URI (e.g. "id").
-* `<description>` is any **optional** Markdown-formatted description of the parameter.
-* `<additional description>` is any additional **optional** Markdown-formatted [description](#SectionDescription) of the parameter.
-* `<default value>` is an **optional** default value of the parameter – a value that is used when no value is explicitly set (optional parameters only).
-* `<example value>` is an **optional** example value of the parameter (e.g. `1234`).
-* `<type>` is the **optional** parameter type as expected by the API (e.g. "number", "string", "boolean"). "string" is the **default**.
-* `Members` is the **optional** enumeration of possible values. `<type>` should be surrounded by `enum[]` if this is present. For example, if enumeration values are present for a parameter whose type is `number`, then `enum[number]` should be used instead of `number` to.
-* `<enumeration value n>` represents an element of enumeration type.
-* `<enumeration description n>` is the **optional** description of the corresponding enumeration element.
-* `required` is the **optional** specifier of a required parameter (this is the **default**)
-* `optional` is the **optional** specifier of an optional parameter.
-
-> **NOTE:** This section **should only** contain parameters that are specified in the parent's resource URI template, and does not have to list every URI parameter.
-
-#### Example
-
-```
-# GET /posts/{id}
-```
-
-```
-+ Parameters
-    + id - Id of a post.
-```
-
-```
-+ Parameters
-    + id (number) - Id of a post.
-```
-
-```
-+ Parameters
-    + id: `1001` (number, required) - Id of a post.
-```
-
-```
-+ Parameters
-    + id: `1001` (number, optional) - Id of a post.
-        + Default: `20`
-```
-
-```
-+ Parameters
-    + id (enum[string])
-
-        Id of a Post
-
-        + Members
-            + `A` - This is character A
-            + `B`
-            + `C` - This is character C
-```
----
-
-<a name="def-relation-section"></a>
-## 14. Relation section
-- **Parent sections:** [Action section](#def-action-section)
-- **Nested Sections:** none
-- **Markdown entity:** list
-- **Inherits from**: none
-
-#### Definition
-Defined by the `Relation` keyword written in a Markdown list item followed by a colon (`:`) and a link relation identifier.
-
-    + Relation: <link relation identifier>
+    + Schema
 
 #### Description
-This section specifies a [link relation type](https://tools.ietf.org/html/rfc5988#section-4) for the given action as specified by [RFC 5988](https://tools.ietf.org/html/rfc5988).
-
-> **NOTE:** The link relation identifiers should be unique per resource in the blueprint document.
-
-#### Example
-
-	# Task [/tasks/{id}]
-
-	+ Parameters
-	    + id
-
-	## Retrieve Task [GET]
-
-	+ Relation: task
-	+ Response 200
-	
-	        { ... }
-	
-	## Delete Task [DELETE]
-
-	+ Relation: delete
-	+ Response 204
+Specifies a validation schema for the HTTP message-body of parent payload section.
 
 ---
 
 <a name="def-action-section"></a>
-## 15. Action section
+## Action section
 - **Parent sections:** [Resource section](#def-resource-section)
 - **Nested sections:** [`0-1` Relation section](#def-relation-section), [`0-1` URI parameters section](#def-uriparameters-section), [`0-1` Attributes section](#def-attributes-section), [`0+` Request section](#def-request-section), [`1+` Response section](#def-response-section)
 - **Markdown entity:** header
@@ -998,7 +746,7 @@ Multiple Request and Response nested sections within one transaction example **s
 ---
 
 <a name="def-request-section"></a>
-## 16. Request section
+## Request section
 - **Parent sections:** [Action section](#def-action-section)
 - **Nested sections:** [Refer to payload section](#def-payload-section)
 - **Markdown entity:** list
@@ -1021,7 +769,7 @@ One HTTP request-message example – payload.
 ---
 
 <a name="def-response-section"></a>
-## 17. Response section
+## Response section
 - **Abstract**
 - **Parent sections:** [Action section](#def-action-section)
 - **Nested sections:** [Refer to payload section](#def-payload-section)
@@ -1044,8 +792,241 @@ One HTTP response-message example – payload.
 
 ---
 
+<a name="def-uriparameters-section"></a>
+## URI parameters section
+- **Parent Sections:** [Resource section](#def-resource-section) | [Action section](#def-action-section)
+- **Nested Sections:** none
+- **Markdown entity:** list
+- **Inherits from**: none, special
+
+#### Definition
+Defined by the `Parameters` keyword written in a Markdown list item:
+
+    + Parameters
+
+#### Description
+Discussion of URI parameters in the _scope of the parent section_.
+
+This section **must** be composed of nested list items only. This section **must not** contain any other elements. Each list item describes a single URI parameter. The nested list items subsections inherit from the [Named section](#def-named-section) and are subject to additional formatting as follows:
+
+    + <parameter name>: `<example value>` (<type> | enum[<type>], required | optional) - <description>
+
+        <additional description>
+
+        + Default: `<default value>`
+
+        + Members
+            + `<enumeration value 1>` - <enumeration description 1>
+            + `<enumeration value 2>` - <enumeration description 2>
+            ...
+            + `<enumeration value N>` - <enumeration description N>
+
+Where:
+
+* `<parameter name>` is the parameter name as written in [Resource Section](#ResourceSection)'s URI (e.g. "id").
+* `<description>` is any **optional** Markdown-formatted description of the parameter.
+* `<additional description>` is any additional **optional** Markdown-formatted [description](#SectionDescription) of the parameter.
+* `<default value>` is an **optional** default value of the parameter – a value that is used when no value is explicitly set (optional parameters only).
+* `<example value>` is an **optional** example value of the parameter (e.g. `1234`).
+* `<type>` is the **optional** parameter type as expected by the API (e.g. "number", "string", "boolean"). "string" is the **default**.
+* `Members` is the **optional** enumeration of possible values. `<type>` should be surrounded by `enum[]` if this is present. For example, if enumeration values are present for a parameter whose type is `number`, then `enum[number]` should be used instead of `number` to.
+* `<enumeration value n>` represents an element of enumeration type.
+* `<enumeration description n>` is the **optional** description of the corresponding enumeration element.
+* `required` is the **optional** specifier of a required parameter (this is the **default**)
+* `optional` is the **optional** specifier of an optional parameter.
+
+> **NOTE:** This section **should only** contain parameters that are specified in the parent's resource URI template, and does not have to list every URI parameter.
+
+#### Example
+
+```
+# GET /posts/{id}
+```
+
+```
++ Parameters
+    + id - Id of a post.
+```
+
+```
++ Parameters
+    + id (number) - Id of a post.
+```
+
+```
++ Parameters
+    + id: `1001` (number, required) - Id of a post.
+```
+
+```
++ Parameters
+    + id: `1001` (number, optional) - Id of a post.
+        + Default: `20`
+```
+
+```
++ Parameters
+    + id (enum[string])
+
+        Id of a Post
+
+        + Members
+            + `A` - This is character A
+            + `B`
+            + `C` - This is character C
+```
+---
+
+<a name="def-attributes-section"></a>
+## Attributes Section
+- **Parent sections:** [Resource section](#def-resource-section) | [Action section](#def-action-section) | [Payload section](#def-payload-section)
+- **Nested sections:** See **[Markdown Syntax for Object Notation][MSON]**
+- **Markdown entity:** list
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Attributes` keyword followed by an optional [MSON Type Definition][] enclosed in parentheses.
+
+    + Attributes <Type Definition>
+
+`<Type Definition>` is the type definition of the data structure being described. If the `<Type Definition>` is not specified, an `object` base type is assumed. See [MSON Type Definition][] for details.
+
+##### Example 
+
+    + Attributes (object)
+
+#### Description
+This section describes a data structure using the **[Markdown Syntax for Object Notation][MSON] (MSON)**. Based on the parent section, the data structure being described is one of the following:
+    
+1. Resource data structure attributes ([Resource section](#def-resource-section))
+2. Action request attributes ([Action section](#def-action-section))
+3. Payload message-body attributes ([Payload section](#def-payload-section))
+
+Data structures defined in this section **may** refer to any arbitrary data structures defined in the [Data Structures section](#def-data-structures) as well as to any data structures defined by a named resource attributes description (see below).
+
+#### Resource Attributes description
+Description of the resource data structure. 
+
+If defined in a named [Resource section](#def-resource-section), this data structure **may** be referenced by other data structures using the resource name.
+
+##### Example
+
+    # Blog Post [/posts/{id}]
+    Resource representing **ACME Blog** posts.
+
+    + Attributes
+        + id (number)
+        + message (string) - The blog post article
+        + author: john@appleseed.com (string) - Author of the blog post
+
+> **NOTE:** This data structure can be later referred as:
+> 
+>     + Attributes (Blog Post)
+> 
+
+#### Action Attributes description
+Description of the default request message-body data structure.
+
+If defined, all the [Request sections](#def-request-section) of the respective [Action section](#def-action-section) inherits these attributes unless specified otherwise.
+
+##### Example
+
+    ### Create a Post [POST]
+
+    + Attributes
+        + message (string) - The blog post article
+        + author: john@appleseed.com (string) - Author of the blog post        
+
+    + Request (application/json)
+
+    + Request (application/yaml)
+
+    + Response 201
+
+#### Payload Attributes description
+Description of payload (request, response, model) message-body attributes.
+
+Not every attribute has to be described. However, when an attribute is described, it **should** appear in the respective [Body section](#def-body-section) example, if a Body section is provided.
+
+If defined, the [Body section](#def-body-section) **may** be omitted and the example representation **should** be generated from the attributes description.
+
+The description of message-body attributes **may** be used to describe message-body validation if no [Schema section](#def-schema-section) is provided. When a Schema section is provided, the attributes description **should** conform to the schema.
+
+##### Example
+
+    ### Retrieve a Post [GET]
+
+    + Response 200 (application/json)
+
+        + Attributes (object)
+            + message (string) - Message to the world
+
+        + Body
+
+                { "message" : "Hello World." }
+
+---
+
+<a name="def-headers-section"></a>
+## Headers section
+- **Parent sections:** [Payload section](#def-payload-section)
+- **Nested sections:** none
+- **Markdown entity:** list
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Headers` keyword in Markdown list entity.
+
+    + Headers
+
+#### Description
+Specifies the HTTP message-headers of the parent payload section. The content this section is expected to be a [pre-formatted code block](http://daringfireball.net/projects/markdown/syntax#precode) with the following syntax:
+
+    <HTTP header name>: <value>
+
+One HTTP header per line.
+
+#### Example
+
+    + Headers
+
+            Accept-Charset: utf-8
+            Connection: keep-alive
+            Content-Type: multipart/form-data, boundary=AaB03x
+
+---
+
+<a name="def-body-section"></a>
+## Body section
+- **Parent sections:** [Payload section](#def-payload-section)
+- **Nested sections:** none
+- **Markdown entity:** list
+- **Inherits from**: [Asset section](#def-asset-section)
+
+#### Definition
+Defined by the `Body` keyword in Markdown list entity.
+
+    + Body
+
+#### Description
+Specifies the HTTP message-body of a payload section.
+
+#### Example
+
+    + Body
+
+            {
+                "message": "Hello"
+            }
+
+---
+
+<!-- END Section Basics -->
+
+<!-- BEGIN Going Further -->
+
 <a name="def-data-structures"></a>
-## 18. Data Structures section
+## Data Structures section
 - **Parent sections:** none
 - **Nested sections:** _MSON Named Type definition_ (see below)
 - **Markdown entity:** header
@@ -1105,13 +1086,53 @@ Refer to the [MSON][] specification for full details on how to define an MSON Na
 
 ---
 
+<a name="def-relation-section"></a>
+## Relation section
+- **Parent sections:** [Action section](#def-action-section)
+- **Nested Sections:** none
+- **Markdown entity:** list
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Relation` keyword written in a Markdown list item followed by a colon (`:`) and a link relation identifier.
+
+    + Relation: <link relation identifier>
+
+#### Description
+This section specifies a [link relation type](https://tools.ietf.org/html/rfc5988#section-4) for the given action as specified by [RFC 5988](https://tools.ietf.org/html/rfc5988).
+
+> **NOTE:** The link relation identifiers should be unique per resource in the blueprint document.
+
+#### Example
+
+    # Task [/tasks/{id}]
+
+    + Parameters
+        + id
+
+    ## Retrieve Task [GET]
+
+    + Relation: task
+    + Response 200
+    
+            { ... }
+    
+    ## Delete Task [DELETE]
+
+    + Relation: delete
+    + Response 204
+
+---
+
+<!-- END Going Further -->
+
 <br>
 
 <a name="def-appendix"></a>
 # III. Appendix
 
 <a name="def-uri-templates"></a>
-## 1. URI Templates
+## URI Templates
 
 The API Blueprint uses a subset of [RFC6570][rfc6570] to define a resource URI Template.
 
