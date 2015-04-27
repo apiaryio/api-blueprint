@@ -178,7 +178,7 @@ URI parameters should describe  the URI using a list of Parameters. For “Quest
 
 ```markdown
 + Parameters
-    + question_id (number) ... ID of the Question in form of an integer
+    + question_id (number) - ID of the Question in the form of an integer
 ```
 
 The `question_id` variable of the URI template is a parameter for every action on this resource. It's defined here using an arbitrary type `number`, followed by a description for the parameter.
