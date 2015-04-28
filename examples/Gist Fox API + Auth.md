@@ -17,7 +17,7 @@ The common [HTTP Response Status Codes](https://github.com/for-GET/know-your-htt
 # Gist Fox API Root [/]
 Gist Fox API entry point.
 
-This resource does not have any attributes. Instead it offers the initial API affordances in the form of the HTTP Link header and 
+This resource does not have any attributes. Instead it offers the initial API affordances in the form of the HTTP Link header and
 HAL links.
 
 ## Retrieve the Entry Point [GET]
@@ -43,14 +43,14 @@ Gist-related resources of *Gist Fox API*.
 ## Gist [/gists/{id}{?access_token}]
 A single Gist object. The Gist resource is the central resource in the Gist Fox API. It represents one paste - a single text note.
 
-The Gist resource has the following attributes: 
+The Gist resource has the following attributes:
 
 + id
 + created_at
 + description
 + content
 
-The states *id* and *created_at* are assigned by the Gist Fox API at the moment of creation. 
+The states *id* and *created_at* are assigned by the Gist Fox API at the moment of creation.
 
 + Parameters
     + id (string) - ID of the Gist in the form of a hash.
@@ -79,7 +79,7 @@ The states *id* and *created_at* are assigned by the Gist Fox API at the moment 
 
 ### Retrieve a Single Gist [GET]
 + Response 200
-    
+
     [Gist][]
 
 ### Edit a Gist [PATCH]
@@ -92,7 +92,7 @@ To update a Gist send a JSON with updated value for one or more of the Gist reso
         }
 
 + Response 200
-    
+
     [Gist][]
 
 ### Delete a Gist [DELETE]
@@ -145,9 +145,9 @@ In addition it **embeds** *Gist Resources* in the Gist Fox API.
     [Gists Collection][]
 
 ### Create a Gist [POST]
-To create a new Gist simply provide a JSON hash of the *description* and *content* attributes for the new Gist. 
+To create a new Gist simply provide a JSON hash of the *description* and *content* attributes for the new Gist.
 
-This action requires an `access_token` with `gist_write` scope. 
+This action requires an `access_token` with `gist_write` scope.
 
 + Parameters
     + access_token (string, optional) - Gist Fox API access token.
@@ -164,7 +164,7 @@ This action requires an `access_token` with `gist_write` scope.
     [Gist][]
 
 ## Star [/gists/{id}/star{?access_token}]
-Star resource represents a Gist starred status. 
+Star resource represents a Gist starred status.
 
 The Star resource has the following attribute:
 
@@ -192,12 +192,12 @@ The Star resource has the following attribute:
             }
 
 ### Star a Gist [PUT]
-This action requires an `access_token` with `gist_write` scope. 
+This action requires an `access_token` with `gist_write` scope.
 
 + Response 204
 
 ### Unstar a Gist [DELETE]
-This action requires an `access_token` with `gist_write` scope. 
+This action requires an `access_token` with `gist_write` scope.
 
 + Response 204
 
@@ -263,7 +263,7 @@ Where *token* represents an OAuth token and *scopes* is an array of scopes grant
 
 + Response 201
 
-    [Authorization][]
+        [Authorization][]
 
 ### Remove an Authorization [DELETE]
 + Request
@@ -271,4 +271,4 @@ Where *token* represents an OAuth token and *scopes* is an array of scopes grant
 
             Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
 
-+ Response 204    
++ Response 204

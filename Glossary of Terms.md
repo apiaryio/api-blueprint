@@ -6,9 +6,9 @@ A brief list of terms as used in the [API Blueprint](http://apiblueprint.org) co
 
 <a name="def-action"></a>
 ### Action
-An **HTTP transaction** (a request-response transaction). 
+An **HTTP transaction** (a request-response transaction).
 
-Actions are specified by an [HTTP request method](#def-method) within a [resource](#def-resource). 
+Actions are specified by an [HTTP request method](#def-method) within a [resource](#def-resource).
 
 <a name="def-api"></a>
 ### API
@@ -52,14 +52,14 @@ An **HTTP transaction message**.
 
 <a name="def-message-body"></a>
 ### Message body
-An [**asset**](#def-asset) representing [**HTTP transaction message body**](http://en.wikipedia.org/wiki/HTTP_body_data). 
+An [**asset**](#def-asset) representing [**HTTP transaction message body**](http://en.wikipedia.org/wiki/HTTP_body_data).
 
 <a name="def-message-header"></a>
 ### Message header
-An [**asset**](#def-asset) representing [**HTTP transaction message header**](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields). 
+An [**asset**](#def-asset) representing [**HTTP transaction message header**](http://en.wikipedia.org/wiki/List_of_HTTP_header_fields).
 <a name="def-parameter"></a>
 ### Parameter
-An [**URI template**](#def-uri-template) **variable**. 
+An [**URI template**](#def-uri-template) **variable**.
 
 <a name="def-payload"></a>
 ### Payload

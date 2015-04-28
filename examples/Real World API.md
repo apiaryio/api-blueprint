@@ -16,7 +16,7 @@ A Post is the other central object utilized by the App.net Stream API. It has ri
     + post_id: `1` (string) - The id of the Post.
 
 + Model (application/json)
-    
+
     ```js
     {
         "data": {
@@ -70,7 +70,7 @@ A Post is the other central object utilized by the App.net Stream API. It has ri
 Returns a specific Post.
 
 + Response 200
-    
+
     [Post][]
 
 ### Delete a Post [DELETE]
@@ -82,7 +82,7 @@ Delete a Post. The current user must be the same user who created the Post. It r
 A Collection of posts.
 
 + Model (application/json)
-    
+
     ```js
     {
         "data": [
@@ -102,25 +102,25 @@ A Collection of posts.
         "meta": {
             "code": 200,
         }
-    }    
+    }
     ```
 
 ### Create a Post [POST]
 Create a new Post object. Mentions and hashtags will be parsed out of the post text, as will bare URLs...
 
 + Request
-    
+
     [Post][]
 
 + Response 201
-    
+
     [Post][]
 
 ### Retrieve all Posts [GET]
-Retrieves all posts. 
+Retrieves all posts.
 
 + Response 200
-    
+
     [Posts Collection][]
 
 ## Stars [/stream/0/posts/{post_id}/star]
@@ -135,12 +135,12 @@ Save a given Post to the current User’s stars. This is just a “save” actio
 *Note: A repost cannot be starred. Please star the parent Post.*
 
 + Response 200
-    
+
     [Post][]
 
 ### Unstar a Post [DELETE]
 Remove a Star from a Post.
 
 + Response 200
-        
+
     [Post][]
