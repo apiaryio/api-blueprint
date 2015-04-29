@@ -33,7 +33,7 @@ This resource does not have any attributes. Instead it offers the initial API af
 ## Questions Collection [/questions{?page}]
 
 + Parameters
-    + page (optional, number, `1`) ... The page of questions to return
+    + page: 1 (optional, number) - The page of questions to return
 
 ### List All Questions [GET]
 
@@ -394,7 +394,7 @@ A Question object has the following attributes:
 + choices - An array of Choice objects.
 
 + Parameters
-    + question_id (required, number, `1`) ... ID of the Question in form of an integer
+    + question_id: 1 (required, number) - ID of the Question in form of an integer
 
 ### View a Questions Detail [GET]
 
@@ -543,8 +543,8 @@ A Question object has the following attributes:
 ## Choice [/questions/{question_id}/choices/{choice_id}]
 
 + Parameters
-    + question_id (required, number, `1`) ... ID of the Question in form of an integer
-    + choice_id (required, number, `1`) ... ID of the Choice in form of an integer
+    + question_id: 1 (required, number) - ID of the Question in form of an integer
+    + choice_id: 1 (required, number) - ID of the Choice in form of an integer
 
 ### View a Choice Detail [GET]
 
