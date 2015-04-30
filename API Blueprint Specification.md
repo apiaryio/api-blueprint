@@ -64,7 +64,7 @@ In addition to the regular [Markdown syntax][] API Blueprint conforms to the [Gi
 ## 3. API Blueprint document
 An API Blueprint document – a blueprint is a plain text Markdown document describing a Web API or its part. The document is structured into logical **sections**. Each section has its distinctive meaning, content and position in the document.
 
-General section definition and structure is discussed in detail later in the [Blueprint section](#document-sections) chapter.
+General section definition and structure is discussed in detail later in the [Blueprint section](#def-blueprint-section) chapter.
 
 All of the blueprint sections are optional. However, when present, a section **must** follow the API Blueprint **document structure**.
 
