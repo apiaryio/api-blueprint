@@ -9,46 +9,46 @@ Version: 1A8
 #### Format 1A revision 8
 
 ## [I. API Blueprint Language](#def-api-blueprint-language)
-1. [Introduction](#def-introduction)
-2. [API Blueprint](#def-api-blueprint)
-3. [API Blueprint document](#def-api-blueprint-document)
-4. [Blueprint section](#def-blueprint-section)
-    1. [Section types](#def-section-types)
-    2. [Section structure](#def-section-structure)
-    3. [Keywords](#def-keywords)
-    4. [Identifier](#def-identifier)
-    5. [Description](#def-description)
-    6. [Nested sections](#def-nested-sections)
+* [Introduction](#def-introduction)
+* [API Blueprint](#def-api-blueprint)
+* [API Blueprint document](#def-api-blueprint-document)
+* [Blueprint section](#def-blueprint-section)
+    * [Section types](#def-section-types)
+    * [Section structure](#def-section-structure)
+    * [Keywords](#def-keywords)
+    * [Identifier](#def-identifier)
+    * [Description](#def-description)
+    * [Nested sections](#def-nested-sections)
 
 ## [II. Sections Reference](#def-sections-reference)
 
 ### Abstract
-1. [Named section](#def-named-section)
-2. [Asset section](#def-asset-section)
-3. [Payload section](#def-payload-section)
+* [Named section](#def-named-section)
+* [Asset section](#def-asset-section)
+* [Payload section](#def-payload-section)
 
 ### Section Basics
-1. [Metadata section](#def-metadata-section)
-2. [API name & overview section](#def-api-name-section)
-3. [Resource group section](#def-resourcegroup-section)
-4. [Resource section](#def-resource-section)
-5. [Resource model section](#def-model-section)
-6. [Schema section](#def-schema-section)
-7. [Action section](#def-action-section)
-8. [Request section](#def-request-section)
-9. [Response section](#def-response-section)
-10. [URI parameters section](#def-uriparameters-section)
-11. [Attributes section](#def-attributes-section)
-12. [Headers section](#def-headers-section)
-13. [Body section](#def-body-section)
+* [Metadata section](#def-metadata-section)
+* [API name & overview section](#def-api-name-section)
+* [Resource group section](#def-resourcegroup-section)
+* [Resource section](#def-resource-section)
+* [Resource model section](#def-model-section)
+* [Schema section](#def-schema-section)
+* [Action section](#def-action-section)
+* [Request section](#def-request-section)
+* [Response section](#def-response-section)
+* [URI parameters section](#def-uriparameters-section)
+* [Attributes section](#def-attributes-section)
+* [Headers section](#def-headers-section)
+* [Body section](#def-body-section)
 
 ### Going Further
-1. [Data Structures section](#def-data-structures)
-2. [Relation section](#def-relation-section)
+* [Data Structures section](#def-data-structures)
+* [Relation section](#def-relation-section)
 
 
 ## [III. Appendix](#def-appendix)
-1. [URI Templates](#def-uri-templates)
+* [URI Templates](#def-uri-templates)
 
 ---
 
@@ -58,17 +58,17 @@ Version: 1A8
 # I. API Blueprint Language
 
 <a name="def-introduction"></a>
-## 1. Introduction
+## Introduction
 This documents is full specification of the API Blueprint format. For a less formal introduction to API Blueprint visit the [API Blueprint Tutorial](Tutorial.md) or check some of the [examples](examples).
 
 <a name="def-api-blueprint"></a>
-## 2. API Blueprint
+## API Blueprint
 API Blueprint is documentation-oriented web API description language. The API Blueprint is essentially a set of semantic assumptions laid on top of the Markdown syntax used to describe a web API.
 
 In addition to the regular [Markdown syntax][] API Blueprint conforms to the [GitHub Flavored Markdown syntax][].
 
 <a name="def-api-blueprint-document"></a>
-## 3. API Blueprint document
+## API Blueprint document
 An API Blueprint document – a blueprint is a plain text Markdown document describing a Web API or its part. The document is structured into logical **sections**. Each section has its distinctive meaning, content and position in the document.
 
 General section definition and structure is discussed in detail later in the [Blueprint section](#document-sections) chapter.
@@ -83,6 +83,10 @@ All of the blueprint sections are optional. However, when present, a section **m
     + [`0-1` **URI Parameters** section](#def-uriparameters-section)
     + [`0-1` **Attributes** section](#def-attributes-section)    
     + [`0-1` **Model** section](#def-model-section)
+        + [`0-1` **Headers** section](#def-headers-section)
+        + [`0-1` **Attributes** section](#def-attributes-section)
+        + [`0-1` **Body** section](#def-body-section)
+        + [`0-1` **Schema** section](#def-schema-section)
     + [`1+` **Action** sections](#def-action-section)
         + [`0-1` **Relation** section](#def-relation-section)
         + [`0-1` **URI Parameters** section](#def-uriparameters-section)
@@ -106,7 +110,7 @@ All of the blueprint sections are optional. However, when present, a section **m
 > **NOTE:** Refer to [Sections Reference](#def-sections-reference) for  description of a specific section type.
 
 <a name="def-blueprint-section"></a>
-## 4. Blueprint section
+## Blueprint section
 Section represents a logical unit of API Blueprint. For example an API overview, a group of resources or a resource definition.
 
 In general a section is **defined** using a **keyword** in a Markdown entity.
@@ -161,13 +165,13 @@ A section definition **may** also contain additional variable components such as
 >     ...
 
 <a name="def-section-types"></a>
-### 4.1 Section types
+### Section types
 There are several types of API Blueprint sections. You can find the complete listing of the section types in the [Section Reference](#def-sections-reference).
 
 **The Blueprint section chapter discusses the section syntax in general. A specific section type may conform only to some parts of this general syntax.** Always refer for respective section reference for details on its syntax.
 
 <a name="def-section-structure"></a>
-### 4.2 Section structure
+### Section structure
 A general structure of an API Blueprint section defined by a **keyword** includes an **identifier** (name), section **description** and **nested sections** or a specifically formatted content.
 
 #### Example: Header-defined section structure
@@ -191,7 +195,7 @@ A general structure of an API Blueprint section defined by a **keyword** include
         <nested sections>
 
 <a name="def-keywords"></a>
-### 4.3 Keywords
+### Keywords
 Following reserved keywords are used in section definitions:
 
 #### Header keywords
@@ -218,7 +222,7 @@ Following reserved keywords are used in section definitions:
 > **NOTE:** With the exception of HTTP methods keywords the section keywords are case insensitive.
 
 <a name="def-identifier"></a>
-### 4.4 Identifier
+### Identifier
 A section definition **may** or **must** include an identifier of the section. An **identifier is any non-empty combination of any character except `[`, `]`, `(`, `)` and newline characters**.
 
 An identifier **must not** contain any of the [keywords](#def-keywords).
@@ -235,7 +239,7 @@ my-awesome-message_2
 
 
 <a name="def-description"></a>
-### 4.5 Description
+### Description
 A section description is any arbitrary Markdown-formatted content following the section definition.
 
 It is possible to use any Markdown header or list item in a section description as long as it does not clash with any of the [reserved keywords](#def-keywords).
@@ -243,7 +247,7 @@ It is possible to use any Markdown header or list item in a section description 
 > **NOTE:** It is considered good practice to keep the header level nested under the actual section.
 
 <a name="def-nested-sections"></a>
-### 4.6 Nested sections
+### Nested sections
 A section **may** contain another nested section(s).
 
 Depending on the nested section type, to nest a section simply increase its header level or its list item indentation. Anything between the section start and the start of following section at the same level is considered to be part of the section.
@@ -280,7 +284,6 @@ What sections can be nested and where depends upon the section in case, as descr
 # II. Sections Reference
 > **NOTE:** Sections marked as "Abstract" serve as a base for other sections and as such they **cannot** be used directly.
 
-<!-- BEGIN Abstract -->
 
 # Abstract
 
@@ -430,12 +433,6 @@ Instead of providing a payload section content a [model payload section](#def-mo
 
 ---
 
-<!-- END Abstract -->
-
-
-
-
-<!-- BEGIN Section Basics -->
 
 # Section Basics
 
@@ -1021,9 +1018,6 @@ Specifies the HTTP message-body of a payload section.
 
 ---
 
-<!-- END Section Basics -->
-
-<!-- BEGIN Going Further -->
 
 <a name="def-data-structures"></a>
 ## Data Structures section
@@ -1124,7 +1118,6 @@ This section specifies a [link relation type](https://tools.ietf.org/html/rfc598
 
 ---
 
-<!-- END Going Further -->
 
 <br>
 
