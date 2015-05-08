@@ -9,46 +9,46 @@ Version: 1A8
 #### Format 1A revision 8
 
 ## [I. API Blueprint Language](#def-api-blueprint-language)
-* [Introduction](#def-introduction)
-* [API Blueprint](#def-api-blueprint)
-* [API Blueprint document](#def-api-blueprint-document)
-* [Blueprint section](#def-blueprint-section)
-    * [Section types](#def-section-types)
-    * [Section structure](#def-section-structure)
-    * [Keywords](#def-keywords)
-    * [Identifier](#def-identifier)
-    * [Description](#def-description)
-    * [Nested sections](#def-nested-sections)
++ [Introduction](#def-introduction)
++ [API Blueprint](#def-api-blueprint)
++ [API Blueprint document](#def-api-blueprint-document)
++ [Blueprint section](#def-blueprint-section)
+    + [Section types](#def-section-types)
+    + [Section structure](#def-section-structure)
+    + [Keywords](#def-keywords)
+    + [Identifier](#def-identifier)
+    + [Description](#def-description)
+    + [Nested sections](#def-nested-sections)
 
 ## [II. Sections Reference](#def-sections-reference)
 
 ### Abstract
-* [Named section](#def-named-section)
-* [Asset section](#def-asset-section)
-* [Payload section](#def-payload-section)
++ [Named section](#def-named-section)
++ [Asset section](#def-asset-section)
++ [Payload section](#def-payload-section)
 
 ### Section Basics
-* [Metadata section](#def-metadata-section)
-* [API name & overview section](#def-api-name-section)
-* [Resource group section](#def-resourcegroup-section)
-* [Resource section](#def-resource-section)
-* [Resource model section](#def-model-section)
-* [Schema section](#def-schema-section)
-* [Action section](#def-action-section)
-* [Request section](#def-request-section)
-* [Response section](#def-response-section)
-* [URI parameters section](#def-uriparameters-section)
-* [Attributes section](#def-attributes-section)
-* [Headers section](#def-headers-section)
-* [Body section](#def-body-section)
++ [Metadata section](#def-metadata-section)
++ [API name & overview section](#def-api-name-section)
++ [Resource group section](#def-resourcegroup-section)
++ [Resource section](#def-resource-section)
++ [Resource model section](#def-model-section)
++ [Schema section](#def-schema-section)
++ [Action section](#def-action-section)
++ [Request section](#def-request-section)
++ [Response section](#def-response-section)
++ [URI parameters section](#def-uriparameters-section)
++ [Attributes section](#def-attributes-section)
++ [Headers section](#def-headers-section)
++ [Body section](#def-body-section)
 
 ### Going Further
-* [Data Structures section](#def-data-structures)
-* [Relation section](#def-relation-section)
++ [Data Structures section](#def-data-structures)
++ [Relation section](#def-relation-section)
 
 
 ## [III. Appendix](#def-appendix)
-* [URI Templates](#def-uri-templates)
++ [URI Templates](#def-uri-templates)
 
 ---
 
@@ -820,17 +820,17 @@ This section **must** be composed of nested list items only. This section **must
 
 Where:
 
-* `<parameter name>` is the parameter name as written in [Resource Section](#ResourceSection)'s URI (e.g. "id").
-* `<description>` is any **optional** Markdown-formatted description of the parameter.
-* `<additional description>` is any additional **optional** Markdown-formatted [description](#SectionDescription) of the parameter.
-* `<default value>` is an **optional** default value of the parameter – a value that is used when no value is explicitly set (optional parameters only).
-* `<example value>` is an **optional** example value of the parameter (e.g. `1234`).
-* `<type>` is the **optional** parameter type as expected by the API (e.g. "number", "string", "boolean"). "string" is the **default**.
-* `Members` is the **optional** enumeration of possible values. `<type>` should be surrounded by `enum[]` if this is present. For example, if enumeration values are present for a parameter whose type is `number`, then `enum[number]` should be used instead of `number` to.
-* `<enumeration value n>` represents an element of enumeration type.
-* `<enumeration description n>` is the **optional** description of the corresponding enumeration element.
-* `required` is the **optional** specifier of a required parameter (this is the **default**)
-* `optional` is the **optional** specifier of an optional parameter.
++ `<parameter name>` is the parameter name as written in [Resource Section](#ResourceSection)'s URI (e.g. "id").
++ `<description>` is any **optional** Markdown-formatted description of the parameter.
++ `<additional description>` is any additional **optional** Markdown-formatted [description](#SectionDescription) of the parameter.
++ `<default value>` is an **optional** default value of the parameter – a value that is used when no value is explicitly set (optional parameters only).
++ `<example value>` is an **optional** example value of the parameter (e.g. `1234`).
++ `<type>` is the **optional** parameter type as expected by the API (e.g. "number", "string", "boolean"). "string" is the **default**.
++ `Members` is the **optional** enumeration of possible values. `<type>` should be surrounded by `enum[]` if this is present. For example, if enumeration values are present for a parameter whose type is `number`, then `enum[number]` should be used instead of `number` to.
++ `<enumeration value n>` represents an element of enumeration type.
++ `<enumeration description n>` is the **optional** description of the corresponding enumeration element.
++ `required` is the **optional** specifier of a required parameter (this is the **default**)
++ `optional` is the **optional** specifier of an optional parameter.
 
 > **NOTE:** This section **should only** contain parameters that are specified in the parent's resource URI template, and does not have to list every URI parameter.
 
