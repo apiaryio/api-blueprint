@@ -81,7 +81,7 @@ All of the blueprint sections are optional. However, when present, a section **m
 + [`0-1` **API Name & overview** section](#def-api-name-section)
 + [`0+` **Resource** sections](#def-resource-section)
     + [`0-1` **URI Parameters** section](#def-uriparameters-section)
-    + [`0-1` **Attributes** section](#def-attributes-section)    
+    + [`0-1` **Attributes** section](#def-attributes-section)
     + [`0-1` **Model** section](#def-model-section)
         + [`0-1` **Headers** section](#def-headers-section)
         + [`0-1` **Attributes** section](#def-attributes-section)
@@ -593,13 +593,13 @@ The payload defined in this section **may** be referenced in any response or req
 #### Example
 
     # My Resource [/resource]
-    
+
     + Model (text/plain)
 
             Hello World
 
     ## Retrieve My Resource [GET]
-    
+
     + Response 200
 
         [My Resource][]
@@ -680,7 +680,7 @@ Multiple Request and Response nested sections within one transaction example **s
 
     + Attributes
 
-            ...    
+            ...
 
     + Request
 
@@ -888,13 +888,13 @@ Defined by the `Attributes` keyword followed by an optional [MSON Type Definitio
 
 `<Type Definition>` is the type definition of the data structure being described. If the `<Type Definition>` is not specified, an `object` base type is assumed. See [MSON Type Definition][] for details.
 
-##### Example 
+##### Example
 
     + Attributes (object)
 
 #### Description
 This section describes a data structure using the **[Markdown Syntax for Object Notation][MSON] (MSON)**. Based on the parent section, the data structure being described is one of the following:
-    
+
 1. Resource data structure attributes ([Resource section](#def-resource-section))
 2. Action request attributes ([Action section](#def-action-section))
 3. Payload message-body attributes ([Payload section](#def-payload-section))
@@ -902,7 +902,7 @@ This section describes a data structure using the **[Markdown Syntax for Object 
 Data structures defined in this section **may** refer to any arbitrary data structures defined in the [Data Structures section](#def-data-structures) as well as to any data structures defined by a named resource attributes description (see below).
 
 #### Resource Attributes description
-Description of the resource data structure. 
+Description of the resource data structure.
 
 If defined in a named [Resource section](#def-resource-section), this data structure **may** be referenced by other data structures using the resource name.
 
@@ -917,9 +917,9 @@ If defined in a named [Resource section](#def-resource-section), this data struc
         + author: john@appleseed.com (string) - Author of the blog post
 
 > **NOTE:** This data structure can be later referred as:
-> 
+>
 >     + Attributes (Blog Post)
-> 
+>
 
 #### Action Attributes description
 Description of the default request message-body data structure.
@@ -932,7 +932,7 @@ If defined, all the [Request sections](#def-request-section) of the respective [
 
     + Attributes
         + message (string) - The blog post article
-        + author: john@appleseed.com (string) - Author of the blog post        
+        + author: john@appleseed.com (string) - Author of the blog post
 
     + Request (application/json)
 
@@ -1032,7 +1032,7 @@ Defined by the `Data Structures` keyword.
     # Data Structures
 
 #### Description
-This section holds arbitrary data structures definitions defined in the form of [MSON Named Types][]. 
+This section holds arbitrary data structures definitions defined in the form of [MSON Named Types][].
 
 Data structures defined in this section **may** be used in any [Attributes section][]. Similarly, any data structures defined in a [Attributes section][] of a named [Resource Section][] **may** be used in a data structure definition.
 
@@ -1053,7 +1053,7 @@ Refer to the [MSON][] specification for full details on how to define an MSON Na
     + email: john@appleseed.com
 
 
-#### Example reusing Data Structure in Resource 
+#### Example reusing Data Structure in Resource
 
     # User [/user]
 
@@ -1108,9 +1108,9 @@ This section specifies a [link relation type](https://tools.ietf.org/html/rfc598
 
     + Relation: task
     + Response 200
-    
+
             { ... }
-    
+
     ## Delete Task [DELETE]
 
     + Relation: delete

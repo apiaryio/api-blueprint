@@ -64,8 +64,8 @@ It is the task for the API Blueprint parser – [Drafter][] or one of its langua
 
 If you are interested in building tools for API Blueprint or just to integrate it with your workflow check out the [Developing tools for API Blueprint](https://github.com/apiaryio/api-blueprint/wiki/Developing-tools-for-API-Blueprint).
 
-## Media Type 
-The media type for API Blueprint is `text/vnd.apiblueprint+markdown`. 
+## Media Type
+The media type for API Blueprint is `text/vnd.apiblueprint+markdown`.
 
 ## Learn more
 + [Tutorial](Tutorial.md)
