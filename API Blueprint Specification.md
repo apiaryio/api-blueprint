@@ -30,6 +30,8 @@ Version: 1A8
 ### Section Basics
 + [Metadata section](#def-metadata-section)
 + [API name & overview section](#def-api-name-section)
++ [Authentication section](#def-authentication-section)
++ [Authentication schemes section](#def-authenticationschemes-section)
 + [Resource group section](#def-resourcegroup-section)
 + [Resource section](#def-resource-section)
 + [Resource model section](#def-model-section)
@@ -79,6 +81,9 @@ All of the blueprint sections are optional. However, when present, a section **m
 
 + [`0-1` **Metadata** section](#def-metadata-section)
 + [`0-1` **API Name & overview** section](#def-api-name-section)
++ [`0-1` **Authentication** section](#def-authentication-section)
+    + [`1` **Authentication schemes** section](#def-authenticationschemes-section)
+    + [`1` **Response** section](#def-response-section)
 + [`0+` **Resource** sections](#def-resource-section)
     + [`0-1` **URI Parameters** section](#def-uriparameters-section)
     + [`0-1` **Attributes** section](#def-attributes-section)
@@ -89,6 +94,7 @@ All of the blueprint sections are optional. However, when present, a section **m
         + [`0-1` **Schema** section](#def-schema-section)
     + [`1+` **Action** sections](#def-action-section)
         + [`0-1` **Relation** section](#def-relation-section)
+        + [`0-1` **Authentication** section](#def-authentication-section)
         + [`0-1` **URI Parameters** section](#def-uriparameters-section)
         + [`0-1` **Attributes** section](#def-attributes-section)
         + [`0+` **Request** sections](#def-request-section)
@@ -200,6 +206,7 @@ Following reserved keywords are used in section definitions:
 
 #### Header keywords
 - `Group`
+- `Authentication`
 - `Data Structures`
 - [HTTP methods][httpmethods] (e.g. `GET, POST, PUT, DELETE`...)
 - [URI templates][uritemplate] (e.g. `/resource/{id}`)
@@ -216,6 +223,8 @@ Following reserved keywords are used in section definitions:
 - `Values`
 - `Attribute` & `Attributes`
 - `Relation`
+- `Authentication`
+- `Authentication Schemes`
 
 > **NOTE: Avoid using these keywords in other Markdown headers or lists**
 
@@ -475,6 +484,149 @@ Name and description of the API
 
     # Basic ACME Blog API
     Welcome to the **ACME Blog** API. This API provides access to the **ACME Blog** service.
+
+---
+
+<a name="def-authentication-section"></a>
+## Authentication section
+- **Parent sections:** none, [Action section](#def-action-section)
+- **Nested sections:** [`1` Authentication schemes section](#def-authenticationschemes-section), [`1` Response section](#def-response-section)
+- **Markdown entity:** header, list
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Authentication` keyword in Markdown header entity.
+
+    # Authentication
+
+**-- or --**
+
+Defined by the `Authentication` keyword in Markdown list entity followed by optional comma seperated list of scheme names which is prefixed by a colon.
+
+    + Authentication: <list>
+
+> **NOTE:** The second notation is only used when the parent section is an [Action section](#def-action-section).
+
+#### Description
+Based on the parent section, the usage of this section differs as shown below.
+
+#### API Authentication section
+Description of the authentication support for the whole API.
+
+This section **should** include one [Authentication schemes section](#def-authenticationschemes-section) and one [Response section](#def-response-section).
+
+The [Authentication schemes section](#def-authenticationschemes-section) defines all the types of authentication schemes supported by the API. Where as, the [Response section](#def-response-section) describes the error response given by an authentication protected endpoint when no authentication is provided with the request.
+
+##### Example
+
+    ## Authentication
+    This API supports different kinds of the authentication.
+
+    + Authentication Schemes
+        + ...
+
+    + Response 403 (application/json)
+
+            {
+              "message": "Authentication required",
+              "type": "error"
+            }
+
+#### Action Authentication section
+Description of the authentication support for a particular action in the API.
+
+If defined, the respecitve action of the [Action section](#def-action-section) in the API can only be accessed using a vaild authentication scheme. If a list of scheme names is provided after the `Authentication` keyword, the respective action in the API does not allow other authentication schemes.
+
+This section **should** not have any nested sections.
+
+##### Example
+
+```
++ Authentication
+```
+
+```
++ Authentication: basic, token
+```
+
+---
+
+<a name="def-authenticationschemes-section"></a>
+## Authentication schemes section
+- **Parent sections:** [Authentication section](#def-authentication-section)
+- **Nested sections:** See below
+- **Markdown entity:** list
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Authentication Schemes` keyword.
+
+    + Authentication Schemes
+
+#### Description
+Description of the list of authentication schemes supported by the API.
+
+This section **must** be composed of nested list items only. This section **must not** contain any other elements. Each list item describes a single Authentication scheme.
+
+    + <scheme name> (<base scheme type>) - <description>
+
+        + `<key 1>`: <value 1>
+        + `<key 2>`: <value 2>
+        ...
+        + `<key N>`: <value N>
+
+Where:
+
++ `<scheme name>` is the scheme name as written in [Authentication section](#def-authentication-section) under an [Action section](#def-action-section).
++ `<description>` is any **optional** Markdown-formatted description of the authentication scheme.
++ `<base scheme type>` is the authentication scheme type as expected by the API (e.g. "Basic Auth Scheme"). See below for all the available base authentication schemes.
++ `<key n>` represents a key of an customizable option in the base authentication scheme.
++ `<value n>` represents the value for the option with the key `<key n>`.
+
+Description of the base authentication schemes inherently defined in API Blueprint are defined below.
+
+#### Basic Auth Scheme
+This is the [Basic Authentication Scheme](http://tools.ietf.org/html/rfc2617#section-2) as specified in [RFC 2617](http://tools.ietf.org/html/rfc2617).
+
+The customizable options for this scheme are:
+
++ `sample_username` represents a sample username value. "sample_user" is the **default**.
++ `sample_password` represents a sample password value. "sample_pass" is the **default**.
+
+##### Example
+
+    + basic (Basic Auth Scheme)
+        + sample_username: `bond`
+        + sample_password: `Iam007`
+
+#### Oauth2 Auth Scheme
+This scheme uses the [Oauth2 Authorization Framework](http://tools.ietf.org/html/rfc6749) specified in [RFC 6749](http://tools.ietf.org/html/rfc6749) to get an authorization grant and uses it access the API.
+
+The customizable options for this scheme are:
+
++ `authorization_endpoint` is the authorization endpoint required for the authorization grant. "/authorize" is the **default**.
++ `access_token_endpoint` is the token endpoint used by client to obtain the access token. "/access_token" is the **default**.
++ `token_header_keyword` represents the string used instead of "Bearer" in "Authorization" header field according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.1). "Bearer" is the **default**.
++ `token_body_keyword` represents the parameter name used instead of "access_token" in the body of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.2). "access_token" is the **default**.
++ `token_query_keyword` represents the parameter name used instead of "access_token" in the query of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.3). "access_token" is the **default**.
+
+##### Example
+
+    + oauth (Oauth2 Auth Scheme)
+        + access_token_endpoint: `/token`
+        + token_header_keyword: `token`
+
+#### Bearer Auth Scheme
+This scheme is popularly used when API consumers has access to their own unique access token which can be used as a bearer token as specified in [RFC 6750](https://tools.ietf.org/html/rfc6750#section-2.1).
+
+The customizable options for this scheme are:
+
++ `keyword` represents the string used instead of "Bearer" in the "Authorization" header field according to [RFC 6750](https://tools.ietf.org/html/rfc6750#section-2.1). "Bearer" is the **default**.
+
+##### Example
+
+    + token (Bearer Auth Scheme)
+        + keyword: `token`
 
 ---
 
@@ -768,7 +920,7 @@ One HTTP request-message example – payload.
 <a name="def-response-section"></a>
 ## Response section
 - **Abstract**
-- **Parent sections:** [Action section](#def-action-section)
+- **Parent sections:** [Action section](#def-action-section) | [Authentication section](#def-authentication-section)
 - **Nested sections:** [Refer to payload section](#def-payload-section)
 - **Markdown entity:** list
 - **Inherits from**: [Payload section](#def-payload-section)
@@ -872,6 +1024,7 @@ Where:
             + `B`
             + `C` - This is character C
 ```
+
 ---
 
 <a name="def-attributes-section"></a>
