@@ -534,7 +534,13 @@ Defined by an [HTTP request method][httpmethods] followed by [URI template][urit
 
     # <HTTP request method> <URI template>
 
-> **NOTE:** In this case the rest of this section represents the [Action section](#def-action-section) including its description and nested sections and **follows the rules of Action section instead**.
+**-- or --**
+
+Defined by a resource [name (identifier)](#def-identifier) followed by an [HTTP request method][httpmethods] and an [URI template][uritemplate] enclosed in square brackets `[]`:
+
+    # <identifier> [<HTTP request method> <URI template>]
+
+> **NOTE:** In the two latter cases the rest of this section represents the [Action section](#def-action-section) including its description and nested sections and **follows the rules of Action section instead**.
 
 #### Description
 An API [resource](http://www.w3.org/TR/di-gloss/#def-resource) as specified by its *URI* or a set of resources (a resource template) matching its *URI template*.
