@@ -697,7 +697,7 @@ This section **should** include at least one nested [Action section](#def-action
 
     URI parameters defined in the scope of a Resource section apply to _any and all_ nested Action sections except when an [URI template][uritemplate] has been defined for the Action.
 
-- [`0-1` Attributes section][]
+- [`0-1` Attributes section](#def-attributes-section)
 
     Attributes defined in the scope of a Resource section represent Resource attributes. If the resource is defined with a name these attributes **may** be referenced in [Attributes sections][].
 
@@ -972,9 +972,9 @@ This section **must** be composed of nested list items only. This section **must
 
 Where:
 
-+ `<parameter name>` is the parameter name as written in [Resource Section](#ResourceSection)'s URI (e.g. "id").
++ `<parameter name>` is the parameter name as written in [Resource Section](#def-resource-section)'s URI (e.g. "id").
 + `<description>` is any **optional** Markdown-formatted description of the parameter.
-+ `<additional description>` is any additional **optional** Markdown-formatted [description](#SectionDescription) of the parameter.
++ `<additional description>` is any additional **optional** Markdown-formatted [description](#def-description) of the parameter.
 + `<default value>` is an **optional** default value of the parameter – a value that is used when no value is explicitly set (optional parameters only).
 + `<example value>` is an **optional** example value of the parameter (e.g. `1234`).
 + `<type>` is the **optional** parameter type as expected by the API (e.g. "number", "string", "boolean"). "string" is the **default**.
@@ -1187,7 +1187,7 @@ Defined by the `Data Structures` keyword.
 #### Description
 This section holds arbitrary data structures definitions defined in the form of [MSON Named Types][].
 
-Data structures defined in this section **may** be used in any [Attributes section][]. Similarly, any data structures defined in a [Attributes section][] of a named [Resource Section][] **may** be used in a data structure definition.
+Data structures defined in this section **may** be used in any [Attributes section][]. Similarly, any data structures defined in a [Attributes section][] of a named [Resource section][] **may** be used in a data structure definition.
 
 Refer to the [MSON][] specification for full details on how to define an MSON Named type.
 
@@ -1407,10 +1407,8 @@ With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path
 [MSON Named Types]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#22-named-types
 [MSON Type Definition]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#35-type-definition
 
-[`0-1` Attributes section]: #def-attributes-section
 [Attributes section]: #def-attributes-section
 [Attributes sections]: #def-attributes-section
 
-[Resource Section]: #def-resource-section
-
+[Resource section]: #def-resource-section
 [Request section]: #def-request-section
