@@ -676,7 +676,7 @@ Multiple Request and Response nested sections within one transaction example **s
 
             ...
 
-    ### Create a Post [POST]
+    ## Create a Post [POST]
 
     + Attributes
 
@@ -690,7 +690,7 @@ Multiple Request and Response nested sections within one transaction example **s
 
             ...
 
-    ### Delete a Post [DELETE /posts/{id}]
+    ## Delete a Post [DELETE /posts/{id}]
 
     + Parameters
         + id (string) ... Id of the post
@@ -928,7 +928,7 @@ If defined, all the [Request sections](#def-request-section) of the respective [
 
 ##### Example
 
-    ### Create a Post [POST]
+    ## Create a Post [POST]
 
     + Attributes
         + message (string) - The blog post article
@@ -951,7 +951,7 @@ The description of message-body attributes **may** be used to describe message-b
 
 ##### Example
 
-    ### Retrieve a Post [GET]
+    ## Retrieve a Post [GET]
 
     + Response 200 (application/json)
 
