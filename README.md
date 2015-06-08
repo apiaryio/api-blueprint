@@ -20,7 +20,7 @@ API Blueprint, its parser, and most of its tools are completely open sourced so 
 
 ## Format support
 
-* Current format: [1A8](https://github.com/apiaryio/api-blueprint/releases/tag/format-1A8)
+* Current format: [1A9](https://github.com/apiaryio/api-blueprint/releases/tag/format-1A9)
 * Format supported by Apiary: [1A8](https://github.com/apiaryio/api-blueprint/releases/tag/format-1A8)
 
 ## Getting started with API Blueprint
