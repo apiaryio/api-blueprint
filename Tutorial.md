@@ -14,7 +14,7 @@ Welcome to an API Blueprint Tutorial! This tutorial will take you through the ba
 
 The first step for creating a blueprint is to specify the API Name and metadata. This step looks as follows:
 
-```markdown
+```apib
 FORMAT: 1A
 
 # Polls
@@ -36,7 +36,7 @@ Following the heading is a description of the API. You may use further headings 
 
 Now it's time to start documenting the API resources. Using the `Group` keyword at the start of a heading, we've created a group of related resources.
 
-```markdown
+```apib
 # Group Questions
 
 Resources related to questions in the API.
@@ -46,7 +46,7 @@ Resources related to questions in the API.
 
 Within the questions resource group, we have a resource called "Question Collection". This resource allows you to view a list of questions. The heading specifies the URI used to access the resource inside of square brackets at the end of the heading.
 
-```markdown
+```apib
 ## Question Collection [/questions]
 ```
 
@@ -56,7 +56,7 @@ API Blueprint allows you to specify each action you may make on a resource. An
 action is specified with a sub-heading inside of a resource with the name of the
 action followed by the HTTP method.
 
-```markdown
+```apib
 ### List All Questions [GET]
 ```
 
@@ -64,7 +64,7 @@ An action should include at least one response from the server which must includ
 
 This action returns a `200` status code along with a JSON body.
 
-```markdown
+```apib
 + Response 200 (application/json)
 
         [
@@ -99,7 +99,7 @@ This action returns a `200` status code along with a JSON body.
 
 The polls resource has a second action which allows you to create a new question. This action includes a description showing the structure you would send to the server to perform this action.
 
-```markdown
+```apib
 ### Create a New Question [POST]
 
 You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
@@ -110,7 +110,7 @@ You may create your own question using this action. It takes a JSON object conta
 
 This action takes a JSON payload as part of the request as follows:
 
-```markdown
+```apib
 + Request (application/json)
 
             {
@@ -126,7 +126,7 @@ This action takes a JSON payload as part of the request as follows:
 
 This example returns a `201` status code, along with HTTP headers and a body.
 
-```markdown
+```apib
 + Response 201 (application/json)
 
     + Headers
@@ -163,7 +163,7 @@ This example returns a `201` status code, along with HTTP headers and a body.
 
 The next resource is “Question”, which represents a single question.
 
-```markdown
+```apib
 ## Question [/questions/{question_id}]
 ```
 
@@ -176,7 +176,7 @@ The URI for the “Question” resource uses a variable component, expressed by 
 
 URI parameters should describe  the URI using a list of Parameters. For “Question” it would be as follows:
 
-```markdown
+```apib
 + Parameters
     + question_id (number) - ID of the Question in the form of an integer
 ```
@@ -189,7 +189,7 @@ The `question_id` variable of the URI template is a parameter for every action o
 
 This resource has an action to retrieve the questions detail.
 
-```markdown
+```apib
 ### View a Questions Detail [GET]
 
 + Response 200 (application/json)
@@ -224,7 +224,7 @@ This resource has an action to retrieve the questions detail.
 
 This resource has a delete action. The server will return a 204 response without a body.
 
-```markdown
+```apib
 ### Delete [DELETE]
 
 + Response 204
