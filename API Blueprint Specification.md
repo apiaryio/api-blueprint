@@ -30,8 +30,6 @@ Version: 1A8
 ### Section Basics
 + [Metadata section](#def-metadata-section)
 + [API name & overview section](#def-api-name-section)
-+ [Authentication section](#def-authentication-section)
-+ [Authentication schemes section](#def-authenticationschemes-section)
 + [Resource group section](#def-resourcegroup-section)
 + [Resource section](#def-resource-section)
 + [Resource model section](#def-model-section)
@@ -47,7 +45,9 @@ Version: 1A8
 ### Going Further
 + [Data Structures section](#def-data-structures)
 + [Relation section](#def-relation-section)
-
++ [Authentication section](#def-authentication-section)
++ [Authentication schemes section](#def-authenticationschemes-section)
++ [Authenticated section](#def-authenticated-section)
 
 ## [III. Appendix](#def-appendix)
 + [URI Templates](#def-uri-templates)
@@ -94,11 +94,11 @@ All of the blueprint sections are optional. However, when present, a section **m
         + [`0-1` **Schema** section](#def-schema-section)
     + [`1+` **Action** sections](#def-action-section)
         + [`0-1` **Relation** section](#def-relation-section)
-        + [`0-1` **Authentication** section](#def-authentication-section)
+        + [`0-1` **Authenticated** section](#def-authenticated-section)
         + [`0-1` **URI Parameters** section](#def-uriparameters-section)
         + [`0-1` **Attributes** section](#def-attributes-section)
         + [`0+` **Request** sections](#def-request-section)
-            + [`0-1` **Authentication** section](#def-authentication-section)
+            + [`0-1` **Authenticated** section](#def-authenticated-section)
             + [`0-1` **Headers** section](#def-headers-section)
             + [`0-1` **Attributes** section](#def-attributes-section)
             + [`0-1` **Body** section](#def-body-section)
@@ -226,6 +226,7 @@ Following reserved keywords are used in section definitions:
 - `Relation`
 - `Authentication`
 - `Authentication Schemes`
+- `Authenticated`
 
 > **NOTE: Avoid using these keywords in other Markdown headers or lists**
 
@@ -490,9 +491,9 @@ Name and description of the API
 
 <a name="def-authentication-section"></a>
 ## Authentication section
-- **Parent sections:** none, [Action section](#def-action-section), [Request section](#def-request-section)
+- **Parent sections:** none
 - **Nested sections:** [`1` Authentication schemes section](#def-authenticationschemes-section), [`1` Response section](#def-response-section)
-- **Markdown entity:** header, list
+- **Markdown entity:** header
 - **Inherits from**: none
 
 #### Definition
@@ -500,23 +501,12 @@ Defined by the `Authentication` keyword in Markdown header entity.
 
     # Authentication
 
-**-- or --**
-
-Defined by the `Authentication` keyword in Markdown list entity followed by optional comma seperated list of scheme names which is prefixed by a colon.
-
-    + Authentication: <list>
-
-> **NOTE:** The second notation is only used when the parent section is either an [Action section](#def-action-section) or a [Request section](#def-request-section).
-
 #### Description
-Based on the parent section, the usage of this section differs as shown below.
-
-#### API Authentication section
-Description of the authentication support for the whole API.
+Description of the authentication settings for the whole API.
 
 This section **should** include one [Authentication schemes section](#def-authenticationschemes-section) and one [Response section](#def-response-section).
 
-The [Authentication schemes section](#def-authenticationschemes-section) defines all the types of authentication schemes supported by the API. Where as, the [Response section](#def-response-section) describes the error response given by an authentication protected endpoint when no authentication is provided with the request.
+The [Authentication schemes section](#def-authenticationschemes-section) defines all the types of authentication schemes supported by the API. The [Response section](#def-response-section) describes the error message returned in the case of failed authentication.
 
 ##### Example
 
@@ -533,67 +523,12 @@ The [Authentication schemes section](#def-authenticationschemes-section) defines
               "type": "error"
             }
 
-#### Request Authentication section
-Description of the request level authentication settings.
-
-If defined inside a [Request section](#def-request-section) of a HTTP transaction example, it implies that the API's response will be the same as the respective response when a valid authentication is sent along with the above mentioned request. This allows another HTTP transaction example to be specified for the cases where an authentication is not needed.
-
-This section **should** not have any nested sections.
-
-If a list of scheme names is provided after the `Authentication` keyword, then only those particular authentication schemes will be allowed for the respective HTTP transaction.
-
-```
-+ Authentication
-```
-
-```
-+ Authentication: basic, token
-```
-
-##### Example
-
-    ## GET /users/bond
-
-    + Response 200 (application/json)
-
-            {
-                "username": "bond"
-            }
-
-    + Request
-        + Authentication
-
-    + Response 200 (application/json)
-
-            {
-                "username": "bond",
-                "email": "james@bo.nd",
-                "bio": "I am 007"
-            }
-
-#### Action Authentication section
-Description of the action level authentication settings.
-
-If defined, all the [Request sections](#def-requestion-section) of the respective [Action section](#def-action-section) inherits the authentication settings unless specified otherwise.
-
-This section **should** not have any nested sections.
-
-##### Example
-
-    ## Retrieve User [GET]
-
-    + Authentication
-
-    + Response 200
-
-            { ... }
-
 ---
 
 <a name="def-authenticationschemes-section"></a>
 ## Authentication schemes section
 - **Parent sections:** [Authentication section](#def-authentication-section)
-- **Nested sections:** See below
+- **Nested sections:** none
 - **Markdown entity:** list
 - **Inherits from**: none
 
@@ -629,17 +564,17 @@ This is the [Basic Authentication Scheme](http://tools.ietf.org/html/rfc2617#sec
 
 The customizable options for this scheme are:
 
-+ `sample_username` represents a sample username value. "sample_user" is the **default**.
-+ `sample_password` represents a sample password value. "sample_pass" is the **default**.
++ `example_username` represents a example username value. "example_user" is the **default**.
++ `example_password` represents a example password value. "example_pass" is the **default**.
 
 ##### Example
 
-    + basic (Basic Auth Scheme)
-        + sample_username: `bond`
-        + sample_password: `Iam007`
+    + basic (Basic Authentication Scheme)
+        + example_username: `john`
+        + example_password: `password`
 
-#### Oauth2 Authentication Scheme
-This scheme uses the [Oauth2 Authorization Framework](http://tools.ietf.org/html/rfc6749) specified in [RFC 6749](http://tools.ietf.org/html/rfc6749) to get an authorization grant and uses it access the API.
+#### OAuth2 Authentication Scheme
+This scheme uses the [OAuth2 Authorization Framework](http://tools.ietf.org/html/rfc6749) specified in [RFC 6749](http://tools.ietf.org/html/rfc6749) to get an authorization grant which is then used to access the API.
 
 The customizable options for this scheme are:
 
@@ -648,26 +583,98 @@ The customizable options for this scheme are:
 + `token_header_keyword` represents the string used instead of "Bearer" in "Authorization" header field according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.1). "Bearer" is the **default**.
 + `token_body_keyword` represents the parameter name used instead of "access_token" in the body of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.2). "access_token" is the **default**.
 + `token_query_keyword` represents the parameter name used instead of "access_token" in the query of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.3). "access_token" is the **default**.
-+ `sample_token` represens a sample access token value. "sample_token" is the **default**.
++ `example_token` represens a example access token value. "example_token" is the **default**.
 
 ##### Example
 
-    + oauth (Oauth2 Auth Scheme)
+    + oauth (OAuth2 Authentication Scheme)
         + access_token_endpoint: `/token`
         + token_header_keyword: `token`
 
 #### Bearer Authentication Scheme
-This scheme is popularly used when API consumers has access to their own unique access token which can be used as a bearer token as specified in [RFC 6750](https://tools.ietf.org/html/rfc6750#section-2.1).
+This scheme represents the method of sending a bearer token as specified in [RFC 6750](https://tools.ietf.org/html/rfc6750#section-2.1).
 
 The customizable options for this scheme are:
 
 + `keyword` represents the string used instead of "Bearer" in the "Authorization" header field according to [RFC 6750](https://tools.ietf.org/html/rfc6750#section-2.1). "Bearer" is the **default**.
-+ `sample_token` represents a sample bearer token value. "sample_token" is the **default**.
++ `example_token` represents a example bearer token value. "example_token" is the **default**.
 
 ##### Example
 
-    + token (Bearer Auth Scheme)
+    + token (Bearer Authentication Scheme)
         + keyword: `token`
+
+---
+
+## Authenticated section
+- **Parent sections:** [Action section](#def-action-section), [Request section](#def-request-section)
+- **Nested sections:** none
+- **Markdown entity:** list
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Authenticated` keyword in Markdown list entity followed by optional comma seperated list of scheme names which are prefixed by a colon.
+
+    + Authenticated: <list>
+
+#### Description
+This section does @TODO
+
+#### Request Authentication section
+Description of the request level authentication settings.
+
+If defined inside a [Request section](#def-request-section) of a HTTP transaction example, it implies that the API's response will be the same as the respective response when a valid authentication is sent along with the above mentioned request. This allows another HTTP transaction example to be specified for the cases where an authentication is not needed.
+
+This section **should** not have any nested sections.
+
+If a list of scheme names is provided after the `Authenticated` keyword, then only those particular authentication schemes will be allowed for the respective HTTP transaction.
+
+```
++ Authenticated
+```
+
+```
++ Authenticated: basic, token
+```
+
+##### Example
+
+    ## GET /users/bond
+
+    + Response 200 (application/json)
+
+            {
+              "username": "john"
+            }
+
+    + Request (application/json)
+        + Authenticated
+
+    + Response 200 (application/json)
+
+            {
+              "username": "john",
+              "email": "john@appleseed.com",
+            }
+
+#### Action Authentication section
+Description of the action level authentication settings.
+
+If defined, all the [Request sections](#def-requestion-section) of the respective [Action section](#def-action-section) inherits the authentication settings unless specified otherwise.
+
+This section **should** not have any nested sections.
+
+##### Example
+
+    ## Retrieve User [GET]
+
+    + Authenticated
+
+    + Response 200
+
+            {
+              "username": "john"
+            }
 
 ---
 
