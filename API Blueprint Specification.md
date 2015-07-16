@@ -85,6 +85,7 @@ All of the blueprint sections are optional. However, when present, a section **m
     + [`1` **Authentication schemes** section](#def-authenticationschemes-section)
     + [`1` **Response** section](#def-response-section)
 + [`0+` **Resource** sections](#def-resource-section)
+    + [`0-1` **Authenticated** section](#def-authenticated-section)
     + [`0-1` **URI Parameters** section](#def-uriparameters-section)
     + [`0-1` **Attributes** section](#def-attributes-section)
     + [`0-1` **Model** section](#def-model-section)
@@ -502,7 +503,7 @@ Defined by the `Authentication` keyword in Markdown header entity.
     # Authentication
 
 #### Description
-Description of the authentication settings for the whole API.
+Authentication settings for the whole API.
 
 This section **should** include one [Authentication schemes section](#def-authenticationschemes-section) and one [Response section](#def-response-section).
 
@@ -538,34 +539,37 @@ Defined by the `Authentication Schemes` keyword.
     + Authentication Schemes
 
 #### Description
-Description of the list of authentication schemes supported by the API.
+List of authentication schemes supported by the API.
+
+API Blueprint supports three **Base Authentication Schemes** (described below) which can be customized to derive authentication schemes supported by the API. Each of the base authentication schemes have a list of customizable options.
+
+Each authentication scheme is defined by an authentication scheme [name (identifier)](#def-identifier), base authentication scheme and the respective customized options.
 
 This section **must** be composed of nested list items only. This section **must not** contain any other elements. Each list item describes a single Authentication scheme.
 
     + <scheme name> (<base scheme type>) - <description>
 
-        + `<key 1>`: <value 1>
-        + `<key 2>`: <value 2>
+        + <customizable option 1>
+        + <customizable option 2>
         ...
-        + `<key N>`: <value N>
+        + <customizable option N>
 
 Where:
 
-+ `<scheme name>` is the scheme name as written in [Authentication section](#def-authentication-section) under an [Action section](#def-action-section).
++ `<scheme name>` is the authentication scheme name by which this scheme is represented in [Authenticated section](#def-authenticated-section).
 + `<description>` is any **optional** Markdown-formatted description of the authentication scheme.
-+ `<base scheme type>` is the authentication scheme type as expected by the API (e.g. "Basic Auth Scheme"). See below for all the available base authentication schemes.
-+ `<key n>` represents a key of an customizable option in the base authentication scheme.
-+ `<value n>` represents the value for the option with the key `<key n>`.
++ `<base scheme type>` is the base authentication scheme type (e.g. "Basic Authentication Scheme"). See below for all the available base authentication schemes.
++ `<customizable option n>` represents a customizable option in the base authentication scheme. It is a [MSON Property Member Declaration][] without the [MSON Type Definition][] where the [MSON Property Name][] represents the name of the option and [MSON Value][] represents the value of the option.
 
-Description of the base authentication schemes inherently defined in API Blueprint are defined below.
+List of the base authentication schemes supported by API Blueprint are described below.
 
 #### Basic Authentication Scheme
 This is the [Basic Authentication Scheme](http://tools.ietf.org/html/rfc2617#section-2) as specified in [RFC 2617](http://tools.ietf.org/html/rfc2617).
 
 The customizable options for this scheme are:
 
-+ `example_username` represents a example username value. "example_user" is the **default**.
-+ `example_password` represents a example password value. "example_pass" is the **default**.
++ `example_username` represents an example username value. Value type is **string**. "example_user" is the **default**.
++ `example_password` represents an example password value. Value type is **string**. "example_pass" is the **default**.
 
 ##### Example
 
@@ -578,26 +582,33 @@ This scheme uses the [OAuth2 Authorization Framework](http://tools.ietf.org/html
 
 The customizable options for this scheme are:
 
-+ `authorization_endpoint` is the authorization endpoint required for the authorization grant. "/authorize" is the **default**.
-+ `access_token_endpoint` is the token endpoint used by client to obtain the access token. "/access_token" is the **default**.
-+ `token_header_keyword` represents the string used instead of "Bearer" in "Authorization" header field according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.1). "Bearer" is the **default**.
-+ `token_body_keyword` represents the parameter name used instead of "access_token" in the body of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.2). "access_token" is the **default**.
-+ `token_query_keyword` represents the parameter name used instead of "access_token" in the query of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.3). "access_token" is the **default**.
-+ `example_token` represens a example access token value. "example_token" is the **default**.
++ `oauth_resource_endpoint` is the oauth resource endpoint where the oauth framework resides. Value type is **string**. "/" is the **default**.
++ `scopes` represents the OAuth scopes which indicate a list of permissions. Value type is **array**. By **default** no scopes are specified.
++ `authorization_endpoint` is the authorization endpoint required for the authorization grant. Value type is **string**. "/authorize" is the **default**.
++ `access_token_endpoint` is the token endpoint used by client to obtain the access token. Value type is **string**. "/access_token" is the **default**.
++ `revocation_endpoint` is the revocation endpoint used by client to revoke a token. Value type is **string**. "/revoke" is the **default**.
++ `token_header_keyword` represents the string used instead of "Bearer" in "Authorization" header field according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.1). Value type is **string**. "Bearer" is the **default**.
++ `token_body_keyword` represents the parameter name used instead of "access_token" in the body of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.2). Value type is **string**. "access_token" is the **default**.
++ `token_query_keyword` represents the parameter name used instead of "access_token" in the query of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.3). Value type is **string**. "access_token" is the **default**.
++ `example_token` represents an example access token value. Value type is **string**. "example_token" is the **default**.
+
+> **NOTE:** The value for `oauth_resource_endpoint` can include hostnames. `authorization_endpoint` and `access_token_endpoint` allow it too only if `oauth_resource_endpoint` is not specified.
 
 ##### Example
 
     + oauth (OAuth2 Authentication Scheme)
+        + oauth_resource_endpoint: `/oauth`
         + access_token_endpoint: `/token`
         + token_header_keyword: `token`
+        + scopes: read, write
 
 #### Bearer Authentication Scheme
 This scheme represents the method of sending a bearer token as specified in [RFC 6750](https://tools.ietf.org/html/rfc6750#section-2.1).
 
 The customizable options for this scheme are:
 
-+ `keyword` represents the string used instead of "Bearer" in the "Authorization" header field according to [RFC 6750](https://tools.ietf.org/html/rfc6750#section-2.1). "Bearer" is the **default**.
-+ `example_token` represents a example bearer token value. "example_token" is the **default**.
++ `keyword` represents the string used instead of "Bearer" in the "Authorization" header field according to [RFC 6750](https://tools.ietf.org/html/rfc6750#section-2.1). Value type is **string**. "Bearer" is the **default**.
++ `example_token` represents an example bearer token value. Value type is **string**. "example_token" is the **default**.
 
 ##### Example
 
@@ -607,7 +618,7 @@ The customizable options for this scheme are:
 ---
 
 ## Authenticated section
-- **Parent sections:** [Action section](#def-action-section), [Request section](#def-request-section)
+- **Parent sections:** [Resource section](#def-resource-section), [Action section](#def-action-section), [Request section](#def-request-section)
 - **Nested sections:** none
 - **Markdown entity:** list
 - **Inherits from**: none
@@ -620,7 +631,7 @@ Defined by the `Authenticated` keyword in Markdown list entity followed by optio
 #### Description
 This section does @TODO
 
-#### Request Authentication section
+#### Request Authenticated section
 Description of the request level authentication settings.
 
 If defined inside a [Request section](#def-request-section) of a HTTP transaction example, it implies that the API's response will be the same as the respective response when a valid authentication is sent along with the above mentioned request. This allows another HTTP transaction example to be specified for the cases where an authentication is not needed.
@@ -657,7 +668,7 @@ If a list of scheme names is provided after the `Authenticated` keyword, then on
               "email": "john@appleseed.com",
             }
 
-#### Action Authentication section
+#### Action Authenticated section
 Description of the action level authentication settings.
 
 If defined, all the [Request sections](#def-requestion-section) of the respective [Action section](#def-action-section) inherits the authentication settings unless specified otherwise.
@@ -1453,7 +1464,10 @@ With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path
 
 [MSON]: https://github.com/apiaryio/mson
 [MSON Named Types]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#22-named-types
+[MSON Property Member Declaration]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#32-property-member-declaration
 [MSON Type Definition]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#35-type-definition
+[MSON Property Name]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#321-property-name
+[MSON Value]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#341-value
 
 [Attributes section]: #def-attributes-section
 [Attributes sections]: #def-attributes-section
