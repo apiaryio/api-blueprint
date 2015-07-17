@@ -773,7 +773,6 @@ One HTTP request-message example – payload.
 
 <a name="def-response-section"></a>
 ## Response section
-- **Abstract**
 - **Parent sections:** [Action section](#def-action-section)
 - **Nested sections:** [Refer to payload section](#def-payload-section)
 - **Markdown entity:** list
