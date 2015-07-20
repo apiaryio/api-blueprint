@@ -600,7 +600,7 @@ The customizable options for this scheme are:
         + oauth_resource_endpoint: `/oauth`
         + access_token_endpoint: `/token`
         + token_header_keyword: `token`
-        + scopes: read, write
+        + scopes: read, write, email
 
 #### Bearer Authentication Scheme
 This scheme represents the method of sending a bearer token as specified in [RFC 6750](https://tools.ietf.org/html/rfc6750#section-2.1).
@@ -628,29 +628,75 @@ Defined by the `Authenticated` keyword in Markdown list entity followed by optio
 
     + Authenticated: <list>
 
+> **NOTE:** If name of an authentication scheme dervied from `OAuth2 Authentication Scheme` is used, it can optionally have comma seperated list of oauth scopes inside `[]` immediately following it.
+
 #### Description
-This section does @TODO
+This section describes an authentication setting. Based on the parent section, the authentication setting being described is one of the following:
 
-#### Request Authenticated section
-Description of the request level authentication settings.
+1. Resource authentication setting ([Resource section](#def-resource-section))
+2. Action authentication setting ([Action section](#def-action-section))
+3. Request authentication setting ([Request section](#def-request-section))
 
-If defined inside a [Request section](#def-request-section) of a HTTP transaction example, it implies that the API's response will be the same as the respective response when a valid authentication is sent along with the above mentioned request. This allows another HTTP transaction example to be specified for the cases where an authentication is not needed.
+The authentication setting for a [Request section](#def-request-section) denotes the authentication needed to be sent along with the request to get the [Response section](#def-response-section) of the respective transaction example.
 
-This section **should** not have any nested sections.
-
-If a list of scheme names is provided after the `Authenticated` keyword, then only those particular authentication schemes will be allowed for the respective HTTP transaction.
+If the authentication setting contains only the `Authenticated` keyword, the transaction example allows all the authentication schemes described in the [Authentication schemes section](#def-authenticationschemes-section).
 
 ```
 + Authenticated
 ```
 
+If the authentcation setting contains a list of scheme names after the `Authenticated` keyword, the transaction example only allows the specific authentication schemes denoted by the scheme names.
+
 ```
-+ Authenticated: basic, token
++ Authenticated: oauth, token
 ```
+
+```
++ Authenticated: oauth[read, email], token
+```
+
+#### Resource Authenticated description
+Description of the resource authentication setting.
+
+If defined in a [Resource section](#def-resource-section), all the requests of the transaction examples under this resource will inherit the authentication setting unless specified otherwise.
 
 ##### Example
 
-    ## GET /users/bond
+    # User [/user]
+
+    + Authenticated
+
+    ## Retrieve User [GET]
+
+    + Response 200
+
+            {
+              "username": "john"
+            }
+
+#### Action Authenticated description
+Description of the action authenticated setting.
+
+If defined in an [Action section](#def-action-section), all the requests of the transaction examples under this action will inherit the authentication setting unless specified otherwise.
+
+##### Example
+
+    ## Retrieve User [GET]
+
+    + Authenticated
+
+    + Response 200
+
+            {
+              "username": "john"
+            }
+
+#### Request Authenticated description
+Description of the request authentication setting.
+
+##### Example
+
+    ## Retrieve User [GET]
 
     + Response 200 (application/json)
 
@@ -666,25 +712,6 @@ If a list of scheme names is provided after the `Authenticated` keyword, then on
             {
               "username": "john",
               "email": "john@appleseed.com",
-            }
-
-#### Action Authenticated section
-Description of the action level authentication settings.
-
-If defined, all the [Request sections](#def-requestion-section) of the respective [Action section](#def-action-section) inherits the authentication settings unless specified otherwise.
-
-This section **should** not have any nested sections.
-
-##### Example
-
-    ## Retrieve User [GET]
-
-    + Authenticated
-
-    + Response 200
-
-            {
-              "username": "john"
             }
 
 ---
