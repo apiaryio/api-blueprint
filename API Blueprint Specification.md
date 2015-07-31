@@ -46,7 +46,7 @@ Version: 1A8
 + [Data Structures section](#def-data-structures)
 + [Relation section](#def-relation-section)
 + [Authentication section](#def-authentication-section)
-+ [Authentication schemes section](#def-authenticationschemes-section)
++ [Authentication Schemes section](#def-authentication-schemes-section)
 + [Authenticated section](#def-authenticated-section)
 
 ## [III. Appendix](#def-appendix)
@@ -82,7 +82,7 @@ All of the blueprint sections are optional. However, when present, a section **m
 + [`0-1` **Metadata** section](#def-metadata-section)
 + [`0-1` **API Name & overview** section](#def-api-name-section)
 + [`0-1` **Authentication** section](#def-authentication-section)
-    + [`1` **Authentication schemes** section](#def-authenticationschemes-section)
+    + [`1` **Authentication Schemes** section](#def-authentication-schemes-section)
     + [`1` **Response** section](#def-response-section)
 + [`0+` **Resource** sections](#def-resource-section)
     + [`0-1` **Authenticated** section](#def-authenticated-section)
@@ -110,6 +110,7 @@ All of the blueprint sections are optional. However, when present, a section **m
             + [`0-1` **Body** section](#def-body-section)
             + [`0-1` **Schema** section](#def-schema-section)
 + [`0+` **Resource Group** sections](#def-resourcegroup-section)
+    + [`0-1` **Authenticated** section](#def-authenticated-section)
     + [`0+` **Resource** sections](#def-resource-section) (see above)
 + [`0+` **Data Structures** section](#def-data-structures)
 
@@ -493,21 +494,21 @@ Name and description of the API
 <a name="def-authentication-section"></a>
 ## Authentication section
 - **Parent sections:** none
-- **Nested sections:** [`1` Authentication schemes section](#def-authenticationschemes-section), [`1` Response section](#def-response-section)
+- **Nested sections:** [`1` Authentication Schemes section](#def-authentication-schemes-section), [`1` Response section](#def-response-section)
 - **Markdown entity:** header
 - **Inherits from**: none
 
 #### Definition
 Defined by the `Authentication` keyword in Markdown header entity.
 
-    # Authentication
+    ## Authentication
 
 #### Description
 Authentication settings for the whole API.
 
-This section **should** include one [Authentication schemes section](#def-authenticationschemes-section) and one [Response section](#def-response-section).
+This section **should** include one [Authentication Schemes section](#def-authentication-schemes-section) and one [Response section](#def-response-section).
 
-The [Authentication schemes section](#def-authenticationschemes-section) defines all the types of authentication schemes supported by the API. The [Response section](#def-response-section) describes the error message returned in the case of failed authentication.
+The [Authentication Schemes section](#def-authentication-schemes-section) defines all the types of authentication schemes supported by the API. The [Response section](#def-response-section) describes the error message returned in the case of failed authentication.
 
 ##### Example
 
@@ -517,7 +518,7 @@ The [Authentication schemes section](#def-authenticationschemes-section) defines
     + Authentication Schemes
         + ...
 
-    + Response 403 (application/json)
+    + Response 401 (application/json)
 
             {
               "message": "Authentication required",
@@ -526,8 +527,8 @@ The [Authentication schemes section](#def-authenticationschemes-section) defines
 
 ---
 
-<a name="def-authenticationschemes-section"></a>
-## Authentication schemes section
+<a name="def-authentication-schemes-section"></a>
+## Authentication Schemes section
 - **Parent sections:** [Authentication section](#def-authentication-section)
 - **Nested sections:** none
 - **Markdown entity:** list
@@ -559,7 +560,7 @@ Where:
 + `<scheme name>` is the authentication scheme name by which this scheme is represented in [Authenticated section](#def-authenticated-section).
 + `<description>` is any **optional** Markdown-formatted description of the authentication scheme.
 + `<base scheme type>` is the base authentication scheme type (e.g. "Basic Authentication Scheme"). See below for all the available base authentication schemes.
-+ `<customizable option n>` represents a customizable option in the base authentication scheme. It is a [MSON Property Member Declaration][] without the [MSON Type Definition][] where the [MSON Property Name][] represents the name of the option and [MSON Value][] represents the value of the option.
++ `<customizable option n>` represents a customizable option in the base authentication scheme. It is a [MSON Property Member Type][] without the [MSON Type Definition][] where the [MSON Property Name][] represents the name of the option and the value of the property member represents the value of the option.
 
 List of the base authentication schemes supported by API Blueprint are described below.
 
@@ -574,32 +575,32 @@ The customizable options for this scheme are:
 ##### Example
 
     + basic (Basic Authentication Scheme)
-        + example_username: `john`
-        + example_password: `password`
+        + `example_username`: `john`
+        + `example_password`: `password`
 
 #### OAuth2 Authentication Scheme
 This scheme uses the [OAuth2 Authorization Framework](http://tools.ietf.org/html/rfc6749) specified in [RFC 6749](http://tools.ietf.org/html/rfc6749) to get an authorization grant which is then used to access the API.
 
 The customizable options for this scheme are:
 
-+ `oauth_resource_endpoint` is the oauth resource endpoint where the oauth framework resides. Value type is **string**. "/" is the **default**.
++ `resource_endpoint` is the OAuth resource endpoint where the OAuth framework resides. Value type is **string**. "/" is the **default**.
 + `scopes` represents the OAuth scopes which indicate a list of permissions. Value type is **array**. By **default** no scopes are specified.
 + `authorization_endpoint` is the authorization endpoint required for the authorization grant. Value type is **string**. "/authorize" is the **default**.
 + `access_token_endpoint` is the token endpoint used by client to obtain the access token. Value type is **string**. "/access_token" is the **default**.
-+ `revocation_endpoint` is the revocation endpoint used by client to revoke a token. Value type is **string**. "/revoke" is the **default**.
++ `revocation_endpoint` is the revocation endpoint used by client to revoke a token as defined in [RFC 7009](https://tools.ietf.org/html/rfc7009). Value type is **string**.
 + `token_header_keyword` represents the string used instead of "Bearer" in "Authorization" header field according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.1). Value type is **string**. "Bearer" is the **default**.
-+ `token_body_keyword` represents the parameter name used instead of "access_token" in the body of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.2). Value type is **string**. "access_token" is the **default**.
-+ `token_query_keyword` represents the parameter name used instead of "access_token" in the query of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.3). Value type is **string**. "access_token" is the **default**.
++ `token_body_keyword` represents the parameter name used instead of "access_token" in the body of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.2). Value type is **string**.
++ `token_query_keyword` represents the parameter name used instead of "access_token" in the query of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.3). Value type is **string**.
 + `example_token` represents an example access token value. Value type is **string**. "example_token" is the **default**.
 
-> **NOTE:** The value for `oauth_resource_endpoint` can include hostnames. `authorization_endpoint` and `access_token_endpoint` allow it too only if `oauth_resource_endpoint` is not specified.
+> **NOTE:** The value for `resource_endpoint` can include hostnames. `authorization_endpoint` and `access_token_endpoint` allow it too only if `resource_endpoint` is not specified.
 
 ##### Example
 
     + oauth (OAuth2 Authentication Scheme)
-        + oauth_resource_endpoint: `/oauth`
-        + access_token_endpoint: `/token`
-        + token_header_keyword: `token`
+        + `resource_endpoint`: `/oauth`
+        + `access_token_endpoint`: `/token`
+        + `token_header_keyword`: `token`
         + scopes: read, write, email
 
 #### Bearer Authentication Scheme
@@ -607,13 +608,15 @@ This scheme represents the method of sending a bearer token as specified in [RFC
 
 The customizable options for this scheme are:
 
-+ `keyword` represents the string used instead of "Bearer" in the "Authorization" header field according to [RFC 6750](https://tools.ietf.org/html/rfc6750#section-2.1). Value type is **string**. "Bearer" is the **default**.
++ `token_header_keyword` represents the string used instead of "Bearer" in "Authorization" header field according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.1). Value type is **string**. "Bearer" is the **default**.
++ `token_body_keyword` represents the parameter name used instead of "access_token" in the body of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.2). Value type is **string**.
++ `token_query_keyword` represents the parameter name used instead of "access_token" in the query of an API request according to [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.3). Value type is **string**.
 + `example_token` represents an example bearer token value. Value type is **string**. "example_token" is the **default**.
 
 ##### Example
 
     + token (Bearer Authentication Scheme)
-        + keyword: `token`
+        + `token_header_keyword`: `token`
 
 ---
 
@@ -628,18 +631,21 @@ Defined by the `Authenticated` keyword in Markdown list entity followed by optio
 
     + Authenticated: <list>
 
-> **NOTE:** If name of an authentication scheme dervied from `OAuth2 Authentication Scheme` is used, it can optionally have comma seperated list of oauth scopes inside `[]` immediately following it.
+If name of an authentication scheme dervied from `OAuth2 Authentication Scheme` is used, it can optionally have comma seperated list of OAuth scopes inside `[]` immediately following it. If two or more OAuth scopes are using in an authentication setting, then any of the scopes can be used to satisfy the authentication setting.
+
+> **NOTE:** Since each of the OAuth scopes is an [MSON Value][], they should be escaped by backticks if they contain any [MSON][] reserved characters
 
 #### Description
 This section describes an authentication setting. Based on the parent section, the authentication setting being described is one of the following:
 
-1. Resource authentication setting ([Resource section](#def-resource-section))
-2. Action authentication setting ([Action section](#def-action-section))
-3. Request authentication setting ([Request section](#def-request-section))
+1. Resource group authentication setting ([Resource group section](#def-resource-group-section))
+2. Resource authentication setting ([Resource section](#def-resource-section))
+3. Action authentication setting ([Action section](#def-action-section))
+4. Request authentication setting ([Request section](#def-request-section))
 
 The authentication setting for a [Request section](#def-request-section) denotes the authentication needed to be sent along with the request to get the [Response section](#def-response-section) of the respective transaction example.
 
-If the authentication setting contains only the `Authenticated` keyword, the transaction example allows all the authentication schemes described in the [Authentication schemes section](#def-authenticationschemes-section).
+If the authentication setting contains only the `Authenticated` keyword, the transaction example allows all the authentication schemes described in the [Authentication Schemes section](#def-authentication-schemes-section).
 
 ```
 + Authenticated
@@ -654,6 +660,26 @@ If the authentcation setting contains a list of scheme names after the `Authenti
 ```
 + Authenticated: oauth[read, email], token
 ```
+
+#### Resource group Authenticated description
+Description of the resource group authentication setting.
+
+If defined in a [Resource group section](#def-resource-group-section), all the requests of the transaction examples under the resources of this resource group will inherit the authentication setting unless specified otherwise.
+
+##### Example
+
+    # Group Users
+
+    + Authenticated
+
+    ## User [/user]
+    ### Retrieve User [GET]
+
+    + Response 200
+
+            {
+              "username": "john"
+            }
 
 #### Resource Authenticated description
 Description of the resource authentication setting.
@@ -1491,7 +1517,7 @@ With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path
 
 [MSON]: https://github.com/apiaryio/mson
 [MSON Named Types]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#22-named-types
-[MSON Property Member Declaration]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#32-property-member-declaration
+[MSON Property Member Type]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#231-property-member-types
 [MSON Type Definition]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#35-type-definition
 [MSON Property Name]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#321-property-name
 [MSON Value]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#341-value
