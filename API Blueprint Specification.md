@@ -495,18 +495,20 @@ This sections represents a group of resources (Resource Sections). **May** inclu
 
 #### Example
 
-    # Group Blog Posts
+```apib
+# Group Blog Posts
 
-    ## Resource 1 [/resource1]
+## Resource 1 [/resource1]
 
-     ...
+ ...
 
-    # Group Authors
-    Resources in this groups are related to **ACME Blog** authors.
+# Group Authors
+Resources in this groups are related to **ACME Blog** authors.
 
-    ## Resource 2 [/resource2]
+## Resource 2 [/resource2]
 
-     ...
+ ...
+```
 
 ---
 
@@ -563,16 +565,16 @@ This section **should** include at least one nested [Action section](#def-action
 
 #### Example
 
-```
+```apib
 # Blog Posts [/posts/{id}]
 Resource representing **ACME Blog** posts.
 ```
 
-```
+```apib
 # /posts/{id}
 ```
 
-```
+```apib
 # GET /posts/{id}
 ```
 
@@ -598,18 +600,19 @@ The payload defined in this section **may** be referenced in any response or req
 
 #### Example
 
-    # My Resource [/resource]
+```apib
+# My Resource [/resource]
 
-    + Model (text/plain)
++ Model (text/plain)
 
-            Hello World
+        Hello World
 
-    ## Retrieve My Resource [GET]
+## Retrieve My Resource [GET]
 
-    + Response 200
++ Response 200
 
-        [My Resource][]
-
+    [My Resource][]
+```
 
 ---
 
@@ -669,76 +672,80 @@ Multiple Request and Response nested sections within one transaction example **s
 
 #### Example
 
-    # Blog Posts [/posts{?limit}]
-     ...
+```apib
+# Blog Posts [/posts{?limit}]
+ ...
 
-    ## Retrieve Blog Posts [GET]
-    Retrieves the list of **ACME Blog** posts.
+## Retrieve Blog Posts [GET]
+Retrieves the list of **ACME Blog** posts.
 
-    + Parameters
-        + limit (optional, number) ... Maximum number of posts to retrieve
++ Parameters
+    + limit (optional, number) ... Maximum number of posts to retrieve
 
-    + Response 200
++ Response 200
 
-            ...
+        ...
 
-    ## Create a Post [POST]
+## Create a Post [POST]
 
-    + Attributes
++ Attributes
 
-            ...
+        ...
 
-    + Request
++ Request
 
-            ...
+        ...
 
-    + Response 201
++ Response 201
 
-            ...
+        ...
 
-    ## Delete a Post [DELETE /posts/{id}]
+## Delete a Post [DELETE /posts/{id}]
 
-    + Parameters
-        + id (string) ... Id of the post
++ Parameters
+    + id (string) ... Id of the post
 
-    + Response 204
++ Response 204
+```
 
 #### Example Multiple Transaction Examples
 
-    # Resource [/resource]
-    ## Create Resource [POST]
+```apib
+# Resource [/resource]
+## Create Resource [POST]
 
-    + request A
++ request A
 
-            ...
+        ...
 
-    + response 200
++ response 200
 
-            ...
+        ...
 
-    + request B
++ request B
 
-            ...
+        ...
 
-    + response 200
++ response 200
 
-            ...
+        ...
 
-    + response 500
++ response 500
 
-            ...
+        ...
 
-    + request C
++ request C
 
-            ...
+        ...
 
-    + request D
++ request D
 
-            ...
+        ...
 
-    + response 200
++ response 200
 
-            ...
+        ...
+```
 
 > **NOTE:** The "Multiple Transaction Examples" example demonstrates three transaction examples for one given action:
 >
@@ -765,9 +772,11 @@ One HTTP request-message example – payload.
 
 #### Example
 
-    + Request Create Blog Post (application/json)
+```apib
++ Request Create Blog Post (application/json)
 
-            { "message" : "Hello World." }
+        { "message" : "Hello World." }
+```
 
 ---
 
@@ -788,9 +797,11 @@ One HTTP response-message example – payload.
 
 #### Example
 
-    + Response 201 (application/json)
+```apib
++ Response 201 (application/json)
 
-                { "message" : "created" }
+            { "message" : "created" }
+```
 
 ---
 
@@ -841,32 +852,32 @@ Where:
 
 #### Example
 
-```
+```apib
 # GET /posts/{id}
 ```
 
-```
+```apib
 + Parameters
     + id - Id of a post.
 ```
 
-```
+```apib
 + Parameters
     + id (number) - Id of a post.
 ```
 
-```
+```apib
 + Parameters
     + id: `1001` (number, required) - Id of a post.
 ```
 
-```
+```apib
 + Parameters
     + id: `1001` (number, optional) - Id of a post.
         + Default: `20`
 ```
 
-```
+```apib
 + Parameters
     + id (enum[string])
 
@@ -895,7 +906,9 @@ Defined by the `Attributes` keyword followed by an optional [MSON Type Definitio
 
 ##### Example
 
-    + Attributes (object)
+```apib
++ Attributes (object)
+```
 
 #### Description
 This section describes a data structure using the **[Markdown Syntax for Object Notation][MSON] (MSON)**. Based on the parent section, the data structure being described is one of the following:
@@ -913,13 +926,15 @@ If defined in a named [Resource section](#def-resource-section), this data struc
 
 ##### Example
 
-    # Blog Post [/posts/{id}]
-    Resource representing **ACME Blog** posts.
+```apib
+# Blog Post [/posts/{id}]
+Resource representing **ACME Blog** posts.
 
-    + Attributes
-        + id (number)
-        + message (string) - The blog post article
-        + author: john@appleseed.com (string) - Author of the blog post
++ Attributes
+    + id (number)
+    + message (string) - The blog post article
+    + author: john@appleseed.com (string) - Author of the blog post
+```
 
 > **NOTE:** This data structure can be later referred as:
 >
@@ -933,17 +948,19 @@ If defined, all the [Request sections](#def-request-section) of the respective [
 
 ##### Example
 
-    ## Create a Post [POST]
+```apib
+## Create a Post [POST]
 
-    + Attributes
-        + message (string) - The blog post article
-        + author: john@appleseed.com (string) - Author of the blog post
++ Attributes
+    + message (string) - The blog post article
+    + author: john@appleseed.com (string) - Author of the blog post
 
-    + Request (application/json)
++ Request (application/json)
 
-    + Request (application/yaml)
++ Request (application/yaml)
 
-    + Response 201
++ Response 201
+```
 
 #### Payload Attributes description
 Description of payload (request, response, model) message-body attributes.
@@ -956,16 +973,18 @@ The description of message-body attributes **may** be used to describe message-b
 
 ##### Example
 
-    ## Retrieve a Post [GET]
+```apib
+## Retrieve a Post [GET]
 
-    + Response 200 (application/json)
++ Response 200 (application/json)
 
-        + Attributes (object)
-            + message (string) - Message to the world
+    + Attributes (object)
+        + message (string) - Message to the world
 
-        + Body
+    + Body
 
-                { "message" : "Hello World." }
+            { "message" : "Hello World." }
+```
 
 ---
 
@@ -990,11 +1009,13 @@ One HTTP header per line.
 
 #### Example
 
-    + Headers
+```apib
++ Headers
 
-            Accept-Charset: utf-8
-            Connection: keep-alive
-            Content-Type: multipart/form-data, boundary=AaB03x
+        Accept-Charset: utf-8
+        Connection: keep-alive
+        Content-Type: multipart/form-data, boundary=AaB03x
+```
 
 ---
 
@@ -1015,11 +1036,13 @@ Specifies the HTTP message-body of a payload section.
 
 #### Example
 
-    + Body
+```apib
++ Body
 
-            {
-                "message": "Hello"
-            }
+        {
+            "message": "Hello"
+        }
+```
 
 ---
 
@@ -1045,43 +1068,48 @@ Refer to the [MSON][] specification for full details on how to define an MSON Na
 
 #### Example
 
-    # Data Structures
+```apib
+# Data Structures
 
-    ## Message (object)
+## Message (object)
 
-    + text (string) - text of the message
-    + author (Author) - author of the message
++ text (string) - text of the message
++ author (Author) - author of the message
 
-    ## Author (object)
+## Author (object)
 
-    + name: John
-    + email: john@appleseed.com
-
++ name: John
++ email: john@appleseed.com
+```
 
 #### Example reusing Data Structure in Resource
 
-    # User [/user]
+```apib
+# User [/user]
 
-    + Attributes (Author)
++ Attributes (Author)
 
-    # Data Structures
+# Data Structures
 
-    ## Author (object)
+## Author (object)
 
-    + name: John
-    + email: john@appleseed.com
++ name: John
++ email: john@appleseed.com
+```
 
 #### Example reusing Resource-defined Data Structure
 
-    # User [/user]
+```apib
+# User [/user]
 
-    + Attributes
-        + name: John
-        + email: john@appleseed.com
++ Attributes
+    + name: John
+    + email: john@appleseed.com
 
-    # Data Structures
+# Data Structures
 
-    ## Author (User)
+## Author (User)
+```
 
 ---
 
@@ -1104,22 +1132,24 @@ This section specifies a [link relation type](https://tools.ietf.org/html/rfc598
 
 #### Example
 
-    # Task [/tasks/{id}]
+```apib
+# Task [/tasks/{id}]
 
-    + Parameters
-        + id
++ Parameters
+    + id
 
-    ## Retrieve Task [GET]
+## Retrieve Task [GET]
 
-    + Relation: task
-    + Response 200
++ Relation: task
++ Response 200
 
-            { ... }
+        { ... }
 
-    ## Delete Task [DELETE]
+## Delete Task [DELETE]
 
-    + Relation: delete
-    + Response 204
++ Relation: delete
++ Response 204
+```
 
 ---
 
