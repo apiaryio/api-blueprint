@@ -380,7 +380,7 @@ Furthermore, in API Blueprint context, a payload include its description, descri
 
 A payload **may** have its media type associated. A payload's media type represents the metadata received or sent in the form of a HTTP `Content-Type` header. When specified a payload **should** include nested [Body section](#def-body-section).
 
-This section **should** include at least one following nested sections:
+This section **should** include at least one of the following nested sections:
 
 - [`0-1` Headers section](#def-headers-section)
 - [`0-1` Attributes section](#def-attributes-section)
