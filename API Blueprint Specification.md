@@ -59,7 +59,7 @@ Version: 1A9
 
 <a name="def-introduction"></a>
 ## Introduction
-This documents is full specification of the API Blueprint format. For a less formal introduction to API Blueprint visit the [API Blueprint Tutorial](Tutorial.md) or check some of the [examples](examples).
+This documents is a full specification of the API Blueprint format. For a less formal introduction to API Blueprint visit the [API Blueprint Tutorial](Tutorial.md) or check some of the [examples](examples).
 
 <a name="def-api-blueprint"></a>
 ## API Blueprint
