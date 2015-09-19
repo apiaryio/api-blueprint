@@ -63,7 +63,7 @@ This documents is full specification of the API Blueprint format. For a less for
 
 <a name="def-api-blueprint"></a>
 ## API Blueprint
-API Blueprint is documentation-oriented web API description language. The API Blueprint is essentially a set of semantic assumptions laid on top of the Markdown syntax used to describe a web API.
+API Blueprint is a documentation-oriented web API description language. The API Blueprint is essentially a set of semantic assumptions laid on top of the Markdown syntax used to describe a web API.
 
 In addition to the regular [Markdown syntax][] API Blueprint conforms to the [GitHub Flavored Markdown syntax][].
 
