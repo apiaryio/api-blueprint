@@ -82,10 +82,14 @@ The media type for API Blueprint is `text/vnd.apiblueprint+markdown`.
 + [Developing tools for API Blueprint](https://github.com/apiaryio/api-blueprint/wiki/Developing-tools-for-API-Blueprint)
 
 ## Future of API Blueprint
-Check out the API Blueprint [Issues Page](https://github.com/apiaryio/api-blueprint/issues) for planned features and issues discussion.
+Check out the API Blueprint [Issues Page](https://github.com/apiaryio/api-blueprint/issues) for planned features and issues discussion along with our [RFC process][RFCs] for accepted language changes.
 
 ## Contribute
-Fork & pull request.
+We use an RFC process for proposing any substancial changes to the API
+Blueprint language, specification and/or parsers.
+
+If you would like to propose a change, please consult our
+[RFC process][RFCs].
 
 ## Have a question?
 Ask at [Stack Overflow](http://stackoverflow.com/questions/tagged/apiblueprint), make sure to use the `apiblueprint` tag. Alternatively mention [@apiblueprint](https://twitter.com/apiblueprint) on Twitter.
@@ -94,3 +98,5 @@ Ask at [Stack Overflow](http://stackoverflow.com/questions/tagged/apiblueprint),
 MIT License. See the [LICENSE](https://github.com/apiaryio/api-blueprint/blob/master/LICENSE) file.
 
 [Drafter]: https://github.com/apiaryio/drafter
+[RFCs]: https://github.com/apiaryio/api-blueprint-rfcs
+
