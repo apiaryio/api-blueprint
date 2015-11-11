@@ -3,7 +3,7 @@
 # API Blueprint
 ### API Design for Humans
 
-[![Join the chat at https://gitter.im/apiaryio/api-blueprint](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/apiaryio/api-blueprint?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![slack](https://apiblueprint-slack.herokuapp.com/badge.svg)](http://apiblueprint-slack.herokuapp.com/)
 
 API Blueprint is a documentation-oriented API description language. A couple of semantic assumptions over the plain [Markdown](http://daringfireball.net/projects/markdown/).
 
