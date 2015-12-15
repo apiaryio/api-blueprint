@@ -93,6 +93,7 @@ All of the blueprint sections are optional. However, when present, a section **m
         + [`0-1` **Attributes** section](#def-attributes-section)
         + [`0+` **Request** sections](#def-request-section)
             + [`0-1` **Headers** section](#def-headers-section)
+            + [`0-1` **URI Parameters** section](#def-uriparameters-section)
             + [`0-1` **Attributes** section](#def-attributes-section)
             + [`0-1` **Body** section](#def-body-section)
             + [`0-1` **Schema** section](#def-schema-section)
@@ -380,7 +381,7 @@ Furthermore, in API Blueprint context, a payload include its description, descri
 
 A payload **may** have its media type associated. A payload's media type represents the metadata received or sent in the form of a HTTP `Content-Type` header. When specified a payload **should** include nested [Body section](#def-body-section).
 
-This section **should** include at least one of the following nested sections:
+This section **should** include at least one of the following nested sections, unless specified otherwise by the sections inheriting this section:
 
 - [`0-1` Headers section](#def-headers-section)
 - [`0-1` Attributes section](#def-attributes-section)
@@ -758,7 +759,7 @@ Retrieves the list of **ACME Blog** posts.
 <a name="def-request-section"></a>
 ## Request section
 - **Parent sections:** [Action section](#def-action-section)
-- **Nested sections:** [Refer to payload section](#def-payload-section)
+- **Nested sections:** [Refer to payload section](#def-payload-section), [`0-1` URI Parameters section](#def-uriparameters-section)
 - **Markdown entity:** list
 - **Inherits from**: [Payload section](#def-payload-section)
 
@@ -766,6 +767,16 @@ Retrieves the list of **ACME Blog** posts.
 Defined by the `Request` keyword followed by an optional [identifier](#def-identifier):
 
     + Request <identifier> (<Media Type>)
+
+This section **should** include at least one of the following nested sections:
+
+- [`0-1` Headers section](#def-headers-section)
+- [`0-1` Attributes section](#def-attributes-section)
+- [`0-1` Body section](#def-body-section)
+- [`0-1` Schema section](#def-schema-section)
+- [`0-1` URI parameters section](#def-uriparameters-section)
+
+The URI parameters section included in this section describes the URI parameters attached to the request. They can be used to represent different responses based on different parameter values sent along with a request. The URI parameters described here should inherit from the URI parameters resolved for the parent action section.
 
 #### Description
 One HTTP request-message example – payload.
@@ -807,7 +818,7 @@ One HTTP response-message example – payload.
 
 <a name="def-uriparameters-section"></a>
 ## URI parameters section
-- **Parent Sections:** [Resource section](#def-resource-section) | [Action section](#def-action-section)
+- **Parent Sections:** [Resource section](#def-resource-section) | [Action section](#def-action-section) | [Payload section](#def-payload-section)
 - **Nested Sections:** none
 - **Markdown entity:** list
 - **Inherits from**: none, special
