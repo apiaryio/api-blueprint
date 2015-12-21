@@ -3,7 +3,7 @@
 # API Blueprint
 ### API Design for Humans
 
-[![slack](https://apiblueprint-slack.herokuapp.com/badge.svg)](http://apiblueprint-slack.herokuapp.com/)
+[![slack](https://apiblueprint-slack.herokuapp.com/badge.svg)](https://apiblueprint-slack.herokuapp.com/)
 
 A powerful high-level API design language for web APIs.
 
