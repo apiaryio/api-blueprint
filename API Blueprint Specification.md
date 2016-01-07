@@ -829,10 +829,10 @@ This section **must** be composed of nested list items only. This section **must
         + Default: `<default value>`
 
         + Members
-            + `<enumeration value 1>` - <enumeration description 1>
-            + `<enumeration value 2>` - <enumeration description 2>
+            + `<enumeration value 1>`
+            + `<enumeration value 2>`
             ...
-            + `<enumeration value N>` - <enumeration description N>
+            + `<enumeration value N>`
 
 Where:
 
@@ -844,7 +844,6 @@ Where:
 + `<type>` is the **optional** parameter type as expected by the API (e.g. "number", "string", "boolean"). "string" is the **default**.
 + `Members` is the **optional** enumeration of possible values. `<type>` should be surrounded by `enum[]` if this is present. For example, if enumeration values are present for a parameter whose type is `number`, then `enum[number]` should be used instead of `number` to.
 + `<enumeration value n>` represents an element of enumeration type.
-+ `<enumeration description n>` is the **optional** description of the corresponding enumeration element.
 + `required` is the **optional** specifier of a required parameter (this is the **default**)
 + `optional` is the **optional** specifier of an optional parameter.
 
