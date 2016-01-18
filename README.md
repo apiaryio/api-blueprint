@@ -1,4 +1,4 @@
-![logo](https://raw.github.com/apiaryio/api-blueprint/master/assets/logo_apiblueprint.png)
+![logo](assets/logo_apiblueprint.png)
 
 # API Blueprint
 ### API Design for Humans
