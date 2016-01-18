@@ -2,7 +2,7 @@
 
 Welcome to the advanced API Blueprint tutorial! This tutorial will take you through advanced topics like JSON Schema, request and response attributes, data structures and relation types.
 
-This tutorial assumes that you have read the [API Blueprint Tutorial](./Tutorial.md).
+This tutorial assumes that you have read the [API Blueprint Tutorial](https://github.com/apiaryio/api-blueprint/blob/master/Tutorial.md).
 
 ## JSON Schema
 
