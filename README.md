@@ -22,7 +22,7 @@ achieve the goals be it API development, governance or delivery.
 ![API Blueprint Lifecycle](assets/lifecycle.png)
 
 [tesla]: https://github.com/timdorr/model-s-api/blob/master/apiary.apib
-[tools]: http://apiblueprint.org/#tooling
+[tools]: http://apiblueprint.org/tools.html
 
 ## Open Source
 API Blueprint is completely open sourced under the MIT license.
@@ -80,7 +80,7 @@ The media type for API Blueprint is `text/vnd.apiblueprint`.
 [glossary]: Glossary%20of%20Terms.md
 [specification]: API%20Blueprint%20Specification.md
 [wiki]: https://github.com/apiaryio/api-blueprint/wiki
-[developers]: https://github.com/apiaryio/api-blueprint/wiki/Developers
+[developers]: https://apiblueprint.org/developers.html
 
 ## Future
 The plans for API Blueprint are completely tracked on GitHub – see the
