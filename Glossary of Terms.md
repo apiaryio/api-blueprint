@@ -8,7 +8,7 @@ A brief list of terms as used in the [API Blueprint](http://apiblueprint.org) co
 ### Action
 One or more [**HTTP Transactions**](#def-transaction) within a [Resource](#def-resource) with a common [HTTP Request Method](#def-method).
 
-[Requests](#def-request) and [Responses](#def-response) within an Action may be ordered into implicit groups where each such group represents one [**HTTP Transaction Example**](#def-transaction-example).
+[Requests](#def-request) and [Responses](#def-response) within an Action are ordered into implicit groups where each such group represents one [**HTTP Transaction Example**](#def-transaction-example).
 
 <a name="def-api"></a>
 ### API
@@ -93,7 +93,7 @@ One [**manifestation of a resource**](http://www.w3.org/TR/di-gloss/#def-resourc
 
 <a name="def-resource-set"></a>
 ### Resource Set
-A set of API [**resources**](http://www.w3.org/TR/di-gloss/#def-resource) with *URI*, which matches one specific [**URI template**](#def-uri-template).
+A set of all [**resources**](http://www.w3.org/TR/di-gloss/#def-resource) with URIs matching one specific [**URI template**](#def-uri-template).
 
 <a name="def-trait"></a>
 ### Trait
