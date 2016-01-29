@@ -883,9 +883,9 @@ Where:
         Id of a Post
 
         + Members
-            + `A` - This is character A
+            + `A`
             + `B`
-            + `C` - This is character C
+            + `C`
 ```
 ---
 
