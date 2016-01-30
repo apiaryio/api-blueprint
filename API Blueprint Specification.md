@@ -59,7 +59,7 @@ Version: 1A9
 
 <a name="def-introduction"></a>
 ## Introduction
-This documents is a full specification of the API Blueprint format. For a less formal introduction to API Blueprint visit the [API Blueprint Tutorial](Tutorial.md) or check some of the [examples](examples).
+This documents is a full specification of the API Blueprint format. For a less formal introduction to API Blueprint visit the [API Blueprint Tutorial](Tutorial.md) or check some of the [examples][].
 
 <a name="def-api-blueprint"></a>
 ## API Blueprint
@@ -1283,6 +1283,7 @@ With `varone := 42`, `vartwo = hello`, `varthree = 1024` the expansion is `/path
 [list syntax]: https://daringfireball.net/projects/markdown/syntax#list
 [pct-encoded]: http://en.wikipedia.org/wiki/Percent-encoding
 [uri-explode]: http://tools.ietf.org/html/rfc6570#section-2.4.2
+[examples]: https://github.com/apiaryio/api-blueprint/tree/master/examples
 
 [MSON]: https://github.com/apiaryio/mson
 [MSON Named Types]: https://github.com/apiaryio/mson/blob/master/MSON%20Specification.md#22-named-types
