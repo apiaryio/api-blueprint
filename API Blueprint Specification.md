@@ -666,9 +666,9 @@ This section **may** include one nested [Attributes section][] defining the inpu
 
 Action section **should** include at least one nested [Response section](#def-response-section) and **may** include additional nested [Request](#def-request-section) and [Response](#def-response-section) sections.
 
-Nested Request and Response sections **may** be ordered into groups where each groups represent one transaction example. First transaction example group starts with the first nested Request or Response section. Subsequent groups start with the first nested Request section following a Response section.
+Nested Request and Response sections are ordered into implicit groups where each such group represents one transaction example. First transaction example group starts with the first nested Request or Response section. Subsequent groups start with the first nested Request section following a Response section.
 
-Multiple Request and Response nested sections within one transaction example **should** have different identifiers.
+Multiple nested Request and Response sections within one transaction example **should** have different identifiers.
 
 #### Example
 

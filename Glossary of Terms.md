@@ -6,9 +6,9 @@ A brief list of terms as used in the [API Blueprint](http://apiblueprint.org) co
 
 <a name="def-action"></a>
 ### Action
-An **HTTP transaction** (a request-response transaction).
+One or more [**HTTP Transactions**](#def-transaction) within a [Resource](#def-resource) with a common [HTTP Request Method](#def-method).
 
-Actions are specified by an [HTTP request method](#def-method) within a [resource](#def-resource).
+[Requests](#def-request) and [Responses](#def-response) within an Action are ordered into implicit groups where each such group represents one [**HTTP Transaction Example**](#def-transaction-example).
 
 <a name="def-api"></a>
 ### API
@@ -48,7 +48,7 @@ An [**HTTP Request Method**](http://en.wikipedia.org/wiki/Hypertext_Transfer_Pro
 
 <a name="def-message"></a>
 ### Message
-An **HTTP transaction message**.
+An **HTTP Transaction Message**.
 
 <a name="def-message-body"></a>
 ### Message body
@@ -83,17 +83,29 @@ A [**payload**](#def-payload) containing one specific [HTTP Response](http://www
 ### Resource
 An API [**resource**](http://www.w3.org/TR/di-gloss/#def-resource) specified by its *URI*. It can also refer to a [**set of resources**](#def-resource) matching one [**URI template**](#def-uri-template).
 
+<a name="def-resource-group"></a>
+### Resource Group
+An arbitrary grouping of one or more [**Resource Sets**](#def-resource-set).
+
 <a name="def-resource-model"></a>
 ### Resource Model
 One [**manifestation of a resource**](http://www.w3.org/TR/di-gloss/#def-resource-manifestation) in the form of a [payload](#def-payload). A resource model is an example representation of its resource. Can be referenced later in the place of a [payload](#def-payload).
 
 <a name="def-resource-set"></a>
 ### Resource Set
-A set of API [**resources**](http://www.w3.org/TR/di-gloss/#def-resource) its *URI* matches one specific  [**URI template**](#def-uri-template).
+A set of all [**resources**](http://www.w3.org/TR/di-gloss/#def-resource) with URIs matching one specific [**URI template**](#def-uri-template).
 
 <a name="def-trait"></a>
 ### Trait
 A quality or characteristic of an API Blueprint SECTION.
+
+<a name="def-transaction"></a>
+### Transaction
+[HTTP Request](#def-request) with a corresponding [HTTP Response](#def-response).
+
+<a name="def-transaction-example"></a>
+### Transaction Example
+An implicit group of one or more [Requests](#def-request) and one or more corresponding [Responses](#def-response). If expanded into Request-Response pairs, it represents one or more [**HTTP Transactions**](#def-transaction).
 
 <a name="def-schema"></a>
 ### Schema
@@ -113,4 +125,3 @@ A compact sequence of characters for describing a range of **Uniform Resource Id
 
 
 [MSON]: https://github.com/apiaryio/mson
-
