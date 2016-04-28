@@ -2,7 +2,8 @@ FORMAT: 1A
 HOST: https://alpha-api.app.net
 
 # Real World API
-This API Blueprint demonstrates a real world example documenting a portion of [App.net API](http://developers.app.net).
+This API Blueprint demonstrates a real world example documenting a portion of
+[App.net API](http://developers.app.net).
 
 NOTE: This document is a **work in progress**.
 
@@ -10,7 +11,9 @@ NOTE: This document is a **work in progress**.
 This section groups App.net post resources.
 
 ## Post [/stream/0/posts/{post_id}]
-A Post is the other central object utilized by the App.net Stream API. It has rich text and annotations which comprise all of the content a users sees in their feed. Posts are closely tied to the follow graph...
+A Post is the other central object utilized by the App.net Stream API. It has
+rich text and annotations which comprise all of the content a users sees in
+their feed. Posts are closely tied to the follow graph...
 
 + Parameters
     + post_id: `1` (string) - The id of the Post.
@@ -74,7 +77,8 @@ Returns a specific Post.
     [Post][]
 
 ### Delete a Post [DELETE]
-Delete a Post. The current user must be the same user who created the Post. It returns the deleted Post on success.
+Delete a Post. The current user must be the same user who created the Post. It
+returns the deleted Post on success.
 
 + Response 204
 
@@ -106,7 +110,8 @@ A Collection of posts.
     ```
 
 ### Create a Post [POST]
-Create a new Post object. Mentions and hashtags will be parsed out of the post text, as will bare URLs...
+Create a new Post object. Mentions and hashtags will be parsed out of the post
+text, as will bare URLs...
 
 + Request
 
@@ -124,13 +129,15 @@ Retrieves all posts.
     [Posts Collection][]
 
 ## Stars [/stream/0/posts/{post_id}/star]
-A User’s stars are visible to others, but they are not automatically added to your followers’ streams.
+A User’s stars are visible to others, but they are not automatically added to
+your followers’ streams.
 
 + Parameters
     + post_id: `1` (string) - The id of the Post.
 
 ### Star a Post [POST]
-Save a given Post to the current User’s stars. This is just a “save” action, not a sharing action.
+Save a given Post to the current User’s stars. This is just a “save” action,
+not a sharing action.
 
 *Note: A repost cannot be starred. Please star the parent Post.*
 
