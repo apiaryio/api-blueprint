@@ -12,7 +12,8 @@ The schema can describe the type of each member, which members are required, def
 
 ```apib
 ### Create a New Question [POST]
-You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
+You may create your own question using this action. It takes a JSON object
+containing a question and a collection of answers in the form of choices.
 
 + Request (application/json)
 
@@ -56,7 +57,8 @@ Creating a new question in the polls API can be modeled using MSON:
 
 ```apib
 ### Create a New Question [POST]
-You may create your own question using this action. It takes a JSON object containing a question and a collection of answers in the form of choices.
+You may create your own question using this action. It takes a JSON object
+containing a question and a collection of answers in the form of choices.
 
 + Request (application/json)
 
