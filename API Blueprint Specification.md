@@ -374,9 +374,9 @@ Defined by a [keyword](#def-keywords) in Markdown list entity. The keyword **may
 > **NOTE:** Refer to descendant for the particular section type definition.
 
 #### Description
-Payload sections represent the information transferred as a payload of an HTTP request or response messages. A Payload consists of optional meta information in the form of HTTP headers and optional content in the form HTTP body.
+Payload sections represent the information transferred as a payload of an HTTP request or response messages. A Payload consists of optional meta information in the form of HTTP headers and optional content in the form of HTTP body.
 
-Furthermore, in API Blueprint context, a payload include its description, description of its message-body attributes and a message-body validation schema.
+Furthermore, in API Blueprint context, a payload includes its description, description of its message-body attributes and a message-body validation schema.
 
 A payload **may** have its media type associated. A payload's media type represents the metadata received or sent in the form of a HTTP `Content-Type` header. When specified a payload **should** include nested [Body section](#def-body-section).
 
