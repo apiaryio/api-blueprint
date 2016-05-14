@@ -423,9 +423,9 @@ The definition **may** include payload's media-type enclosed in braces.
 #### Description
 Payload sections represent the information transferred as a payload of an HTTP
 request or response messages. A Payload consists of optional meta information
-in the form of HTTP headers and optional content in the form HTTP body.
+in the form of HTTP headers and optional content in the form of an HTTP body.
 
-Furthermore, in API Blueprint context, a payload includes its description, a
+Furthermore, in API Blueprint context, a payload includes its description,
 description of its message-body attributes and a message-body validation
 schema.
 
