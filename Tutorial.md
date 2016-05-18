@@ -1,6 +1,11 @@
 # API Blueprint Tutorial
 
-Welcome to an API Blueprint Tutorial! This tutorial will take you through the basics of the API Blueprint language. We’re going to build an API blueprint step by step for a service called Polls – a simple API allowing consumers to view polls and vote in them. You can take a look at the [full version][Poll API Blueprint] of the blueprint used in this tutorial for reference.
+Welcome to an API Blueprint Tutorial! This tutorial will take you through the
+basics of the API Blueprint language. We’re going to build an API blueprint
+step by step for a service called Polls – a simple API allowing consumers to
+view polls and vote in them. You can take a look at the 
+[full version][Poll API Blueprint] of the blueprint used in this tutorial for
+reference.
 
 > **Note:** **Additional API Blueprint Resources**
 >
@@ -12,7 +17,8 @@ Welcome to an API Blueprint Tutorial! This tutorial will take you through the ba
 
 ## API Blueprint
 
-The first step for creating a blueprint is to specify the API Name and metadata. This step looks as follows:
+The first step for creating a blueprint is to specify the API Name and
+metadata. This step looks as follows:
 
 ```apib
 FORMAT: 1A
@@ -24,17 +30,24 @@ Polls is a simple API allowing consumers to view polls and vote in them.
 
 ## Metadata
 
-The blueprint starts with a metadata section. In this case we have specified that `FORMAT` has the value of `1A`. The format keyword denotes the version of the API Blueprint.
+The blueprint starts with a metadata section. In this case we have specified
+that `FORMAT` has the value of `1A`. The format keyword denotes the version of
+the API Blueprint.
 
 ## API Name & Description
 
-The first heading in the blueprint serves as the name of your API, which in this case is "Polls". Headings start with one or more `#` symbols followed by a title. The API Name here uses one hash to distinguish it as the first level. The number of `#` you use will determine the level of the heading.
+The first heading in the blueprint serves as the name of your API, which in
+this case is "Polls". Headings start with one or more `#` symbols followed by a
+title. The API Name here uses one hash to distinguish it as the first level.
+The number of `#` you use will determine the level of the heading.
 
-Following the heading is a description of the API. You may use further headings to break up the description section.
+Following the heading is a description of the API. You may use further headings
+to break up the description section.
 
 ## Resource Groups
 
-Now it's time to start documenting the API resources. Using the `Group` keyword at the start of a heading, we've created a group of related resources.
+Now it's time to start documenting the API resources. Using the `Group` keyword
+at the start of a heading, we've created a group of related resources.
 
 ```apib
 # Group Questions
@@ -44,7 +57,10 @@ Resources related to questions in the API.
 
 ## Resource
 
-Within the questions resource group, we have a resource called "Question Collection". This resource allows you to view a list of questions. The heading specifies the URI used to access the resource inside of square brackets at the end of the heading.
+Within the questions resource group, we have a resource called "Question
+Collection". This resource allows you to view a list of questions. The heading
+specifies the URI used to access the resource inside of square brackets at the
+end of the heading.
 
 ```apib
 ## Question Collection [/questions]
@@ -53,14 +69,17 @@ Within the questions resource group, we have a resource called "Question Collect
 ### Actions
 
 API Blueprint allows you to specify each action you may make on a resource. An
-action is specified with a sub-heading inside of a resource with the name of the
-action followed by the HTTP method.
+action is specified with a sub-heading inside of a resource with the name of
+the action followed by the HTTP method.
 
 ```apib
 ### List All Questions [GET]
 ```
 
-An action should include at least one response from the server which must include a status code and may contain a body. A response is defined as a list item within an action. Lists are created by preceding list items with either a `+`, `*` or `-`.
+An action should include at least one response from the server which must
+include a status code and may contain a body. A response is defined as a list
+item within an action. Lists are created by preceding list items with either a
+`+`, `*` or `-`.
 
 This action returns a `200` status code along with a JSON body.
 
@@ -95,9 +114,13 @@ This action returns a `200` status code along with a JSON body.
         ]
 ```
 
-> **Note:** Specifying the media type after the response status code generates a `Content-Type` HTTP header. You do not have to explicitly specify the `Content-Type` header.
+> **Note:** Specifying the media type after the response status code generates
+> a `Content-Type` HTTP header. You do not have to explicitly specify the
+> `Content-Type` header.
 
-The polls resource has a second action which allows you to create a new question. This action includes a description showing the structure you would send to the server to perform this action.
+The polls resource has a second action which allows you to create a new
+question. This action includes a description showing the structure you would
+send to the server to perform this action.
 
 ```apib
 ### Create a New Question [POST]
@@ -170,25 +193,31 @@ The next resource is “Question”, which represents a single question.
 
 ### URI Template
 
-The URI for the “Question” resource uses a variable component, expressed by [URI Template][]. In this case, there is an ID variable called `question_id`, represented in the URI template as `{question_id}`.
+The URI for the “Question” resource uses a variable component, expressed by
+[URI Template][]. In this case, there is an ID variable called `question_id`,
+represented in the URI template as `{question_id}`.
 
 <a id="uri-parameters"></a>
 ### URI Parameters
 
-URI parameters should describe  the URI using a list of Parameters. For “Question” it would be as follows:
+URI parameters should describe the URI using a list of Parameters. For
+“Question” it would be as follows:
 
 ```apib
 + Parameters
     + question_id (number) - ID of the Question in the form of an integer
 ```
 
-The `question_id` variable of the URI template is a parameter for every action on this resource. It's defined here using an arbitrary type `number`, followed by a description for the parameter.
+The `question_id` variable of the URI template is a parameter for every action
+on this resource. It's defined here using an arbitrary type `number`, followed
+by a description for the parameter.
 
-> Refer to API Blueprint Specification's [URI Parameters Section][] for more examples.
+> Refer to API Blueprint Specification's [URI Parameters Section][] for more
+> examples.
 
 ### Actions
 
-This resource has an action to retrieve the questions detail.
+This resource has an action to retrieve the question's detail.
 
 ```apib
 ### View a Questions Detail [GET]
@@ -223,7 +252,8 @@ This resource has an action to retrieve the questions detail.
 
 #### Response Without a Body
 
-This resource has a delete action. The server will return a 204 response without a body.
+This resource has a delete action. The server will return a 204 response
+without a body.
 
 ```apib
 ### Delete [DELETE]
@@ -233,13 +263,18 @@ This resource has a delete action. The server will return a 204 response without
 
 ## Complete Blueprint
 
-You can find an [implementation](http://github.com/apiaryio/polls-api) of this API at http://polls.apiblueprint.org/ along with the complete [Poll API Blueprint][] in the [API Blueprint Examples][] repository. You can also enjoy it [rendered on Apiary][].
+You can find an [implementation](http://github.com/apiaryio/polls-api) of this
+API at http://polls.apiblueprint.org/ along with the complete 
+[Poll API Blueprint][] in the [API Blueprint Examples][] repository. You can
+also enjoy it [rendered on Apiary][].
 
-> **Note:** Take a look at the [API Blueprint Glossary of Terms][] if you need clarification of some of the terms used though this document.
+> **Note:** Take a look at the [API Blueprint Glossary of Terms][] if you need
+> clarification of some of the terms used though this document.
 
 ## API Blueprint Tools
 
-Visit the [Tooling Section][] of [apiblueprint.org][] to find tools to use with API Blueprints.
+Visit the [Tooling Section][] of [apiblueprint.org][] to find tools to use with
+API Blueprints.
 
 [GitHub Gists]:                     https://gist.github.com
 [API Blueprint Glossary of Terms]:  https://github.com/apiaryio/api-blueprint/blob/master/Glossary%20of%20Terms.md
