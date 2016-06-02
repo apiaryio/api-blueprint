@@ -92,8 +92,6 @@ generated JSON Schema may differ from a hand-written one. In this example, the
 generated schema by providing your own, in which case only the JSON body will
 be generated.
 
-*Note*: MSON is still considered a beta feature!
-
 ## Data Structures
 
 Once you start using MSON, you may find yourself wanting to reuse certain
