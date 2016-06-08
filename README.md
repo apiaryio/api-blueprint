@@ -28,7 +28,7 @@ achieve the goals be it API development, governance or delivery.
 API Blueprint is completely open sourced under the MIT license.
 Any [contribution][contribute] is highly appreciated.
 
-[contribute]: #Contribute
+[contribute]: #contribute
 
 ## At home on GitHub
 API Blueprint language is recognized by GitHub. You can
