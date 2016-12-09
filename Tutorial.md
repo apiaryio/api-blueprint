@@ -290,7 +290,7 @@ API Blueprints.
 [API Blueprint Examples]: https://github.com/apiaryio/api-blueprint/tree/master/examples
 [Poll API Blueprint]: https://raw.github.com/apiaryio/api-blueprint/master/examples/Polls%20API.md
 [rendered on Apiary]: http://docs.pollsapi.apiary.io
-[Tooling Section]: http://apiblueprint.org/#tooling
+[Tooling Section]: http://apiblueprint.org/tools.html
 [apiblueprint.org]: http://apiblueprint.org
 [specification]: https://github.com/apiaryio/api-blueprint/blob/master/API%20Blueprint%20Specification.md
 [map]: https://github.com/apiaryio/api-blueprint/wiki/API-Blueprint-Map
