@@ -739,16 +739,16 @@ Defined by an [HTTP request method][httpmethods]:
 
 **-- or --**
 
-Defined by an action [name (identifier)](#def-identifier) followed by an 
-[HTTP request method][httpmethods] enclosed in square brackets `[]`.
+Defined by an action name (identifier) followed by an [HTTP request
+method][httpmethods] enclosed in square brackets `[]`.
 
     ## <identifier> [<HTTP request method>]
 
 **-- or --**
 
-Defined by an action [name (identifier)](#def-identifier) followed by an 
-[HTTP request method][httpmethods] and 
-[URI template][uritemplate] enclosed in square brackets `[]`.
+Defined by an action name (identifier) followed by an [HTTP request
+method][httpmethods] and [URI template][uritemplate] enclosed in square
+brackets `[]`.
 
     ## <identifier> [<HTTP request method> <URI template>]
 
