@@ -60,7 +60,7 @@ Version: 1A9
 <a name="def-introduction"></a>
 ## Introduction
 This documents is a full specification of the API Blueprint format. For a less
-formal introduction to API Blueprint visit the 
+formal introduction to API Blueprint visit the
 [API Blueprint Tutorial](Tutorial.md) or check some of the [examples][].
 
 <a name="def-api-blueprint"></a>
@@ -187,7 +187,7 @@ as its **identifier** and additional modifiers.
 <a name="def-section-types"></a>
 ### Section types
 There are several types of API Blueprint sections. You can find the complete
-listing of the section types in the 
+listing of the section types in the
 [Section Reference](#def-sections-reference).
 
 **The Blueprint section chapter discusses the section syntax in general.**
@@ -273,7 +273,7 @@ A section description is any arbitrary Markdown-formatted content following the
 section definition.
 
 It is possible to use any Markdown header or list item in a section description
-as long as it does not clash with any of the 
+as long as it does not clash with any of the
 [reserved keywords](#def-keywords).
 
 > **NOTE:** It is considered good practice to keep the header level nested
@@ -381,7 +381,7 @@ Defined by a [keyword](#def-keywords) in Markdown list entity.
 
 #### Description
 The asset section is the base section for atomic data in API Blueprint. The content
-of this section is expected to be a 
+of this section is expected to be a
 [pre-formatted code block](http://daringfireball.net/projects/markdown/syntax#precode).
 
 #### Example
@@ -431,7 +431,7 @@ schema.
 
 A payload **may** have its media type associated. A payload's media type
 represents the metadata received or sent in the form of a HTTP `Content-Type`
-header. When specified a payload **should** include nested 
+header. When specified a payload **should** include nested
 [Body section](#def-body-section).
 
 This section **should** include at least one of the following nested sections:
@@ -461,7 +461,7 @@ follows:
     3. Schema section
 
 #### Referencing
-Instead of providing a payload section content, a 
+Instead of providing a payload section content, a
 [model payload section](#def-model-section) can be referenced using the
 Markdown implicit [reference syntax][]:
 
@@ -591,7 +591,7 @@ Defined by an [URI template][uritemplate]:
 
 **-- or --**
 
-Defined by a resource [name (identifier)](#def-identifier) followed by an 
+Defined by a resource [name (identifier)](#def-identifier) followed by an
 [URI template][uritemplate] enclosed in square brackets `[]`.
 
     # <identifier> [<URI template>]
@@ -604,7 +604,7 @@ Defined by an [HTTP request method][httpmethods] followed by [URI template][urit
 
 **-- or --**
 
-Defined by a resource [name (identifier)](#def-identifier) followed by an 
+Defined by a resource [name (identifier)](#def-identifier) followed by an
 [HTTP request method][httpmethods] and an [URI template][uritemplate] enclosed
 in square brackets `[]`:
 
@@ -619,13 +619,13 @@ An API [resource](http://www.w3.org/TR/di-gloss/#def-resource) as specified by
 its *URI* or a set of resources (a resource template) matching its *URI
 template*.
 
-This section **should** include at least one nested 
+This section **should** include at least one nested
 [Action section](#def-action-section) and **may** include following nested
 sections:
 
 - [`0-1` URI parameters section](#def-uriparameters-section)
 
-    URI parameters defined in the scope of a Resource section apply to 
+    URI parameters defined in the scope of a Resource section apply to
     _any and all_ nested Action sections except when an [URI template][uritemplate] has
     been defined for the Action.
 
@@ -718,6 +718,31 @@ Defined by the `Schema` keyword in Markdown list entity.
 #### Description
 Specifies a validation schema for the HTTP message-body of parent payload section.
 
+#### Example
+
+Following example uses [Body section](#def-body-section) to provide an example of an `application/json` payload, and [Schema section](#def-schema-section) to provide a [JSON Schema](http://json-schema.org/) describing all possible valid shapes of the payload.
+
+```apib
+## Retrieve a Message [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {"message": "Hello world!"}
+
+    + Schema
+
+            {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "object",
+                "properties": {
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            }
+```
+
 ---
 
 <a name="def-action-section"></a>
@@ -739,15 +764,15 @@ Defined by an [HTTP request method][httpmethods]:
 
 **-- or --**
 
-Defined by an action [name (identifier)](#def-identifier) followed by an 
+Defined by an action [name (identifier)](#def-identifier) followed by an
 [HTTP request method][httpmethods] enclosed in square brackets `[]`.
 
     ## <identifier> [<HTTP request method>]
 
 **-- or --**
 
-Defined by an action [name (identifier)](#def-identifier) followed by an 
-[HTTP request method][httpmethods] and 
+Defined by an action [name (identifier)](#def-identifier) followed by an
+[HTTP request method][httpmethods] and
 [URI template][uritemplate] enclosed in square brackets `[]`.
 
     ## <identifier> [<HTTP request method> <URI template>]
@@ -757,7 +782,7 @@ Definition of at least one complete HTTP transaction as performed with the
 parent resource section. An action section **may** consist of multiple HTTP
 transaction examples for the given HTTP request method.
 
-This section **may** include one nested 
+This section **may** include one nested
 [URI parameters section](#def-uriparameters-section) describing any URI
 parameters _specific_ to the action – URI parameters discussed in the scope of
 an Action section apply to the respective Action section ONLY.
@@ -767,8 +792,8 @@ input (request) attributes of the section. If present, these attributes
 **should** be inherited in every Action's [Request section][] unless specified
 otherwise.
 
-Action section **should** include at least one nested 
-[Response section](#def-response-section) and **may** include additional nested 
+Action section **should** include at least one nested
+[Response section](#def-response-section) and **may** include additional nested
 [Request](#def-request-section) and [Response](#def-response-section) sections.
 
 Nested Request and Response sections **may** be ordered into groups where each
@@ -933,7 +958,7 @@ Discussion of URI parameters _in the scope of the parent section_.
 
 This section **must** be composed of nested list items only. This section
 **must not** contain any other elements. Each list item describes a single URI
-parameter. The nested list items subsections inherit from the 
+parameter. The nested list items subsections inherit from the
 [Named section](#def-named-section) and are subject to additional formatting as
 follows:
 
@@ -951,7 +976,7 @@ follows:
 
 Where:
 
-+ `<parameter name>` is the parameter name as written in 
++ `<parameter name>` is the parameter name as written in
   [Resource Section](#ResourceSection)'s URI (e.g. "id").
 + `<description>` is any **optional** Markdown-formatted description of the
   parameter.
@@ -967,7 +992,7 @@ Where:
   For example, if enumeration values are present for a parameter whose type is
   `number`, then `enum[number]` should be used instead of `number` to.
 + `<enumeration value n>` represents an element of enumeration type.
-+ `required` is the **optional** specifier of a required parameter 
++ `required` is the **optional** specifier of a required parameter
   (this is the **default**)
 + `optional` is the **optional** specifier of an optional parameter.
 
@@ -1023,7 +1048,7 @@ Where:
 - **Inherits from**: none
 
 #### Definition
-Defined by the `Attributes` keyword followed by an optional 
+Defined by the `Attributes` keyword followed by an optional
 [MSON Type Definition][] enclosed in parentheses.
 
     + Attributes <Type Definition>
@@ -1039,7 +1064,7 @@ is assumed. See [MSON Type Definition][] for details.
 ```
 
 #### Description
-This section describes a data structure using the 
+This section describes a data structure using the
 **[Markdown Syntax for Object Notation][MSON] (MSON)**.
 Based on the parent section, the data structure being described is one of the
 following:
@@ -1104,7 +1129,7 @@ specified otherwise.
 Description of payload (request, response, model) message-body attributes.
 
 Not every attribute has to be described. However, when an attribute is
-described, it **should** appear in the respective 
+described, it **should** appear in the respective
 [Body section](#def-body-section) example, if a Body section is provided.
 
 If defined, the [Body section](#def-body-section) **may** be omitted and the
@@ -1317,7 +1342,7 @@ The API Blueprint uses a subset of [RFC6570][rfc6570] to define a resource URI T
 
 ### URI Path Segment
 
-At its simplest form – without any variables – a path segment of an 
+At its simplest form – without any variables – a path segment of an
 URI Template is identical to an URI path segment:
 
 ```
@@ -1341,7 +1366,7 @@ trailing spaces. A variable(s) **must** be enclosed in braces – `{}`
 
 #### Operators
 
-The first variable in the braces **might** be preceded by an operator. 
+The first variable in the braces **might** be preceded by an operator.
 API Blueprint currently supports the following operators:
 
 - `#` – _fragment identifier_ operator
