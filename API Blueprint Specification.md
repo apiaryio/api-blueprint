@@ -45,6 +45,7 @@ Version: 1A9
 ### Going Further
 + [Data Structures section](#def-data-structures)
 + [Relation section](#def-relation-section)
++ [Common Data section](#def-common-data)
 
 
 ## [III. Appendix](#def-appendix)
@@ -112,6 +113,7 @@ All of the blueprint sections are optional. However, when present, a section
             + [`0-1` **Body** section](#def-body-section)
             + [`0-1` **Schema** section](#def-schema-section)
 + [`0+` **Resource Group** sections](#def-resourcegroup-section)
+    + [`0+` **Common Data** section](#def-common-data)
     + [`0+` **Resource** sections](#def-resource-section) (see above)
 + [`0+` **Data Structures** section](#def-data-structures)
 
@@ -1328,6 +1330,36 @@ for the given action as specified by [RFC 5988](https://tools.ietf.org/html/rfc5
 ```
 
 ---
+
+
+<a name="def-common-data"></a>
+## Common Data section
+- **Parent sections:** none
+- **Nested sections:** [Response](#def-response-section)
+- **Markdown entity:** header
+- **Inherits from**: none
+
+#### Definition
+Defined by the `Common Data` keyword.
+
+    # Common Data
+
+#### Description
+This section holds common responses for all [Actions](#def-action) of current and nested
+[Resource group sections](#def-resourcegroup-section).
+
+#### Example
+
+```apib
+# Common Data
+
++ Response 404 (application/json)
+    + Attributes
+        status: not_found (string, required, fixed)
+```
+
+---
+
 
 
 <br>
