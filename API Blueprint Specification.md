@@ -977,11 +977,11 @@ follows:
 Where:
 
 + `<parameter name>` is the parameter name as written in
-  [Resource Section](#ResourceSection)'s URI (e.g. "id").
+  [Resource Section](#def-resource-section)'s URI (e.g. "id").
 + `<description>` is any **optional** Markdown-formatted description of the
   parameter.
 + `<additional description>` is any additional **optional** Markdown-formatted
-  [description](#SectionDescription) of the parameter.
+  [description](#def-description) of the parameter.
 + `<default value>` is an **optional** default value of the parameter – a value
   that is used when no value is explicitly set (optional parameters only).
 + `<example value>` is an **optional** example value of the parameter (e.g. `1234`).
