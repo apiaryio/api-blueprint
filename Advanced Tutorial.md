@@ -44,7 +44,7 @@ containing a question and a collection of answers in the form of choices.
               "type": "object",
               "properties": {
                 "question": {
-                  "type": "string
+                  "type": "string"
                 },
                 "choices": {
                   "type": "array",
