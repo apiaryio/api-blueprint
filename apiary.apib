@@ -1,0 +1,3200 @@
+FORMAT: 1A
+HOST: https://api.agrofoto.pl
+
+# Agrofoto
+Agrofoto REST API
+
+## Request info
+Collection always consists of:
+
+ - `href`that uniquely identifies the collection, 
+ - `items table that contains all or some of the actual resources,
+ - `previous and `next` which allow for paging
+
+### Access token
+Access token should be obtained after logging in.
+
+Every authenticated request will contain HTTP header `Authorization` with an access token.
+
+`Authorization: token OAUTH-TOKEN`
+
+If annonymous (without logging in) application access should be possible - no access token in request present case support is needed and treated as a request from unauthenticated user.
+
+
+# Agrofoto API Root [/]
+API Root
+
+References other api resources, field expansion allows to fetch content with single request
+
+
+Attributes of the root resource:
+
+ - `gallery` is a root gallery resource
+ - `forum` is a root forum resource
+
+## Retrieve Entry Point [GET]
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/",
+                "galleries": {
+                    "href": "https://api.agrofoto.pl/galleries"
+                },
+                "forums": {
+                    "href": "https://api.agrofoto.pl/forums"
+                }
+            }
+
+# Group Authentication
+Seesion management
+
+## Login [/login]
+If some other session parameters are neccessary prior to actual login request, they could be obtained with GET request on login endpoint. Please report this issue if necessary.
+
+### Login [POST]
+Performs the login.
+
++ Request (application/x-www-form-urlencoded)
+
+        login=test&password=qq
+            
++ Response 200
+    + Body
+
+            {
+                "token": "OAUTH-TOKEN",
+                "userId": "121489",
+                "userName": "SecondApiTest",
+                "userThumb": "http://t2.agrofoto.pl/forum/uploads/profile/photo-47222.jpg"
+            }
+
+### Logout [DELETE]
+Performs logout.
++ Response 204
+
+## Register [/register]
+
+### Register [POST]
+
++ Request (applicatoin/x-www-form-urlencoded)
+
+        login=test&password=qq&email=test@test.com&zipcode=12-123&agree1=false&agree2=false
+        
++ Response 200
+    + Body
+
+            {
+                "token": "OAUTH-TOKEN"
+            }
+
+# Group Push
+
+## Register [/subscribe]
+
+### Register device [POST]
+"user" value must be forwarded with push message payload to help aplication filter messages that are destined to another user
+
+"type" can be either "android" or "ios"
+
++ Request (application/json)
+    + Body
+    
+            {
+                "user":"user1",
+                "type":"android",
+                "token":"CAFEBABE"
+            }
+
++ Response 204
+
+## Unregister [/unsubscribe]
+
+### Unregister device [POST]
+
++ Request (application/json)
+    + Body
+
+            {
+                "token":"CAFEBABE"
+            }
+            
++ Response 204
+
+## Location [/location]
+
+### Send location [POST]
+
++ Request (application/json)
+    + Body
+
+            {
+                longitude:"1234.56",
+                latitude:"1234.56",
+                token:"CAFEBABE"
+            }
+            
++ Response 204
+
+# Group Main
+
+## Main [/main]
+
+### Get main screen [GET]
++ Response 200 (application/json)
+    + Body
+
+            {
+                "hotPhotos": {
+                    "href": "https://api.agrofoto.pl/main/hotPhotos",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/14237-mat",
+                                "name": "Mat"
+                            },
+                            "name": "Case 115 i Claas Dominator 86",
+                            "desc": "1-szy dzień żniw.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 91,
+                            "commentsCount": 1,
+                            "adRatio": 0.5
+                        }
+                    ],
+                    "next": null,
+                    "previous": null
+                },
+                "newPhotos": {
+                    "href": "https://api.agrofoto.pl/main/newPhotos",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/14237-mat",
+                                "name": "Mat"
+                            },
+                            "name": "Case 115 i Claas Dominator 86",
+                            "desc": "1-szy dzień żniw.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 91,
+                            "commentsCount": 1,
+                            "adRatio": 0.5
+                        }
+                    ],
+                    "next": null,
+                    "previous": null
+                },
+                "newTopics": {
+                    "href": "https://api.agrofoto.pl/main/newTopics",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady",
+                            "title": "MŁODY ROLNIK (nowe zasady)",
+                            "postsCount": 13807,
+                            "displayedCount": 1497404,
+                            "latestPost": {
+                                "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady/posts/13808",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/136140-kamilek1",
+                                    "name": "Kamilek1",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-136140.jpg"
+                                },
+                                "createdTime": "2011-09-02T16:12:33+0000"
+                            }
+                        }
+                    ],
+                    "next": null,
+                    "previous": null
+                },
+                "newPosts": {
+                    "href": "https://api.agrofoto.pl/main/newPosts",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady",
+                            "title": "MŁODY ROLNIK (nowe zasady)",
+                            "postsCount": 13807,
+                            "displayedCount": 1497404,
+                            "latestPost": {
+                                "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady/posts/13808",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/136140-kamilek1",
+                                    "name": "Kamilek1",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-136140.jpg"
+                                },
+                                "createdTime": "2011-09-02T16:12:33+0000"
+                            }
+                        }
+                    ],
+                    "next": null,
+                    "previous": null
+                },
+                "newComments": {
+                    "href": "https://api.agrofoto.pl/main/newComments",
+                    "items": [
+                        {
+                            "comment": {
+                                "href": "https://api.agrofoto.pl/comments/1544809",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/19727-michal15555",
+                                    "name": "michal15555",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
+                                },
+                                "message": "Jaki plon ?",
+                                "createdTime": "2011-09-02T15:41:47+0000"
+                            },
+                            "photo": {
+                                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                                "name": "Case 115 i Claas Dominator 86",
+                                "images": {
+                                    "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                                    "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                                    "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                                    "big": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/mobile_gallery_14237_29_53604.jpg",
+                                    "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                                }
+                            }
+                        }
+                    ],
+                    "next": null,
+                    "prevoius": null
+                },
+                "bannerads": [    
+                    {
+                        "banner": "http://link-do-baneru.com/baner.jpg",
+                        "link": "http://link-do-reklamowanej-strony.com"
+                    }
+                ],
+                "adRatio": 0.5
+            }
+            
+## Latest comments [/main/newComments]
+Latest comments collection with paging support (page and limit query parameters)
+
+### Get latest comments [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/main/newComments",
+                "items": [
+                    {
+                        "comment": {
+                            "href": "https://api.agrofoto.pl/comments/1544809",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/19727-michal15555",
+                                "name": "michal15555",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
+                            },
+                            "message": "Jaki plon ?",
+                            "createdTime": "2011-09-02T15:41:47+0000"
+                        },
+                        "photo": {
+                            "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                            "name": "Case 115 i Claas Dominator 86",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                                "big": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/mobile_gallery_14237_29_53604.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                            }
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/main/newComments?page=1&limit=25"
+                },
+                "prevoius": null
+            }
+
+# Group Galleries
+Gallery releated resources
+
+## Gallery [/galleries/{id}]
+A single Gallery object. Gallery object represents a node in the tree of galleries.
+
+Following gallery object types should be considered:
+
+- root - hot photos, children, no parent, no photos
+- node - hot photos, children, parent, no photos
+- leaf - hot photos, no children, parent, photos
+- leaf-vip - leaf with from and rating
+
++ Parameters
+    + id (string)
+
+### Get the Gallery [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/galleries/29-case",
+                "title": "Case",
+                "desc": null,
+                "updatedTime": "2014-04-14T02:15:15Z",
+                "photosCount": 3724,
+                "commentsCount": 15286,
+                "cover": {
+                    "href": "http://www.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                    "user": {
+                        "href": "https://api.agrofoto.pl/users/14237-mat",
+                        "name": "Mat"
+                    },
+                    "name": "Case 115 i Claas Dominator 86",
+                    "desc": "1-szy dzień żniw.",
+                    "images": {
+                        "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                        "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                        "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                        "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                    },
+                    "createdTime": "2011-09-02T15:41:47+0000",
+                    "updatedTime": "2011-09-02T16:12:33+0000",
+                    "displayedCount": 91,
+                    "commentsCount": 1
+                },
+                "subscribe": {
+                    "href": "https://api.agrofoto.pl/galleries/29-case/subscribe",
+                    "count": 3,
+                    "subscribed": true
+                },
+                "share": "http://www.agrofoto.pl/forum/gallery/category/29-case/",
+                "canUpload": true,
+                "parent": {
+                    "href": "https://api.agrofoto.pl/galleries/4-ciagniki-tractors",
+                    "title": "Ciągniki / Tractors",
+                    "parent": {
+                        "href": "https://api.agrofoto.pl/galleries/2-maszyny-machines",
+                        "title": "Maszyny / Machines",
+                        "parent": {
+                            "href": "https://api.agrofoto.pl/galleries",
+                            "title": "Galerie",
+                            "parent": null
+                        }
+                    }
+                },
+                "children": {
+                    "href": "https://api.agrofoto.pl/galleries/{id}/children",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/galleries/224-challenger",
+                            "title": "Challenger",
+                            "desc": null,
+                            "updatedTime": "2014-04-14T02:15:15Z",
+                            "photosCount": 83,
+                            "commentsCount": 394,
+                            "cover": {
+                                "href": "http://www.agrofoto.pl/photos/504435-challenger-mt-765c",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/1342-mnich",
+                                    "name": "mnich"
+                                },
+                                "name": "Challenger MT 765C",
+                                "desc": "Siew kukurydzy siewnikiem horsch.",
+                                "images": {
+                                    "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_224/tn_gallery_1342_224_40598.jpg",
+                                    "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_224/sml_gallery_1342_224_40598.jpg",
+                                    "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_224/med_gallery_1342_224_40598.jpg",
+                                    "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_224/gallery_1342_224_40598.jpg"
+                                },
+                                "createdTime": "2011-09-02T15:41:47+0000",
+                                "updatedTime": "2011-09-02T16:12:33+0000",
+                                "displayedCount": 433,
+                                "commentsCount": 4
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/galleries/29-case/children?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "photos": {
+                    "href": "https://api.agrofoto.pl/galleries/29-case/photos",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/14237-mat",
+                                "name": "Mat"
+                            },
+                            "name": "Case 115 i Claas Dominator 86",
+                            "desc": "1-szy dzień żniw.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 91,
+                            "commentsCount": 1,
+                            "adRatio": 0.5
+                        }
+                    ],
+                    "next": { 
+                        "href": "https://api.agrofoto.pl/galleries/29-case/photos?page=1&limit=25" 
+                    },
+                    "previous": null
+                },
+                "hot": {
+                    "href": "https://api.agrofoto.pl/galleries/29-case/hot",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/14237-mat",
+                                "name": "Mat"
+                            },
+                            "name": "Case 115 i Claas Dominator 86",
+                            "desc": "1-szy dzień żniw.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 91,
+                            "commentsCount": 1,
+                            "adRatio": 0.5
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/galleries/29-case/hot?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "albums": {
+                    "href": "https://api.agrofoto.pl/galleries/1-albumy-uzytkownikow-users-albums/albums",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/albums/2322-sezon-2014",
+                            "title": "Sezon 2014",
+                            "desc": "Prace polowe 2014",
+                            "updatedTime": "2014-04-14T02:15:15Z",
+                            "photosCount": 32,
+                            "commentsCount": 190,
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                                "name": "michallek4",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                            },
+                            "cover": {
+                                "href": "https://api.agrofoto.pl/photos/516351-new-holland-tc5070",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                                    "name": "michallek4",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                                },
+                                "name": "New Holland TC5070",
+                                "desc": "Dalszy ciag usług :)",
+                                "images": {
+                                    "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/tn_gallery_26381_2322_274253.jpg",
+                                    "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/sml_gallery_26381_2322_274253.jpg",
+                                    "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/med_gallery_26381_2322_274253.jpg",
+                                    "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/gallery_26381_2322_274253.jpg"
+                                },
+                                "createdTime": "2011-09-02T15:41:47+0000",
+                                "updatedTime": "2011-09-02T16:12:33+0000",
+                                "displayedCount": 82,
+                                "commentsCount": 0
+                            },
+                            "rate": {
+                                "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/rate",
+                                "rating": 5,
+                                "count": 2,
+                                "userRating": 5,
+                                "canRate": true
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/galleries/1-albumy-uzytkownikow-users-albums/albums?page=1&limit=25"
+                    },
+                    "previous": null
+                }
+            }
+
+## Gallery subscribing [/galleries/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/galleries/29-case/subscribe",
+                "count": 3,
+                "subscribed": true
+            }
+
+### Subscribe the gallery [PUT]
++ Response 200 (application/json)
+
+    [Gallery subscribing][]    
+
+### Unsubscribe the gallery [DELETE]
++ Response 200 
+
+    [Gallery subscribing][]
+
+## Gallery children [/galleries/{id}/children]
+Subgalleries of given gallery node, also user albums
+
++ Parameters
+    + id (string)
+    
+### List gallery children [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/galleries/29-case/children",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/galleries/224-challenger",
+                        "title": "Challenger",
+                        "desc": null,
+                        "updatedTime": "2014-04-14T02:15:15Z",
+                        "photosCount": 83,
+                        "commentsCount": 394,
+                        "cover": {
+                            "href": "https://api.agrofoto.pl/photos/504435-challenger-mt-765c",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/1342-mnich",
+                                "name": "mnich"
+                            },
+                            "name": "Challenger MT 765C",
+                            "desc": "Siew kukurydzy siewnikiem horsch.",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_224/tn_gallery_1342_224_40598.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_224/sml_gallery_1342_224_40598.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_224/med_gallery_1342_224_40598.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_224/gallery_1342_224_40598.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 433,
+                            "commentsCount": 4
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/galleries/29-case/children?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+# Group Albums
+
+## Gallery Albums Collection [/galleries/{id}/albums]
+VIP users' albums, similiar to a leaf gallery node but with addition rate and from endpoints
+
+### List all Albums
++ Parameters
+    + id (string)
+
+### List gallery albums [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/galleries/1-albumy-uzytkownikow-users-albums/albums",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/albums/2322-sezon-2014",
+                        "title": "Sezon 2014",
+                        "desc": "Prace polowe 2014",
+                        "updatedTime": "2014-04-14T02:15:15Z",
+                        "photosCount": 32,
+                        "commentsCount": 190,
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                            "name": "michallek4",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                        },
+                        "cover": {
+                            "href": "https://api.agrofoto.pl/photos/516351-new-holland-tc5070",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                                "name": "michallek4",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                            },
+                            "name": "New Holland TC5070",
+                            "desc": "Dalszy ciag usług :)",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/tn_gallery_26381_2322_274253.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/sml_gallery_26381_2322_274253.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/med_gallery_26381_2322_274253.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/gallery_26381_2322_274253.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 82,
+                            "commentsCount": 0
+                        },
+                        "rate": {
+                            "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/rate",
+                            "rating": 5,
+                            "count": 2,
+                            "userRating": 5,
+                            "canRate": true
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/galleries/1-albumy-uzytkownikow-users-albums/albums?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## Album [/albums/{id}]
+
+### Get album [GET]
+
++ Parameters
+    + id (string)
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/albums/2322-sezon-2014",
+                "title": "Sezon 2014",
+                "desc": "Prace polowe 2014",
+                "updatedTime": "2014-04-14T02:15:15Z",
+                "photosCount": 32,
+                "commentsCount": 190,
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                    "name": "michallek4",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                },
+                "cover": {
+                    "href": "https://api.agrofoto.pl/photos/516351-new-holland-tc5070",
+                    "user": {
+                        "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                        "name": "michallek4",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-26381.jpg"
+                    },
+                    "name": "New Holland TC5070",
+                    "desc": "Dalszy ciag usług :)",
+                    "images": {
+                        "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/tn_gallery_26381_2322_274253.jpg",
+                        "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/sml_gallery_26381_2322_274253.jpg",
+                        "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/med_gallery_26381_2322_274253.jpg",
+                        "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/gallery_26381_2322_274253.jpg"
+                    },
+                    "createdTime": "2011-09-02T15:41:47+0000",
+                    "updatedTime": "2011-09-02T16:12:33+0000",
+                    "displayedCount": 82,
+                    "commentsCount": 0
+                },
+                "share": "http://www.agrofoto.pl/forum/gallery/image/516351-new-holland-tc5070/",
+                "canUpload": true,
+                "parent": {
+                    "href": "https://api.agrofoto.pl/galleries/1-albumy-uzytkownikow-users-albums",
+                    "title": "Albumy użytkowników / Users' albums",
+                    "parent": {
+                        "href": "https://api.agrofoto.pl/galleries",
+                        "title": "Galerie",
+                        "parent": null
+                    }
+                },
+                "photos": {
+                    "href": "https://api.agrofoto.pl/albums/29-case/photos",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                                "name": "michallek4",
+                            },
+                            "name": "New Holland T7530 + Agromax 8,4 m",
+                            "desc": "Sezon 2014 rozpoczęty z lekkim opóźnieniem bo czekałem na Vipa :) Zapraszam do komentowania i oceniania ;) ",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/tn_gallery_26381_2322_130951.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/sml_gallery_26381_2322_130951.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/med_gallery_26381_2322_130951.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/gallery_26381_2322_130951.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 91,
+                            "commentsCount": 1,
+                            "adRatio": 0.5
+                        }
+                    ],
+                    "next": { 
+                        "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/photos?page=1&limit=25" 
+                    },
+                    "previous": null
+                },
+                "subscribe": {
+                    "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/subscribe",
+                    "count": 3,
+                    "subscribed": true
+                },
+                "rate": {
+                    "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/rate",
+                    "rating": 5,
+                    "count": 2,
+                    "userRating": 5,
+                    "canRate": true
+                }
+            }
+
+## Album subscribing [/albums/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/subscribe",
+                "count": 3,
+                "subscribed": true
+            }
+
+### Subscribe album [PUT]
++ Response 200 (application/json)
+
+    [Album subscribing][]    
+
+### Unsubscribe album [DELETE]
++ Response 200 
+
+    [Album subscribing][]
+
+## Album rating [/albums/{id}/rate]
+Rate the album
+
++ Parameters
+    + id (string)
+
++ Model (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/rate",
+                "rating": 5,
+                "count": 2,
+                "userRating": 5,
+                "canRate": true
+            }
+
+### Get album rating [GET]
++ Response 200 (application/json)
+
+    [Album rating][]
+
+### Rate album [POST]
+Rate or update user vote
+
++ Request (application/json)
+
+            {
+                "rating": 5.0
+            }
+            
++ Response 200 (application/json)
+
+    [Album rating][]
+
+# Group Photos
+    
+## Gallery Photos Collection [/galleries/{id}/photos]
+Photos collection for given gallery leaf
+    
+### List all Photos [GET]
++ Parameters
+    + id (string)
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/galleries/29-case/photos",   
+                "items": [ 
+                    {
+                        "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/14237-mat",
+                            "name": "Mat"
+                        },
+                        "name": "Case 115 i Claas Dominator 86",
+                        "desc": "1-szy dzień żniw.",
+                        "images": {
+                            "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                            "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                            "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                            "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                        },
+                        "createdTime": "2011-09-02T15:41:47+0000",
+                        "updatedTime": "2011-09-02T16:12:33+0000", 
+                        "displayedCount": 91,
+                        "commentsCount": 1,
+                        "adRatio": 0.5
+                    }
+                ],
+                "next": { 
+                    "href": "https://api.agrofoto.pl/galleries/29-case/photos?page=1&limit=25" 
+                },
+                "previous": null
+            }
+
+### Photo upload [POST]
+Single photo upload
+
++ Request (multipart/form-data; boundary=AaB03x)
+            
+            --AaB03x
+            Content-Disposition: form-data; name="photo"
+            Content-Type: application/json
+            
+            {
+                "name": "Case 115 i Claas Dominator 86",
+                "desc": "1-szy dzień żniw.",
+                "subscribe": true
+            }
+            --AaB03x
+            Content-Disposition: form-data; name="file"; filename="photo.jpg"
+            Content-Type: image/jpeg
+            Content-Transfer-Encoding: binary
+            
+            ... contents of photo.jpeg ...
+            --AaB03x--
+
++ Response 201 (application/json)
+    + Body
+            
+            {
+                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86"
+            }
+
+## Hot photos collection [/galleries/{id}/hot]
+Hot photos collection for given gallery root/node/leaf
+    
+### List all hot photos [GET]
++ Parameters
+    + id (string)
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/galleries/29-case/hot",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/14237-mat",
+                            "name": "Mat"
+                        },
+                        "name": "Case 115 i Claas Dominator 86",
+                        "desc": "1-szy dzień żniw.",
+                        "images": {
+                            "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                            "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                            "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                            "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                        },
+                        "createdTime": "2011-09-02T15:41:47+0000",
+                        "updatedTime": "2011-09-02T16:12:33+0000",
+                        "displayedCount": 91,
+                        "commentsCount": 1,
+                        "adRatio": 0.5
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/galleries/29-case/hot?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## Album Photos Collection [/albums/{id}/photos]
+Photos collection for given user album
+
+### List all Photos [GET]
++ Parameters
+    + id (string)
+    
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/photos",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/26381-michallek4",
+                            "name": "michallek4"
+                        },
+                        "name": "New Holland T7530 + Agromax 8,4 m",
+                        "desc": "Sezon 2014 rozpoczęty z lekkim opóźnieniem bo czekałem na Vipa :) Zapraszam do komentowania i oceniania ;) ",
+                        "images": {
+                            "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/tn_gallery_26381_2322_130951.jpg",
+                            "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/sml_gallery_26381_2322_130951.jpg",
+                            "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/med_gallery_26381_2322_130951.jpg",
+                            "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_2322/gallery_26381_2322_130951.jpg"
+                        },
+                        "createdTime": "2011-09-02T15:41:47+0000",
+                        "updatedTime": "2011-09-02T16:12:33+0000",
+                        "displayedCount": 91,
+                        "commentsCount": 1,
+                        "adRatio": 0.5
+                    }
+                "next": {
+                    "href": "https://api.agrofoto.pl/albums/2322-sezon-2014/photos?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+### Photo upload [POST]
+Single photo upload
+            
++ Request (multipart/form-data; boundary=AaB03x)
+            
+            --AaB03x
+            Content-Disposition: form-data; name="photo"
+            Content-Type: application/json
+            
+            {
+                "name": "New Holland T7530 + Agromax 8,4 m",
+                "desc": "Sezon 2014 rozpoczęty z lekkim opóźnieniem bo czekałem na Vipa :) Zapraszam do komentowania i oceniania ;) ",
+                "subscribe": true
+            }
+            --AaB03x
+            Content-Disposition: form-data; name="file"; filename="photo.jpg"
+            Content-Type: image/jpeg
+            Content-Transfer-Encoding: binary
+            
+            ... contents of photo.jpeg ...
+            --AaB03x--
+
++ Response 201 (application/json)
+    + Body
+            
+            {
+                "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m"
+            }
+
+## Photo [/photos/{id}{?limit,page,item}]
+Single photo resource
+
++ Parameters
+    + id (string) ... photo identifier
+    + limit (string) ... number of comments per page
+    + page (string) ... comments page number to fetch, no arguments means first page, value "last" means last page 
+    + item (string) ... comment identifier, fetch comments page with that item included
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86",
+                "gallery": {
+                    "href": "https://api.agrofoto.pl/galleries/29-case",
+                    "title": "Case"
+                },
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/14237-mat",
+                    "name": "Mat",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-14237.jpg"
+                },
+                "name": "Case 115 i Claas Dominator 86",
+                "desc": "1-szy dzień żniw.",
+                "images": {
+                    "square": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/tn_gallery_14237_29_53604.jpg",
+                    "small": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/sml_gallery_14237_29_53604.jpg",
+                    "medium": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/med_gallery_14237_29_53604.jpg",
+                    "large": "http://www.agrofoto.pl/forum/uploads/gallery/category_29/gallery_14237_29_53604.jpg"
+                },
+                "createdTime": "2011-09-02T15:41:47+0000",
+                "updatedTime": "2011-09-02T16:12:33+0000",
+                "displayedCount": 91,
+                "commentsCount": 1,
+                "link": "http://www.agrofoto.pl/forum/gallery/image/514762-case-115-i-claas-dominator-86/",
+                "rate": {
+                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/rate",
+                    "rating": 5,
+                    "ratingCount": 2,
+                    "userRating": 5,
+                    "canRate": true
+                },
+                "subscribe": {
+                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/subscribe",
+                    "count": 4,
+                    "subscribed": true
+                },
+                "comments": {
+                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/comments",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/comments/1544809",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/19727-michal15555",
+                                "name": "michal15555",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
+                            },
+                            "message": "Jaki plon ?",
+                            "createdTime": "2011-09-02T15:41:47+0000"
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/comments?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "adRatio": 0.5
+            }
+
+### Get the Photo [GET]
+    
++ Response 200 (application/json)
+
+    [Photo][]
+
+### Delete the photo [DELETE]
++ Response 204
+
+## Photo rating [/photos/{id}/rate]
+Rate the photo
+
++ Parameters
+    + id (string)
+
++ Model (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/rate",
+                "rating": 5.0,
+                "ratingCount": 2,
+                "userRating": 5.0,
+                "canRate": true
+            }
+
+
+### Get photo rating [GET]
++ Response 200 (application/json)
+
+    [Photo rating][]
+
+### Rate the photo [POST]
+Rate or update user vote
+
++ Request (application/json)
+
+            {
+                "rating": 5.0
+            }
+            
++ Response 200 (application/json)
+
+    [Photo rating][]
+
+## Photo subscribing [/photos/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/subscribe",
+                "count": 4,
+                "subscribed": true
+            }
+
+### Subscribe the photo [PUT]
++ Response 200 (application/json)
+
+    [Photo subscribing][]    
+
+### Unsubscribe the photo [DELETE]
++ Response 200 
+
+    [Photo subscribing][]
+
+# Group Comments
+
+## Comments collection [/photos/{id}/comments?{limit,page}]
+
++ Parameters
+    + id (string)
+    + limit (string) ... number of comments per page
+    + page (string) ... comments page number to fetch, no arguments means first page, value "last" means last page 
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/comments",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/comments/1544809",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/19727-michal15555",
+                            "name": "michal15555",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
+                        },
+                        "message": "Jaki plon ?",
+                        "createdTime": "2011-09-02T15:41:47+0000"
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/photos/514762-case-115-i-claas-dominator-86/comments?page=1&limit=25"
+                },
+                "previous": null
+            }  
+
+### Get all comments [GET]
++ Response 200 (application/json)
+
+    [Comments collection][]
+
+### Post a comment [POST]
++ Request (application/json)
+
+            {
+                "message": "Jaki plon ?"
+            }
+            
++ Response 200 (application/json)
+
+    [Photo][]
+    
+## Comment [/comments/{id}]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/comments/1544809",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/19727-michal15555",
+                    "name": "michal15555",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-19727.jpg"
+                },
+                "message": "Jaki plon ?",
+                "createdTime": "2011-09-02T15:41:47+0000"
+            }
+
+### Get the comment [GET]
++ Response 200 (application/json)
+
+    [Comment][]
+    
+### Update the comment [PUT]
++ Request (application/json)
+
+            {
+                "message": "Jaki plon ?"
+            }
+            
++ Response 200 (application/json)
+
+    [Comments collection][]
+    
+### Delete the comment [DELETE]
++ Response 204
+
+# Group Forums
+Forum related resources
+
+## Forum [/forums/{id}]
+A single forum object. Forum object represents a node in the tree of forums.
+
+Following forum object types should be considered:
+
+- root - hot topics, children, no parent, no topics
+- node - no hot topics, children, parent, topics/no topics
+- leaf - no hot topics, no children, parent, topics
+
+The following example api response is a hybrid of all three node types.
+
++ Parameters
+    + id (string)
+
+### Get Forum [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/forums/178-jeczmien",
+                "title": "Jęczmień",
+                "icon": "http://www.agrofoto.pl/forum/uploads/forumicons/41-icon-2145d8666c5e8ca7b66e6f57d61b939b.jpg",
+                "unread": true,
+                "topicsCount": 107,
+                "postsCount": 4472,
+                "link": "http://www.agrofoto.pl/forum/forum/178-jeczmien/",
+                "latestTopic": {
+                    "href": "https://api.agrofoto.pl/topics/54612-jeczmien-hybrydowy",
+                    "title": "jęczmień hybrydowy",
+                    "user": {
+                        "href": "https://api.agrofoto.pl/users/69429-rapscase",
+                        "name": "RAPSCASE",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-14237.jpg"
+                    },
+                    "updatedTime": "2011-09-02T16:12:33+0000"
+                },
+                "children": {
+                    "href": "https://api.agrofoto.pl/forums/178-jeczmien/children",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/forums/178-jeczmien",
+                            "title": "Jęczmień",
+                            "icon": "http://www.agrofoto.pl/forum/uploads/forumicons/41-icon-2145d8666c5e8ca7b66e6f57d61b939b.jpg",
+                            "unread": true,
+                            "topicsCount": 107,
+                            "postsCount": 4472,
+                            "latestTopic": {
+                                "href": "https://api.agrofoto.pl/topics/54612-jeczmien-hybrydowy",
+                                "title": "jęczmień hybrydowy",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/69429-rapscase",
+                                    "name": "RAPSCASE",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-14237.jpg"
+                                },
+                                "updatedTime": "2011-09-02T16:12:33+0000"
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/forums/178-jeczmien/children?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "parent": {
+                    "href": "https://api.agrofoto.pl/forums/41-zboza",
+                    "title": "Zboża",
+                    "parent": {
+                        "href": "https://api.agrofoto.pl/forums/19-produkcja-roslinna",
+                        "title": "Produkcja roślinna",
+                        "parent": {
+                            "href": "https://api.agrofoto.pl/forums/0",
+                            "title": "Forum"
+                        }
+                    }
+                },
+                "hot": {
+                    "href": "https://api.agrofoto.pl/forums/0/hot",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady",
+                            "title": "MŁODY ROLNIK (nowe zasady)",
+                            "postsCount": 13807,
+                            "displayedCount": 1497404,
+                            "latestPost": {
+                                "href": "https://api.agrofoto.pl/topics/2868-mlody-rolnik-nowe-zasady/posts/13808",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/136140-kamilek1",
+                                    "name": "Kamilek1",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-136140.jpg"
+                                },
+                                "createdTime": "2011-09-02T16:12:33+0000"
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/forums/0/hot?page=1&limit=25"
+                    }
+                },
+                "topics": {
+                    "href": "https://api.agrofoto.pl/forums/178-jeczmien/topics",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
+                            "title": "Jęczmień ozimy i jary",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/837-miki7211",
+                                "name": "Miki7211",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                            },
+                            "createdTime": "2011-09-02T16:12:33+0000",
+                            "postsCount": 3068,
+                            "displayedCount": 371883,
+                            "latestPost": {
+                                "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts/3069",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                                    "name": "milanreal1",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                                },
+                                "createdTime": "2011-09-02T16:12:33+0000"
+                            },
+                            "unread": true,
+                            "pinned": true,
+                            "hot": true
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/forums/178-jeczmien/topics?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "subscribe": {
+                    "href": "https://api.agrofoto.pl/forums/178-jeczmien/subscribe",
+                    "count": 3,
+                    "subscribed": true
+                }
+            }
+
+## Subscribe Forum [/forums/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/forums/178-jeczmien/subscribe",
+                "count": 3,
+                "subscribed": true
+            }
+
+### Subscribe Forum [PUT]
++ Response 200 (application/json)
+
+    [Subscribe Forum][]
+
+### Unsubscribe Forum [DELETE]
++ Response 200
+
+    [Subscribe Forum][]
+    
+## Forum children [/forums/{id}/children]
+Subforums of given forum node.
+
+### List forum children [GET]
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/forums/178-jeczmien/children",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/forums/178-jeczmien",
+                        "title": "Jęczmień",
+                        "icon": "http://www.agrofoto.pl/forum/uploads/forumicons/41-icon-2145d8666c5e8ca7b66e6f57d61b939b.jpg",
+                        "unread": true,
+                        "topicsCount": 107,
+                        "postsCount": 4472,
+                        "latestTopic": {
+                            "href": "https://api.agrofoto.pl/topics/54612-jeczmien-hybrydowy",
+                            "title": "jęczmień hybrydowy",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/69429-rapscase",
+                                "name": "RAPSCASE",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-14237.jpg"
+                            },
+                            "updatedTime": "2011-09-02T16:12:33+0000"
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/forums/178-jeczmien/children?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+
+# Group Topics
+
+## Topic [/topics/{id}{?limit,page,item,latest}]
+
++ Parameters
+    + id (string) ... Topic id
+    + limit (string, optional) ... number of posts per page
+    + page (string, optional) ... posts page number to fetch, no argument means first page, value "last" means last page 
+    + item (string, optional) ... post identifier, fetch posts page with that item included
+    + latest (boolean, optional) ... posts collection represents lastest page (the page with the first unread post or the last one), requires limit parameter, implies firstUnread field of topic object
+    
++ Model
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
+                "title": "Jęczmień ozimy i jary",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/837-miki7211",
+                    "name": "Miki7211",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                },
+                "createdTime": "2011-09-02T16:12:33+0000",
+                "postsCount": 3068,
+                "displayedCount": 371883,
+                "unread": true,
+                "firstUnread": 344,
+                "pinned": true,
+                "hot": true,
+                "link": "http://www.agrofoto.pl/forum/topic/5005-jeczmien-ozimy-i-jary/",
+                "posts": {
+                    "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts/1",
+                            "entry": "#1",
+                            "createdTime": "2011-09-02T16:12:33+0000",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/837-miki7211",
+                                "name": "Miki7211",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                            },
+                            "message": "Po wstępnych oględzinach  działu zboża stwierdziłem ze jest masa podobnych tematów.",
+                            "signature": "Pozdrawiam"
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts?page=1&limit=25"
+                    },
+                    "previous": null,
+                    "last": {
+                        "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts?page=117&limit=25"
+                    }
+                },
+                "subscribe": {
+                    "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/subscribe",
+                    "count": 31,
+                    "subscribed": true
+                }
+                
+            }
+
+### Get Topic [GET]
++ Response 200 (application/json)
+
+    [Topic][]
+    
+## Topics Collection [/forums/{id}/topics]
+Topics for give gallery leaf
+
++ Parameters
+    + id (string) ... Forum id
+
+### List all Topics [GET]
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/forums/178-jeczmien/topics",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
+                        "title": "Jęczmień ozimy i jary",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/837-miki7211",
+                            "name": "Miki7211",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                        },
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "postsCount": 3068,
+                        "displayedCount": 371883,
+                        "latestPost": {
+                            "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts/3069",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                                "name": "milanreal1",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                            },
+                            "createdTime": "2011-09-02T16:12:33+0000"
+                        },
+                        "unread": true,
+                        "pinned": true,
+                        "hot": true
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/forums/178-jeczmien/topics?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+### Create new Topic [POST]
+Not sure about attaching files...
+
++ Request (application/json)
+
+        {
+            "title": "Jęczmień ozimy i jary",
+            "post": {
+                "message": "Czy siejecie Jęczmień ozimy bo ja w tym roku posiałem jakie opryski proponujecie i ile można nakosić z ha ?",
+                "enableEmo": true,
+                "enableSig": true,
+                "subscribe": false
+            }
+        }
+        
++ Response 201 (application/json)
+
+    [Topic][]
+    
+## Subscribe Topic [/topics/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/subscribe",
+                "count": 31,
+                "subscribed": true
+            }
+
+### Subscribe Topic [PUT]
++ Response 200 (application/json)
+
+    [Subscribe Topic][]
+
+### Unsubscribe Topic [DELETE]
++ Response 200
+
+    [Subscribe Topic][]
+
+## Posts Collection [/topic/{id}/posts{?limit,page}]
++ Parameters
+    + id (string) ... topic identifier
+    + limit (string) ... number of posts per page
+    + page (string) ... posts page number to fetch, no argument means first page, value "last" means last page 
+    
++ Model
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts/1",
+                        "entry": "#1",
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/837-miki7211",
+                            "name": "Miki7211",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                        },
+                        "message": "Po wstępnych oględzinach  działu zboża stwierdziłem ze jest masa podobnych tematów.",
+                        "signature": "Pozdrawiam"
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts?page=1&limit=25"
+                },
+                "previous": null,
+                "last": {
+                    "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts?page=117&limit=25"
+                }
+            }
+            
+### Get Posts [GET]
++ Response 200 (application/json)
+
+    [Posts Collection][]
+    
+### Post a Post [POST]
+Not sure about attaching a file...
+
++ Request (application/json)
+
+        {
+            "message": "Czy siejecie Jęczmień ozimy bo ja w tym roku posiałem jakie opryski proponujecie i ile można nakosić z ha ?",
+            "enableEmo": true,
+            "enableSig": true,
+            "subscribe": false
+        }
+        
++ Response 201 (application/json)
+
+    [Topic][]
+    
+## Post [/topics/{tid}/posts/{pid}]
++ Parameters
+    + tid (string)
+    + pid (string)
+    
++ Model
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts/1",
+                "entry": "#1",
+                "createdTime": "2011-09-02T16:12:33+0000",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/837-miki7211",
+                    "name": "Miki7211",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                },
+                "message": "Po wstępnych oględzinach  działu zboża stwierdziłem ze jest masa podobnych tematów.",
+                "signature": "Pozdrawiam"
+            }
+
+### Get Post [GET]
++ Response 200 (application/json)
+
+    [Post][]
+    
+### Update Post [PUT]
++ Request (application/json)
+
+        {
+            "message": "Czy siejecie Jęczmień ozimy bo ja w tym roku posiałem jakie opryski proponujecie i ile można nakosić z ha ?",
+            "enableEmo": true,
+            "enableSig": true,
+        }
+        
++ Response 200 (application/json)
+
+    [Post][]
+    
+### Delete Post [DELETE]
++ Response 204
+
+# Group Users
+
+## User [/users/{id}]
+Supported properties:
+ 
+ - about, stats, contact info
+ - friends
+ - galleries
+ - photos
+ - topics
+ - posts
+ - rate
+ - status
+ 
+Unsupported properties:
+
+ - feed
+ - reputation
+ - blog
+ - movies
+ - groups
+ - files
+ - prices
+ - salescomments
+ - events
+
+
+### Get User profile [GET]
+
++ Parameters
+    + id (string)
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                "name": "piwex16",
+                "photo": "http://www.agrofoto.pl/forum/uploads/profile/photo-18309.jpg",
+                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-18309.jpg",
+                "createdTime": "2011-09-02T15:41:47+0000",
+                "about": "Nie zezwalam na używanie moich zdjęć ale zawsze można się zapytać :P",
+                "group": "V.I.P.",
+                "postsCount": 182,
+                "displayed": 10940,
+                "title": "Zaawansowany",
+                "age": "21 lat",
+                "birthDate": "Marzec 19, 1993",
+                "sex": "male",
+                "location": "Tczyca",
+                "hobby": "pasja Rolnictwo i oczywiście to tez praca :)",
+                "gg": "4352342",
+                "msn": "9343543",
+                "url": "http://www.agrofoto.pl/forum/user/18309-piwex16/",
+                "icq": "543543",
+                "yahoo": "4354455",
+                "jabber": "piwex16@agrofoto.pl",
+                "skype": "piwex16",
+                "friends": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/friends",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/users/57548-312fendt512",
+                            "name": "312fendt512",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-57548.jpg"
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16/friends?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "friendship": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/friendship",
+                    "isFriend": "yes"
+                }
+                "albums": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/albums",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/albums/1492-wystawy-maszyn-rolniczych",
+                            "title": "Wystawy maszyn rolniczych",
+                            "desc": "Jak co roku do 18 lat w każdą drugą niedziele września w gminie Charsznica odbywają się dni kapusty Serdecznie zapraszam w przyszłym roku :)",
+                            "updatedTime": "2014-04-14T02:15:15Z",
+                            "photosCount": 11,
+                            "commentsCount": 4,
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                                "name": "piwex16",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-18309.jpg"
+                            },
+                            "cover": {
+                                "href": "https://api.agrofoto.pl/photos/394377-valtr-y",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                                    "name": "piwex16",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-18309.jpg"
+                                },
+                                "name": "Valtr-y",
+                                "desc": "Pana Jurak :)",
+                                "images": {
+                                    "square": "http://www.agrofoto.pl/forum/uploads/1352387820/tn_gallery_18309_1492_102938.jpg",
+                                    "small": "http://www.agrofoto.pl/forum/uploads/1352387820/sml_gallery_18309_1492_102938.jpg",
+                                    "medium": "http://www.agrofoto.pl/forum/uploads/1352387820/med_gallery_18309_1492_102938.jpg",
+                                    "large": "http://www.agrofoto.pl/forum/uploads/1352387820/gallery_18309_1492_102938.jpg"
+                                },
+                                "createdTime": "2011-09-02T15:41:47+0000",
+                                "updatedTime": "2011-09-02T16:12:33+0000",
+                                "displayedCount": 242,
+                                "commentsCount": 0
+                            },
+                            "rate": {
+                                "href": "https://api.agrofoto.pl/albums/1492-wystawy-maszyn-rolniczych",
+                                "rating": 0,
+                                "count": 0,
+                                "userRating": 0
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16/albums?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "photos": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/photos",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                                "name": "piwex16"
+                            },
+                            "name": "New holland i Zetor",
+                            "desc": "Wypucowane i oczekują na żniwa w tym tyg zaczynam koszenie :D ",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/tn_gallery_18309_1140_86569.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/sml_gallery_18309_1140_86569.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/med_gallery_18309_1140_86569.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/gallery_18309_1140_86569.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 213,
+                            "commentsCount": 2,
+                            "adRatio": 0.5
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16/photos?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "topics": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/topics",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
+                            "title": "Jęczmień ozimy i jary",
+                            "createdTime": "2011-09-02T16:12:33+0000",
+                            "message": "Po wstępnych oględzinach  działu zboża stwierdziłem ze jest masa podobnych tematów."
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16/topics?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "posts": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/posts",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts/1",
+                            "createdTime": "2011-09-02T16:12:33+0000",
+                            "topic": {
+                                "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
+                                "title": "Jęczmień ozimy i jary"
+                            },
+                            "message": "Po wstępnych oględzinach  działu zboża stwierdziłem ze jest masa podobnych tematów."
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16/posts?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "rate": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/rate",
+                    "rating": 5.0,
+                    "ratingCount": 1,
+                    "userRating": 5.0,
+                    "canRate": true
+                },
+                "status": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/status",
+                    "online": true,
+                    "lastActive": "2011-09-02T16:12:33+0000"
+                }
+            }
+
+## User Friends Collection [/users/{id}/friends]
+
++ Parameters
+    + id (string)
+
+### Get Friends [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/friends",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/57548-312fendt512",
+                        "name": "312fendt512",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-57548.jpg"
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/friends?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+## User Albums Collection [/users/{id}/albums]
+
++ Parameters
+    + id (string)
+
+### Get Albums [GET]
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/albums",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/albums/1492-wystawy-maszyn-rolniczych",
+                        "title": "Wystawy maszyn rolniczych",
+                        "desc": "Jak co roku do 18 lat w każdą drugą niedziele września w gminie Charsznica odbywają się dni kapusty Serdecznie zapraszam w przyszłym roku :)",
+                        "updatedTime": "2014-04-14T02:15:15Z",
+                        "photosCount": 11,
+                        "commentsCount": 4,
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                            "name": "piwex16",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-18309.jpg"
+                        },
+                        "cover": {
+                            "href": "https://api.agrofoto.pl/photos/394377-valtr-y",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                                "name": "piwex16",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-18309.jpg"
+                            },
+                            "name": "Valtr-y",
+                            "desc": "Pana Jurak :)",
+                            "images": {
+                                "square": "http://www.agrofoto.pl/forum/uploads/1352387820/tn_gallery_18309_1492_102938.jpg",
+                                "small": "http://www.agrofoto.pl/forum/uploads/1352387820/sml_gallery_18309_1492_102938.jpg",
+                                "medium": "http://www.agrofoto.pl/forum/uploads/1352387820/med_gallery_18309_1492_102938.jpg",
+                                "large": "http://www.agrofoto.pl/forum/uploads/1352387820/gallery_18309_1492_102938.jpg"
+                            },
+                            "createdTime": "2011-09-02T15:41:47+0000",
+                            "updatedTime": "2011-09-02T16:12:33+0000",
+                            "displayedCount": 242,
+                            "commentsCount": 0
+                        },
+                        "rate": {
+                            "href": "https://api.agrofoto.pl/albums/1492-wystawy-maszyn-rolniczych",
+                            "rating": 0,
+                            "count": 0,
+                            "userRating": 0
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/albums?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## User Photos Collection [/users/{id}/photos]
+
++ Parameters
+    + id (string)
+
+### Get Photos [GET]
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/photos",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/photos/493380-new-holland-t7530-agromax-84-m",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                            "name": "piwex16"
+                        },
+                        "name": "New holland i Zetor",
+                        "desc": "Wypucowane i oczekują na żniwa w tym tyg zaczynam koszenie :D ",
+                        "images": {
+                            "square": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/tn_gallery_18309_1140_86569.jpg",
+                            "small": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/sml_gallery_18309_1140_86569.jpg",
+                            "medium": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/med_gallery_18309_1140_86569.jpg",
+                            "large": "http://www.agrofoto.pl/forum/uploads/gallery/album_1140/gallery_18309_1140_86569.jpg"
+                        },
+                        "createdTime": "2011-09-02T15:41:47+0000",
+                        "updatedTime": "2011-09-02T16:12:33+0000",
+                        "displayedCount": 213,
+                        "commentsCount": 2,
+                        "adRatio": 0.5
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/photos?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## User Topics Collection [/users/{id}/topics]
+
++ Parameters
+    + id (string)
+
+### Get Topics [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/topics",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
+                        "title": "Jęczmień ozimy i jary",
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "message": "Po wstępnych oględzinach  działu zboża stwierdziłem ze jest masa podobnych tematów."
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/topics?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+## User Posts Collection [/users/{id}/posts]
+
++ Parameters
+    + id (string)
+
+### Get Posts [GET]
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/posts",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary/posts/1",
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "topic": {
+                            "href": "https://api.agrofoto.pl/topics/5005-jeczmien-ozimy-i-jary",
+                            "title": "Jęczmień ozimy i jary"
+                        },
+                        "message": "Po wstępnych oględzinach  działu zboża stwierdziłem ze jest masa podobnych tematów."
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/users/18309-piwex16/posts?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+## User rating [/users/{id}/rate]
+Rate the user
+
++ Parameters
+    + id (string)
+
++ Model (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/rate",
+                "rating": 5.0,
+                "ratingCount": 2,
+                "userRating": 5.0,
+                "canRate": true
+            }
+
+
+### Get user rating [GET]
++ Response 200 (application/json)
+
+    [User rating][]
+
+### Rate the user [PUT]
+Rate or update user vote
+
++ Request (application/json)
+
+            {
+                "rating": 5.0
+            }
+            
++ Response 200 (application/json)
+
+    [User rating][]
+    
+## User status [/users/{id}/status]
+
++ Parameters
+    + id (string)
+
+### Get User status [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/status",
+                "online": true,
+                "lastActive": "2011-09-02T16:12:33+0000"
+            }
+
+## Invite User [/users/{id}/invite]
+
+# Group Friendship
+
+## Friendship [/users/{id}/friendship]
+Query relationship with the given user.
+
+"isFriend" can have three values: yes, no and pending, the last one means that invitation waits for acceptance on the other user side
+
++ Parameters
+    + id (string) ... user id of the user we want to be logged user's friends
+
+### Get Friendship status [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/friendship",
+                "isFriend": "yes"
+            }
+
+### Make Friendship [PUT]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/users/18309-piwex16/friendship",
+                "isFriend": "pending"
+            }
+
+### End Friendship [DELETE]
++ Response 204
+
+## Pending Invites Collection [/pending]
+
+### List all Pending Invites [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/pending",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/pending/57548-312fendt512",
+                        "user": {
+                            "https://api.agrofoto.pl/users/57548-312fendt512",
+                            "name": "312fendt512",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-57548.jpg"
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/pending?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## Pending Invite [/pending/{id}]
+
++ Parameters
+    + id (string) ... id of the user that sent an invitation
+
+### Accept invitation [PUT]
++ Response 204
+
+### Reject invitation [DELETE]
++ Response 204
+
+# Group Search
+
+Supported search types:
+
+ - user
+ 
+Unsupported/planned search types:
+
+ - topics/posts
+ - events
+ - galleries
+ - blogs
+ - market
+
+## Search User [/search?type=user{&q}]
+
+### Search User Query [GET]
+
++ Parameters
+    + q (string) ... query string 
+    
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/search?type=user&q=piw",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/18309-piwex16",
+                        "name": "piwex16",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-18309.jpg",
+                        "createdTime": "2011-09-02T15:41:47+0000",
+                        "group": "V.I.P.",
+                        "posts": 182,
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/search?type=user&q=piw&page=1&limit=25"
+                },
+                "previous": null
+            }
+
+# Group Messaging
+
+Starting and moving a conversation as well as conversation paticipants management are not HATEOAS.
+
+## Folder [/folders/{id}]
+
++ Parameters
+    + id (string)
+    
++ Model
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/folders/dir_1",
+                "name": "test",
+                "conversationsCount": 4,
+                "conversations": {
+                    "href": "https://api.agrofoto.pl/folders/dir_1/conversations",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/conversations/1578792",
+                            "title": "test",
+                            "messagesCount": 4,
+                            "createdTime": "2011-09-02T16:12:33+0000",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                                "name": "milanreal1",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                            },
+                            "latestMessage": {
+                                "href": "https://api.agrofoto.pl/conversations/1578792/messages/3069445",
+                                "user": {
+                                    "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                                    "name": "milanreal1",
+                                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                                },
+                                "preview": "u mnie dzierżawy załatwiłem w wydziale geodezji starostwa powiatowego - trzeba było dostarczyć 5 podpisanych umów, 1 została u nich, a pozostałe 4 ostemplowali. nr 1 dla właściciela gruntów, nr 2 dla nowego dzierżawcy, nr 3 do Agencji, nr 4 do Krusu. To ws...",
+                                "createdTime": "2011-09-02T16:12:33+0000"
+                            },
+                            "move": {
+                                "href": "https://api.agrofoto.pl/conversations/1578792/move"
+                            },
+                            "read": {
+                                "href": "https://api.agrofoto.pl/conversations/1578792/read",
+                                "read": true
+                            },
+                            "subscribe": {
+                                "href": "https://api.agrofoto.pl/conversations/1578792/subscribe",
+                                "subscribed": true
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/folders/dir_1/conversations?page=1&limit=25"
+                    },
+                    "previous": null   
+                }
+            }
+
+### Get a Folder [GET]
++ Response 200 (application/json)
+
+    [Folder][]
+
+### Edit Folder name [PUT]
++ Request (application/json)
+    + Body
+    
+            {
+                "name": "test2"
+            }
+
++ Response 200 (applicaton/json)
+
+    [Folder][]
+    
+### Delete a Folder [DELETE]
++ Response 204 (application/json)
+
+## Folders Collection [/folders]
+
+### Get Folders [GET]
+Lists user folders. Also predefined ones like new, all and drafts
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/folders",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/folders/dir_1",
+                        "name": "test",
+                        "conversationsCount": 4
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/folders?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+### Create a Folder [POST]
+Creates a new Folder
++ Request (application/json)
+
+        {
+            "name": "test"
+        }
+        
++ Response 201 (application/json)
+
+    [Folder][]
+
+## Conversation [/conversation/{id}{?limit,page,item}]
+
++ Parameters
+    + id (string) ... conversation identifier
+    + limit (string) ... number of messages per page
+    + page (string) ... messages page number to fetch, no argument means first page, value "last" means last page 
+    + item (string) ... message identifier, fetch messages page with that item included
+    
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792",
+                "title": "test",
+                "messagesCount": 4,
+                "createdTime": "2011-09-02T16:12:33+0000",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                    "name": "milanreal1",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                },
+                "latestMessage": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/messages/3069445",
+                    "user": {
+                        "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                        "name": "milanreal1",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                    },
+                    "preview": "u mnie dzierżawy załatwiłem w wydziale geodezji starostwa powiatowego - trzeba było dostarczyć 5 podpisanych umów, 1 została u nich, a pozostałe 4 ostemplowali. nr 1 dla właściciela gruntów, nr 2 dla nowego dzierżawcy, nr 3 do Agencji, nr 4 do Krusu. To ws...",
+                    "createdTime": "2011-09-02T16:12:33+0000"
+                },
+                "messages": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/messages",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/messages/1434554",
+                            "createdTime": "2011-09-02T16:12:33+0000",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/837-miki7211",
+                                "name": "Miki7211",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                            },
+                            "message": "Po wstępnych oględzinach działu zboża stwierdziłem ze jest masa podobnych tematów."
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/topics/conversations/1578792/messages?page=1&limit=25"
+                    },
+                    "previous": null,
+                    "last": {
+                        "href": "https://api.agrofoto.pl/topics/conversations/1578792/messages?page=117&limit=25"
+                    }
+                },
+                "participants": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/participants",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/participants/837",
+                            "user" : {
+                                "href": "https://api.agrofoto.pl/users/837-miki7211",
+                                "name": "Miki7211",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"                             
+                            },
+                            "block": {
+                                "href": "https://api.agrofoto.pl/conversations/1578792/participants/837/block",
+                                "blocked": false
+                            }
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/topics/conversations/1578792/participants?page=1&limit=25"
+                    },
+                    "previous": null
+                },
+                "move": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/move"
+                },
+                "read": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/read",
+                    "read": true
+                },
+                "subscribe": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/subscribe",
+                    "subscribed": true
+                }
+            }
+
+### Get a conversation [GET]
++ Response 200 (applicaton/json)
+
+    [Conversation][]
+
+### Delete a conversation [DELETE]
++ Response 204
+
+## Conversations collection [/folders/{id}/conversations]
+Collection of conversations given the folder
+
++ Parameters
+    + id (string)
+
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/folders/dir_1/conversations",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/conversations/1578792",
+                        "title": "test",
+                        "messagesCount": 4,
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                            "name": "milanreal1",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                        },
+                        "latestMessage": {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/messages/3069445",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                                "name": "milanreal1",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-8527.jpg"
+                            },
+                            "preview": "u mnie dzierżawy załatwiłem w wydziale geodezji starostwa powiatowego - trzeba było dostarczyć 5 podpisanych umów, 1 została u nich, a pozostałe 4 ostemplowali. nr 1 dla właściciela gruntów, nr 2 dla nowego dzierżawcy, nr 3 do Agencji, nr 4 do Krusu. To ws...",
+                            "createdTime": "2011-09-02T16:12:33+0000"
+                        },
+                        "move": {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/move"
+                        },
+                        "read": {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/read",
+                            "read": true
+                        },
+                        "subscribe": {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/subscribe",
+                            "subscribed": true
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/folders/dir_1/conversations?page=1&limit=25"
+                },
+                "previous": null   
+            }
+
+### Get conversations list [GET]
++ Response 200 (application/json)
+
+    [Conversations collection][]
+
+### Create a new conversations [POST]
+Not sure is it a good way to handle recipient
+
++ Request (application/json)
+    + Body
+
+            {
+                "title": "Jęczmień,
+                "message": "Czy siejecie Jęczmień ozimy bo ja w tym roku posiałem jakie opryski proponujecie i ile można nakosić z ha ?",
+                "to": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/8527-milanreal1",
+                        "name": "milanreal1"
+                    }
+                ],
+                "copy": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/837-miki7211",
+                        "name": "Miki7211"
+                    }
+                ],
+                "invite": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/19727-michal15555",
+                        "name": "michal15555"
+                    }
+                ]
+            }
+            
++ Response 200 (application/json)
+
+    [Conversations collection][]
+    
+### Empty a folder [DELETE]
+Deletes all folder conversations
++ Response 204
+
+## Participant [/conversation/{cid}/participants/{pid}]
+
++ Parameters
+    + cid (string) ... conversation id
+    + pid (string) ... participant id
+
+### Get Participant [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/participants/837",
+                "user" : {
+                    "href": "https://api.agrofoto.pl/users/837-miki7211",
+                    "name": "Miki7211",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"                             
+                },
+                "block": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/participants/837/block",
+                    "blocked": false
+                }
+            }
+
+## Participants Collection [/conversations/{id}/participants]
+
++ Parameters
+    + id (string)
+    
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/participants",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/conversations/1578792/participants/837",
+                        "user" : {
+                            "href": "https://api.agrofoto.pl/users/837-miki7211",
+                            "name": "Miki7211",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"                             
+                        },
+                        "block": {
+                            "href": "https://api.agrofoto.pl/conversations/1578792/participants/837/block",
+                            "blocked": false
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/topics/conversations/1578792/participants?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+### List Conversation Participants [GET]
++ Response 200 (application/json)
+
+    [Participants Collection][]
+    
+### Add a Participant [POST]
++ Request (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/users/837-miki7211",
+                "name": "Miki7211"
+            }
+
++ Response 200 (application/json)
+
+    [Participants Collection][]
+    
+## Block Participant [/conversations/{cid}/participants/{pid}/block]
+
++ Parameters
+    + cid (string) ... conversation id
+    + pid (string) ... participant id
+
+### Block [PUT]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/participants/837/block",
+                "blocked": true
+            }
+
+### Unblock [DELETE]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/participants/837/block",
+                "blocked": false
+            }
+
+## Move Conversation [/conversations/{id}/move]
+Not sure about moving... folder "href" as well as "name" might be both good identifiers of the destination, but both are subject to changes with time
+
++ Parameters
+    + id (string)
+
+### Move [PUT]
++ Request (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/folders/dir_1",
+                "name": "test"
+            }
+
++ Response 304
+
+## Read Conversation [/conversations/{id}/read]
+
++ Parameters
+    + id (string)
+
+### Make read [PUT]
++ Response 200 (applicaton/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/read",
+                "read": true
+            }
+
+### Make unread [DELETE]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/read",
+                "read": false
+            }
+
+## Conversation Subscribe [/conversations/{id}/subscribe]
+
++ Parameters
+    + id (string)
+
+### Subscribe conversation [PUT]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/subscribe",
+                "subscribed": true
+            }
+
+### Unsubscribe conversation [DELETE]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/subscribe",
+                "subscribed": false
+            }
+
+## Message [/conversations/{cid}/messages/{mid}]
+
++ Parameters
+    + cid (string) ... conversation id
+    + mid (string) ... message id
+    
++ Model
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/messages/1434554",
+                "createdTime": "2011-09-02T16:12:33+0000",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/837-miki7211",
+                    "name": "Miki7211",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                },
+                "message": "Po wstępnych oględzinach działu zboża stwierdziłem ze jest masa podobnych tematów."
+            }
+    
+### Get a Message [GET]
++ Response 200 (application/json)
+
+    [Message][]
+
+### Update a Message [PUT]
++ Request (application/json)
+    + Body
+    
+            {
+                "message": "Czy siejecie Jęczmień ozimy bo ja w tym roku posiałem jakie opryski proponujecie i ile można nakosić z ha ?"
+            }
+
++ Response 200 (applicatoin/json)
+
+    [Message][]
+
+### Delete a Message [DELETE]
++ Response 204
+
+## Messages Collection [/conversations/{id}/messages{?limit,page}]
+
++ Parameters
+    + id (string) ... conversation identifier
+    + limit (string) ... number of messages per page
+    + page (string) ... messages page number to fetch, no argument means first page, value "last" means last page
+
+### Get Messages list [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/conversations/1578792/messages",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/conversations/1578792/messages/1434554",
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/837-miki7211",
+                            "name": "Miki7211",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                        },
+                        "message": "Po wstępnych oględzinach działu zboża stwierdziłem ze jest masa podobnych tematów."
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/messages?page=1&limit=25"
+                },
+                "previous": null,
+                "last": {
+                    "href": "https://api.agrofoto.pl/conversations/1578792/messages?page=117&limit=25"
+                }
+            }
+
+### Send a message [POST]
++ Request (application/json)
+    + Body
+    
+            {
+                "message": "Czy siejecie Jęczmień ozimy bo ja w tym roku posiałem jakie opryski proponujecie i ile można nakosić z ha ?"
+            }
+
++ Response 201 (applicatoin/json)
+
+    [Conversation][]
+    
+## Recipients Query [/recipients?{&q}]
++ Parameters
+    + q (string) ... search phrase
+
+### Get Recipients [GET]
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/recipients?q=miki",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/users/837-miki7211",
+                        "name": "Miki7211",
+                        "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/recipients?q=miki&page=1&limit=25"
+                },
+                "previous": null
+            }
+
+    
+# Group Notifications
+
+possible type identifiers and associated additional parameters
+
+striked through items are currently not supported
+
+Tematy i posty  
+100 Metoda powiadomień używana dla odpowiedzi w śledzonych tematach - "link" zawiera identyfikator tematu  
+101 Metoda powiadomień używana dla tematów w śledzonym forum - "link" zawiera identyfikator ~~forum~~ tematu  
+102 Metoda powiadomień używana dla śledzonych tematów dzienna/tygodniowa - ??  
+103 Metoda powiadomień używana dla śledzonych forów dzienna/tygodniowa - ??  
+104 Powiadom mnie jeśli ktoś zacytuje mojego posta (i nie jestem obserwującym) - "link" zawiera identyfikator tematu  
+
+Aktualizacje statusów  
+~~200 Powiadom mnie jeśli ktoś odpowie na zmianę mojego statusu~~    
+~~201 Powiadom mnie jeśli ktoś odpowie na zmianę statusu, na którą ja odpowiedziałem~~  
+~~202 Powiadom mnie kiedy jeden z moich znajomych zaktualizuje swój status~~
+
+Profile i znajomi  
+~~300 Powiadom mnie kiedy ktoś napisze komentarz w moim profilu~~  
+~~301 Powiadom mnie kiedy ktoś mnie doda jako przyjaciela~~  
+~~302 Powiadom mnie kiedy ktoś potwierdzi prośbę o dodanie do znajomych~~  
+
+Prywatne wiadomości  
+400 Powiadom mnie kiedy otrzymam prywatną konwersację - "link" zawiera identyfikator konwersacji  
+401 Powiadom mnie jeśli ktoś odpisze na prywatną konwersację - "link" zawiera identyfikator konwersacji  
+402 Powiadom mnie kiedy zostanę zaproszony do prywatnej konwersacji - "link" zawiera identyfikator konwersacji
+
+Pozostałe powiadomienia  
+~~500 Powiadom mnie o nowych komentarzach~~
+
+Użytkownicy  
+~~600 Powiadom mnie jeśli zostanę ostrzeżony przez moderatora~~
+
+Kalendarz  
+~~700 Powiadom mnie o aktualizacji wydarzenia~~   
+~~701 Powiadom mnie kiedy zostanie dodane nowe wydarzenie w kalendarzu, który śledzę~~
+
+Galerie  
+800 Powiadom mnie o nowych obrazkach w albumach i kategoriach, które obserwuje - "link" zawiera identyfikator galerii   
+801 Powiadom mnie o nowych komentarzach w obrazkach, które obserwuje - "link" zawiera identyfikator zdjecia
+
+Blogi  
+~~900 Powiadom mnie o nowych wpisach na blogach, które lubię~~
+
+System filmów  
+~~1000 Powiadom mnie, kiedy komentarz zostanie dodany do jednego z moich filmów.~~
+
+Tracker  
+~~1100 Powiadom mnie, kiedy nowe zgłoszenie zostanie dodane w obserwowanym projekcie~~  
+~~1101 Powiadom mnie kiedy zostanie dodana odpowiedź do obserwowanego zgłoszenia~~
+
+Grupy  
+~~1200 Notify me of new members pending approval in Social Groups which I moderate~~
+
+Pliki  
+~~1300 Metoda powiadomień używana, kiedy lubiany plik zostanie zaktualizowany~~  
+~~1301 Metoda powiadomień używana, kiedy plik zostanie dodany do kategorii, którą lubię~~  
+~~1302 Metoda powiadomień używana kiedy plik, który wysłałem został zatwierdzony lub odrzucony~~  
+~~1303 Powiadom mnie, kiedy plik, który dodam zostanie zaraportowany jako uszkodzony~~
+
+Katalog firm  
+~~1400 Metoda powiadomień używana dla obserwowanych województw~~  
+~~1401 Metoda powiadomień używana dla obserwowanych firm~~
+
+Giełda  
+~~1500 Metoda powiadomień używana kiedy obserwowana oferta zostanie zaktualizowana~~  
+~~1501 Metoda powiadomień używana kiedy zostanie dodana oferta do obserwowanej kategorii~~  
+~~1502 Metoda powiadomień używana kiedy wysłana przeze mnie oferta zostanie zatwierdzona lub odrzucona~~
+
+## Notification Collection [/notifications]
+
+### Get Notifications [GET]
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/notifications",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/notifications/9213848",
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/837-miki7211",
+                            "name": "Miki7211",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                        },
+                        "read": {
+                            "href": "https://api.agrofoto.pl/notifications/9213848/read",
+                            "read": true
+                        },
+                        "type": 100,
+                        "link": "https://api.agrofoto.pl/topics/2868",
+                        "message": "Miki7217 odpisał na MŁODY ROLNIK (nowe zasady)",
+                        "resourceName": "MŁODY ROLNIK (nowe zasady)"
+                        
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/notifications?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## Notification [/notification/{id}]
++ Parameters
+    + id (string)
+
+### Get Notification [GET]
+
++ Response 200 (application/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/notifications/9213848",
+                "createdTime": "2011-09-02T16:12:33+0000",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/837-miki7211",
+                    "name": "Miki7211",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/profile/photo-thumb-837.jpg"
+                },
+                "read": {
+                    "href": "https://api.agrofoto.pl/notifications/9213848/read",
+                    "read": true
+                },
+                "type": 100,
+                "link": "https://api.agrofoto.pl/topics/2868",
+                "message": "Miki7217 odpisał na MŁODY ROLNIK (nowe zasady)"
+                "resourceName": "MŁODY ROLNIK (nowe zasady)"
+                
+            }
+
+## Read all notifications [/notifications/read]
+
+### Read all [POST]
+Marks all notifications as read
+
++ Response 204
+
+
+## Read notification [/notifications/{id}/read]
+
+### Make read [PUT]
++ Response 200 (applicaton/json)
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/notifications/9213848/read",
+                "read": true
+            }
+
+# Group PushAds
+
+## PushAd [/pushads/{id}]
++ Parameters
+    + id (string)
+
+### Get push ad info [GET]
++ Response 200 (application/json)
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/pushads/1",
+                "createdTime": "2011-09-02T16:12:33+0000",
+                "link": "http://www.topfarms-nasiona.pl/e-doradca/public/",
+                "title": "TOP FARMS | NASIONA"
+                "message": "Oferujemy najwyższej jakości nasiona kwalifikowane pochodzące z własnych upraw na ponad 30 000 ha w Polsce."
+            }
+            
+# Group Blogs
+
+## Blogs [/blogs]
+
+### Get blogs collection [GET]
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/blogs",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/blogs/11-news",
+                        "title": "Aktualności",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                            "name": "agrofoto",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                        }
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/blogs?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## Blog [/blogs/{id}]
++ Parameters
+    + id (string)
+
+### Get blog [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/blogs/11-news",
+                "title": "Aktualności",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                    "name": "agrofoto",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                },
+                "entries": {
+                    "href": "https://api.agrofoto.pl/blogs/11-news/entries",
+                    "items": [
+                        {
+                            "href": "https://api.agrofoto.pl/entries/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie",
+                            "title": "Szkolenie Fundacji \"Młody Hodowca\" w Dobrzyniewie",
+                            "createdTime": "2011-09-02T16:12:33+0000",
+                            "user": {
+                                "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                                "name": "agrofoto",
+                                "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                            },
+                            "displayedCount": 91,
+                            "thumbnail": "http://www.agrofoto.pl/forum/uploads/thumb_blog-0365527001409576688.jpg",
+                            "preview": "W dniach 28 i 29 sierpnia 2014 roku w Dobrzyniewie, Gleśnie i Mrozowie odbyło się szkolenie przygotowawcze bydła do wystawy. Organizatorem kursu była... ",
+                            "link": "http://www.agrofoto.pl/forum/blog/11/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie/"
+                        }
+                    ],
+                    "next": {
+                        "href": "https://api.agrofoto.pl/blogs/11-news/entries?page=1&limit=25"
+                    },
+                    "previous": null
+                }
+            }
+            
+## Blog Entries [/blogs/{id}/entries]
++ Parameters
+    + id (string)
+
+### Get Blog Entries Collection [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/blogs/11-news/entries",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/entries/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie",
+                        "title": "Szkolenie Fundacji \"Młody Hodowca\" w Dobrzyniewie",
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                            "name": "agrofoto",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                        },
+                        "displayedCount": 91,
+                        "thumbnail": "http://www.agrofoto.pl/forum/uploads/thumb_blog-0365527001409576688.jpg",
+                        "preview": "W dniach 28 i 29 sierpnia 2014 roku w Dobrzyniewie, Gleśnie i Mrozowie odbyło się szkolenie przygotowawcze bydła do wystawy. Organizatorem kursu była... "
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/blogs/11-news/entries?page=1&limit=25"
+                },
+                "previous": null
+            }
+
+## News [/news]
+Taka sama odpowiedź jak dla Blog Entries z na sztywno ustowionym id bloga aktualności z wyjątkiem odpowiednich pól "href"
+
+### Get News [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "href": "https://api.agrofoto.pl/news",
+                "items": [
+                    {
+                        "href": "https://api.agrofoto.pl/entries/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie",
+                        "title": "Szkolenie Fundacji \"Młody Hodowca\" w Dobrzyniewie",
+                        "createdTime": "2011-09-02T16:12:33+0000",
+                        "user": {
+                            "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                            "name": "agrofoto",
+                            "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                        },
+                        "displayedCount": 91,
+                        "thumbnail": "http://www.agrofoto.pl/forum/uploads/thumb_blog-0365527001409576688.jpg",
+                        "preview": "W dniach 28 i 29 sierpnia 2014 roku w Dobrzyniewie, Gleśnie i Mrozowie odbyło się szkolenie przygotowawcze bydła do wystawy. Organizatorem kursu była... "
+                    }
+                ],
+                "next": {
+                    "href": "https://api.agrofoto.pl/news?page=1&limit=25"
+                },
+                "previous": null
+            }
+            
+## Entry [/entries/{id}]
++ Parameters
+    + id (string)
+
+### Get Entry [GET]
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "href": "https://api.agrofoto.pl/entries/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie",
+                "title": "Szkolenie Fundacji \"Młody Hodowca\" w Dobrzyniewie",
+                "createdTime": "2011-09-02T16:12:33+0000",
+                "user": {
+                    "href": "https://api.agrofoto.pl/users/18601-agrofoto1",
+                    "name": "agrofoto",
+                    "thumb": "http://www.agrofoto.pl/forum/uploads/av-18601.jpg"
+                },
+                "displayedCount": 91,
+                "content": "strona html z contentem wpisu dostosowana do wyswietlenia na urzadzeniu mobilnym",
+                "link": "http://www.agrofoto.pl/forum/blog/11/entry-973-szkolenie-fundacji-mlody-hodowca-w-dobrzyniewie/"
+            }
+            
+# Group BannerAds
+
+## BannerAd [/bannerad]
+
+### Get random banner [GET]
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "banner": "http://link-do-baneru.com/baner.jpg",
+                "link": "http://link-do-reklamowanej-strony.com"
+            }
+
+## BannerAds [/bannerads]
+
+### Get array of random banners [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            [    
+                {
+                    "banner": "http://link-do-baneru.com/baner.jpg",
+                    "link": "http://link-do-reklamowanej-strony.com"
+                }
+            ]
+            
+# Group Category
+
+## Categories Tree [/categories]
+
+### Get Categories Tree [GET]
+
++ Response 200 (application/json)
+
+    + Body
+    
+            {
+                "category": "https://api.agrofoto.pl/galleries/0",
+                "canUpload": false,
+                "name": "",
+                "children": [
+                    {
+                        "category": null,
+                        "name": "Moje albumy",
+                        "canUpload": false,
+                        "children": [
+                            {
+                                "category": "https://api.agrofoto.pl/albums/54345",
+                                "name": "Mój album 2014",
+                                "canUpload": true
+                            },
+                            {
+                                "category": "https://api.agrofoto.pl/albums/45652",
+                                "name": "Mój album 2013",
+                                "canUpload": true
+                            }
+                        ]
+                    },
+                    {
+                        "category": "https://api.agrofoto.pl/galleries/463",
+                        "name": "Galeria chwastów,insektów i grzybów",
+                        "canUpload": false,
+                        "children": [
+                            {
+                                "category": "https://api.agrofoto.pl/galleries/464",
+                                "name": "Chwasty",
+                                "canUpload": true
+                            },
+                            {
+                                "category": "https://api.agrofoto.pl/galleries/465",
+                                "name": "Insekty",
+                                "canUpload": true
+                            },
+                            {
+                                "category": "https://api.agrofoto.pl/galleries/466",
+                                "name": "Grzyby",
+                                "canUpload": true
+                            }
+                        ]
+                    }
+                ]
+            }
