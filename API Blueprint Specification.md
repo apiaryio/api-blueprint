@@ -288,7 +288,7 @@ header level or its list item indentation. Anything between the section start
 and the start of following section at the same level is considered to be part
 of the section.
 
-What sections can be nested and where depends upon the section in case, as
+Which sections can be nested and where depends upon the section in case, as
 described in the relevant section's entry.
 
 #### Example: Nested header-defined section
