@@ -56,7 +56,7 @@ To learn more about the API Blueprint syntax jump directly to the
 [API Blueprint Tutorial][tutorial] or take a look at some [examples][].
 
 [mock]: http://docs.apibstart.apiary.io/#reference/0/message/get?console=1
-[documentation]: http://docs.apibstart.apiary.io
+[documentation]: https://apiblueprint.org/documentation/
 [test]: http://dredd.readthedocs.org/en/latest/
 [tutorial]: Tutorial.md
 [examples]: https://github.com/apiaryio/api-blueprint/tree/master/examples
